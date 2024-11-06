@@ -15,9 +15,12 @@
         <div class="row">
             <div class="col">
                 <div class="card">
+                    <div class="card-header text-white bg-primary">
+                        <h5>Indikator Kinerja Utama</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Default Table</h5>
                         <!-- Default Table -->
+                        <button type="button" class="btn btn-primary mb-4">Tambah Form</button>
                         <table class="table table-bordered">
                             <thead class="table-primary">
                                 <tr class="text-center align-middle">
