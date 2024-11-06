@@ -1,11 +1,9 @@
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>General Tables</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">General</li>
+                <li class="breadcrumb-item active">Renstra</li>
             </ol>
         </nav>
     </div>
@@ -16,11 +14,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5>Indikator Kinerja Utama</h5>
+                        <h5>Tabel Rencana Strategi</h5>
                     </div>
                     <div class="card-body">
                         <!-- Default Table -->
-                        <button type="button" class="btn btn-primary mb-4">Tambah Form</button>
+                        <a href="<?= base_url('renstra/create_view1')?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
                         <table class="table table-bordered">
                             <thead class="table-primary">
                                 <tr class="text-center align-middle">
