@@ -14,10 +14,12 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5>Tabel Rencana Strategi</h5>
+                        <h5><strong>Tabel Rencana Strategi</strong></h5>
                     </div>
                     <div class="card-body">
-                        <!-- Default Table -->
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
+                        </div>
                         <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
