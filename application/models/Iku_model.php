@@ -35,29 +35,31 @@ class Iku_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_target_level3($level3_id, $tahun = null)
+    public function get_target_level3($level3_id)
     {
-        // Example query to fetch target data
+        $this->db->select('tahun_target, isi_target');
         $this->db->where('id_level3', $level3_id);
-
-        if ($tahun) {
-            $this->db->where('tahun_target', $tahun);
-        }
-
         $query = $this->db->get('target_level3');
-        return $query->result();
-    }
+        $results = $query->result();
 
-
-    public function get_target_level4($level4_id, $tahun = null) {
-        $this->db->where('id_level4', $level4_id);
-        
-        if ($tahun) {
-            $this->db->where('tahun_target', $tahun);
+        $targets = [];
+        foreach ($results as $row) {
+            $targets[$row->tahun_target] = $row->isi_target;
         }
-        
-        $query = $this->db->get('target_level4');
-        return $query->result();
+        return $targets;
     }
-    
+
+    public function get_target_level4($level4_id)
+    {
+        $this->db->select('tahun_target, isi_target');
+        $this->db->where('id_level4', $level4_id);
+        $query = $this->db->get('target_level4');
+        $results = $query->result();
+
+        $targets = [];
+        foreach ($results as $row) {
+            $targets[$row->tahun_target] = $row->isi_target;
+        }
+        return $targets;
+    }
 }
