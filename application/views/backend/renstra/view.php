@@ -106,6 +106,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- End Default Table Example -->
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+</main>

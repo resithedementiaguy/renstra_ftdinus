@@ -1,7 +1,7 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-        &copy; Copyright 2024 <strong><span>Fakultas Teknik Universitas Dian Nuswantoro</span></strong>. All Rights Reserved
+        &copy; Copyright 2024 <strong><span>Fakultas Teknik Universitas Dian Nuswantoro</span></strong>
     </div>
 </footer><!-- End Footer -->
 
