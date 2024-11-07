@@ -62,16 +62,18 @@
                                                 <td></td>
                                                 <td><?php echo $level3_item->no_iku; ?></td>
 
-                                                <!-- Check the value of ket_target for colspan -->
+                                                <!-- Check the value of ket_target for colspan and add input boxes if needed -->
                                                 <?php if ($level3_item->ket_target === 'Iya'): ?>
                                                     <td><?php echo $level3_item->isi_iku; ?></td>
                                                     <?php
-                                                    // Get the year-based target for level 3
-                                                    $target_level3 = $this->Iku_model->get_target_level3($level3_item->id);
-                                                    foreach ($target_level3 as $target_item):
-                                                    ?>
-                                                        <td><?php echo $target_item->isi_target; ?></td>
-                                                    <?php endforeach; ?>
+                                                    // Generate input boxes for each year if ket_target is "Iya"
+                                                    for ($year = 2021; $year <= 2026; $year++): ?>
+                                                        <td>
+                                                            <input type="text" name="target[<?php echo $level3_item->id; ?>][<?php echo $year; ?>]"
+                                                                class="form-control"
+                                                                placeholder="Isi target">
+                                                        </td>
+                                                    <?php endfor; ?>
                                                 <?php else: ?>
                                                     <td colspan="7"><?php echo $level3_item->isi_iku; ?></td>
                                                 <?php endif; ?>
@@ -86,13 +88,15 @@
                                                     <td></td>
                                                     <td class="text-end"><?php echo $level4_item->no_iku; ?></td>
                                                     <td class="text-end"><?php echo $level4_item->isi_iku; ?></td>
-                                                    <?php
-                                                    // Get the year-based target for level 4
-                                                    $target_level4 = $this->Iku_model->get_target_level4($level4_item->id);
-                                                    foreach ($target_level4 as $target_item):
-                                                    ?>
-                                                        <td><?php echo $target_item->isi_target; ?></td>
-                                                    <?php endforeach; ?>
+
+                                                    <!-- Generate input boxes for each year if level 4 is populated -->
+                                                    <?php for ($year = 2021; $year <= 2026; $year++): ?>
+                                                        <td>
+                                                            <input type="text" name="target[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
+                                                                class="form-control"
+                                                                placeholder="Isi target">
+                                                        </td>
+                                                    <?php endfor; ?>
                                                 </tr>
                                 <?php endforeach;
                                         endforeach;
