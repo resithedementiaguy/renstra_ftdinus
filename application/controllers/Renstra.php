@@ -36,7 +36,9 @@ class Renstra extends CI_Controller
 
         $this->Mod_renstra->add_iku_level1($data);
 
-        redirect('renstra/create_view2');
+        // Set flashdata for success message
+        $this->session->set_flashdata('success', 'Data berhasil disimpan!');
+        redirect('renstra/create_view1');
     }
 
     public function create_view2()
@@ -61,7 +63,9 @@ class Renstra extends CI_Controller
 
         $this->Mod_renstra->add_iku_level2($data);
 
-        redirect('renstra/create_view3');
+        // Set flashdata for success message
+        $this->session->set_flashdata('success', 'Data berhasil disimpan!');
+        redirect('renstra/create_view2');
     }
 
     public function create_view3()
@@ -89,7 +93,9 @@ class Renstra extends CI_Controller
 
         $this->Mod_renstra->add_iku_level3($data);
 
-        redirect('renstra/create_view4');
+        // Set flashdata for success message
+        $this->session->set_flashdata('success', 'Data berhasil disimpan!');
+        redirect('renstra/create_view3');
     }
 
     public function create_view4()
@@ -118,6 +124,8 @@ class Renstra extends CI_Controller
 
         $this->Mod_renstra->add_iku_level4($data);
 
-        redirect('renstra/create_view1');
+        // Set flashdata for success message
+        $this->session->set_flashdata('success', 'Data berhasil disimpan!');
+        redirect('renstra/create_view4');
     }
 }
