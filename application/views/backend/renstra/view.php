@@ -122,37 +122,58 @@
     </section>
 </main>
 
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel">Informasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="responseMessage">
+                <!-- Pesan respons akan muncul di sini -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function() {
         $('input.target-input').on('change', function() {
             var targetId = $(this).data('id');
             var year = $(this).data('year');
             var value = $(this).val();
-            var levelType = $(this).data('level-type'); // Ambil level_type dari atribut data
+            var levelType = $(this).data('level-type');
 
             $.ajax({
                 url: "<?php echo base_url('iku/update_target'); ?>",
                 method: "POST",
-                dataType: 'json', // Pastikan format respons JSON
+                dataType: 'json',
                 data: {
                     target_id: targetId,
                     year: year,
                     value: value,
-                    level_type: levelType // Pastikan ini sesuai dengan level3 atau level4
+                    level_type: levelType
                 },
                 success: function(response) {
                     console.log(response); // Cek isi response di console
                     if (response.success) {
-                        alert("Target berhasil diperbarui");
+                        $('#responseMessage').text("Target berhasil diperbarui");
                     } else {
-                        alert("Gagal memperbarui target");
+                        $('#responseMessage').text("Gagal memperbarui target");
                     }
+                    $('#responseModal').modal('show'); // Tampilkan modal
                 },
                 error: function(xhr, status, error) {
                     console.error("Status: " + status);
                     console.error("Error: " + error);
                     console.error("Response: " + xhr.responseText);
-                    alert("Terjadi kesalahan di server. Cek console untuk detail.");
+                    $('#responseMessage').text("Terjadi kesalahan di server. Cek console untuk detail.");
+                    $('#responseModal').modal('show'); // Tampilkan modal
                 }
             });
         });
