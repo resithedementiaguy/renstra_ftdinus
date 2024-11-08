@@ -18,25 +18,27 @@
                         <h5>Tambah IKU Level 1</h5>
                     </div>
                     <div class="card-body">
-                    <form method="post" action="<?= base_url('renstra/add_level1') ?>">
-                        <div class="row mb-3">
-                            <label for="no_iku" class="col-sm-2 col-form-label">Nomor Butir</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="masukkan nomor butir (e.g 1., 2., 3., dll)" required>
+                        <form method="post" action="<?= base_url('renstra/add_level1') ?>">
+                            <div class="row mb-3">
+                                <label for="no_iku" class="col-sm-2 col-form-label">Nomor Butir</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="masukkan nomor butir (e.g 1., 2., 3., dll)" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="isi_iku1" class="col-sm-2 col-form-label">Butir</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="isi_iku1" id="isi_iku1" class="form-control" placeholder="masukkan isi butir" required>
+                            <div class="row mb-3">
+                                <label for="isi_iku1" class="col-sm-2 col-form-label">Butir</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="isi_iku1" id="isi_iku1" class="form-control" placeholder="masukkan isi butir" required>
+                                </div>
                             </div>
-                        </div>
                     </div>
-                    <div class="card-footer">                      
-                        <a href="<?= base_url('renstra/create_view4') ?>" class="btn btn-primary mb-4">Ke Level 4</a>
-                        <a href="<?= base_url('renstra/create_view2') ?>" class="btn btn-primary mb-4">Ke Level 2</a>
-                        <a href="<?= base_url('iku') ?>" class="btn btn-secondary mb-4">Kembali</a>
-                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>  
+                    <div class="card-footer d-flex justify-content-between">
+                        <div>
+                            <a href="<?= base_url('renstra/create_view2') ?>" class="btn btn-primary mb-4">Ke Level 2</a>
+                            <a href="<?= base_url('renstra/create_view4') ?>" class="btn btn-primary mb-4">Ke Level 4</a>
+                            <a href="<?= base_url('iku') ?>" class="btn btn-secondary mb-4">Kembali</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -65,11 +67,11 @@
 
     <!-- Check if success flashdata is set and trigger modal -->
     <?php if ($this->session->flashdata('success')): ?>
-    <script>
-        window.onload = function() {
-            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
-        };
-    </script>
+        <script>
+            window.onload = function() {
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            };
+        </script>
     <?php endif; ?>
 </main>
