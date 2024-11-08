@@ -54,4 +54,30 @@ class Iku extends CI_Controller
 
         $this->load->view('iku_level4_view', $data);
     }
+
+    public function update_target()
+    {
+        log_message('debug', 'update_target() called');
+        $target_id = $this->input->post('target_id');
+        $year = $this->input->post('year');
+        $value = $this->input->post('value');
+        $level_type = $this->input->post('level_type');
+
+        if (!$target_id || !$year || !$value || !$level_type) {
+            log_message('error', 'Data tidak lengkap: target_id=' . $target_id . ', year=' . $year . ', value=' . $value . ', level_type=' . $level_type);
+            echo json_encode(['success' => false, 'message' => 'Data tidak lengkap']);
+            return;
+        }
+
+        $this->load->model('Iku_model');
+        $updated = $this->Iku_model->update_target($target_id, $year, $value, $level_type);
+
+        if ($updated) {
+            log_message('debug', 'Update berhasil');
+            echo json_encode(['success' => true]);
+        } else {
+            log_message('error', 'Gagal memperbarui target');
+            echo json_encode(['success' => false, 'message' => 'Gagal memperbarui target']);
+        }
+    }
 }

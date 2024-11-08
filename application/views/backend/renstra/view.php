@@ -67,13 +67,15 @@
 
                                                     <?php if ($level3_item->ket_target === 'Iya'): ?>
                                                         <td><?php echo $level3_item->isi_iku; ?></td>
-                                                        <?php
-                                                        for ($year = 2021; $year <= 2026; $year++):
-                                                            $value = isset($target_level3[$year]) ? $target_level3[$year] : ''; // Ambil nilai target atau kosong
-                                                        ?>
+                                                        <?php for ($year = 2021; $year <= 2026; $year++):
+                                                            $value = isset($target_level3[$year]) ? $target_level3[$year] : ''; ?>
                                                             <td>
-                                                                <input type="text" name="target[<?php echo $level3_item->id; ?>][<?php echo $year; ?>]"
-                                                                    class="form-control"
+                                                                <input type="text"
+                                                                    name="target[<?php echo $level3_item->id; ?>][<?php echo $year; ?>]"
+                                                                    class="form-control target-input"
+                                                                    data-id="<?php echo $level3_item->id; ?>"
+                                                                    data-year="<?php echo $year; ?>"
+                                                                    data-level-type="level3"
                                                                     value="<?php echo $value; ?>"
                                                                     placeholder="Isi target">
                                                             </td>
@@ -92,13 +94,15 @@
                                                         <td></td>
                                                         <td class="text-end"><?php echo $level4_item->no_iku; ?></td>
                                                         <td class="text-end"><?php echo $level4_item->isi_iku; ?></td>
-
                                                         <?php for ($year = 2021; $year <= 2026; $year++):
-                                                            $value = isset($target_level4[$year]) ? $target_level4[$year] : ''; // Ambil nilai target atau kosong
-                                                        ?>
+                                                            $value = isset($target_level4[$year]) ? $target_level4[$year] : ''; ?>
                                                             <td>
-                                                                <input type="text" name="target[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
-                                                                    class="form-control"
+                                                                <input type="text"
+                                                                    name="target[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
+                                                                    class="form-control target-input"
+                                                                    data-id="<?php echo $level4_item->id; ?>"
+                                                                    data-year="<?php echo $year; ?>"
+                                                                    data-level-type="level4"
                                                                     value="<?php echo $value; ?>"
                                                                     placeholder="Isi target">
                                                             </td>
@@ -117,3 +121,40 @@
         </div>
     </section>
 </main>
+
+<script>
+    $(document).ready(function() {
+        $('input.target-input').on('change', function() {
+            var targetId = $(this).data('id');
+            var year = $(this).data('year');
+            var value = $(this).val();
+            var levelType = $(this).data('level-type'); // Ambil level_type dari atribut data
+
+            $.ajax({
+                url: "<?php echo base_url('iku/update_target'); ?>",
+                method: "POST",
+                dataType: 'json', // Pastikan format respons JSON
+                data: {
+                    target_id: targetId,
+                    year: year,
+                    value: value,
+                    level_type: levelType // Pastikan ini sesuai dengan level3 atau level4
+                },
+                success: function(response) {
+                    console.log(response); // Cek isi response di console
+                    if (response.success) {
+                        alert("Target berhasil diperbarui");
+                    } else {
+                        alert("Gagal memperbarui target");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Status: " + status);
+                    console.error("Error: " + error);
+                    console.error("Response: " + xhr.responseText);
+                    alert("Terjadi kesalahan di server. Cek console untuk detail.");
+                }
+            });
+        });
+    });
+</script>

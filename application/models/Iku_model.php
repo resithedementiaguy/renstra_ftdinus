@@ -62,4 +62,29 @@ class Iku_model extends CI_Model
         }
         return $targets;
     }
+
+    public function update_target($target_id, $year, $value, $level_type)
+    {
+        // Tentukan tabel berdasarkan level_type
+        $table = ($level_type === 'level3') ? 'target_level3' : 'target_level4';
+
+        // Cek apakah target sudah ada atau belum
+        $this->db->where('id_level' . ($level_type === 'level3' ? '3' : '4'), $target_id);
+        $this->db->where('tahun_target', $year);
+        $query = $this->db->get($table);
+
+        if ($query->num_rows() > 0) {
+            // Jika target ada, lakukan update
+            $this->db->where('id_level' . ($level_type === 'level3' ? '3' : '4'), $target_id);
+            $this->db->where('tahun_target', $year);
+            return $this->db->update($table, ['isi_target' => $value]);
+        } else {
+            // Jika tidak ada, lakukan insert
+            return $this->db->insert($table, [
+                'id_level' . ($level_type === 'level3' ? '3' : '4') => $target_id,
+                'tahun_target' => $year,
+                'isi_target' => $value
+            ]);
+        }
+    }
 }
