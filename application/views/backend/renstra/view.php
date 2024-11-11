@@ -23,27 +23,24 @@
                         <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
-                                <thead class="table-primary">
-                                    <tr class="text-center align-middle">
-                                        <th scope="col" rowspan="2" style="width: 50px;">No</th>
-                                        <th scope="col" rowspan="2" colspan="2" style="width: 170px;">Butir</th>
-                                        <th scope="col" rowspan="2" style="width: 200px;">Indikator Kinerja Utama</th>
-                                        <th scope="col" colspan="6" style="width: 300px;">Tahun</th>
+                                <thead class="table-primary" style="border: 3px solid #072a75 !important;">
+                                    <tr style="border: 3px solid #072a75 !important;">
+                                        <th class="text-center align-middle" rowspan="2" style="width: 50px;">No.</th>
+                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="width: 170px;">Butir</th>
+                                        <th class="text-start align-middle" rowspan="2" style="width: 250px;">Indikator Kinerja Utama</th>
+                                        <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="width: 300px;">Tahun</th>
                                     </tr>
-                                    <tr class="text-center align-middle">
-                                        <th scope="col">2021</th>
-                                        <th scope="col">2022</th>
-                                        <th scope="col">2023</th>
-                                        <th scope="col">2024</th>
-                                        <th scope="col">2025</th>
-                                        <th scope="col">2026</th>
+                                    <tr class="text-center align-middle" style="border: 3px solid #072a75 !important;">
+                                        <?php foreach ($years as $year): ?>
+                                            <th><?php echo $year; ?></th>
+                                        <?php endforeach; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($level1 as $key => $level1_item): ?>
                                         <tr>
                                             <td><?php echo $level1_item->no_iku; ?></td>
-                                            <td colspan="9"><?php echo $level1_item->isi_iku; ?></td>
+                                            <td colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
                                         </tr>
                                         <?php
                                         $level2 = $this->Iku_model->get_level2($level1_item->id);
@@ -52,12 +49,11 @@
                                             <tr>
                                                 <td></td>
                                                 <td><?php echo $level2_item->no_iku; ?></td>
-                                                <td colspan="8"><?php echo $level2_item->isi_iku; ?></td>
+                                                <td colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
                                             </tr>
                                             <?php
                                             $level3 = $this->Iku_model->get_level3($level2_item->id);
                                             foreach ($level3 as $level3_item):
-                                                // Ambil target level 3 berdasarkan ID
                                                 $target_level3 = $this->Iku_model->get_target_level3($level3_item->id);
                                             ?>
                                                 <tr>
@@ -67,7 +63,7 @@
 
                                                     <?php if ($level3_item->ket_target === 'Iya'): ?>
                                                         <td><?php echo $level3_item->isi_iku; ?></td>
-                                                        <?php for ($year = 2021; $year <= 2026; $year++):
+                                                        <?php foreach ($years as $year):
                                                             $value = isset($target_level3[$year]) ? $target_level3[$year] : ''; ?>
                                                             <td>
                                                                 <input type="text"
@@ -79,9 +75,9 @@
                                                                     value="<?php echo $value; ?>"
                                                                     placeholder="Isi target">
                                                             </td>
-                                                        <?php endfor; ?>
+                                                        <?php endforeach; ?>
                                                     <?php else: ?>
-                                                        <td colspan="7"><?php echo $level3_item->isi_iku; ?></td>
+                                                        <td colspan="<?php echo count($years) + 1; ?>"><?php echo $level3_item->isi_iku; ?></td>
                                                     <?php endif; ?>
                                                 </tr>
                                                 <?php
@@ -94,7 +90,7 @@
                                                         <td></td>
                                                         <td class="text-end"><?php echo $level4_item->no_iku; ?></td>
                                                         <td class="text-end"><?php echo $level4_item->isi_iku; ?></td>
-                                                        <?php for ($year = 2021; $year <= 2026; $year++):
+                                                        <?php foreach ($years as $year):
                                                             $value = isset($target_level4[$year]) ? $target_level4[$year] : ''; ?>
                                                             <td>
                                                                 <input type="text"
@@ -106,7 +102,7 @@
                                                                     value="<?php echo $value; ?>"
                                                                     placeholder="Isi target">
                                                             </td>
-                                                        <?php endfor; ?>
+                                                        <?php endforeach; ?>
                                                     </tr>
                                     <?php endforeach;
                                             endforeach;
@@ -162,9 +158,9 @@
                 success: function(response) {
                     console.log(response); // Cek isi response di console
                     if (response.success) {
-                        $('#responseMessage').text("Target berhasil diperbarui");
+                        $('#responseMessage').text("Target berhasil diperbarui untuk tahun " + year);
                     } else {
-                        $('#responseMessage').text("Gagal memperbarui target");
+                        $('#responseMessage').text("Gagal memperbarui target. Pesan kesalahan: " + (response.message || "Tidak ada detail"));
                     }
                     $('#responseModal').modal('show'); // Tampilkan modal
                 },
@@ -172,7 +168,13 @@
                     console.error("Status: " + status);
                     console.error("Error: " + error);
                     console.error("Response: " + xhr.responseText);
-                    $('#responseMessage').text("Terjadi kesalahan di server. Cek console untuk detail.");
+
+                    var errorMessage = "Terjadi kesalahan di server. Cek console untuk detail.";
+                    if (xhr.responseText) {
+                        errorMessage += "\nDetail kesalahan: " + xhr.responseText;
+                    }
+
+                    $('#responseMessage').text(errorMessage);
                     $('#responseModal').modal('show'); // Tampilkan modal
                 }
             });

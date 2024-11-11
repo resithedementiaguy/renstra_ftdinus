@@ -32,13 +32,13 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Nomor Butir</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="masukkan nomor butir (e.g 1.1., 1.2., 1.3., dll)" required>
+                                    <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="Masukkan nomor butir (e.g 1.1., 1.2., 1.3., dll)" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Butir</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="isi_iku2" id="isi_iku2" class="form-control" placeholder="masukkan isi butir" required>
+                                    <input type="text" name="isi_iku2" id="isi_iku2" class="form-control" placeholder="Masukkan isi butir" required>
                                 </div>
                             </div>
                     </div>

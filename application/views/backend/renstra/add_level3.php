@@ -42,13 +42,13 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Nomor IKU</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="masukkan nomor IKU (e.g 1.1.1., 1.1.2., 1.1.3., dll)" required>
+                                    <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="Masukkan nomor IKU (e.g 1.1.1., 1.1.2., 1.1.3., dll)" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Indikator Kinerja Utama</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="isi_iku3" id="isi_iku3" class="form-control" placeholder="masukkan isi IKU" required>
+                                    <input type="text" name="isi_iku3" id="isi_iku3" class="form-control" placeholder="Masukkan isi IKU" required>
                                 </div>
                             </div>
                             <fieldset class="row mb-3">
