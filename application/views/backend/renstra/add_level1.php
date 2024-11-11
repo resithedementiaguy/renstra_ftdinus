@@ -34,8 +34,8 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('renstra/create_view2') ?>" class="btn btn-primary mb-4">Ke Level 2</a>
                             <a href="<?= base_url('renstra/create_view4') ?>" class="btn btn-primary mb-4">Ke Level 4</a>
+                            <a href="<?= base_url('renstra/create_view2') ?>" class="btn btn-primary mb-4">Ke Level 2</a>
                             <a href="<?= base_url('iku') ?>" class="btn btn-secondary mb-4">Kembali</a>
                         </div>
                         <button type="submit" class="btn btn-primary mb-4">Simpan</button>
