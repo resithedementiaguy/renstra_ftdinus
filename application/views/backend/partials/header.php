@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Crumb Rubber</title>
+    <title>Renstra FT UDINUS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -42,8 +42,8 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="" />
-                <span class="d-none d-lg-block">NiceAdmin</span>
+                <img src="<?= base_url('') ?>assets/img/udinus.png" alt="" />
+                <span class="d-none d-lg-block">Renstra FT UDINUS</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
@@ -56,10 +56,6 @@
                         class="nav-link nav-profile d-flex align-items-center pe-0"
                         href="#"
                         data-bs-toggle="dropdown">
-                        <img
-                            src="assets/img/profile-img.jpg"
-                            alt="Profile"
-                            class="rounded-circle" />
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span> </a><!-- End Profile Iamge Icon -->
 
                     <ul
@@ -108,16 +104,15 @@
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link <?php echo ($this->uri->segment(1) == 'dashboard') ? '' : 'collapsed'; ?>" href="<?php echo site_url('dashboard'); ?>">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                    <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
+                <a class="nav-link <?php echo ($this->uri->segment(1) == 'iku') ? '' : 'collapsed'; ?>" href="<?php echo site_url('iku'); ?>">
+                    <span>Rencana Strategi</span>
                 </a>
             </li>
 
