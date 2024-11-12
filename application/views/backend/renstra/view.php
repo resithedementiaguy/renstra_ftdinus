@@ -19,7 +19,12 @@
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
                         </div>
-                        <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
+                            </div>
+                            <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4">Cetak PDF</a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead class="table-primary" style="border: 3px solid #072a75 !important;">

@@ -1,12 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+//Include autoloader dari Composer
+require 'dompdf/vendor/autoload.php';
+
+use Dompdf\Dompdf;
+
 class Renstra extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Mod_renstra');
+        $this->load->model('Iku_model');
     }
 
     public function index()
@@ -128,4 +134,31 @@ class Renstra extends CI_Controller
         $this->session->set_flashdata('success', 'Data berhasil disimpan!');
         redirect('renstra/create_view4');
     }
+
+    public function generate_pdf()
+    {
+        // Buat instance Dompdf
+        $dompdf = new Dompdf();
+        $data['level1'] = $this->Iku_model->get_level1();
+
+        // Ambil nilai tahun dari database
+        $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
+        $data['years'] = array_column($years, 'tahun');
+
+        // Load view sebagai HTML
+        $html = $this->load->view('backend/renstra/pdf/cetak_renstra', $data, true); // Pass true to get the output as a string
+
+        // Load HTML content ke Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF (1 = download, 0 = preview)
+        $dompdf->stream("renstra.pdf", array("Attachment" => 0));
+    }
+
 }
