@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Iku_model extends CI_Model
+class Mod_iku extends CI_Model
 {
 
     public function get_level1()

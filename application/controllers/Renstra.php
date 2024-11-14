@@ -12,7 +12,7 @@ class Renstra extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mod_renstra');
-        $this->load->model('Iku_model');
+        $this->load->model('Mod_iku');
     }
 
     public function index()
@@ -49,9 +49,9 @@ class Renstra extends CI_Controller
 
     public function create_view2()
     {
-        $data['iku_level1']=$this->Mod_renstra->get_iku_level1();
+        $data['iku_level1'] = $this->Mod_renstra->get_iku_level1();
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/renstra/add_level2',$data);
+        $this->load->view('backend/renstra/add_level2', $data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -76,10 +76,10 @@ class Renstra extends CI_Controller
 
     public function create_view3()
     {
-        $data['iku_level1']=$this->Mod_renstra->get_iku_level1();
-        $data['iku_level2']=$this->Mod_renstra->get_iku_level2();
+        $data['iku_level1'] = $this->Mod_renstra->get_iku_level1();
+        $data['iku_level2'] = $this->Mod_renstra->get_iku_level2();
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/renstra/add_level3',$data);
+        $this->load->view('backend/renstra/add_level3', $data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -106,9 +106,9 @@ class Renstra extends CI_Controller
 
     public function create_view4()
     {
-        $data['iku_level1']=$this->Mod_renstra->get_iku_level1();
-        $data['iku_level2']=$this->Mod_renstra->get_iku_level2();
-        $data['iku_level3']=$this->Mod_renstra->get_iku_level3();
+        $data['iku_level1'] = $this->Mod_renstra->get_iku_level1();
+        $data['iku_level2'] = $this->Mod_renstra->get_iku_level2();
+        $data['iku_level3'] = $this->Mod_renstra->get_iku_level3();
         $this->load->view('backend/partials/header');
         $this->load->view('backend/renstra/add_level4', $data);
         $this->load->view('backend/partials/footer');
@@ -139,7 +139,7 @@ class Renstra extends CI_Controller
     {
         // Buat instance Dompdf
         $dompdf = new Dompdf();
-        $data['level1'] = $this->Iku_model->get_level1();
+        $data['level1'] = $this->Mod_iku->get_level1();
 
         // Ambil nilai tahun dari database
         $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
@@ -160,5 +160,4 @@ class Renstra extends CI_Controller
         // Output PDF (1 = download, 0 = preview)
         $dompdf->stream("renstra.pdf", array("Attachment" => 0));
     }
-
 }

@@ -15,9 +15,19 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5>Tambah IKU Level 2</h5>
+                        <h5 class="pt-2">Tambah IKU Level 2</h5>
                     </div>
                     <div class="card-body">
+                        <?php
+                        $current_url = current_url(); // Dapatkan URL saat ini
+                        ?>
+                        <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4 <?= $current_url == base_url('renstra/create_view1') ? 'disabled' : '' ?>">Ke Level 1</a>
+                        <a href="<?= base_url('renstra/create_view2') ?>" type="button" class="btn btn-primary mb-4 <?= $current_url == base_url('renstra/create_view2') ? 'disabled' : '' ?>">Ke Level 2</a>
+                        <a href="<?= base_url('renstra/create_view3') ?>" type="button" class="btn btn-primary mb-4 <?= $current_url == base_url('renstra/create_view3') ? 'disabled' : '' ?>">Ke Level 3</a>
+                        <a href="<?= base_url('renstra/create_view4') ?>" type="button" class="btn btn-primary mb-4 <?= $current_url == base_url('renstra/create_view4') ? 'disabled' : '' ?>">Ke Level 4</a>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            *Silahkan untuk isi form dibawah sesuai dengan level RENSTRA
+                        </div>
                         <form method="post" action="<?= base_url('renstra/add_level2') ?>">
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Pilih Butir</label>
@@ -41,14 +51,13 @@
                                     <input type="text" name="isi_iku2" id="isi_iku2" class="form-control" placeholder="Masukkan isi butir" required>
                                 </div>
                             </div>
+                        </form>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Ke Level 1</a>
-                            <a href="<?= base_url('renstra/create_view3') ?>" type="button" class="btn btn-primary mb-4">Ke Level 3</a>
-                            <a href="<?= base_url('iku') ?>" type="button" class="btn btn-secondary mb-4">Kembali</a>
+                            <a href="<?= base_url('iku') ?>" type="button" class="btn btn-secondary my-3">Kembali</a>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                        <button type="submit" class="btn btn-primary my-3">Simpan</button>
                     </div>
                     </form><!-- End General Form Elements -->
                 </div>
@@ -83,3 +92,4 @@
             };
         </script>
     <?php endif; ?>
+</main>

@@ -13,7 +13,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5><strong>Tabel Rencana Strategi</strong></h5>
+                        <h5 class="pt-2"><strong>Tabel Rencana Strategi</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -47,7 +47,7 @@
                                             <td style="border: 1px solid;" colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
                                         </tr>
                                         <?php
-                                        $level2 = $this->Iku_model->get_level2($level1_item->id);
+                                        $level2 = $this->Mod_iku->get_level2($level1_item->id);
                                         foreach ($level2 as $level2_item):
                                         ?>
                                             <tr style="border: 1px solid;">
@@ -56,9 +56,9 @@
                                                 <td style="border: 1px solid;" colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
                                             </tr>
                                             <?php
-                                            $level3 = $this->Iku_model->get_level3($level2_item->id);
+                                            $level3 = $this->Mod_iku->get_level3($level2_item->id);
                                             foreach ($level3 as $level3_item):
-                                                $target_level3 = $this->Iku_model->get_target_level3($level3_item->id);
+                                                $target_level3 = $this->Mod_iku->get_target_level3($level3_item->id);
                                             ?>
                                                 <tr style="border: 1px solid;">
                                                     <td style="border: 1px solid;"></td>
@@ -66,7 +66,7 @@
                                                     <td style="border: 1px solid;"><?php echo $level3_item->no_iku; ?></td>
 
                                                     <?php if ($level3_item->ket_target === 'Iya'): ?>
-                                                        <td  style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
+                                                        <td style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
                                                         <?php foreach ($years as $year):
                                                             $value = isset($target_level3[$year]) ? $target_level3[$year] : ''; ?>
                                                             <td style="border: 1px solid;">
@@ -85,9 +85,9 @@
                                                     <?php endif; ?>
                                                 </tr>
                                                 <?php
-                                                $level4 = $this->Iku_model->get_level4($level3_item->id);
+                                                $level4 = $this->Mod_iku->get_level4($level3_item->id);
                                                 foreach ($level4 as $level4_item):
-                                                    $target_level4 = $this->Iku_model->get_target_level4($level4_item->id);
+                                                    $target_level4 = $this->Mod_iku->get_target_level4($level4_item->id);
                                                 ?>
                                                     <tr style="border: 1px solid;">
                                                         <td style="border: 1px solid;"></td>
@@ -139,7 +139,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function() {
