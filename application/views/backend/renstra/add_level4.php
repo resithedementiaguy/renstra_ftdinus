@@ -33,6 +33,7 @@
                                 <label class="col-sm-2 col-form-label">Pilih Butir 1</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="id_level1" id="id_level1" aria-label="Default select example">
+                                        <option value="">- Pilih Butir 1 -</option>
                                         <?php foreach ($iku_level1 as $level1): ?>
                                             <option value="<?= $level1->id ?>"><?= $level1->no_iku ?> <?= $level1->isi_iku ?></option>
                                         <?php endforeach; ?>
@@ -43,9 +44,7 @@
                                 <label class="col-sm-2 col-form-label">Pilih Butir 2</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="id_level2" id="id_level2" aria-label="Default select example">
-                                        <?php foreach ($iku_level2 as $level2): ?>
-                                            <option value="<?= $level2->id ?>"><?= $level2->no_iku ?> <?= $level2->isi_iku ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="">- Pilih Butir 2 -</option>
                                     </select>
                                 </div>
                             </div>
@@ -53,9 +52,7 @@
                                 <label class="col-sm-2 col-form-label">Pilih IKU</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="id_level3" id="id_level3" aria-label="Default select example">
-                                        <?php foreach ($iku_level3 as $level3): ?>
-                                            <option value="<?= $level3->id ?>"><?= $level3->no_iku ?> <?= $level3->isi_iku ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="">- Pilih IKU -</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,3 +110,54 @@
         </script>
     <?php endif; ?>
 </main>
+
+<script>
+    $(document).ready(function() {
+        // Ketika Pilih Butir 1 berubah
+        $('#id_level1').change(function() {
+            var id_level1 = $(this).val();
+
+            $.ajax({
+                url: '<?= base_url("renstra/get_level2_by_level1") ?>',
+                type: 'POST',
+                data: {
+                    id_level1: id_level1
+                },
+                dataType: 'json',
+                success: function(data) {
+                    var level2Select = $('#id_level2');
+                    level2Select.empty();
+                    level2Select.append('<option value="">Pilih Butir 2</option>');
+                    $.each(data, function(index, item) {
+                        level2Select.append('<option value="' + item.id + '">' + item.no_iku + ' ' + item.isi_iku + '</option>');
+                    });
+
+                    // Kosongkan juga pilihan di level3
+                    $('#id_level3').empty().append('<option value="">Pilih IKU</option>');
+                }
+            });
+        });
+
+        // Ketika Pilih Butir 2 berubah
+        $('#id_level2').change(function() {
+            var id_level2 = $(this).val();
+
+            $.ajax({
+                url: '<?= base_url("renstra/get_level3_by_level2") ?>',
+                type: 'POST',
+                data: {
+                    id_level2: id_level2
+                },
+                dataType: 'json',
+                success: function(data) {
+                    var level3Select = $('#id_level3');
+                    level3Select.empty();
+                    level3Select.append('<option value="">Pilih IKU</option>');
+                    $.each(data, function(index, item) {
+                        level3Select.append('<option value="' + item.id + '">' + item.no_iku + ' ' + item.isi_iku + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>

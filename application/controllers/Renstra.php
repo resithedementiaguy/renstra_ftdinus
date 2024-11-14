@@ -135,6 +135,33 @@ class Renstra extends CI_Controller
         redirect('renstra/create_view4');
     }
 
+    public function get_level2_by_level1()
+    {
+        $id_level1 = $this->input->post('id_level1');
+
+        if (!$id_level1) {
+            echo json_encode(['error' => 'ID Level 1 tidak ditemukan']);
+            return;
+        }
+
+        $this->load->model('Mod_renstra');
+        $level2_options = $this->Mod_renstra->get_level2_by_level1($id_level1);
+
+        if ($level2_options) {
+            echo json_encode($level2_options);
+        } else {
+            echo json_encode(['error' => 'Data IKU Level 2 tidak ditemukan']);
+        }
+    }
+
+    public function get_level3_by_level2()
+    {
+        $id_level2 = $this->input->post('id_level2');
+        $this->load->model('Mod_renstra');
+        $level3_options = $this->Mod_renstra->get_level3_by_level2($id_level2);
+        echo json_encode($level3_options);
+    }
+
     public function generate_pdf()
     {
         // Buat instance Dompdf

@@ -13,7 +13,7 @@ class Mod_renstra extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('iku_level1');
-        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -106,5 +106,25 @@ class Mod_renstra extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete('status_stok');
+    }
+
+    public function get_level2_by_level1($id_level1)
+    {
+        $this->db->where('id_level1', $id_level1);
+        $query = $this->db->get('iku_level2');
+
+        if ($query->num_rows() == 0) {
+            log_message('error', 'Tidak ada data yang cocok untuk ID Level 1: ' . $id_level1);
+            return false;
+        }
+
+        return $query->result();
+    }
+
+    public function get_level3_by_level2($id_level2)
+    {
+        $this->db->where('id_level2', $id_level2);
+        $query = $this->db->get('iku_level3');
+        return $query->result();
     }
 }

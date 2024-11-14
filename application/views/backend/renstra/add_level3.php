@@ -33,6 +33,7 @@
                                 <label class="col-sm-2 col-form-label">Pilih Butir 1</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="id_level1" id="id_level1" aria-label="Default select example">
+                                        <option value="">- Pilih Butir 1 -</option>
                                         <?php foreach ($iku_level1 as $level1): ?>
                                             <option value="<?= $level1->id ?>"><?= $level1->no_iku ?> <?= $level1->isi_iku ?></option>
                                         <?php endforeach; ?>
@@ -43,9 +44,7 @@
                                 <label class="col-sm-2 col-form-label">Pilih Butir 2</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="id_level2" id="id_level2" aria-label="Default select example">
-                                        <?php foreach ($iku_level2 as $level2): ?>
-                                            <option value="<?= $level2->id ?>"><?= $level2->no_iku ?> <?= $level2->isi_iku ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="">- Pilih Butir 1 terlebih dahulu -</option>
                                     </select>
                                 </div>
                             </div>
@@ -123,3 +122,33 @@
         </script>
     <?php endif; ?>
 </main>
+
+<script>
+    $(document).ready(function() {
+        $('#id_level1').on('change', function() {
+            var idLevel1 = $(this).val();
+            $.ajax({
+                url: '<?= base_url("renstra/get_level2_by_level1") ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id_level1: idLevel1
+                },
+                success: function(response) {
+                    $('#id_level2').empty(); // Kosongkan select level 2 terlebih dahulu
+                    if (response.length) {
+                        $.each(response, function(index, item) {
+                            $('#id_level2').append('<option value="' + item.id + '">' + item.no_iku + ' ' + item.isi_iku + '</option>');
+                        });
+                    } else {
+                        $('#id_level2').append('<option value="">Tidak ada data level 2</option>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error: " + error);
+                    console.error("Response: " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
