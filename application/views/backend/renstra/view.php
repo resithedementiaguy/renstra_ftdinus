@@ -26,50 +26,50 @@
                             <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4">Cetak PDF</a>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="table-primary" style="border: 3px solid #072a75 !important;">
-                                    <tr style="border: 3px solid #072a75 !important;">
-                                        <th class="text-center align-middle" rowspan="2" style="width: 50px;">No.</th>
-                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="width: 170px;">Butir</th>
-                                        <th class="text-start align-middle" rowspan="2" style="width: 250px;">Indikator Kinerja Utama</th>
-                                        <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="width: 300px;">Tahun</th>
+                            <table class="table table-bordered" style="border: 1px solid;">
+                                <thead class="table-primary" style="border: 1px solid #072a75 !important;">
+                                    <tr style="border: 1px solid #072a75 !important;">
+                                        <th class="text-center align-middle" rowspan="2" style="border: 1px solid;width: 50px;">No.</th>
+                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid;width: 170px;">Butir</th>
+                                        <th class="text-start align-middle" rowspan="2" style="border: 1px solid;width: 250px;">Indikator Kinerja Utama</th>
+                                        <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="border: 1px solid;width: 300px;">Tahun</th>
                                     </tr>
-                                    <tr class="text-center align-middle" style="border: 3px solid #072a75 !important;">
+                                    <tr class="text-center align-middle" style="border: 1px solid #072a75 !important;">
                                         <?php foreach ($years as $year): ?>
-                                            <th><?php echo $year; ?></th>
+                                            <th style="border: 1px solid;"><?php echo $year; ?></th>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($level1 as $key => $level1_item): ?>
-                                        <tr>
-                                            <td><?php echo $level1_item->no_iku; ?></td>
-                                            <td colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
+                                        <tr style="border: 1px solid;">
+                                            <td style="border: 1px solid;"><?php echo $level1_item->no_iku; ?></td>
+                                            <td style="border: 1px solid;" colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
                                         </tr>
                                         <?php
                                         $level2 = $this->Iku_model->get_level2($level1_item->id);
                                         foreach ($level2 as $level2_item):
                                         ?>
-                                            <tr>
-                                                <td></td>
-                                                <td><?php echo $level2_item->no_iku; ?></td>
-                                                <td colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
+                                            <tr style="border: 1px solid;">
+                                                <td style="border: 1px solid;"></td>
+                                                <td style="border: 1px solid;"><?php echo $level2_item->no_iku; ?></td>
+                                                <td style="border: 1px solid;" colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
                                             </tr>
                                             <?php
                                             $level3 = $this->Iku_model->get_level3($level2_item->id);
                                             foreach ($level3 as $level3_item):
                                                 $target_level3 = $this->Iku_model->get_target_level3($level3_item->id);
                                             ?>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><?php echo $level3_item->no_iku; ?></td>
+                                                <tr style="border: 1px solid;">
+                                                    <td style="border: 1px solid;"></td>
+                                                    <td style="border: 1px solid;"></td>
+                                                    <td style="border: 1px solid;"><?php echo $level3_item->no_iku; ?></td>
 
                                                     <?php if ($level3_item->ket_target === 'Iya'): ?>
-                                                        <td><?php echo $level3_item->isi_iku; ?></td>
+                                                        <td  style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
                                                         <?php foreach ($years as $year):
                                                             $value = isset($target_level3[$year]) ? $target_level3[$year] : ''; ?>
-                                                            <td>
+                                                            <td style="border: 1px solid;">
                                                                 <input type="text"
                                                                     name="target[<?php echo $level3_item->id; ?>][<?php echo $year; ?>]"
                                                                     class="form-control target-input"
@@ -81,7 +81,7 @@
                                                             </td>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>
-                                                        <td colspan="<?php echo count($years) + 1; ?>"><?php echo $level3_item->isi_iku; ?></td>
+                                                        <td style="border: 1px solid;" colspan="<?php echo count($years) + 1; ?>"><?php echo $level3_item->isi_iku; ?></td>
                                                     <?php endif; ?>
                                                 </tr>
                                                 <?php
@@ -89,14 +89,14 @@
                                                 foreach ($level4 as $level4_item):
                                                     $target_level4 = $this->Iku_model->get_target_level4($level4_item->id);
                                                 ?>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td class="text-end"><?php echo $level4_item->no_iku; ?></td>
-                                                        <td class="text-end"><?php echo $level4_item->isi_iku; ?></td>
+                                                    <tr style="border: 1px solid;">
+                                                        <td style="border: 1px solid;"></td>
+                                                        <td style="border: 1px solid;"></td>
+                                                        <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->no_iku; ?></td>
+                                                        <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->isi_iku; ?></td>
                                                         <?php foreach ($years as $year):
                                                             $value = isset($target_level4[$year]) ? $target_level4[$year] : ''; ?>
-                                                            <td>
+                                                            <td style="border: 1px solid;">
                                                                 <input type="text"
                                                                     name="target[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
                                                                     class="form-control target-input"

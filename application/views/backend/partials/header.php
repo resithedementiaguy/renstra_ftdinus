@@ -43,7 +43,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="<?= base_url('') ?>assets/img/udinus.png" alt="" />
-                <span class="d-none d-lg-block">Renstra FT UDINUS</span>
+                <span class="d-none d-lg-block">Rencana Strategi FT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
@@ -113,6 +113,12 @@
             <li class="nav-item">
                 <a class="nav-link <?php echo ($this->uri->segment(1) == 'iku') ? '' : 'collapsed'; ?>" href="<?php echo site_url('iku'); ?>">
                     <span>Rencana Strategi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp') ? '' : 'collapsed'; ?>" href="<?php echo site_url('ewmp'); ?>">
+                    <span>Pelaporan EWMP</span>
                 </a>
             </li>
 

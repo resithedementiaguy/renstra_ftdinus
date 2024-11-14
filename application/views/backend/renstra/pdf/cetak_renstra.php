@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <style>
         body {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Arial', sans-serif;
             font-size: 14px;
         }
 
@@ -167,7 +167,6 @@
                     <h3 style="font-size: 20px;"><strong>FAKULTAS TEKNIK</strong><br>
                         <strong>UNIVERSITAS DIAN NUSWANTORO</strong>
                     </h3>
-                    <p>Jl. Nakula I No. 5-11 Semarang 50131, Telp: (024) 3555628</p>
                 </td>
             </tr>
         </table>
