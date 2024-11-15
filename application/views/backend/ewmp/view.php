@@ -18,25 +18,42 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Pelaporan</a>
+                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-primary mb-4">Tambah Pelaporan</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" style="">
-                                <thead class="table" style="">
-                                    <tr style="">
-                                        <th class="text-center align-middle" style="width: 200px;">Jenis Pelaporan</th>
-                                        <th class="text-center align-middle" style="width: 200px;">Email</th>
+                            <table class="table" >
+                                <thead class="table" >
+                                    <tr >
+                                        <th class="text-start align-middle" style="width: 200px;">Jenis Pelaporan</th>
+                                        <th class="text-start align-middle" style="width: 200px;">Email</th>
                                         <th class="text-start align-middle" style="width: 200px;">Waktu Pengisian</th>
+                                        <th class="text-start align-middle" style="width: 200px;"></th>
                                     </tr>
                                 </thead>
+                                <?php foreach($pelaporan as $p): ?>
                                 <tbody>
                                     <tr>
                                         <td>
-
+                                            <?= $p->jenis_lapor?>
+                                        </td>
+                                        <td>
+                                            <?= $p->email?>
+                                        </td>
+                                        <td>
+                                            <?= $p->ins_time?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="badge bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <a class="badge bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
+                                <?php endforeach;?>
                             </table>
                         </div>
                     </div>
