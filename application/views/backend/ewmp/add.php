@@ -389,6 +389,252 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Komponen HAKI -->
+                            <div class="HAKI d-none" id="HAKI">
+                                <div class="row mb-3">
+                                    <label for="kategori_haki" class="col-sm-2 col-form-label">Kategori HAKI</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" name="kategori_haki" id="kategori_haki">
+                                            <option value="" selected hidden>Pilih Kategori HAKI</option>
+                                            <option value="Hak Cipta">Hak Cipta</option>
+                                            <option value="Paten">Paten</option>
+                                            <option value="Desain Industri">Desain Industri</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Hak Cipta -->
+                            <div class="hak_cipta d-none" id="hak_cipta">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama Pengusul" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Nama 1; Nama 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul hak cipta" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Paten -->
+                            <div class="paten d-none" id="paten">
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Inventor 1; Inventor 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Invensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Paten</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Desain Industri -->
+                            <div class="desain_industri d-none" id="desain_industri">
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Pengusul 1; Pengusul 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Desain Industri</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Editor Jurnal -->
+                            <div class="editor_jurnal d-none" id="editor_jurnal">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                    </div>
+                                </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_penelitian1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_penelitian2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_penelitian3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row mb-3">
+                                    <label for="judul_jurnal" class="col-sm-2 col-form-label">Judul Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_jurnal" id="judul_jurnal" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="laporan_maju_jurnal" class="col-sm-2 col-form-label">Unggah SK</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="laporan_maju_jurnal" id="laporan_maju_jurnal">
+                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Reviewer Jurnal -->
+                            <div class="reviewer_jurnal d-none" id="reviewer_jurnal">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul_reviewer" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                    </div>
+                                </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_reviewer1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_reviewer2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_reviewer3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row mb-3">
+                                    <label for="judul_artikel_review" class="col-sm-2 col-form-label">Judul artikel yang telah direview</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_artikel_review" id="judul_artikel_review" class="form-control" placeholder="Masukkan judul artikel yang telah direview" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_jurnal_review" class="col-sm-2 col-form-label">Judul Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_jurnal_review" id="judul_jurnal_review" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="laporan_maju_reviewer" class="col-sm-2 col-form-label">Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="laporan_maju_reviewer" id="laporan_maju_reviewer">
+                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Invited Speaker -->
+                            <div class="invited_speaker d-none" id="invited_speaker">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul_reviewer" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                    </div>
+                                </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_reviewer1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_reviewer2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_reviewer3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row mb-3">
+                                    <label for="judul_kegiatan" class="col-sm-2 col-form-label">Judul Kegiatan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_kegiatan" id="judul_kegiatan" class="form-control" placeholder="Masukkan judul kegiatan" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="penyelenggara" class="col-sm-2 col-form-label">Penyelenggara</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="penyelenggara" id="penyelenggara" class="form-control" placeholder="Masukkan penyelenggara" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="laporan_maju_reviewer" class="col-sm-2 col-form-label">Unggah Undangan, sertifikat dan bukti telah menyelesaikan kegiatan (dijadikan 1 dokumen)</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="laporan_maju_reviewer" id="laporan_maju_reviewer">
+                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Pengurus Organisasi Profesi -->
+                            <div class="pengurus_organisasi d-none" id="pengurus_organisasi">
+                                <div class="row mb-3">
+                                    <label for="nama_organisasi_profesi" class="col-sm-2 col-form-label">Nama Organisasi Profesi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_organisasi_profesi" id="nama_organisasi_profesi" class="form-control" placeholder="Masukkan nama organisasi profesi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukkan jabatan" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="masa_jabatan" class="col-sm-2 col-form-label">Masa Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="masa_jabatan" id="masa_jabatan" class="form-control" placeholder="Masukkan masa jabatan" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="dokumen_bukti" class="col-sm-2 col-form-label">Unggah SK dan Surat tugas serta bukti lain telah menyelesaikan tugas</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="dokumen_bukti" id="dokumen_bukti">
+                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <div>
+                                <a href="<?= base_url('iku') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-2">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -430,43 +676,36 @@
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
     document.getElementById("jenis_lapor").addEventListener("change", function() {
         var penelitianDiv = document.getElementById("penelitian");
-
-        if (this.value === "Penelitian") {
-            penelitianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            penelitianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
         var pengabdianDiv = document.getElementById("pengabdian");
-
-        if (this.value === "Pengabdian") {
-            pengabdianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            pengabdianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
-        var ilmiahDiv = document.getElementById("artikel_ilmiah");
-
-        if (this.value === "Artikel/Karya Ilmiah") {
-            ilmiahDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            ilmiahDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
+        var ilmiahDiv = document.getElementById("ilmiah"); // Tambahkan ini agar seluruh komponen ilmiah tampil
+        var artikelIlmiahDiv = document.getElementById("artikel_ilmiah"); // Pastikan elemen ini dipanggil
         var prosidingDiv = document.getElementById("prosiding");
 
-        if (this.value === "Prosiding") {
-            prosidingDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            prosidingDiv.classList.add("d-none"); // Sembunyikan komponen
+        // Reset visibility for all divs
+        penelitianDiv.classList.add("d-none");
+        pengabdianDiv.classList.add("d-none");
+        ilmiahDiv.classList.add("d-none");
+        artikelIlmiahDiv.classList.add("d-none"); // Tambahkan reset visibilitas kategori ilmiah
+        prosidingDiv.classList.add("d-none");
+
+        if (this.value === "Penelitian") {
+            penelitianDiv.classList.remove("d-none");
+        } else if (this.value === "Pengabdian") {
+            pengabdianDiv.classList.remove("d-none");
+        } else if (this.value === "Artikel/Karya Ilmiah") {
+            ilmiahDiv.classList.remove("d-none"); // Tampilkan seluruh komponen ilmiah
+            artikelIlmiahDiv.classList.remove("d-none"); // Tampilkan kategori ilmiah
+        } else if (this.value === "Prosiding") {
+            prosidingDiv.classList.remove("d-none");
         }
 
+        // Nested event listener for kategori_ilmiah
         document.getElementById("kategori_ilmiah").addEventListener("change", function() {
             var pengindeksDiv = document.getElementById("pengindeks");
-            var ilmiahDiv = document.getElementById("ilmiah");
+            var ilmiahKategoriDiv = document.getElementById("ilmiah");
 
-            // Reset visibility of both divs
-            ilmiahDiv.classList.add("d-none");
+            // Reset visibility of both divs in kategori_ilmiah section
+            ilmiahKategoriDiv.classList.add("d-none");
             pengindeksDiv.classList.add("d-none");
 
             var nasionalValues = [
@@ -480,11 +719,97 @@
             ];
 
             if (nasionalValues.includes(this.value)) {
-                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+                ilmiahKategoriDiv.classList.remove("d-none"); // Tampilkan ilmiah
             } else if (internasionalValues.includes(this.value)) {
-                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+                ilmiahKategoriDiv.classList.remove("d-none"); // Tampilkan ilmiah
                 pengindeksDiv.classList.remove("d-none"); // Tampilkan pengindeks
             }
         });
+    });
+
+    // HAKI
+    document.getElementById("jenis_lapor").addEventListener("change", function() {
+        var hakiDiv = document.getElementById("HAKI");
+        var hakCiptaDiv = document.getElementById("hak_cipta");
+        var patenDiv = document.getElementById("paten");
+        var desainIndustriDiv = document.getElementById("desain_industri");
+
+        // Reset visibility for all HAKI-related divs
+        hakiDiv.classList.add("d-none");
+        hakCiptaDiv.classList.add("d-none");
+        patenDiv.classList.add("d-none");
+        desainIndustriDiv.classList.add("d-none");
+
+        // Show HAKI section if "HAKI" is selected
+        if (this.value === "HAKI") {
+            hakiDiv.classList.remove("d-none");
+        }
+
+        // Event listener for Kategori HAKI selection
+        document.getElementById("kategori_haki").addEventListener("change", function() {
+            // Reset visibility for all specific HAKI categories
+            hakCiptaDiv.classList.add("d-none");
+            patenDiv.classList.add("d-none");
+            desainIndustriDiv.classList.add("d-none");
+
+            // Display appropriate category based on selection
+            if (this.value === "Hak Cipta") {
+                hakCiptaDiv.classList.remove("d-none");
+            } else if (this.value === "Paten") {
+                patenDiv.classList.remove("d-none");
+            } else if (this.value === "Desain Industri") {
+                desainIndustriDiv.classList.remove("d-none");
+            }
+        });
+    });
+
+    // Editor Jurnal
+    document.getElementById("jenis_lapor").addEventListener("change", function() {
+        var editorJurnalDiv = document.getElementById("editor_jurnal");
+
+        editorJurnalDiv.classList.add("d-none");
+
+        if (this.value === "Editor Jurnal") {
+            editorJurnalDiv.classList.remove("d-none");
+        }
+    });
+
+    // Show Reviewer Jurnal
+    document.getElementById("jenis_lapor").addEventListener("change", function() {
+        var reviewerJurnalDiv = document.getElementById("reviewer_jurnal");
+
+        // Reset visibility for all sections
+        reviewerJurnalDiv.classList.add("d-none");
+
+        // Show reviewer jurnal section if "Reviewer Jurnal" is selected
+        if (this.value === "Reviewer Jurnal") {
+            reviewerJurnalDiv.classList.remove("d-none");
+        }
+    });
+
+    // Invited Speaker
+    document.getElementById("jenis_lapor").addEventListener("change", function() {
+        var reviewerJurnalDiv = document.getElementById("invited_speaker");
+
+        // Reset visibility for all sections
+        reviewerJurnalDiv.classList.add("d-none");
+
+        // Show Invited Speaker section if "Invited Speaker" is selected
+        if (this.value === "Invited Speaker") {
+            reviewerJurnalDiv.classList.remove("d-none");
+        }
+    });
+
+    // Pengurus Organisasi Profesi
+    document.getElementById("jenis_lapor").addEventListener("change", function() {
+        var reviewerJurnalDiv = document.getElementById("pengurus_organisasi");
+
+        // Reset visibility for all sections
+        reviewerJurnalDiv.classList.add("d-none");
+
+        // Show Pengurus Organisasi Profesi section if "Pengurus Organisasi Profesi" is selected
+        if (this.value === "Pengurus Organisasi Profesi") {
+            reviewerJurnalDiv.classList.remove("d-none");
+        }
     });
 </script>
