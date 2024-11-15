@@ -434,43 +434,36 @@
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
     document.getElementById("jenis_lapor").addEventListener("change", function() {
         var penelitianDiv = document.getElementById("penelitian");
-
-        if (this.value === "Penelitian") {
-            penelitianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            penelitianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-        
         var pengabdianDiv = document.getElementById("pengabdian");
-
-        if (this.value === "Pengabdian") {
-            pengabdianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            pengabdianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
-        var ilmiahDiv = document.getElementById("artikel_ilmiah");
-
-        if (this.value === "Artikel/Karya Ilmiah") {
-            ilmiahDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            ilmiahDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
+        var ilmiahDiv = document.getElementById("ilmiah"); // Tambahkan ini agar seluruh komponen ilmiah tampil
+        var artikelIlmiahDiv = document.getElementById("artikel_ilmiah"); // Pastikan elemen ini dipanggil
         var prosidingDiv = document.getElementById("prosiding");
 
-        if (this.value === "Prosiding") {
-            prosidingDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            prosidingDiv.classList.add("d-none"); // Sembunyikan komponen
+        // Reset visibility for all divs
+        penelitianDiv.classList.add("d-none");
+        pengabdianDiv.classList.add("d-none");
+        ilmiahDiv.classList.add("d-none");
+        artikelIlmiahDiv.classList.add("d-none"); // Tambahkan reset visibilitas kategori ilmiah
+        prosidingDiv.classList.add("d-none");
+
+        if (this.value === "Penelitian") {
+            penelitianDiv.classList.remove("d-none");
+        } else if (this.value === "Pengabdian") {
+            pengabdianDiv.classList.remove("d-none");
+        } else if (this.value === "Artikel/Karya Ilmiah") {
+            ilmiahDiv.classList.remove("d-none"); // Tampilkan seluruh komponen ilmiah
+            artikelIlmiahDiv.classList.remove("d-none"); // Tampilkan kategori ilmiah
+        } else if (this.value === "Prosiding") {
+            prosidingDiv.classList.remove("d-none");
         }
 
+        // Nested event listener for kategori_ilmiah
         document.getElementById("kategori_ilmiah").addEventListener("change", function() {
             var pengindeksDiv = document.getElementById("pengindeks");
-            var ilmiahDiv = document.getElementById("ilmiah");
+            var ilmiahKategoriDiv = document.getElementById("ilmiah");
 
-            // Reset visibility of both divs
-            ilmiahDiv.classList.add("d-none");
+            // Reset visibility of both divs in kategori_ilmiah section
+            ilmiahKategoriDiv.classList.add("d-none");
             pengindeksDiv.classList.add("d-none");
 
             var nasionalValues = [
@@ -484,12 +477,12 @@
             ];
 
             if (nasionalValues.includes(this.value)) {
-                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+                ilmiahKategoriDiv.classList.remove("d-none"); // Tampilkan ilmiah
             } else if (internasionalValues.includes(this.value)) {
-                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+                ilmiahKategoriDiv.classList.remove("d-none"); // Tampilkan ilmiah
                 pengindeksDiv.classList.remove("d-none"); // Tampilkan pengindeks
             }
         });
-
     });
+
 </script>
