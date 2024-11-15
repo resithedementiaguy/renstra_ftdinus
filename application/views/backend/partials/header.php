@@ -47,7 +47,6 @@
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
-        <!-- End Logo -->
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -56,14 +55,14 @@
                         class="nav-link nav-profile d-flex align-items-center pe-0"
                         href="#"
                         data-bs-toggle="dropdown">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span> </a><!-- End Profile Iamge Icon -->
-
+                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span> </a>
                     <ul
                         class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>Kevin Anderson</h6>
                             <span>Web Designer</span>
                         </li>
+
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
@@ -76,6 +75,7 @@
                                 <span>My Profile</span>
                             </a>
                         </li>
+
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
@@ -91,14 +91,10 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- End Profile Dropdown Items -->
                 </li>
-                <!-- End Profile Nav -->
             </ul>
         </nav>
-        <!-- End Icons Navigation -->
     </header>
-    <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -112,15 +108,16 @@
 
             <li class="nav-item">
                 <a class="nav-link <?php echo ($this->uri->segment(1) == 'iku') ? '' : 'collapsed'; ?>" href="<?php echo site_url('iku'); ?>">
+                    <i class="bi bi-layout-text-window-reverse"></i>
                     <span>Rencana Strategi</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp') ? '' : 'collapsed'; ?>" href="<?php echo site_url('ewmp'); ?>">
+                    <i class="bi bi-journal-text"></i>
                     <span>Pelaporan EWMP</span>
                 </a>
             </li>
-
         </ul>
     </aside>

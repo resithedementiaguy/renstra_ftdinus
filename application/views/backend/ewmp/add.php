@@ -263,6 +263,95 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Komponen HAKI -->
+                            <div class="HAKI d-none" id="HAKI">
+                                <div class="row mb-3">
+                                    <label for="kategori_haki" class="col-sm-2 col-form-label">Kategori HAKI</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" name="kategori_haki" id="kategori_haki">
+                                            <option value="" selected hidden>Pilih Kategori HAKI</option>
+                                            <option value="hak_cipta">Hak Cipta</option>
+                                            <option value="paten">Paten</option>
+                                            <option value="desain_industri">Desain Industri</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Hak Cipta -->
+                            <div class="hak_cipta d-none" id="hak_cipta">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama Pengusul" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Nama 1; Nama 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul hak cipta" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Paten -->
+                            <div class="paten d-none" id="paten">
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Inventor 1; Inventor 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Invensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Paten</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Desain Industri -->
+                            <div class="desain_industri d-none" id="desain_industri">
+                                <div class="row mb-3">
+                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <p class="text-danger">*contoh: (Pengusul 1; Pengusul 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Invensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Desain Industri</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer text-end">
                             <a href="<?= base_url('ewmp') ?>" class="btn btn-secondary mb-4">Kembali</a>
@@ -308,31 +397,48 @@
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
     document.getElementById("jenis_lapor").addEventListener("change", function() {
         var penelitianDiv = document.getElementById("penelitian");
-
-        if (this.value === "Penelitian") {
-            penelitianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            penelitianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-        
         var pengabdianDiv = document.getElementById("pengabdian");
-
-        if (this.value === "Pengabdian") {
-            pengabdianDiv.classList.remove("d-none"); // Tampilkan komponen
-        } else {
-            pengabdianDiv.classList.add("d-none"); // Sembunyikan komponen
-        }
-
         var ilmiahDiv = document.getElementById("artikel_ilmiah");
+        var hakiDiv = document.getElementById("HAKI");
 
-        if (this.value === "Artikel/Karya Ilmiah") {
-            ilmiahDiv.classList.remove("d-none"); // Tampilkan komponen
+        // Kondisi untuk menampilkan atau menyembunyikan komponen penelitian
+        if (this.value === "Penelitian") {
+            penelitianDiv.classList.remove("d-none");
         } else {
-            ilmiahDiv.classList.add("d-none"); // Sembunyikan komponen
+            penelitianDiv.classList.add("d-none");
         }
 
-        document.getElementById("kategori_ilmiah").addEventListener("change", function(){
-            
-        });
+        // Kondisi untuk komponen pengabdian
+        if (this.value === "Pengabdian") {
+            pengabdianDiv.classList.remove("d-none");
+        } else {
+            pengabdianDiv.classList.add("d-none");
+        }
+
+        // Kondisi untuk komponen artikel ilmiah
+        if (this.value === "Artikel/Karya Ilmiah") {
+            ilmiahDiv.classList.remove("d-none");
+        } else {
+            ilmiahDiv.classList.add("d-none");
+        }
+
+        // Kondisi untuk komponen HAKI
+        if (this.value === "HAKI") {
+            hakiDiv.classList.remove("d-none");
+        } else {
+            hakiDiv.classList.add("d-none");
+        }
+    });
+
+    // Event listener untuk menampilkan komponen hak_cipta berdasarkan pilihan pada kategori HAKI
+    document.getElementById("kategori_haki").addEventListener("change", function() {
+        var hakCiptaDiv = document.getElementById("hak_cipta");
+
+        // Tampilkan komponen hak_cipta jika pilihan adalah 'hak_cipta', sembunyikan jika bukan
+        if (this.value === "hak_cipta") {
+            hakCiptaDiv.classList.remove("d-none"); // Tampilkan komponen hak_cipta
+        } else {
+            hakCiptaDiv.classList.add("d-none"); // Sembunyikan komponen hak_cipta
+        }
     });
 </script>

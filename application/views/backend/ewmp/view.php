@@ -2,7 +2,7 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Pelaporan EWMP</li>
             </ol>
         </nav>
@@ -12,6 +12,9 @@
         <div class="row">
             <div class="col">
                 <div class="card">
+                    <div class="card-header text-white bg-primary">
+                        <h5 class="pt-2"><strong>Daftar Pelaporan EWMP</strong></h5>
+                    </div>
                     <div class="card-body">
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek atau menambah Pelaporan EWMP Fakultas Teknik UDINUS Semarang
@@ -22,38 +25,38 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" >
-                                <thead class="table" >
-                                    <tr >
+                            <table class="table">
+                                <thead class="table">
+                                    <tr>
                                         <th class="text-start align-middle" style="width: 200px;">Jenis Pelaporan</th>
                                         <th class="text-start align-middle" style="width: 200px;">Email</th>
                                         <th class="text-start align-middle" style="width: 200px;">Waktu Pengisian</th>
                                         <th class="text-start align-middle" style="width: 200px;"></th>
                                     </tr>
                                 </thead>
-                                <?php foreach($pelaporan as $p): ?>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <?= $p->jenis_lapor?>
-                                        </td>
-                                        <td>
-                                            <?= $p->email?>
-                                        </td>
-                                        <td>
-                                            <?= $p->ins_time?>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="badge bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </button>
-                                            <a class="badge bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
-                                                <i class="fas fa-trash"></i> Hapus
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php endforeach;?>
+                                <?php foreach ($pelaporan as $p): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <?= $p->jenis_lapor ?>
+                                            </td>
+                                            <td>
+                                                <?= $p->email ?>
+                                            </td>
+                                            <td>
+                                                <?= $p->ins_time ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="badge bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+                                                <a class="badge bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
+                                                    <i class="fas fa-trash"></i> Hapus
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                <?php endforeach; ?>
                             </table>
                         </div>
                     </div>
