@@ -240,7 +240,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Komponen Artikel Ilmiah -->
+                            <!-- Komponen Kategori Artikel Ilmiah -->
                             <div class="artikel_ilmiah d-none" id="artikel_ilmiah">
                                 <div class="row mb-3">
                                     <label for="kategori_ilmiah" class="col-sm-2 col-form-label">Kategori Artikel Ilmiah</label>
@@ -263,7 +263,133 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <!-- Komponen Artikel Ilmiah -->
+                            <div class="ilmiah d-none" id="ilmiah">
+                                <div class="row mb-3">
+                                    <label for="nama_pertama_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Pertama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pertama_ilmiah" id="nama_pertama_ilmiah" class="form-control" placeholder="Masukkan nama penulis pertama" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_korespon_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_korespon_ilmiah" id="nama_korespon_ilmiah" class="form-control" placeholder="Masukkan nama penulis korespondensi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_anggota_ilmiah" class="col-sm-2 col-form-label">Nama Anggota</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_ilmiah" id="nama_anggota_ilmiah" required></textarea>
+                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_artikel_ilmiah" class="col-sm-2 col-form-label">Judul Artikel</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_artikel_ilmiah" id="judul_artikel_ilmiah" class="form-control" placeholder="Masukkan judul artikel" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_jurnal_ilmiah" class="col-sm-2 col-form-label">Judul Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_jurnal_ilmiah" id="judul_jurnal_ilmiah" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="link_jurnal_ilmiah" class="col-sm-2 col-form-label">Link Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="link_jurnal_ilmiah" id="link_jurnal_ilmiah" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="volume_jurnal_ilmiah" class="col-sm-2 col-form-label">Volume Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="volume_jurnal_ilmiah" id="volume_jurnal_ilmiah" class="form-control" placeholder="Masukkan volume jurnal" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nomor_jurnal_ilmiah" class="col-sm-2 col-form-label">Nomor Jurnal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nomor_jurnal_ilmiah" id="nomor_jurnal_ilmiah" class="form-control" placeholder="Masukkan nomor jurnal" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="doi_ilmiah" class="col-sm-2 col-form-label">DOI</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="doi_ilmiah" id="doi_ilmiah" class="form-control" placeholder="Masukkan DOI" required>
+                                    </div>
+                                </div>
+                                <div class="pengindeks d-none" id="pengindeks">
+                                    <div class="row mb-3">
+                                        <label for="pengindeks_ilmiah" class="col-sm-2 col-form-label">Pengindeks</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="pengindeks_ilmiah" id="pengindeks_ilmiah" class="form-control" placeholder="Masukkan pengindeks" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Prosiding -->
+                            <div class="prosiding d-none" id="prosiding">                                
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Kategori Prosiding</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_prosiding" id="kategori_prosiding1" value="Nasional" checked>
+                                            <label class="form-check-label" for="kategori_prosiding1">Nasional</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_prosiding" id="kategori_prosiding2" value="Internasional">
+                                            <label class="form-check-label" for="kategori_prosiding2">Internasional</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row mb-3">
+                                    <label for="nama_pertama_prosiding" class="col-sm-2 col-form-label">Nama Penulis Pertama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pertama_prosiding" id="nama_pertama_prosiding" class="form-control" placeholder="Masukkan nama penulis pertama" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_korespon_prosiding" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_korespon_prosiding" id="nama_korespon_prosiding" class="form-control" placeholder="Masukkan nama penulis korespondensi" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="nama_anggota_prosiding" class="col-sm-2 col-form-label">Nama Anggota</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_prosiding" id="nama_anggota_prosiding" required></textarea>
+                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_artikel_prosiding" class="col-sm-2 col-form-label">Judul Artikel</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_artikel_prosiding" id="judul_artikel_prosiding" class="form-control" placeholder="Masukkan judul artikel" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_seminar_prosiding" class="col-sm-2 col-form-label">Judul Conference/Seminar</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_seminar_prosiding" id="judul_seminar_prosiding" class="form-control" placeholder="Masukkan judul seminar" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="bukti_prosiding" class="col-sm-2 col-form-label">Bukti LOA</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="bukti_prosiding" id="bukti_prosiding">
+                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="doi_prosiding" class="col-sm-2 col-form-label">DOI (jika sudah terbit)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="doi_prosiding" id="doi_prosiding" class="form-control" placeholder="Masukkan DOI" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                         <div class="card-footer text-end">
                             <a href="<?= base_url('ewmp') ?>" class="btn btn-secondary mb-4">Kembali</a>
                             <button type="submit" class="btn btn-primary mb-4">Simpan</button>
@@ -331,8 +457,39 @@
             ilmiahDiv.classList.add("d-none"); // Sembunyikan komponen
         }
 
-        document.getElementById("kategori_ilmiah").addEventListener("change", function(){
-            
+        var prosidingDiv = document.getElementById("prosiding");
+
+        if (this.value === "Prosiding") {
+            prosidingDiv.classList.remove("d-none"); // Tampilkan komponen
+        } else {
+            prosidingDiv.classList.add("d-none"); // Sembunyikan komponen
+        }
+
+        document.getElementById("kategori_ilmiah").addEventListener("change", function() {
+            var pengindeksDiv = document.getElementById("pengindeks");
+            var ilmiahDiv = document.getElementById("ilmiah");
+
+            // Reset visibility of both divs
+            ilmiahDiv.classList.add("d-none");
+            pengindeksDiv.classList.add("d-none");
+
+            var nasionalValues = [
+                "Nasional Sinta 1", "Nasional Sinta 2", "Nasional Sinta 3", 
+                "Nasional Sinta 4", "Nasional Sinta 5", "Nasional Sinta 6", 
+                "Nasional Tidak Terakreditasi"
+            ];
+            var internasionalValues = [
+                "Internasional Q1", "Internasional Q2", "Internasional Q3", 
+                "Internasional Q4", "Internasional Non Scopus"
+            ];
+
+            if (nasionalValues.includes(this.value)) {
+                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+            } else if (internasionalValues.includes(this.value)) {
+                ilmiahDiv.classList.remove("d-none"); // Tampilkan ilmiah
+                pengindeksDiv.classList.remove("d-none"); // Tampilkan pengindeks
+            }
         });
+
     });
 </script>
