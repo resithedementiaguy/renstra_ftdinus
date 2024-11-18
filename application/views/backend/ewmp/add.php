@@ -15,10 +15,13 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5>Tambah Pelaporan EWMP</h5>
+                        <h5 class="pt-2"><strong>Tambah Pelaporan EWMP</strong></h5>
                     </div>
                     <form method="post" action="<?= base_url('ewmp/add') ?>" enctype="multipart/form-data">
                         <div class="card-body">
+                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                Silahkan untuk mengisi Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                            </div>
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">

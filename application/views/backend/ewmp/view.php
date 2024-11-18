@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead class="table">
                                     <tr>
                                         <th class="text-start align-middle" style="width: 200px;">Jenis Pelaporan</th>
@@ -47,11 +47,13 @@
                                                 <?= $p->ins_time ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="badge bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
-                                                    <i class="fas fa-edit"></i> Edit
+                                                <button type="button" class="btn btn-sm bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
+                                                    <i class="bi bi-pencil"></i> <!-- Bootstrap Icons Edit Icon di kiri -->
+                                                    <i class="fas fa-edit"></i> Edit <i class="fas fa-pencil-alt"></i>
                                                 </button>
-                                                <a class="badge bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
-                                                    <i class="fas fa-trash"></i> Hapus
+                                                <a class="btn btn-sm text-white bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
+                                                    <i class="bi bi-trash"></i> <!-- Bootstrap Icons Trash Icon di kiri -->
+                                                    <i class="fas fa-trash"></i> Hapus <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                         </tr>
