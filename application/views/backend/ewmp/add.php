@@ -17,12 +17,12 @@
                     <div class="card-header text-white bg-primary">
                         <h5>Tambah Pelaporan EWMP</h5>
                     </div>
-                    <form method="post" action="<?= base_url('ewmp/add') ?>">
+                    <form method="post" action="<?= base_url('ewmp/add') ?>" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Masukkan email anda" required>
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="Masukkan email anda" >
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -47,7 +47,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_ketua_penelitian" class="col-sm-2 col-form-label">Nama Ketua</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_ketua_penelitian" id="nama_ketua_penelitian" class="form-control" placeholder="Masukkan nama ketua" required>
+                                        <input type="text" name="nama_ketua_penelitian" id="nama_ketua_penelitian" class="form-control" placeholder="Masukkan nama ketua" >
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -91,38 +91,38 @@
                                 <div class="row mb-3">
                                     <label for="nama_anggota_penelitian" class="col-sm-2 col-form-label">Nama Anggota</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_penelitian" id="nama_anggota_penelitian" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_penelitian" id="nama_anggota_penelitian" ></textarea>
                                         <p>contoh: (Anggota 1; Anggota 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_penelitian" class="col-sm-2 col-form-label">Judul Penelitian</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control" placeholder="Masukkan judul penelitian" required>
+                                        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control" placeholder="Masukkan judul penelitian" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="skim_penelitian" class="col-sm-2 col-form-label">Skim Penelitian</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="skim_penelitian" id="skim_penelitian" class="form-control" placeholder="Masukkan skim penelitian" required>
+                                        <input type="text" name="skim_penelitian" id="skim_penelitian" class="form-control" placeholder="Masukkan skim penelitian" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="pemberi_hibah_penelitian" class="col-sm-2 col-form-label">Pemberi Hibah</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="pemberi_hibah_penelitian" id="pemberi_hibah_penelitian" class="form-control" placeholder="Masukkan pemberi hibah" required>
+                                        <input type="text" name="pemberi_hibah_penelitian" id="pemberi_hibah_penelitian" class="form-control" placeholder="Masukkan pemberi hibah" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="besar_hibah_penelitian" class="col-sm-2 col-form-label">Besar Hibah</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="besar_hibah_penelitian" id="besar_hibah_penelitian" class="form-control" placeholder="Masukkan besar hibah" required>
+                                        <input type="text" name="besar_hibah_penelitian" id="besar_hibah_penelitian" class="form-control" placeholder="Masukkan besar hibah" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_penelitian" id="nama_mahasiswa_penelitian" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_penelitian" id="nama_mahasiswa_penelitian" ></textarea>
                                         <p>Contoh : Mahasiswa 1 (NIM1) ; Mahasiswa 2 (NIM2) ; Dst</p>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_ketua_pengabdian" class="col-sm-2 col-form-label">Nama Ketua</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_ketua_pengabdian" id="nama_ketua_pengabdian" class="form-control" placeholder="Masukkan nama ketua" required>
+                                        <input type="text" name="nama_ketua_pengabdian" id="nama_ketua_pengabdian" class="form-control" placeholder="Masukkan nama ketua" >
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -190,38 +190,38 @@
                                 <div class="row mb-3">
                                     <label for="nama_anggota_pengabdian" class="col-sm-2 col-form-label">Nama Anggota</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_pengabdian" id="nama_anggota_pengabdian" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_pengabdian" id="nama_anggota_pengabdian" ></textarea>
                                         <p>contoh: (Anggota 1; Anggota 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_pengabdian" class="col-sm-2 col-form-label">Judul pengabdian</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_pengabdian" id="judul_pengabdian" class="form-control" placeholder="Masukkan judul pengabdian" required>
+                                        <input type="text" name="judul_pengabdian" id="judul_pengabdian" class="form-control" placeholder="Masukkan judul pengabdian" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="skim_pengabdian" class="col-sm-2 col-form-label">Skim pengabdian</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="skim_pengabdian" id="skim_pengabdian" class="form-control" placeholder="Masukkan skim pengabdian" required>
+                                        <input type="text" name="skim_pengabdian" id="skim_pengabdian" class="form-control" placeholder="Masukkan skim pengabdian" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="pemberi_hibah_pengabdian" class="col-sm-2 col-form-label">Pemberi Hibah</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="pemberi_hibah_pengabdian" id="pemberi_hibah_pengabdian" class="form-control" placeholder="Masukkan pemberi hibah" required>
+                                        <input type="text" name="pemberi_hibah_pengabdian" id="pemberi_hibah_pengabdian" class="form-control" placeholder="Masukkan pemberi hibah" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="besar_hibah_pengabdian" class="col-sm-2 col-form-label">Besar Hibah</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="besar_hibah_pengabdian" id="besar_hibah_pengabdian" class="form-control" placeholder="Masukkan besar hibah" required>
+                                        <input type="text" name="besar_hibah_pengabdian" id="besar_hibah_pengabdian" class="form-control" placeholder="Masukkan besar hibah" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_mahasiswa_pengabdian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_pengabdian" id="nama_mahasiswa_pengabdian" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_pengabdian" id="nama_mahasiswa_pengabdian" ></textarea>
                                         <p>Contoh : Mahasiswa 1 (NIM1) ; Mahasiswa 2 (NIM2) ; Dst</p>
                                     </div>
                                 </div>
@@ -268,63 +268,63 @@
                                 <div class="row mb-3">
                                     <label for="nama_pertama_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Pertama</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pertama_ilmiah" id="nama_pertama_ilmiah" class="form-control" placeholder="Masukkan nama penulis pertama" required>
+                                        <input type="text" name="nama_pertama_ilmiah" id="nama_pertama_ilmiah" class="form-control" placeholder="Masukkan nama penulis pertama" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_korespon_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_korespon_ilmiah" id="nama_korespon_ilmiah" class="form-control" placeholder="Masukkan nama penulis korespondensi" required>
+                                        <input type="text" name="nama_korespon_ilmiah" id="nama_korespon_ilmiah" class="form-control" placeholder="Masukkan nama penulis korespondensi" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_anggota_ilmiah" class="col-sm-2 col-form-label">Nama Anggota</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_ilmiah" id="nama_anggota_ilmiah" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_ilmiah" id="nama_anggota_ilmiah" ></textarea>
                                         <p>contoh: (Anggota 1; Anggota 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_artikel_ilmiah" class="col-sm-2 col-form-label">Judul Artikel</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_artikel_ilmiah" id="judul_artikel_ilmiah" class="form-control" placeholder="Masukkan judul artikel" required>
+                                        <input type="text" name="judul_artikel_ilmiah" id="judul_artikel_ilmiah" class="form-control" placeholder="Masukkan judul artikel" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_jurnal_ilmiah" class="col-sm-2 col-form-label">Judul Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_jurnal_ilmiah" id="judul_jurnal_ilmiah" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                        <input type="text" name="judul_jurnal_ilmiah" id="judul_jurnal_ilmiah" class="form-control" placeholder="Masukkan judul jurnal" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="link_jurnal_ilmiah" class="col-sm-2 col-form-label">Link Jurnal</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="link_jurnal_ilmiah" id="link_jurnal_ilmiah" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="link_jurnal_ilmiah" id="link_jurnal_ilmiah" ></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="volume_jurnal_ilmiah" class="col-sm-2 col-form-label">Volume Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="volume_jurnal_ilmiah" id="volume_jurnal_ilmiah" class="form-control" placeholder="Masukkan volume jurnal" required>
+                                        <input type="text" name="volume_jurnal_ilmiah" id="volume_jurnal_ilmiah" class="form-control" placeholder="Masukkan volume jurnal" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nomor_jurnal_ilmiah" class="col-sm-2 col-form-label">Nomor Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nomor_jurnal_ilmiah" id="nomor_jurnal_ilmiah" class="form-control" placeholder="Masukkan nomor jurnal" required>
+                                        <input type="text" name="nomor_jurnal_ilmiah" id="nomor_jurnal_ilmiah" class="form-control" placeholder="Masukkan nomor jurnal" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="doi_ilmiah" class="col-sm-2 col-form-label">DOI</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="doi_ilmiah" id="doi_ilmiah" class="form-control" placeholder="Masukkan DOI" required>
+                                        <input type="text" name="doi_ilmiah" id="doi_ilmiah" class="form-control" placeholder="Masukkan DOI" >
                                     </div>
                                 </div>
                                 <div class="pengindeks d-none" id="pengindeks">
                                     <div class="row mb-3">
                                         <label for="pengindeks_ilmiah" class="col-sm-2 col-form-label">Pengindeks</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="pengindeks_ilmiah" id="pengindeks_ilmiah" class="form-control" placeholder="Masukkan pengindeks" required>
+                                            <input type="text" name="pengindeks_ilmiah" id="pengindeks_ilmiah" class="form-control" placeholder="Masukkan pengindeks" >
                                         </div>
                                     </div>
                                 </div>
@@ -347,32 +347,32 @@
                                 <div class="row mb-3">
                                     <label for="nama_pertama_prosiding" class="col-sm-2 col-form-label">Nama Penulis Pertama</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pertama_prosiding" id="nama_pertama_prosiding" class="form-control" placeholder="Masukkan nama penulis pertama" required>
+                                        <input type="text" name="nama_pertama_prosiding" id="nama_pertama_prosiding" class="form-control" placeholder="Masukkan nama penulis pertama" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_korespon_prosiding" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_korespon_prosiding" id="nama_korespon_prosiding" class="form-control" placeholder="Masukkan nama penulis korespondensi" required>
+                                        <input type="text" name="nama_korespon_prosiding" id="nama_korespon_prosiding" class="form-control" placeholder="Masukkan nama penulis korespondensi" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_anggota_prosiding" class="col-sm-2 col-form-label">Nama Anggota</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_prosiding" id="nama_anggota_prosiding" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_prosiding" id="nama_anggota_prosiding" ></textarea>
                                         <p>contoh: (Anggota 1; Anggota 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_artikel_prosiding" class="col-sm-2 col-form-label">Judul Artikel</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_artikel_prosiding" id="judul_artikel_prosiding" class="form-control" placeholder="Masukkan judul artikel" required>
+                                        <input type="text" name="judul_artikel_prosiding" id="judul_artikel_prosiding" class="form-control" placeholder="Masukkan judul artikel" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_seminar_prosiding" class="col-sm-2 col-form-label">Judul Conference/Seminar</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_seminar_prosiding" id="judul_seminar_prosiding" class="form-control" placeholder="Masukkan judul seminar" required>
+                                        <input type="text" name="judul_seminar_prosiding" id="judul_seminar_prosiding" class="form-control" placeholder="Masukkan judul seminar" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -385,7 +385,7 @@
                                 <div class="row mb-3">
                                     <label for="doi_prosiding" class="col-sm-2 col-form-label">DOI (jika sudah terbit)</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="doi_prosiding" id="doi_prosiding" class="form-control" placeholder="Masukkan DOI" required>
+                                        <input type="text" name="doi_prosiding" id="doi_prosiding" class="form-control" placeholder="Masukkan DOI" >
                                     </div>
                                 </div>
                             </div>
@@ -408,20 +408,20 @@
                                 <div class="row mb-3">
                                     <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama Pengusul" required>
+                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama Pengusul" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" ></textarea>
                                         <p class="text-danger">*contoh: (Nama 1; Nama 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul hak cipta" required>
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul hak cipta" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -437,14 +437,14 @@
                                 <div class="row mb-3">
                                     <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" ></textarea>
                                         <p class="text-danger">*contoh: (Inventor 1; Inventor 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Invensi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi" required>
+                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -460,7 +460,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" required></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta" ></textarea>
                                         <p class="text-danger">*contoh: (Pengusul 1; Pengusul 2; dst)</p>
                                     </div>
                                 </div>
@@ -477,7 +477,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama pengusul" >
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -500,7 +500,7 @@
                                 <div class="row mb-3">
                                     <label for="judul_jurnal" class="col-sm-2 col-form-label">Judul Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_jurnal" id="judul_jurnal" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                        <input type="text" name="judul_jurnal" id="judul_jurnal" class="form-control" placeholder="Masukkan judul jurnal" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -516,7 +516,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_pengusul_reviewer" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" >
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -539,13 +539,13 @@
                                 <div class="row mb-3">
                                     <label for="judul_artikel_review" class="col-sm-2 col-form-label">Judul artikel yang telah direview</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_artikel_review" id="judul_artikel_review" class="form-control" placeholder="Masukkan judul artikel yang telah direview" required>
+                                        <input type="text" name="judul_artikel_review" id="judul_artikel_review" class="form-control" placeholder="Masukkan judul artikel yang telah direview" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="judul_jurnal_review" class="col-sm-2 col-form-label">Judul Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_jurnal_review" id="judul_jurnal_review" class="form-control" placeholder="Masukkan judul jurnal" required>
+                                        <input type="text" name="judul_jurnal_review" id="judul_jurnal_review" class="form-control" placeholder="Masukkan judul jurnal" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -561,7 +561,7 @@
                                 <div class="row mb-3">
                                     <label for="nama_pengusul_reviewer" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" required>
+                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul" >
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -584,13 +584,13 @@
                                 <div class="row mb-3">
                                     <label for="judul_kegiatan" class="col-sm-2 col-form-label">Judul Kegiatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_kegiatan" id="judul_kegiatan" class="form-control" placeholder="Masukkan judul kegiatan" required>
+                                        <input type="text" name="judul_kegiatan" id="judul_kegiatan" class="form-control" placeholder="Masukkan judul kegiatan" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="penyelenggara" class="col-sm-2 col-form-label">Penyelenggara</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="penyelenggara" id="penyelenggara" class="form-control" placeholder="Masukkan penyelenggara" required>
+                                        <input type="text" name="penyelenggara" id="penyelenggara" class="form-control" placeholder="Masukkan penyelenggara" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -606,19 +606,19 @@
                                 <div class="row mb-3">
                                     <label for="nama_organisasi_profesi" class="col-sm-2 col-form-label">Nama Organisasi Profesi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_organisasi_profesi" id="nama_organisasi_profesi" class="form-control" placeholder="Masukkan nama organisasi profesi" required>
+                                        <input type="text" name="nama_organisasi_profesi" id="nama_organisasi_profesi" class="form-control" placeholder="Masukkan nama organisasi profesi" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukkan jabatan" required>
+                                        <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukkan jabatan" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="masa_jabatan" class="col-sm-2 col-form-label">Masa Jabatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="masa_jabatan" id="masa_jabatan" class="form-control" placeholder="Masukkan masa jabatan" required>
+                                        <input type="text" name="masa_jabatan" id="masa_jabatan" class="form-control" placeholder="Masukkan masa jabatan" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">

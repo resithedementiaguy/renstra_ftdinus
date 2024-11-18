@@ -39,29 +39,126 @@ class Ewmp extends CI_Controller
 
         $this->Ewmp_model->add_pelaporan_ewmp($data);
 
+        $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
+
         if ($jenis_lapor == 'Penelitian') {
-            $data = array(
-                'glukosa' => $this->input->post('glukosa'),
-                'hb' => $this->input->post('hb'),
-                'spo2' => $this->input->post('spo2'),
-                'kolesterol' => $this->input->post('kolesterol'),
-                'asam_urat' => $this->input->post('asam_urat')
+            $config = array(
+                'upload_path' => './uploads/penelitian',
+                'allowed_types' => 'pdf',
+                'max_size' => 102400, // Maks 100 MB
             );
-            $this->Mod_darah->add_suntik($data);
-        } elseif ($jenis_lapor == 'ultraSound') {
-            $data = array(
-                'us1' => $this->input->post('us1'),
-                'us2' => $this->input->post('us2'),
-                'us3' => $this->input->post('us3'),
-                'us4' => $this->input->post('us4'),
-                'us5' => $this->input->post('us5'),
-                'us6' => $this->input->post('us6'),
-                'us7' => $this->input->post('us7'),
-                'us8' => $this->input->post('us8'),
-                'us9' => $this->input->post('us9'),
-                'us10' => $this->input->post('us10')
+    
+            $this->load->library('upload', $config);
+    
+            $kontrak = null;
+            $laporan_maju = null;
+    
+            // Upload kontrak penelitian
+            if (!empty($_FILES['kontrak_penelitian']['name'])) {
+                $config['file_name'] = 'kontrak_' . time(); // Rename file
+                $this->upload->initialize($config);
+    
+                if ($this->upload->do_upload('kontrak_penelitian')) {
+                    $kontrak = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/creat_view');
+                }
+            }
+    
+            // Upload laporan kemajuan penelitian
+            if (!empty($_FILES['laporan_maju_penelitian']['name'])) {
+                $config['file_name'] = 'laporan_maju_' . time(); // Rename file
+                $this->upload->initialize($config);
+    
+                if ($this->upload->do_upload('laporan_maju_penelitian')) {
+                    $laporan_maju = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/creat_view');
+                }
+            }
+    
+            // Data spesifik penelitian
+            $data_penelitian = array(
+                'id_pelaporan' => $id_pelaporan,
+                'nama_ketua' => $this->input->post('nama_ketua_penelitian'),
+                'prodi' => $this->input->post('prodi_penelitian'),
+                'kategori' => $this->input->post('kategori_penelitian'),
+                'nama_anggota' => $this->input->post('nama_anggota_penelitian'),
+                'judul' => $this->input->post('judul_penelitian'),
+                'skim' => $this->input->post('skim_penelitian'),
+                'pemberi_hibah' => $this->input->post('pemberi_hibah_penelitian'),
+                'besar_hibah' => $this->input->post('besar_hibah_penelitian'),
+                'mahasiswa' => $this->input->post('nama_mahasiswa_penelitian'),
+                'kontrak' => $kontrak,
+                'laporan_maju' => $laporan_maju,
+                'ins_time' => $ins_time
             );
-            $this->Mod_darah->add_ultrasound($data);
+    
+            // Menyimpan data penelitian
+            $this->Ewmp_model->add_penelitian($data_penelitian);
+        } elseif ($jenis_lapor == 'Pengabdian') {
+            $config = array(
+                'upload_path' => './uploads/pengabdian',
+                'allowed_types' => 'pdf',
+                'max_size' => 102400, // Maks 100 MB
+            );
+    
+            $this->load->library('upload', $config);
+    
+            $kontrak = null;
+            $laporan = null;
+    
+            // Upload kontrak pengabdian
+            if (!empty($_FILES['kontrak_pengabdian']['name'])) {
+                $config['file_name'] = 'kontrak_' . time(); // Rename file
+                $this->upload->initialize($config);
+    
+                if ($this->upload->do_upload('kontrak_pengabdian')) {
+                    $kontrak = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/create_view');
+                }
+            }
+    
+            // Upload laporan kemajuan pengabdian
+            if (!empty($_FILES['laporan_pengabdian']['name'])) {
+                $config['file_name'] = 'laporan_' . time(); // Rename file
+                $this->upload->initialize($config);
+    
+                if ($this->upload->do_upload('laporan_pengabdian')) {
+                    $laporan = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/create_view');
+                }
+            }
+    
+            // Data spesifik pengabdian
+            $data_pengabdian = array(
+                'id_pelaporan' => $id_pelaporan,
+                'nama_ketua' => $this->input->post('nama_ketua_pengabdian'),
+                'prodi' => $this->input->post('prodi_pengabdian'),
+                'kategori' => $this->input->post('kategori_pengabdian'),
+                'nama_anggota' => $this->input->post('nama_anggota_pengabdian'),
+                'judul' => $this->input->post('judul_pengabdian'),
+                'skim' => $this->input->post('skim_pengabdian'),
+                'pemberi_hibah' => $this->input->post('pemberi_hibah_pengabdian'),
+                'besar_hibah' => $this->input->post('besar_hibah_pengabdian'),
+                'mahasiswa' => $this->input->post('nama_mahasiswa_pengabdian'),
+                'kontrak' => $kontrak,
+                'laporan' => $laporan,
+                'ins_time' => $ins_time
+            );
+    
+            // Menyimpan data pengabdian
+            $this->Ewmp_model->add_pengabdian($data_pengabdian);
         } elseif ($jenis_lapor == 'superBright') {
             $data = array(
                 'sb1' => $this->input->post('sb1'),
@@ -137,7 +234,7 @@ class Ewmp extends CI_Controller
             $this->session->unset_userdata('pasien_id');
         }
 
-        redirect('analisis_darah');
+        redirect('ewmp');
     }
 
     public function delete_pelaporan($id)
