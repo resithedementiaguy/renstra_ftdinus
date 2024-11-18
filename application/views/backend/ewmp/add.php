@@ -229,14 +229,14 @@
                                     <label for="kontrak_pengabdian" class="col-sm-2 col-form-label">Unggah Kontrak Pengabdian</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="kontrak_pengabdian" id="kontrak_pengabdian">
-                                        Upload 1 file yang didukung: PDF. Maks 100 MB.
+                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="laporan_pengabdian" class="col-sm-2 col-form-label">Unggah Laporan Pengabdian</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="laporan_pengabdian" id="laporan_pengabdian">
-                                        Upload 1 file yang didukung: PDF. Maks 100 MB.
+                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
                                     </div>
                                 </div>
                             </div>
@@ -376,9 +376,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="bukti_prosiding" class="col-sm-2 col-form-label">Bukti LOA</label>
+                                    <label for="bukti_loa_prosiding" class="col-sm-2 col-form-label">Bukti LOA</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="bukti_prosiding" id="bukti_prosiding">
+                                        <input class="form-control" type="file" name="bukti_loa_prosiding" id="bukti_loa_prosiding">
                                         Upload 1 file yang didukung: PDF. Maks 10 MB.
                                     </div>
                                 </div>
@@ -632,7 +632,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <div>
-                                <a href="<?= base_url('iku') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                                <a href="<?= base_url('ewmp') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
                             </div>
                             <button type="submit" class="btn btn-primary my-2">Simpan</button>
                         </div>
