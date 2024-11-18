@@ -30,7 +30,6 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-
     public function update_pelaporan_ewmp($id, $data)
     {
         $this->db->where('id', $id);
