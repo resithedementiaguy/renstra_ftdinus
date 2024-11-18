@@ -287,7 +287,163 @@ class Ewmp extends CI_Controller
 
                 // Pastikan fungsi add_haki_hcipta ada di model
                 $this->Ewmp_model->add_haki_hcipta($data_hak_cipta);
+            } elseif($kategori_haki == 'Paten'){
+
+                // Menyiapkan konfigurasi untuk file upload
+                $config = array(
+                    'upload_path' => './uploads/haki/paten',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                // Upload file sertifikat
+                if (!empty($_FILES['sertifikat_paten']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_paten')) {
+                        $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                        log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                // Menyimpan data Hak Cipta
+                $data_paten = array(
+                    'id_haki' => $id_haki,
+                    'nama_inventor' => $this->input->post('nama_inventor_paten'),
+                    'judul' => $this->input->post('judul_invensi_paten'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                // Log data yang akan disimpan ke database
+                log_message('debug', 'Data Hak Cipta yang akan disimpan: ' . json_encode($data_paten));
+
+                // Pastikan fungsi add_haki_hcipta ada di model
+                $this->Ewmp_model->add_haki_paten($data_paten);
+            } elseif($kategori_haki == 'Desain Industri'){
+
+                // Menyiapkan konfigurasi untuk file upload
+                $config = array(
+                    'upload_path' => './uploads/haki/desain_industri',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                // Upload file sertifikat
+                if (!empty($_FILES['sertifikat_desain']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_desain')) {
+                        $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                        log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                // Menyimpan data Hak Cipta
+                $data_desain = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul_desain'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                // Log data yang akan disimpan ke database
+                log_message('debug', 'Data Hak Cipta yang akan disimpan: ' . json_encode($data_desain));
+
+                // Pastikan fungsi add_haki_hcipta ada di model
+                $this->Ewmp_model->add_haki_dindustri($data_desain);
             }
+        } elseif($jenis_lapor == "Editor Jurnal"){
+            $config = array(
+                'upload_path' => './uploads/jurnal/editor_jurnal',
+                'allowed_types' => 'pdf',
+                'max_size' => 10240, // Maks 100 MB
+            );
+
+            $this->load->library('upload', $config);
+
+            $sk = null;
+
+            // Upload sk editor
+            if (!empty($_FILES['sk_editor']['name'])) {
+                $config['file_name'] = 'sk_' . time(); // Rename file
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('sk_editor')) {
+                    $sk = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/create_view');
+                }
+            }
+
+            // Data spesifik editor
+            $data_editor = array(
+                'id_pelaporan' => $id_pelaporan,
+                'nama_usul' => $this->input->post('nama_pengusul_editor'),
+                'prodi' => $this->input->post('prodi_editor'),
+                'judul' => $this->input->post('judul_jurnal_editor'),  
+                'file_sk' => $sk,
+                'ins_time' => $ins_time
+            );
+
+            // Menyimpan data editor
+            $this->Ewmp_model->add_editor_jurnal($data_editor);
+        } elseif($jenis_lapor == "Reviewer Jurnal"){
+            $config = array(
+                'upload_path' => './uploads/jurnal/reviewer_jurnal',
+                'allowed_types' => 'pdf',
+                'max_size' => 10240, // Maks 100 MB
+            );
+
+            $this->load->library('upload', $config);
+
+            $sertifikat = null;
+
+            // Upload sertifikat reviewer
+            if (!empty($_FILES['sertifikat_reviewer']['name'])) {
+                $config['file_name'] = 'sertifikat_' . time(); // Rename file
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('sertifikat_reviewer')) {
+                    $sertifikat = $this->upload->data('file_name');
+                } else {
+                    // Tangani error upload
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('ewmp/create_view');
+                }
+            }
+
+            // Data spesifik reviewer
+            $data_reviewer = array(
+                'id_pelaporan' => $id_pelaporan,
+                'nama_usul' => $this->input->post('nama_pengusul_reviewer'),
+                'prodi' => $this->input->post('prodi_reviewer'),
+                'judul_artikel' => $this->input->post('judul_artikel_reviewer'),  
+                'judul_jurnal' => $this->input->post('judul_jurnal_reviewer'),  
+                'sertifikat' => $sertifikat,
+                'ins_time' => $ins_time
+            );
+
+            // Menyimpan data reviewer
+            $this->Ewmp_model->add_reviewer_jurnal($data_reviewer);
         }
 
         redirect('ewmp');

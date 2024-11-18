@@ -475,38 +475,38 @@
                             <!-- Komponen Editor Jurnal -->
                             <div class="editor_jurnal d-none" id="editor_jurnal">
                                 <div class="row mb-3">
-                                    <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <label for="nama_pengusul_editor" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama pengusul">
+                                        <input type="text" name="nama_pengusul_editor" id="nama_pengusul_editor" class="form-control" placeholder="Masukkan nama pengusul">
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian1" value="Teknik Elektro" checked>
-                                            <label class="form-check-label" for="prodi_penelitian1">Teknik Elektro</label>
+                                            <input class="form-check-input" type="radio" name="prodi_editor" id="prodi_editor1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_editor1">Teknik Elektro</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian2" value="Teknik Industri">
-                                            <label class="form-check-label" for="prodi_penelitian2">Teknik Industri</label>
+                                            <input class="form-check-input" type="radio" name="prodi_editor" id="prodi_editor2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_editor2">Teknik Industri</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_penelitian" id="prodi_penelitian3" value="Teknik Biomedis">
-                                            <label class="form-check-label" for="prodi_penelitian3">Teknik Biomedis</label>
+                                            <input class="form-check-input" type="radio" name="prodi_editor" id="prodi_editor3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_editor3">Teknik Biomedis</label>
                                         </div>
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
-                                    <label for="judul_jurnal" class="col-sm-2 col-form-label">Judul Jurnal</label>
+                                    <label for="judul_jurnal_editor" class="col-sm-2 col-form-label">Judul Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_jurnal" id="judul_jurnal" class="form-control" placeholder="Masukkan judul jurnal">
+                                        <input type="text" name="judul_jurnal_editor" id="judul_jurnal_editor" class="form-control" placeholder="Masukkan judul jurnal">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_maju_jurnal" class="col-sm-2 col-form-label">Unggah SK</label>
+                                    <label for="sk_editor" class="col-sm-2 col-form-label">Unggah SK</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_maju_jurnal" id="laporan_maju_jurnal">
+                                        <input class="form-control" type="file" name="sk_editor" id="sk_editor">
                                         <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -537,21 +537,21 @@
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
-                                    <label for="judul_artikel_review" class="col-sm-2 col-form-label">Judul artikel yang telah direview</label>
+                                    <label for="judul_artikel_reviewer" class="col-sm-2 col-form-label">Judul artikel yang telah direview</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_artikel_review" id="judul_artikel_review" class="form-control" placeholder="Masukkan judul artikel yang telah direview">
+                                        <input type="text" name="judul_artikel_reviewer" id="judul_artikel_reviewer" class="form-control" placeholder="Masukkan judul artikel yang telah direview">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="judul_jurnal_review" class="col-sm-2 col-form-label">Judul Jurnal</label>
+                                    <label for="judul_jurnal_reviewer" class="col-sm-2 col-form-label">Judul Jurnal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_jurnal_review" id="judul_jurnal_review" class="form-control" placeholder="Masukkan judul jurnal">
+                                        <input type="text" name="judul_jurnal_reviewer" id="judul_jurnal_reviewer" class="form-control" placeholder="Masukkan judul jurnal">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_maju_reviewer" class="col-sm-2 col-form-label">Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</label>
+                                    <label for="sertifikat_reviewer" class="col-sm-2 col-form-label">Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_maju_reviewer" id="laporan_maju_reviewer">
+                                        <input class="form-control" type="file" name="sertifikat_reviewer" id="sertifikat_reviewer">
                                         <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -559,25 +559,25 @@
                             <!-- Komponen Invited Speaker -->
                             <div class="invited_speaker d-none" id="invited_speaker">
                                 <div class="row mb-3">
-                                    <label for="nama_pengusul_reviewer" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <label for="nama_pengusul_speaker" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul_reviewer" id="nama_pengusul_reviewer" class="form-control" placeholder="Masukkan nama pengusul">
+                                        <input type="text" name="nama_pengusul_speaker" id="nama_pengusul_speaker" class="form-control" placeholder="Masukkan nama pengusul">
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer1" value="Teknik Elektro" checked>
-                                            <label class="form-check-label" for="prodi_reviewer1">Teknik Elektro</label>
+                                            <input class="form-check-input" type="radio" name="prodi_speaker" id="prodi_speaker1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_speaker1">Teknik Elektro</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer2" value="Teknik Industri">
-                                            <label class="form-check-label" for="prodi_reviewer2">Teknik Industri</label>
+                                            <input class="form-check-input" type="radio" name="prodi_speaker" id="prodi_speaker2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_speaker2">Teknik Industri</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_reviewer" id="prodi_reviewer3" value="Teknik Biomedis">
-                                            <label class="form-check-label" for="prodi_reviewer3">Teknik Biomedis</label>
+                                            <input class="form-check-input" type="radio" name="prodi_speaker" id="prodi_speaker3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_speaker3">Teknik Biomedis</label>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -594,9 +594,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_maju_reviewer" class="col-sm-2 col-form-label">Unggah Undangan, sertifikat dan bukti telah menyelesaikan kegiatan (dijadikan 1 dokumen)</label>
+                                    <label for="laporan_maju_speaker" class="col-sm-2 col-form-label">Unggah Undangan, sertifikat dan bukti telah menyelesaikan kegiatan (dijadikan 1 dokumen)</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_maju_reviewer" id="laporan_maju_reviewer">
+                                        <input class="form-control" type="file" name="laporan_maju_speaker" id="laporan_maju_speaker">
                                         <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -604,27 +604,27 @@
                             <!-- Komponen Pengurus Organisasi Profesi -->
                             <div class="pengurus_organisasi d-none" id="pengurus_organisasi">
                                 <div class="row mb-3">
-                                    <label for="nama_organisasi_profesi" class="col-sm-2 col-form-label">Nama Organisasi Profesi</label>
+                                    <label for="nama_organisasi" class="col-sm-2 col-form-label">Nama Organisasi Profesi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_organisasi_profesi" id="nama_organisasi_profesi" class="form-control" placeholder="Masukkan nama organisasi profesi">
+                                        <input type="text" name="nama_organisasi" id="nama_organisasi" class="form-control" placeholder="Masukkan nama organisasi profesi">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                                    <label for="jabatan_organisasi" class="col-sm-2 col-form-label">Jabatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Masukkan jabatan">
+                                        <input type="text" name="jabatan_organisasi" id="jabatan_organisasi" class="form-control" placeholder="Masukkan jabatan">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="masa_jabatan" class="col-sm-2 col-form-label">Masa Jabatan</label>
+                                    <label for="masa_jabatan_organisasi" class="col-sm-2 col-form-label">Masa Jabatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="masa_jabatan" id="masa_jabatan" class="form-control" placeholder="Masukkan masa jabatan">
+                                        <input type="text" name="masa_jabatan_organisasi" id="masa_jabatan_organisasi" class="form-control" placeholder="Masukkan masa jabatan">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="dokumen_bukti" class="col-sm-2 col-form-label">Unggah SK dan Surat tugas serta bukti lain telah menyelesaikan tugas</label>
+                                    <label for="dokumen_organisasi" class="col-sm-2 col-form-label">Unggah SK dan Surat tugas serta bukti lain telah menyelesaikan tugas</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="dokumen_bukti" id="dokumen_bukti">
+                                        <input class="form-control" type="file" name="dokumen_organisasi" id="dokumen_organisasi">
                                         <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>

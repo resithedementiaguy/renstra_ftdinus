@@ -188,4 +188,56 @@ class Ewmp_model extends CI_Model
     {
         return $this->db->insert('haki_dindustri', $data);
     }
+
+    public function add_editor_jurnal($data)
+    {
+        return $this->db->insert('editor_jurnal', $data);
+    }
+
+    public function get_editor_jurnal()
+    {
+        $this->db->select('*');
+        $this->db->from('editor_jurnal');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_editor_jurnal($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('editor_jurnal', $data);
+    }
+
+    public function delete_editor_jurnal($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
+
+    public function add_reviewer_jurnal($data)
+    {
+        return $this->db->insert('reviewer_jurnal', $data);
+    }
+
+    public function get_reviewer_jurnal()
+    {
+        $this->db->select('*');
+        $this->db->from('reviewer_jurnal');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_reviewer_jurnal($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('reviewer_jurnal', $data);
+    }
+
+    public function delete_reviewer_jurnal($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
 }
