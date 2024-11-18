@@ -163,9 +163,9 @@ class Ewmp_model extends CI_Model
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
-            return $query->row()->id; // Mengembalikan ID terakhir
+            return $query->row()->id;
         }
-        return null; // Jika tidak ada data
+        return null;
     }
 
     public function add_haki_hcipta($data)
@@ -187,5 +187,91 @@ class Ewmp_model extends CI_Model
     public function add_haki_dindustri($data)
     {
         return $this->db->insert('haki_dindustri', $data);
+    }
+
+    public function add_editor_jurnal($data)
+    {
+        return $this->db->insert('editor_jurnal', $data);
+    }
+
+    public function get_editor_jurnal()
+    {
+        $this->db->select('*');
+        $this->db->from('editor_jurnal');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_editor_jurnal($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('editor_jurnal', $data);
+    }
+
+    public function delete_editor_jurnal($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
+
+    public function add_reviewer_jurnal($data)
+    {
+        return $this->db->insert('reviewer_jurnal', $data);
+    }
+
+    public function get_reviewer_jurnal()
+    {
+        $this->db->select('*');
+        $this->db->from('reviewer_jurnal');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_reviewer_jurnal($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('reviewer_jurnal', $data);
+    }
+
+    public function delete_reviewer_jurnal($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
+
+    public function add_invited_speaker($data)
+    {
+        $this->db->insert('iv_speaker', $data);
+    }
+
+    public function update_invited_speaker($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('iv_speaker', $data);
+    }
+
+    public function delete_invited_speaker($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('iv_speaker');
+    }
+
+    public function add_pengurus_organisasi($data)
+    {
+        $this->db->insert('org_profesi', $data);
+    }
+
+    public function update_pengurus_organisasi($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('org_profesi', $data);
+    }
+
+    public function delete_pengurus_organisasi($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('org_profesi');
     }
 }
