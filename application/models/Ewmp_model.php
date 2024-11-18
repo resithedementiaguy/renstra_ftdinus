@@ -30,6 +30,7 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
+
     public function update_pelaporan_ewmp($id, $data)
     {
         $this->db->where('id', $id);
@@ -89,6 +90,58 @@ class Ewmp_model extends CI_Model
     }
 
     public function delete_pengabdian($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
+
+    public function add_artikel_ilmiah($data)
+    {
+        return $this->db->insert('artikel_ilmiah', $data);
+    }
+
+    public function get_artikel_ilmiah()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_artikel_ilmiah($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('artikel_ilmiah', $data);
+    }
+
+    public function delete_artikel_ilmiah($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('status_stok');
+    }
+
+    public function add_prosiding($data)
+    {
+        return $this->db->insert('prosiding', $data);
+    }
+
+    public function get_prosiding()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function update_prosiding($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('prosiding', $data);
+    }
+
+    public function delete_prosiding($id)
     {
         $this->db->where('id', $id);
         return $this->db->delete('status_stok');
