@@ -406,28 +406,28 @@
                             <!-- Komponen Hak Cipta -->
                             <div class="hak_cipta d-none" id="hak_cipta">
                                 <div class="row mb-3">
-                                    <label for="nama_pengusul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <label for="nama_pengusul_hcipta" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_pengusul" id="nama_pengusul" class="form-control" placeholder="Masukkan nama Pengusul">
+                                        <input type="text" name="nama_pengusul_hcipta" id="nama_pengusul_hcipta" class="form-control" placeholder="Masukkan nama Pengusul">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
+                                    <label for="nama_pemegang_hcipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta"></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hcipta" id="nama_pemegang_hcipta" placeholder="Masukkan nama pemegang hak cipta"></textarea>
                                         <p class="text-danger">*contoh: (Nama 1; Nama 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Hak Cipta</label>
+                                    <label for="judul_hcipta" class="col-sm-2 col-form-label">Judul Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul hak cipta">
+                                        <input type="text" name="judul_hcipta" id="judul_hcipta" class="form-control" placeholder="Masukkan judul hak cipta">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
+                                    <label for="sertifikat_hcipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <input class="form-control" type="file" name="sertifikat_hcipta" id="sertifikat_hcipta">
                                         <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -435,22 +435,22 @@
                             <!-- Komponen Paten -->
                             <div class="paten d-none" id="paten">
                                 <div class="row mb-3">
-                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
+                                    <label for="nama_inventor_paten" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta"></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_inventor_paten" id="nama_inventor_paten" placeholder="Masukkan nama pemegang hak cipta"></textarea>
                                         <p class="text-danger">*contoh: (Inventor 1; Inventor 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="judul_hak_cipta" class="col-sm-2 col-form-label">Judul Invensi</label>
+                                    <label for="judul_invensi_paten" class="col-sm-2 col-form-label">Judul Invensi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_hak_cipta" id="judul_hak_cipta" class="form-control" placeholder="Masukkan judul invensi">
+                                        <input type="text" name="judul_invensi_paten" id="judul_invensi_paten" class="form-control" placeholder="Masukkan judul invensi">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Paten</label>
+                                    <label for="sertifikat_paten" class="col-sm-2 col-form-label">Unggah Sertifikat Paten</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <input class="form-control" type="file" name="sertifikat_paten" id="sertifikat_paten">
                                         <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -458,16 +458,16 @@
                             <!-- Komponen Desain Industri -->
                             <div class="desain_industri d-none" id="desain_industri">
                                 <div class="row mb-3">
-                                    <label for="nama_pemegang_hak_cipta" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <label for="nama_pengusul_desain" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hak_cipta" id="nama_pemegang_hak_cipta" placeholder="Masukkan nama pemegang hak cipta"></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="nama_pengusul_desain" id="nama_pengusul_desain" placeholder="Masukkan nama pemegang hak cipta"></textarea>
                                         <p class="text-danger">*contoh: (Pengusul 1; Pengusul 2; dst)</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_hak_cipta" class="col-sm-2 col-form-label">Unggah Sertifikat Desain Industri</label>
+                                    <label for="sertifikat_desain" class="col-sm-2 col-form-label">Unggah Sertifikat Desain Industri</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_hak_cipta" id="sertifikat_hak_cipta">
+                                        <input class="form-control" type="file" name="sertifikat_desain" id="sertifikat_desain">
                                         <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>

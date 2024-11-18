@@ -243,9 +243,9 @@ class Ewmp extends CI_Controller
 
             if ($kategori_haki == 'Hak Cipta') {
                 // Log data dari form input
-                log_message('debug', 'Nama Pengusul: ' . $this->input->post('nama_pengusul'));
-                log_message('debug', 'Nama Pemegang Hak Cipta: ' . $this->input->post('nama_pemegang_hak_cipta'));
-                log_message('debug', 'Judul Hak Cipta: ' . $this->input->post('judul_hak_cipta'));
+                log_message('debug', 'Nama Pengusul: ' . $this->input->post('nama_pengusul_hcipta'));
+                log_message('debug', 'Nama Pemegang Hak Cipta: ' . $this->input->post('nama_pemegang_hcipta'));
+                log_message('debug', 'Judul Hak Cipta: ' . $this->input->post('judul_hcipta'));
 
                 // Menyiapkan konfigurasi untuk file upload
                 $config = array(
@@ -258,11 +258,11 @@ class Ewmp extends CI_Controller
                 $sertifikat = null;
 
                 // Upload file sertifikat
-                if (!empty($_FILES['sertifikat_hak_cipta']['name'])) {
+                if (!empty($_FILES['sertifikat_hcipta']['name'])) {
                     $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
                     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('sertifikat_hak_cipta')) {
+                    if ($this->upload->do_upload('sertifikat_hcipta')) {
                         $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
                         log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
                     } else {
@@ -275,9 +275,9 @@ class Ewmp extends CI_Controller
                 // Menyimpan data Hak Cipta
                 $data_hak_cipta = array(
                     'id_haki' => $id_haki,
-                    'nama_usul' => $this->input->post('nama_pengusul'),
-                    'nama_pemegang' => $this->input->post('nama_pemegang_hak_cipta'),
-                    'judul' => $this->input->post('judul_hak_cipta'),
+                    'nama_usul' => $this->input->post('nama_pengusul_hcipta'),
+                    'nama_pemegang' => $this->input->post('nama_pemegang_hcipta'),
+                    'judul' => $this->input->post('judul_hcipta'),
                     'sertifikat' => $sertifikat,
                     'ins_time' => $ins_time
                 );
