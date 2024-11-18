@@ -146,4 +146,46 @@ class Ewmp_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete('status_stok');
     }
+
+    public function add_haki($data)
+    {
+        $this->db->insert('haki', $data);
+        return $this->db->insert_id();
+    }
+
+    public function get_last_haki_id()
+    {
+        $this->db->select('id');
+        $this->db->from('haki');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->id; // Mengembalikan ID terakhir
+        }
+        return null; // Jika tidak ada data
+    }
+
+    public function add_haki_hcipta($data)
+    {
+        if ($this->db->insert('haki_hcipta', $data)) {
+            log_message('debug', 'Insert into haki_hcipta succeeded: ' . $this->db->last_query());
+            return true;
+        } else {
+            log_message('error', 'Insert into haki_hcipta failed: ' . $this->db->last_query());
+            return false;
+        }
+    }
+
+    public function add_haki_paten($data)
+    {
+        return $this->db->insert('haki_paten', $data);
+    }
+
+    public function add_haki_dindustri($data)
+    {
+        return $this->db->insert('haki_dindustri', $data);
+    }
 }

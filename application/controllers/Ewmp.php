@@ -226,10 +226,68 @@ class Ewmp extends CI_Controller
             // Menyimpan data prosiding
             $this->Ewmp_model->add_prosiding($data_prosiding);
         } elseif ($jenis_lapor == 'HAKI') {
-        }
+            $kategori_haki = $this->input->post('kategori_haki');
+            log_message('debug', 'Kategori HAKI: ' . $kategori_haki);
 
-        if ($this->input->post('completed') == 'yes') {
-            $this->session->unset_userdata('pasien_id');
+            // Simpan data kategori HAKI ke tabel
+            $data_haki = array(
+                'id_pelaporan' => $id_pelaporan,
+                'kategori' => $kategori_haki,
+                'ins_time' => $ins_time
+            );
+            $this->Ewmp_model->add_haki($data_haki);
+
+            // Ambil ID HAKI terakhir
+            $id_haki = $this->Ewmp_model->get_last_haki_id();
+            log_message('debug', 'Last HAKI ID: ' . $id_haki);
+
+            if ($kategori_haki == 'Hak Cipta') {
+                // Log data dari form input
+                log_message('debug', 'Nama Pengusul: ' . $this->input->post('nama_pengusul'));
+                log_message('debug', 'Nama Pemegang Hak Cipta: ' . $this->input->post('nama_pemegang_hak_cipta'));
+                log_message('debug', 'Judul Hak Cipta: ' . $this->input->post('judul_hak_cipta'));
+
+                // Menyiapkan konfigurasi untuk file upload
+                $config = array(
+                    'upload_path' => './uploads/haki/hak_cipta',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                // Upload file sertifikat
+                if (!empty($_FILES['sertifikat_hak_cipta']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_hak_cipta')) {
+                        $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                        log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                // Menyimpan data Hak Cipta
+                $data_hak_cipta = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul'),
+                    'nama_pemegang' => $this->input->post('nama_pemegang_hak_cipta'),
+                    'judul' => $this->input->post('judul_hak_cipta'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                // Log data yang akan disimpan ke database
+                log_message('debug', 'Data Hak Cipta yang akan disimpan: ' . json_encode($data_hak_cipta));
+
+                // Pastikan fungsi add_haki_hcipta ada di model
+                $this->Ewmp_model->add_haki_hcipta($data_hak_cipta);
+            }
         }
 
         redirect('ewmp');
