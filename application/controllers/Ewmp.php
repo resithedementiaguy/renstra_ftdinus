@@ -242,11 +242,6 @@ class Ewmp extends CI_Controller
             log_message('debug', 'Last HAKI ID: ' . $id_haki);
 
             if ($kategori_haki == 'Hak Cipta') {
-                // Log data dari form input
-                log_message('debug', 'Nama Pengusul: ' . $this->input->post('nama_pengusul_hcipta'));
-                log_message('debug', 'Nama Pemegang Hak Cipta: ' . $this->input->post('nama_pemegang_hcipta'));
-                log_message('debug', 'Judul Hak Cipta: ' . $this->input->post('judul_hcipta'));
-
                 // Menyiapkan konfigurasi untuk file upload
                 $config = array(
                     'upload_path' => './uploads/haki/hak_cipta',
@@ -287,6 +282,92 @@ class Ewmp extends CI_Controller
 
                 // Pastikan fungsi add_haki_hcipta ada di model
                 $this->Ewmp_model->add_haki_hcipta($data_hak_cipta);
+            } elseif ($kategori_haki == 'Paten') {
+                // Log data dari form input
+
+                // Menyiapkan konfigurasi untuk file upload
+                $config = array(
+                    'upload_path' => './uploads/haki/hak_paten',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                // Upload file sertifikat
+                if (!empty($_FILES['sertifikat_paten']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_paten')) {
+                        $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                        log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        // Tangani error jika upload gagal
+                        log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                // Menyimpan data Hak Paten
+                $data_hak_paten = array(
+                    'id_haki' => $id_haki,
+                    'nama_inventor' => $this->input->post('nama_inventor_paten'),
+                    'judul' => $this->input->post('judul_invensi_paten'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                // Log data yang akan disimpan ke database
+                log_message('debug', 'Data Hak Paten yang akan disimpan: ' . json_encode($data_hak_paten));
+
+                // Pastikan fungsi add_haki_paten ada di model
+                $this->Ewmp_model->add_haki_paten($data_hak_paten);
+            } elseif ($kategori_haki == 'Desain Industri') {
+                // Log data dari form input
+                log_message('debug', 'Nama Pengusul Desain Industri: ' . $this->input->post('nama_pengusul_desain'));
+
+                // Menyiapkan konfigurasi untuk file upload
+                $config = array(
+                    'upload_path' => './uploads/haki/desain_industri',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                // Upload file sertifikat
+                if (!empty($_FILES['sertifikat_desain']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_desain')) {
+                        $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                        log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        // Tangani error jika upload gagal
+                        log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                // Menyimpan data Desain Industri
+                $data_desain_industri = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul_desain'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                // Log data yang akan disimpan ke database
+                log_message('debug', 'Data Desain Industri yang akan disimpan: ' . json_encode($data_desain_industri));
+
+                // Pastikan fungsi add_haki_dindustri ada di model
+                $this->Ewmp_model->add_haki_dindustri($data_desain_industri);
             }
         }
 
