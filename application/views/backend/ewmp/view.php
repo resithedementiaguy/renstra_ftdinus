@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table datatable table-striped">
+                            <table class="table" id="datatable">
                                 <thead>
                                     <tr>
                                         <th class="text-start align-middle" style="width: 200px;">Jenis Pelaporan</th>
@@ -67,72 +67,10 @@
     </section>
 </main>
 
-<!-- Modal Bootstrap -->
-<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="responseModalLabel">Informasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="responseMessage">
-                <!-- Pesan respons akan muncul di sini -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('input.target-input').on('change', function() {
-            var targetId = $(this).data('id');
-            var year = $(this).data('year');
-            var value = $(this).val();
-            var levelType = $(this).data('level-type');
-
-            $.ajax({
-                url: "<?php echo base_url('iku/update_target'); ?>",
-                method: "POST",
-                dataType: 'json',
-                data: {
-                    target_id: targetId,
-                    year: year,
-                    value: value,
-                    level_type: levelType
-                },
-                success: function(response) {
-                    console.log(response); // Cek isi response di console
-                    if (response.success) {
-                        $('#responseMessage').text("Target berhasil diperbarui untuk tahun " + year);
-                    } else {
-                        $('#responseMessage').text("Gagal memperbarui target. Pesan kesalahan: " + (response.message || "Tidak ada detail"));
-                    }
-                    $('#responseModal').modal('show'); // Tampilkan modal
-                },
-                error: function(xhr, status, error) {
-                    console.error("Status: " + status);
-                    console.error("Error: " + error);
-                    console.error("Response: " + xhr.responseText);
-
-                    var errorMessage = "Terjadi kesalahan di server. Cek console untuk detail.";
-                    if (xhr.responseText) {
-                        errorMessage += "\nDetail kesalahan: " + xhr.responseText;
-                    }
-
-                    $('#responseMessage').text(errorMessage);
-                    $('#responseModal').modal('show'); // Tampilkan modal
-                }
-            });
-        });
-    });
-
-    $(document).ready(function() {
-        $('.datatable').DataTable();
-    });
+    new DataTable('#datatable');
 </script>
 
 <?php
