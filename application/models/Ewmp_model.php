@@ -18,6 +18,11 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_pelaporan_by_id($id)
+    {
+        return $this->db->get_where('pelaporan_ewmp', ['id' => $id])->row_array();
+    }
+
     public function get_last_pelaporan_id()
     {
         $this->db->select('id'); // Asumsi kolom ID adalah 'id'

@@ -534,8 +534,24 @@ class Ewmp extends CI_Controller
             log_message('debug', 'Data Pengurus Organisasi berhasil disimpan: ' . json_encode($data_pengurus_organisasi));
         }
 
-
         redirect('ewmp');
+    }
+
+    public function detail_pelaporan($id)
+    {
+        $this->load->model('Ewmp_model');
+
+        // Ambil data pelaporan berdasarkan ID
+        $data['pelaporan'] = $this->Ewmp_model->get_pelaporan_by_id($id);
+
+        if (!$data['pelaporan']) {
+            show_404();
+        }
+
+        // Tampilkan view detail
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/detail', $data);
+        $this->load->view('backend/partials/footer');
     }
 
     public function delete_pelaporan($id)

@@ -107,7 +107,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link <?php echo ($this->uri->segment(1) == 'iku') ? '' : 'collapsed'; ?>" href="<?php echo site_url('iku'); ?>">
+                <a class="nav-link <?php echo ($this->uri->segment(1) == 'renstra') ? '' : 'collapsed'; ?>" href="<?php echo site_url('renstra'); ?>">
                     <i class="bi bi-layout-text-window-reverse"></i>
                     <span>Rencana Strategi</span>
                 </a>

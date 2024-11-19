@@ -55,7 +55,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('iku') ?>" type="button" class="btn btn-secondary my-3">Kembali</a>
+                            <a href="<?= base_url('renstra') ?>" type="button" class="btn btn-secondary my-3">Kembali</a>
                         </div>
                         <button type="submit" class="btn btn-primary my-3">Simpan</button>
                     </div>

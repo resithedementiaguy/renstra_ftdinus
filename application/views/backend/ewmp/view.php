@@ -25,40 +25,39 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="table">
+                            <table class="table datatable table-striped">
+                                <thead>
                                     <tr>
                                         <th class="text-start align-middle" style="width: 200px;">Jenis Pelaporan</th>
                                         <th class="text-start align-middle" style="width: 200px;">Email</th>
                                         <th class="text-start align-middle" style="width: 200px;">Waktu Pengisian</th>
-                                        <th class="text-start align-middle" style="width: 200px;"></th>
+                                        <th class="text-start align-middle" style="width: 200px;">Aksi</th>
                                     </tr>
                                 </thead>
-                                <?php foreach ($pelaporan as $p): ?>
-                                    <tbody>
+                                <tbody>
+                                    <?php foreach ($pelaporan as $p): ?>
                                         <tr>
-                                            <td>
-                                                <?= $p->jenis_lapor ?>
-                                            </td>
-                                            <td>
-                                                <?= $p->email ?>
-                                            </td>
-                                            <td>
-                                                <?= $p->ins_time ?>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm bg-warning border-0 edit-suntik-btn" data-bs-toggle="modal" data-bs-target="#SuntikModal" data-id="<?= $p->id ?>">
-                                                    <i class="bi bi-pencil"></i> <!-- Bootstrap Icons Edit Icon di kiri -->
-                                                    <i class="fas fa-edit"></i> Edit <i class="fas fa-pencil-alt"></i>
+                                            <td class="align-middle"><?= htmlspecialchars($p->jenis_lapor) ?></td>
+                                            <td class="align-middle"><?= htmlspecialchars($p->email) ?></td>
+                                            <td class="align-middle"><?= htmlspecialchars($p->ins_time) ?></td>
+                                            <td class="align-middle">
+                                                <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
+                                                    <i class="bi bi-journal-text"></i> Detail
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-warning edit-suntik-btn"
+                                                    data-bs-toggle="modal" data-bs-target="#SuntikModal"
+                                                    data-id="<?= htmlspecialchars($p->id) ?>">
+                                                    <i class="bi bi-pencil"></i> Edit
                                                 </button>
-                                                <a class="btn btn-sm text-white bg-danger border-0 delete-suntik-btn" href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>">
-                                                    <i class="bi bi-trash"></i> <!-- Bootstrap Icons Trash Icon di kiri -->
-                                                    <i class="fas fa-trash"></i> Hapus <i class="fas fa-trash-alt"></i>
+                                                <a class="btn btn-sm btn-danger delete-suntik-btn"
+                                                    href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
+                                                    <i class="bi bi-trash"></i> Hapus
                                                 </a>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
