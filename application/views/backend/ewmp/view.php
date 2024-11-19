@@ -129,6 +129,10 @@
             });
         });
     });
+
+    $(document).ready(function() {
+        $('.datatable').DataTable();
+    });
 </script>
 
 <?php

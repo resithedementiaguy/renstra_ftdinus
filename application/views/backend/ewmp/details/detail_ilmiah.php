@@ -4,6 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Pelaporan EWMP</li>
+                <li class="breadcrumb-item active">Detail</li>
             </ol>
         </nav>
     </div>
@@ -12,16 +13,16 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-header text-white bg-primary">
-                        <h5 class="pt-2"><strong>Daftar Pelaporan EWMP</strong></h5>
+                    <div class="card-header text-white bg-success">
+                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Silahkan untuk mengecek detail Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4">Edit Pelaporan</a>
+                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -65,7 +66,7 @@
                                 <tr>
                                     <th>Link Jurnal</th>
                                     <td>
-                                        <a href="<?= $artikel_ilmiah['link_jurnal']?>" target="_blank" class="btn btn-primary"><i class="bi bi-link"></i> Link</a>
+                                        <a href="<?= $artikel_ilmiah['link_jurnal'] ?>" target="_blank" class="btn btn-primary"><i class="bi bi-link"></i> Link</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,20 +81,20 @@
                                     <th>DOI</th>
                                     <td><?= htmlspecialchars($artikel_ilmiah['doi']) ?></td>
                                 </tr>
-                                <?php 
+                                <?php
                                 $internasional = [
-                                    "Internasional Q1", 
-                                    "Internasional Q2", 
+                                    "Internasional Q1",
+                                    "Internasional Q2",
                                     "Internasional Q3",
-                                    "Internasional Q4", 
+                                    "Internasional Q4",
                                     "Internasional Non Scopus"
                                 ];
                                 if (in_array($artikel_ilmiah['kategori'], $internasional)) {
                                 ?>
-                                <tr>
-                                    <th>Pengindeks</th>
-                                    <td><?= htmlspecialchars($artikel_ilmiah['pengindeks']) ?></td>
-                                </tr>
+                                    <tr>
+                                        <th>Pengindeks</th>
+                                        <td><?= htmlspecialchars($artikel_ilmiah['pengindeks']) ?></td>
+                                    </tr>
                                 <?php
                                 }
                                 ?>

@@ -4,6 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Pelaporan EWMP</li>
+                <li class="breadcrumb-item active">Detail</li>
             </ol>
         </nav>
     </div>
@@ -12,16 +13,16 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-header text-white bg-primary">
-                        <h5 class="pt-2"><strong>Daftar Pelaporan EWMP</strong></h5>
+                    <div class="card-header text-white bg-success">
+                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Silahkan untuk mengecek detail Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4">Edit Pelaporan</a>
+                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -43,59 +44,59 @@
                                     <td><?= htmlspecialchars($haki['kategori']) ?></td>
                                 </tr>
                                 <?php
-                                if ($haki['kategori'] == "Hak Cipta"){
+                                if ($haki['kategori'] == "Hak Cipta") {
                                 ?>
-                                <tr>
-                                    <th>Nama Pengusul</th>
-                                    <td><?= htmlspecialchars($haki_hcipta['nama_usul']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Nama Pemegang Hak Cipta</th>
-                                    <td><?= htmlspecialchars($haki_hcipta['nama_pemegang']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Judul Hak Cipta</th>
-                                    <td><?= htmlspecialchars($haki_hcipta['judul']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Sertifikat Hak Cipta</th>
-                                    <td>
-                                        <a href="<?= base_url('uploads/haki/hak_cipta/'). $haki_hcipta['sertifikat']?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_hcipta['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Pemegang Hak Cipta</th>
+                                        <td><?= htmlspecialchars($haki_hcipta['nama_pemegang']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Hak Cipta</th>
+                                        <td><?= htmlspecialchars($haki_hcipta['judul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sertifikat Hak Cipta</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/hak_cipta/') . $haki_hcipta['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
                                 <?php
-                                } elseif($haki['kategori'] == "Paten"){
+                                } elseif ($haki['kategori'] == "Paten") {
                                 ?>
-                                <tr>
-                                    <th>Nama Inventor</th>
-                                    <td><?= htmlspecialchars($haki_paten['nama_inventor']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Judul Invensi</th>
-                                    <td><?= htmlspecialchars($haki_paten['judul']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Sertifikat Paten</th>
-                                    <td>
-                                        <a href="<?= base_url('uploads/haki/paten/'). $haki_paten['sertifikat']?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th>Nama Inventor</th>
+                                        <td><?= htmlspecialchars($haki_paten['nama_inventor']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Invensi</th>
+                                        <td><?= htmlspecialchars($haki_paten['judul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sertifikat Paten</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/paten/') . $haki_paten['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
                                 <?php
-                                } elseif($haki['kategori'] == "Desain Industri"){
+                                } elseif ($haki['kategori'] == "Desain Industri") {
                                 ?>
-                                <tr>
-                                    <th>Nama Pengusul</th>
-                                    <td><?= htmlspecialchars($haki_dindustri['nama_usul']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Sertifikat Desain Industri</th>
-                                    <td>
-                                        <a href="<?= base_url('uploads/haki/desain_industri/'). $haki_dindustri['sertifikat']?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_dindustri['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sertifikat Desain Industri</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/desain_industri/') . $haki_dindustri['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
                                 <?php
                                 }
-                                ?>                                
+                                ?>
                             </table>
                             <div class="text-end">
                                 <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
