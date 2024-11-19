@@ -654,11 +654,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Data berhasil disimpan!
+                    Pelaporan EWMP Berhasil Disimpan!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Tutup</button>
-                    <a href="<?= base_url('renstra/create_view3') ?>" class="btn btn-primary mb-4">Ke Level 3</a>
+                    <a href="<?= base_url('ewmp') ?>" class="btn btn-primary mb-4">Kembali</a>
                 </div>
             </div>
         </div>

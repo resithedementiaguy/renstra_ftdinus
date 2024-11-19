@@ -53,13 +53,13 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('penelitian', $data);
     }
 
-    public function get_penelitian()
+    public function get_penelitian_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('penelitian');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_penelitian($id, $data)
@@ -79,13 +79,13 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('pengabdian', $data);
     }
 
-    public function get_pengabdian()
+    public function get_pengabdian_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_pengabdian($id, $data)
@@ -105,13 +105,13 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('artikel_ilmiah', $data);
     }
 
-    public function get_artikel_ilmiah()
+    public function get_artikel_ilmiah_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_artikel_ilmiah($id, $data)
@@ -131,13 +131,13 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('prosiding', $data);
     }
 
-    public function get_prosiding()
+    public function get_prosiding_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_prosiding($id, $data)
@@ -173,6 +173,15 @@ class Ewmp_model extends CI_Model
         return null;
     }
 
+    public function get_haki_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki');
+        $this->db->where('id_pelaporan', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function add_haki_hcipta($data)
     {
         if ($this->db->insert('haki_hcipta', $data)) {
@@ -184,9 +193,27 @@ class Ewmp_model extends CI_Model
         }
     }
 
+    public function get_haki_hcipta_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_hcipta');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function add_haki_paten($data)
     {
         return $this->db->insert('haki_paten', $data);
+    }
+
+    public function get_haki_paten_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_paten');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function add_haki_dindustri($data)
@@ -194,18 +221,27 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('haki_dindustri', $data);
     }
 
+    public function get_haki_dindustri_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_dindustri');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function add_editor_jurnal($data)
     {
         return $this->db->insert('editor_jurnal', $data);
     }
 
-    public function get_editor_jurnal()
+    public function get_editor_jurnal_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('editor_jurnal');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_editor_jurnal($id, $data)
@@ -225,13 +261,13 @@ class Ewmp_model extends CI_Model
         return $this->db->insert('reviewer_jurnal', $data);
     }
 
-    public function get_reviewer_jurnal()
+    public function get_reviewer_jurnal_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('reviewer_jurnal');
-        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row_array();
     }
 
     public function update_reviewer_jurnal($id, $data)
@@ -251,6 +287,15 @@ class Ewmp_model extends CI_Model
         $this->db->insert('iv_speaker', $data);
     }
 
+    public function get_invited_speaker_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('iv_speaker');
+        $this->db->where('id_pelaporan', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function update_invited_speaker($id, $data)
     {
         $this->db->where('id', $id);
@@ -266,6 +311,15 @@ class Ewmp_model extends CI_Model
     public function add_pengurus_organisasi($data)
     {
         $this->db->insert('org_profesi', $data);
+    }
+
+    public function get_pengurus_organisasi_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('org_profesi');
+        $this->db->where('id_pelaporan', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function update_pengurus_organisasi($id, $data)

@@ -534,7 +534,9 @@ class Ewmp extends CI_Controller
             log_message('debug', 'Data Pengurus Organisasi berhasil disimpan: ' . json_encode($data_pengurus_organisasi));
         }
 
-        redirect('ewmp');
+        // Set flashdata for success message
+        $this->session->set_flashdata('success', 'Data berhasil disimpan!');
+        redirect('ewmp/create_view');
     }
 
     public function detail_pelaporan($id)
@@ -542,16 +544,76 @@ class Ewmp extends CI_Controller
         $this->load->model('Ewmp_model');
 
         // Ambil data pelaporan berdasarkan ID
-        $data['pelaporan'] = $this->Ewmp_model->get_pelaporan_by_id($id);
+        $pelaporan=$this->Ewmp_model->get_pelaporan_by_id($id);
+        $data['pelaporan'] = $pelaporan;
 
         if (!$data['pelaporan']) {
             show_404();
         }
 
-        // Tampilkan view detail
-        $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/detail', $data);
-        $this->load->view('backend/partials/footer');
+        if ($pelaporan['jenis_lapor'] == "Penelitian"){
+
+            $data['penelitian']=$this->Ewmp_model->get_penelitian_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_penelitian', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Pengabdian"){
+            $data['pengabdian']=$this->Ewmp_model->get_pengabdian_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_pengabdian', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Artikel/Karya Ilmiah"){
+            $data['artikel_ilmiah']=$this->Ewmp_model->get_artikel_ilmiah_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_ilmiah', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Prosiding"){
+            $data['prosiding']=$this->Ewmp_model->get_prosiding_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_prosiding', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "HAKI"){
+            $data['haki']=$this->Ewmp_model->get_haki_by_id($id);
+
+            $id_haki=$data['haki']['id'];
+
+            $data['haki_hcipta']=$this->Ewmp_model->get_haki_hcipta_by_id($id_haki);
+            $data['haki_paten']=$this->Ewmp_model->get_haki_paten_by_id($id_haki);
+            $data['haki_dindustri']=$this->Ewmp_model->get_haki_dindustri_by_id($id_haki);
+
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_haki', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Editor Jurnal"){
+            $data['editor_jurnal']=$this->Ewmp_model->get_editor_jurnal_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_editor_jurnal', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Reviewer Jurnal"){
+            $data['reviewer_jurnal']=$this->Ewmp_model->get_reviewer_jurnal_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_reviewer_jurnal', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Invited Speaker"){
+            $data['invited_speaker']=$this->Ewmp_model->get_invited_speaker_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_invited_speaker', $data);
+            $this->load->view('backend/partials/footer');
+        } elseif($pelaporan['jenis_lapor'] == "Pengurus Organisasi Profesi"){
+            $data['pengurus_organisasi']=$this->Ewmp_model->get_pengurus_organisasi_by_id($id);
+            // Tampilkan view detail
+            $this->load->view('backend/partials/header');
+            $this->load->view('backend/ewmp/details/detail_pengurus_organisasi', $data);
+            $this->load->view('backend/partials/footer');
+        }
     }
 
     public function delete_pelaporan($id)

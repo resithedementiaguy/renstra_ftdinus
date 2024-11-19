@@ -37,9 +37,9 @@
                                 <tbody>
                                     <?php foreach ($pelaporan as $p): ?>
                                         <tr>
-                                            <td class="align-middle"><?= htmlspecialchars($p->jenis_lapor) ?></td>
+                                            <td class="align-middle"><?= $p->jenis_lapor ?></td>
                                             <td class="align-middle"><?= htmlspecialchars($p->email) ?></td>
-                                            <td class="align-middle"><?= htmlspecialchars($p->ins_time) ?></td>
+                                            <td class="align-middle"><?= formatDateTime($p->ins_time) ?></td>
                                             <td class="align-middle">
                                                 <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
                                                     <i class="bi bi-journal-text"></i> Detail
@@ -130,3 +130,35 @@
         });
     });
 </script>
+
+<?php
+// Format Tanggal dan Waktu
+function formatDateTime($datetime)
+{
+    if (empty($datetime)) {
+        return "-"; // Atau teks lain sesuai kebutuhan
+    }
+
+    $date = new DateTime($datetime);
+    $months = [
+        1 => 'Januari',
+        2 => 'Februari',
+        3 => 'Maret',
+        4 => 'April',
+        5 => 'Mei',
+        6 => 'Juni',
+        7 => 'Juli',
+        8 => 'Agustus',
+        9 => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Desember'
+    ];
+    $day = $date->format('d');
+    $month = $months[(int)$date->format('m')];
+    $year = $date->format('Y');
+    $time = $date->format('H:i:s');
+
+    return "{$day} {$month} {$year}, {$time} WIB";
+}
+?>
