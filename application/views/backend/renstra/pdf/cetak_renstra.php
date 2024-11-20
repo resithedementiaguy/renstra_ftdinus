@@ -174,15 +174,15 @@
 
     <table class="table">
         <thead class="table-header">
-            <tr class="table-header-row">
-                <th class="text-center align-middle" rowspan="2" style="width: 50px;">No.</th>
-                <th class="text-center align-middle" rowspan="2" colspan="2" style="width: 170px;">Butir</th>
-                <th class="text-start align-middle" rowspan="2" style="width: 250px;">Indikator Kinerja Utama</th>
-                <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="width: 300px;">Tahun</th>
+            <tr class="table-header-row" style="border: 1px solid;">
+                <th class="text-center align-middle" rowspan="2" style="width: 50px; border: 1px solid;">No.</th>
+                <th class="text-center align-middle" rowspan="2" colspan="2" style="width: 100px; border: 1px solid;">Butir</th>
+                <th class="text-start align-middle" rowspan="2" style="width: 250px; border: 1px solid;">Indikator Kinerja Utama</th>
+                <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="width: 300px; border: 1px solid;">Tahun</th>
             </tr>
             <tr style="text-align: center;">
                 <?php foreach ($years as $year): ?>
-                    <th><?php echo $year; ?></th>
+                    <th style="border: 1px solid;"><?php echo $year; ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
@@ -193,7 +193,7 @@
                     <td colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
                 </tr>
                 <?php
-                $level2 = $this->Iku_model->get_level2($level1_item->id);
+                $level2 = $this->Mod_iku->get_level2($level1_item->id);
                 foreach ($level2 as $level2_item):
                 ?>
                     <tr>
@@ -202,9 +202,9 @@
                         <td colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
                     </tr>
                     <?php
-                    $level3 = $this->Iku_model->get_level3($level2_item->id);
+                    $level3 = $this->Mod_iku->get_level3($level2_item->id);
                     foreach ($level3 as $level3_item):
-                        $target_level3 = $this->Iku_model->get_target_level3($level3_item->id);
+                        $target_level3 = $this->Mod_iku->get_target_level3($level3_item->id);
                     ?>
                         <tr>
                             <td></td>
@@ -222,9 +222,9 @@
                             <?php endif; ?>
                         </tr>
                         <?php
-                        $level4 = $this->Iku_model->get_level4($level3_item->id);
+                        $level4 = $this->Mod_iku->get_level4($level3_item->id);
                         foreach ($level4 as $level4_item):
-                            $target_level4 = $this->Iku_model->get_target_level4($level4_item->id);
+                            $target_level4 = $this->Mod_iku->get_target_level4($level4_item->id);
                         ?>
                             <tr>
                                 <td></td>
