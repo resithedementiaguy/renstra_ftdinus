@@ -1,3 +1,9 @@
+<style>
+    div.dt-container select.dt-input {
+        margin-right: 8px;
+    }
+</style>
+
 <main id="main" class="main">
     <div class="pagetitle">
         <nav>
