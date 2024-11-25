@@ -121,5 +121,30 @@
                     <span>Pelaporan EWMP</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a
+                    class="nav-link <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa') ? '' : 'collapsed'; ?>"
+                    data-bs-target="#components-nav"
+                    data-bs-toggle="collapse"
+                    href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Data Akademik</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul
+                    id="components-nav"
+                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa') ? 'show' : ''; ?>"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="<?php echo ($this->uri->segment(1) == 'dosen') ? 'active' : ''; ?>" href="<?php echo site_url('dosen'); ?>">
+                            <i class="bi bi-circle"></i><span>Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<?php echo ($this->uri->segment(1) == 'mahasiswa') ? 'active' : ''; ?>" href="<?php echo site_url('mahasiswa'); ?>">
+                            <i class="bi bi-circle"></i><span>Mahasiswa</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </aside>
