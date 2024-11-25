@@ -449,6 +449,9 @@
                                         <select class="form-select" name="kategori_haki" id="kategori_haki">
                                             <option value="" selected hidden>Pilih Kategori HAKI</option>
                                             <option value="Hak Cipta">Hak Cipta</option>
+                                            <option value="Merk">Merk/Rahasia Dagang</option>
+                                            <option value="Lisensi">Lisensi</option>
+                                            <option value="Buku">Buku/Chapter</option>
                                             <option value="Paten">Paten</option>
                                             <option value="Desain Industri">Desain Industri</option>
                                         </select>
@@ -480,6 +483,92 @@
                                     <label for="sertifikat_hcipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="sertifikat_hcipta" id="sertifikat_hcipta">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Merk -->
+                            <div class="merk d-none" id="merk">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul_merk" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul_merk" id="nama_pengusul_merk" class="form-control" placeholder="Masukkan nama Pengusul">
+                                    </div>
+                                </div>
+                                <div id="dynamicNamaMerkContainer"></div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-primary" id="addNamaMerk">Tambah Nama Pemegang Merk</button>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_merk" class="col-sm-2 col-form-label">Judul Merk</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_merk" id="judul_merk" class="form-control" placeholder="Masukkan judul Merk">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_merk" class="col-sm-2 col-form-label">Unggah Sertifikat Merk</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_merk" id="sertifikat_merk">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Lisensi -->
+                            <div class="lisensi d-none" id="lisensi">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul_lisensi" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul_lisensi" id="nama_pengusul_lisensi" class="form-control" placeholder="Masukkan nama Pengusul">
+                                    </div>
+                                </div>
+                                <div id="dynamicNamaLisensiContainer"></div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-primary" id="addNamaLisensi">Tambah Nama Pemegang Lisensi</button>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_lisensi" class="col-sm-2 col-form-label">Judul Lisensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_lisensi" id="judul_lisensi" class="form-control" placeholder="Masukkan judul lisensi">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sertifikat_lisensi" class="col-sm-2 col-form-label">Unggah Sertifikat Lisensi</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="sertifikat_lisensi" id="sertifikat_lisensi">
+                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Komponen Buku/Chapter -->
+                            <div class="buku d-none" id="buku">
+                                <div class="row mb-3">
+                                    <label for="nama_pengusul_buku" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nama_pengusul_buku" id="nama_pengusul_buku" class="form-control" placeholder="Masukkan nama Pengusul">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="isbn" id="isbn" class="form-control" placeholder="Masukkan nomor ISBN">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_buku" class="col-sm-2 col-form-label">Judul buku</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_buku" id="judul_buku" class="form-control" placeholder="Masukkan judul buku">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_buku" class="col-sm-2 col-form-label">Unggah File buku</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" name="file_buku" id="file_buku">
                                         <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
                                     </div>
                                 </div>
@@ -812,12 +901,18 @@
     document.getElementById("jenis_lapor").addEventListener("change", function() {
         var hakiDiv = document.getElementById("HAKI");
         var hakCiptaDiv = document.getElementById("hak_cipta");
+        var merkDiv = document.getElementById("merk");
+        var LisensiDiv = document.getElementById("lisensi");
+        var BukuDiv = document.getElementById("buku");
         var patenDiv = document.getElementById("paten");
         var desainIndustriDiv = document.getElementById("desain_industri");
 
         // Reset visibility for all HAKI-related divs
         hakiDiv.classList.add("d-none");
         hakCiptaDiv.classList.add("d-none");
+        merkDiv.classList.add("d-none");
+        LisensiDiv.classList.add("d-none");
+        BukuDiv.classList.add("d-none");
         patenDiv.classList.add("d-none");
         desainIndustriDiv.classList.add("d-none");
 
@@ -830,6 +925,9 @@
         document.getElementById("kategori_haki").addEventListener("change", function() {
             // Reset visibility for all specific HAKI categories
             hakCiptaDiv.classList.add("d-none");
+            merkDiv.classList.add("d-none");
+            LisensiDiv.classList.add("d-none");
+            BukuDiv.classList.add("d-none");
             patenDiv.classList.add("d-none");
             desainIndustriDiv.classList.add("d-none");
 
@@ -840,6 +938,12 @@
                 patenDiv.classList.remove("d-none");
             } else if (this.value === "Desain Industri") {
                 desainIndustriDiv.classList.remove("d-none");
+            } else if (this.value === "Lisensi") {
+                LisensiDiv.classList.remove("d-none");
+            } else if (this.value === "Merk") {
+                merkDiv.classList.remove("d-none");
+            } else if (this.value === "Buku") { // Added Buku condition
+                BukuDiv.classList.remove("d-none");
             }
         });
     });
@@ -1097,6 +1201,46 @@
             <label class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta ${anggotaCount}</label>
             <div class="col-sm-10">
                 <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Hak Cipta ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addNamaLisensi').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaLisensiContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Nama Pemegang Lisensi ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Lisensi ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addNamaMerk').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaMerkContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Nama Pemegang Merk ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Merk ${anggotaCount}">
             </div>
         `;
 
