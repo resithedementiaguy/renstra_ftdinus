@@ -14,12 +14,12 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-header text-white bg-primary">
+                    <div class="card-header text-white bg-info">
                         <h5 class="pt-2"><strong>Tambah Pelaporan EWMP</strong></h5>
                     </div>
                     <form method="post" action="<?= base_url('ewmp/add') ?>" enctype="multipart/form-data">
                         <div class="card-body">
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
                                 Silahkan untuk mengisi Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                             </div>
                             <div class="row mb-3">
@@ -91,13 +91,36 @@
                                         </div>
                                     </div>
                                 </fieldset>
+                                <div id="dynamicAnggotaPenelitianContainer"></div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-primary" id="addAnggotaPenelitian">Tambah Anggota</button>
+                                    </div>
+                                </div>
+                                <!-- <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi Anggota</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_anggota_penelitian1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_anggota_penelitian2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_anggota_penelitian3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <div class="row mb-3">
                                     <label for="nama_anggota_penelitian" class="col-sm-2 col-form-label">Nama Anggota</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_penelitian" id="nama_anggota_penelitian"></textarea>
-                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                        <input type="text" name="nama_anggota_penelitian" id="nama_anggota_penelitian" class="form-control" placeholder="Masukkan nama anggota">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row mb-3">
                                     <label for="judul_penelitian" class="col-sm-2 col-form-label">Judul Penelitian</label>
                                     <div class="col-sm-10">
@@ -122,13 +145,25 @@
                                         <input type="text" name="besar_hibah_penelitian" id="besar_hibah_penelitian" class="form-control" placeholder="Masukkan besar hibah">
                                     </div>
                                 </div>
+                                <div id="dynamicMahasiswaPenelitianContainer"></div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-primary" id="addMahasiswaPenelitian">Tambah Mahasiswa</button>
+                                    </div>
+                                </div>
+                                <!-- <div class="row mb-3">
+                                    <label for="nim_mahasiswa_penelitian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="nim_mahasiswa_penelitian" id="nim_mahasiswa_penelitian" class="form-control" placeholder="Masukkan nim mahasiswa">
+                                    </div>
+                                </div>
                                 <div class="row mb-3">
                                     <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_penelitian" id="nama_mahasiswa_penelitian"></textarea>
-                                        <p>Contoh : Mahasiswa 1 (NIM1) ; Mahasiswa 2 (NIM2) ; Dst</p>
+                                        <input type="text" name="nama_mahasiswa_penelitian" id="nama_mahasiswa_penelitian" class="form-control" placeholder="Masukkan nama mahasiswa">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row mb-3">
                                     <label for="kontrak_penelitian" class="col-sm-2 col-form-label">Unggah Kontrak Penelitian</label>
                                     <div class="col-sm-10">
@@ -190,11 +225,11 @@
                                         </div>
                                     </div>
                                 </fieldset>
+                                <div id="dynamicAnggotaPengabdianContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_anggota_pengabdian" class="col-sm-2 col-form-label">Nama Anggota</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_pengabdian" id="nama_anggota_pengabdian"></textarea>
-                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addAnggotaPengabdian">Tambah Anggota</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -221,11 +256,11 @@
                                         <input type="text" name="besar_hibah_pengabdian" id="besar_hibah_pengabdian" class="form-control" placeholder="Masukkan besar hibah">
                                     </div>
                                 </div>
+                                <div id="dynamicMahasiswaPengabdianContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_mahasiswa_pengabdian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_mahasiswa_pengabdian" id="nama_mahasiswa_pengabdian"></textarea>
-                                        <p>Contoh : Mahasiswa 1 (NIM1) ; Mahasiswa 2 (NIM2) ; Dst</p>
+                                        <button type="button" class="btn btn-primary" id="addMahasiswaPengabdian">Tambah Mahasiswa</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -280,11 +315,11 @@
                                         <input type="text" name="nama_korespon_ilmiah" id="nama_korespon_ilmiah" class="form-control" placeholder="Masukkan nama penulis korespondensi">
                                     </div>
                                 </div>
+                                <div id="dynamicAnggotaIlmiahContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_anggota_ilmiah" class="col-sm-2 col-form-label">Nama Anggota</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_ilmiah" id="nama_anggota_ilmiah"></textarea>
-                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addAnggotaIlmiah">Tambah Anggota</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -302,7 +337,7 @@
                                 <div class="row mb-3">
                                     <label for="link_jurnal_ilmiah" class="col-sm-2 col-form-label">Link Jurnal</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="link_jurnal_ilmiah" id="link_jurnal_ilmiah"></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="link_jurnal_ilmiah" id="link_jurnal_ilmiah" placeholder="Masukkan link jurnal"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -359,11 +394,11 @@
                                         <input type="text" name="nama_korespon_prosiding" id="nama_korespon_prosiding" class="form-control" placeholder="Masukkan nama penulis korespondensi">
                                     </div>
                                 </div>
+                                <div id="dynamicAnggotaProsidingContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_anggota_prosiding" class="col-sm-2 col-form-label">Nama Anggota</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_anggota_prosiding" id="nama_anggota_prosiding"></textarea>
-                                        <p>contoh: (Anggota 1; Anggota 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addAnggotaProsiding">Tambah Anggota</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -414,11 +449,11 @@
                                         <input type="text" name="nama_pengusul_hcipta" id="nama_pengusul_hcipta" class="form-control" placeholder="Masukkan nama Pengusul">
                                     </div>
                                 </div>
+                                <div id="dynamicNamaHakCiptaContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_pemegang_hcipta" class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pemegang_hcipta" id="nama_pemegang_hcipta" placeholder="Masukkan nama pemegang hak cipta"></textarea>
-                                        <p class="text-danger">*contoh: (Nama 1; Nama 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addNamaHakCipta">Tambah Nama Pemegang Hak Cipta</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -437,11 +472,11 @@
                             </div>
                             <!-- Komponen Paten -->
                             <div class="paten d-none" id="paten">
+                                <div id="dynamicNamaInvestorContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_inventor_paten" class="col-sm-2 col-form-label">Nama Inventor (Inventor 1; Inventor 2; dst)</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_inventor_paten" id="nama_inventor_paten" placeholder="Masukkan nama pemegang hak cipta"></textarea>
-                                        <p class="text-danger">*contoh: (Inventor 1; Inventor 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addNamaInvestor">Tambah Nama Inventor</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -460,11 +495,11 @@
                             </div>
                             <!-- Komponen Desain Industri -->
                             <div class="desain_industri d-none" id="desain_industri">
+                            <div id="dynamicNamaDesainContainer"></div>
                                 <div class="row mb-3">
-                                    <label for="nama_pengusul_desain" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="nama_pengusul_desain" id="nama_pengusul_desain" placeholder="Masukkan nama pemegang hak cipta"></textarea>
-                                        <p class="text-danger">*contoh: (Pengusul 1; Pengusul 2; dst)</p>
+                                        <button type="button" class="btn btn-primary" id="addNamaDesain">Tambah Nama Pengusul</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -814,5 +849,253 @@
         if (this.value === "Pengurus Organisasi Profesi") {
             reviewerJurnalDiv.classList.remove("d-none");
         }
+    });
+
+    document.getElementById('addAnggotaPenelitian').addEventListener('click', function() {
+        const container = document.getElementById('dynamicAnggotaPenelitianContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Program Studi Anggota ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_penelitian_${anggotaCount}" value="Teknik Elektro">
+                    <label class="form-check-label">Teknik Elektro</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_penelitian_${anggotaCount}" value="Teknik Industri">
+                    <label class="form-check-label">Teknik Industri</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_penelitian_${anggotaCount}" value="Teknik Biomedis">
+                    <label class="form-check-label">Teknik Biomedis</label>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_anggota_penelitian_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addMahasiswaPenelitian').addEventListener('click', function() {
+        const container = document.getElementById('dynamicMahasiswaPenelitianContainer');
+
+        // Hitung jumlah mahasiswa yang ada
+        const mahasiswaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set mahasiswa
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label for="nim_mahasiswa_penelitian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat ${mahasiswaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nim_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
+            </div>
+            <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat ${mahasiswaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addAnggotaPengabdian').addEventListener('click', function() {
+        const container = document.getElementById('dynamicAnggotaPengabdianContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Program Studi Anggota ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_pengabdian_${anggotaCount}" value="Teknik Elektro">
+                    <label class="form-check-label">Teknik Elektro</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_pengabdian_${anggotaCount}" value="Teknik Industri">
+                    <label class="form-check-label">Teknik Industri</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_pengabdian_${anggotaCount}" value="Teknik Biomedis">
+                    <label class="form-check-label">Teknik Biomedis</label>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_anggota_pengabdian_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addMahasiswaPengabdian').addEventListener('click', function() {
+        const container = document.getElementById('dynamicMahasiswaPengabdianContainer');
+
+        // Hitung jumlah mahasiswa yang ada
+        const mahasiswaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set mahasiswa
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label for="nim_mahasiswa_pengabdian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat ${mahasiswaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nim_mahasiswa_pengabdian_${mahasiswaCount}" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
+            </div>
+            <label for="nama_mahasiswa_pengabdian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat ${mahasiswaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_mahasiswa_pengabdian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addAnggotaIlmiah').addEventListener('click', function() {
+        const container = document.getElementById('dynamicAnggotaIlmiahContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Program Studi Anggota ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_ilmiah_${anggotaCount}" value="Teknik Elektro">
+                    <label class="form-check-label">Teknik Elektro</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_ilmiah_${anggotaCount}" value="Teknik Industri">
+                    <label class="form-check-label">Teknik Industri</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_ilmiah_${anggotaCount}" value="Teknik Biomedis">
+                    <label class="form-check-label">Teknik Biomedis</label>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_anggota_ilmiah_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addAnggotaProsiding').addEventListener('click', function() {
+        const container = document.getElementById('dynamicAnggotaProsidingContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Program Studi Anggota ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_prosiding_${anggotaCount}" value="Teknik Elektro">
+                    <label class="form-check-label">Teknik Elektro</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_prosiding_${anggotaCount}" value="Teknik Industri">
+                    <label class="form-check-label">Teknik Industri</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prodi_anggota_prosiding_${anggotaCount}" value="Teknik Biomedis">
+                    <label class="form-check-label">Teknik Biomedis</label>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
+            <div class="col-sm-10 mt-3">
+                <input type="text" name="nama_anggota_prosiding_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addNamaHakCipta').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaHakCiptaContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <input type="text" name="nama_hcipta_${anggotaCount}" class="form-control" placeholder="Masukkan Nama Pemegang Hak Cipta ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addNamaInvestor').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaInvestorContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Nama Investor 1 ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <input type="text" name="nama_investor_${anggotaCount}" class="form-control" placeholder="Masukkan nama investor 1 ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
+    });
+
+    document.getElementById('addNamaDesain').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaDesainContainer');
+
+        // Hitung jumlah anggota yang ada
+        const anggotaCount = container.childElementCount + 1;
+
+        // Buat elemen div baru untuk satu set anggota
+        const newGroup = document.createElement('div');
+        newGroup.className = 'row mb-3';
+        newGroup.innerHTML = `
+            <label class="col-sm-2 col-form-label">Nama Pengusul ${anggotaCount}</label>
+            <div class="col-sm-10">
+                <input type="text" name="nama_pengusul_desain_${anggotaCount}" class="form-control" placeholder="Masukkan nama pengusul ${anggotaCount}">
+            </div>
+        `;
+
+        // Tambahkan elemen baru ke dalam kontainer
+        container.appendChild(newGroup);
     });
 </script>
