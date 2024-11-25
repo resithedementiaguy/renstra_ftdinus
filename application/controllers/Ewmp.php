@@ -47,59 +47,101 @@ class Ewmp extends CI_Controller
                 'allowed_types' => 'pdf',
                 'max_size' => 102400, // Maks 100 MB
             );
-
+            
             $this->load->library('upload', $config);
-
+            
             $kontrak = null;
             $laporan_maju = null;
-
+            
             // Upload kontrak penelitian
             if (!empty($_FILES['kontrak_penelitian']['name'])) {
                 $config['file_name'] = 'kontrak_' . time(); // Rename file
                 $this->upload->initialize($config);
-
+            
                 if ($this->upload->do_upload('kontrak_penelitian')) {
                     $kontrak = $this->upload->data('file_name');
                 } else {
-                    // Tangani error upload
                     $this->session->set_flashdata('error', $this->upload->display_errors());
                     redirect('ewmp/create_view');
                 }
             }
-
+            
             // Upload laporan kemajuan penelitian
             if (!empty($_FILES['laporan_maju_penelitian']['name'])) {
                 $config['file_name'] = 'laporan_maju_' . time(); // Rename file
                 $this->upload->initialize($config);
-
+            
                 if ($this->upload->do_upload('laporan_maju_penelitian')) {
                     $laporan_maju = $this->upload->data('file_name');
                 } else {
-                    // Tangani error upload
                     $this->session->set_flashdata('error', $this->upload->display_errors());
                     redirect('ewmp/create_view');
                 }
             }
-
+            
             // Data spesifik penelitian
             $data_penelitian = array(
                 'id_pelaporan' => $id_pelaporan,
                 'nama_ketua' => $this->input->post('nama_ketua_penelitian'),
                 'prodi' => $this->input->post('prodi_penelitian'),
                 'kategori' => $this->input->post('kategori_penelitian'),
-                'nama_anggota' => $this->input->post('nama_anggota_penelitian'),
                 'judul' => $this->input->post('judul_penelitian'),
                 'skim' => $this->input->post('skim_penelitian'),
                 'pemberi_hibah' => $this->input->post('pemberi_hibah_penelitian'),
                 'besar_hibah' => $this->input->post('besar_hibah_penelitian'),
-                'mahasiswa' => $this->input->post('nama_mahasiswa_penelitian'),
                 'kontrak' => $kontrak,
                 'laporan_maju' => $laporan_maju,
                 'ins_time' => $ins_time
             );
-
+            
             // Menyimpan data penelitian
             $this->Ewmp_model->add_penelitian($data_penelitian);
+            
+            // Dapatkan ID penelitian terbaru
+            $id_penelitian = $this->Ewmp_model->get_last_penelitian_id();
+            
+            // Menyimpan data anggota penelitian
+            $program_studi_anggota = $this->input->post();
+            $nama_anggota = $this->input->post('nama_anggota_penelitian');
+
+            if (!empty($nama_anggota) && is_array($nama_anggota)) {
+                foreach ($nama_anggota as $index => $nama) {
+                    // Cari program studi anggota sesuai indeks
+                    $prodi_key = 'prodi_anggota_penelitian_' . $index;
+                    $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                    $data_anggota = array(
+                        'id_jenis_lapor' => $id_penelitian,
+                        'kategori' => 'Penelitian',
+                        'nama' => $nama,
+                        'prodi' => $prodi
+                    );
+
+                    // Panggil fungsi model untuk menyimpan anggota
+                    $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
+                }
+            }
+            
+            // Menyimpan data mahasiswa penelitian
+            $nim = $this->input->post('nim_mahasiswa_penelitian');
+            $nama_mahasiswa = $this->input->post('nama_mahasiswa_penelitian');
+
+            if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                foreach ($nama_mahasiswa as $index => $nama) {
+
+                    $data_mahasiswa = array(
+                        'id_jenis_lapor' => $id_penelitian,
+                        'kategori' => 'Penelitian',
+                        'nama' => $nama,
+                        'nim' => $nim[$index]
+                    );
+
+                    // Panggil fungsi model untuk menyimpan mahasiswa
+                    $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
+                }
+            }
+ 
+
         } elseif ($jenis_lapor == 'Pengabdian') {
             $config = array(
                 'upload_path' => './uploads/pengabdian',

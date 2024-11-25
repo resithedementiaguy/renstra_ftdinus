@@ -856,7 +856,7 @@
         const container = document.getElementById('dynamicAnggotaPenelitianContainer');
 
         // Hitung jumlah anggota yang ada
-        const anggotaCount = container.childElementCount + 1;
+        const anggotaCount = container.childElementCount;
 
         // Buat elemen div baru untuk satu set anggota
         const newGroup = document.createElement('div');
@@ -879,13 +879,15 @@
             </div>
             <label class="col-sm-2 col-form-label mt-3">Nama Anggota</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_anggota_penelitian_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota">
+                <input type="text" name="nama_anggota_penelitian[]" class="form-control" placeholder="Masukkan nama anggota">
             </div>
         `;
 
         // Tambahkan elemen baru ke dalam kontainer
         container.appendChild(newGroup);
     });
+
+
 
     document.getElementById('addMahasiswaPenelitian').addEventListener('click', function () {
         const container = document.getElementById('dynamicMahasiswaPenelitianContainer');
@@ -899,11 +901,11 @@
         newGroup.innerHTML = `
             <label for="nim_mahasiswa_penelitian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nim_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nim mahasiswa">
+                <input type="text" name="nim_mahasiswa_penelitian[]" class="form-control" placeholder="Masukkan nim mahasiswa">
             </div>
             <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nama mahasiswa">
+                <input type="text" name="nama_mahasiswa_penelitian[]" class="form-control" placeholder="Masukkan nama mahasiswa">
             </div>
         `;
 

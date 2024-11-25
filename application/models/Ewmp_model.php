@@ -62,6 +62,18 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_last_penelitian_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('penelitian');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
     public function update_penelitian($id, $data)
     {
         $this->db->where('id', $id);
@@ -332,5 +344,15 @@ class Ewmp_model extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete('org_profesi');
+    }
+
+    public function add_anggota_pelaporan($data)
+    {
+        $this->db->insert('anggota_pelaporan', $data);
+    }
+    
+    public function add_mhs_pelaporan($data)
+    {
+        $this->db->insert('mhs_pelaporan', $data);
     }
 }
