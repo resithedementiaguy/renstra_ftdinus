@@ -449,6 +449,109 @@ class Ewmp extends CI_Controller
                         $index++; // Increment untuk iterasi berikutnya
                     }
                 }
+            } elseif ($kategori_haki == 'Merk') {
+                $config = array(
+                    'upload_path' => './uploads/haki/merk',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                if (!empty($_FILES['sertifikat_merk']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time();
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_merk')) {
+                        $sertifikat = $this->upload->data('file_name');
+                        log_message('debug', 'Sertifikat Merk berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        log_message('error', 'Upload file sertifikat Merk gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                $data_merk = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul_merk'),
+                    'judul' => $this->input->post('judul_merk'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                log_message('debug', 'Data Merk yang akan disimpan: ' . json_encode($data_merk));
+                $this->Ewmp_model->add_haki_merk($data_merk);
+            } elseif ($kategori_haki == 'Lisensi') {
+                $config = array(
+                    'upload_path' => './uploads/haki/lisensi',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $sertifikat = null;
+
+                if (!empty($_FILES['sertifikat_lisensi']['name'])) {
+                    $config['file_name'] = 'sertifikat_' . time();
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('sertifikat_lisensi')) {
+                        $sertifikat = $this->upload->data('file_name');
+                        log_message('debug', 'Sertifikat Lisensi berhasil di-upload: ' . $sertifikat);
+                    } else {
+                        log_message('error', 'Upload file sertifikat Lisensi gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                $data_lisensi = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul_lisensi'),
+                    'judul' => $this->input->post('judul_lisensi'),
+                    'sertifikat' => $sertifikat,
+                    'ins_time' => $ins_time
+                );
+
+                log_message('debug', 'Data Lisensi yang akan disimpan: ' . json_encode($data_lisensi));
+                $this->Ewmp_model->add_haki_lisensi($data_lisensi);
+            } elseif ($kategori_haki == 'Buku') {
+                $config = array(
+                    'upload_path' => './uploads/haki/buku',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 10240, // Maks 10 MB
+                );
+                $this->load->library('upload', $config);
+
+                $file_buku = null;
+
+                if (!empty($_FILES['file_buku']['name'])) {
+                    $config['file_name'] = 'buku_' . time();
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('file_buku')) {
+                        $file_buku = $this->upload->data('file_name');
+                        log_message('debug', 'File Buku berhasil di-upload: ' . $file_buku);
+                    } else {
+                        log_message('error', 'Upload file Buku gagal: ' . $this->upload->display_errors());
+                        $this->session->set_flashdata('error', 'Gagal meng-upload file buku.');
+                        redirect('ewmp/create_view');
+                    }
+                }
+
+                $data_buku = array(
+                    'id_haki' => $id_haki,
+                    'nama_usul' => $this->input->post('nama_pengusul_buku'),
+                    'isbn' => $this->input->post('isbn_buku'),
+                    'judul_buku' => $this->input->post('judul_buku'),
+                    'file_buku' => $file_buku,
+                    'ins_time' => $ins_time
+                );
+
+                log_message('debug', 'Data Buku yang akan disimpan: ' . json_encode($data_buku));
+                $this->Ewmp_model->add_haki_buku($data_buku);
             } elseif ($kategori_haki == 'Paten') {
 
                 // Menyiapkan konfigurasi untuk file upload

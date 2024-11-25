@@ -232,13 +232,7 @@ class Ewmp_model extends CI_Model
 
     public function add_haki_hcipta($data)
     {
-        if ($this->db->insert('haki_hcipta', $data)) {
-            log_message('debug', 'Insert into haki_hcipta succeeded: ' . $this->db->last_query());
-            return true;
-        } else {
-            log_message('error', 'Insert into haki_hcipta failed: ' . $this->db->last_query());
-            return false;
-        }
+        $this->db->insert('haki_hcipta', $data);
     }
 
     public function get_haki_hcipta_by_id($id)
@@ -254,6 +248,84 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('id'); // Asumsi kolom ID adalah 'id'
         $this->db->from('haki_hcipta');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
+    public function add_haki_merk($data)
+    {
+        $this->db->insert('haki_merk', $data);
+    }
+
+    public function get_haki_merk_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_merk');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_last_merk_id()
+    {
+        $this->db->select('id');
+        $this->db->from('haki_merk');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
+    public function add_haki_lisensi($data)
+    {
+        $this->db->insert('haki_lisensi', $data);
+    }
+
+    public function get_haki_lisensi_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_lisensi');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_last_lisensi_id()
+    {
+        $this->db->select('id');
+        $this->db->from('haki_lisensi');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
+    public function add_haki_buku($data)
+    {
+        $this->db->insert('haki_buku', $data);
+    }
+
+    public function get_haki_buku_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki_buku');
+        $this->db->where('id_haki', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_last_buku_id()
+    {
+        $this->db->select('id');
+        $this->db->from('haki_buku');
         $this->db->order_by('id', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get();
@@ -422,7 +494,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->insert('anggota_pelaporan', $data);
     }
-    
+
     public function add_mhs_pelaporan($data)
     {
         $this->db->insert('mhs_pelaporan', $data);
