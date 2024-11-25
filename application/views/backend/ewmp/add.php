@@ -142,7 +142,14 @@
                                 <div class="row mb-3">
                                     <label for="besar_hibah_penelitian" class="col-sm-2 col-form-label">Besar Hibah</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="besar_hibah_penelitian" id="besar_hibah_penelitian" class="form-control" placeholder="Masukkan besar hibah">
+                                        <input
+                                            type="text"
+                                            name="besar_hibah_penelitian"
+                                            id="besar_hibah_penelitian"
+                                            class="form-control"
+                                            placeholder="Masukkan besar hibah"
+                                            oninput="formatRupiah(this)"
+                                            data-raw-value="">
                                     </div>
                                 </div>
                                 <div id="dynamicMahasiswaPenelitianContainer"></div>
@@ -495,7 +502,7 @@
                             </div>
                             <!-- Komponen Desain Industri -->
                             <div class="desain_industri d-none" id="desain_industri">
-                            <div id="dynamicNamaDesainContainer"></div>
+                                <div id="dynamicNamaDesainContainer"></div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
@@ -709,8 +716,31 @@
         </script>
     <?php endif; ?>
 </main>
-
 <script>
+    function formatRupiah(input) {
+        // Ambil nilai asli yang belum diformat
+        let rawValue = input.value.replace(/[^0-9]/g, '');
+        input.dataset.rawValue = rawValue; // Simpan nilai asli dalam atribut data
+
+        // Format nilai ke dalam format rupiah
+        if (rawValue) {
+            let formatted = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(rawValue);
+            input.value = formatted.replace('Rp', 'Rp');
+        } else {
+            input.value = '';
+        }
+    }
+
+    // Saat form disubmit, hanya kirimkan angka asli
+    document.querySelector('form').addEventListener('submit', function(event) {
+        let input = document.querySelector('#besar_hibah_penelitian');
+        input.value = input.dataset.rawValue;
+    });
+
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
     document.getElementById("jenis_lapor").addEventListener("change", function() {
         var penelitianDiv = document.getElementById("penelitian");
