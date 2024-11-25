@@ -25,7 +25,7 @@
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Masukkan email anda">
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="Masukkan email anda" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
