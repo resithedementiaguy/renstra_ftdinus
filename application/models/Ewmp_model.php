@@ -62,6 +62,18 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_last_penelitian_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('penelitian');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
     public function update_penelitian($id, $data)
     {
         $this->db->where('id', $id);
@@ -86,6 +98,18 @@ class Ewmp_model extends CI_Model
         $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_last_pengabdian_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('pengabdian');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
     }
 
     public function update_pengabdian($id, $data)
@@ -114,6 +138,18 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_last_artikel_ilmiah_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('artikel_ilmiah');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
     public function update_artikel_ilmiah($id, $data)
     {
         $this->db->where('id', $id);
@@ -138,6 +174,18 @@ class Ewmp_model extends CI_Model
         $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_last_prosiding_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('prosiding');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
     }
 
     public function update_prosiding($id, $data)
@@ -202,6 +250,18 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_last_hcipta_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('haki_hcipta');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
     public function add_haki_paten($data)
     {
         return $this->db->insert('haki_paten', $data);
@@ -216,6 +276,18 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_last_paten_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('haki_paten');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
+    }
+
     public function add_haki_dindustri($data)
     {
         return $this->db->insert('haki_dindustri', $data);
@@ -228,6 +300,18 @@ class Ewmp_model extends CI_Model
         $this->db->where('id_haki', $id);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_last_dindustri_id()
+    {
+        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->from('haki_dindustri');
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return $result ? $result->id : null;
     }
 
     public function add_editor_jurnal($data)
@@ -332,5 +416,15 @@ class Ewmp_model extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete('org_profesi');
+    }
+
+    public function add_anggota_pelaporan($data)
+    {
+        $this->db->insert('anggota_pelaporan', $data);
+    }
+    
+    public function add_mhs_pelaporan($data)
+    {
+        $this->db->insert('mhs_pelaporan', $data);
     }
 }

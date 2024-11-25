@@ -140,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="besar_hibah_penelitian" class="col-sm-2 col-form-label">Besar Hibah</label>
+                                    <label for="besar_hibah_penelitian" class="col-sm-2 col-form-label">Besar Hibah Penelitian</label>
                                     <div class="col-sm-10">
                                         <input
                                             type="text"
@@ -258,9 +258,16 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="besar_hibah_pengabdian" class="col-sm-2 col-form-label">Besar Hibah</label>
+                                    <label for="besar_hibah_pengabdian" class="col-sm-2 col-form-label">Besar Hibah Pengabdian</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="besar_hibah_pengabdian" id="besar_hibah_pengabdian" class="form-control" placeholder="Masukkan besar hibah">
+                                        <input
+                                            type="text"
+                                            name="besar_hibah_pengabdian"
+                                            id="besar_hibah_pengabdian"
+                                            class="form-control"
+                                            placeholder="Masukkan besar hibah"
+                                            oninput="formatRupiah(this)"
+                                            data-raw-value="">
                                     </div>
                                 </div>
                                 <div id="dynamicMahasiswaPengabdianContainer"></div>
@@ -479,11 +486,11 @@
                             </div>
                             <!-- Komponen Paten -->
                             <div class="paten d-none" id="paten">
-                                <div id="dynamicNamaInvestorContainer"></div>
+                                <div id="dynamicNamaInventorContainer"></div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
-                                        <button type="button" class="btn btn-primary" id="addNamaInvestor">Tambah Nama Inventor</button>
+                                        <button type="button" class="btn btn-primary" id="addNamaInventor">Tambah Nama Inventor</button>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -729,7 +736,7 @@
                 currency: 'IDR',
                 minimumFractionDigits: 0
             }).format(rawValue);
-            input.value = formatted.replace('Rp', 'Rp');
+            input.value = formatted.replace('Rp ', 'Rp'); // Hapus spasi setelah "Rp"
         } else {
             input.value = '';
         }
@@ -737,8 +744,14 @@
 
     // Saat form disubmit, hanya kirimkan angka asli
     document.querySelector('form').addEventListener('submit', function(event) {
-        let input = document.querySelector('#besar_hibah_penelitian');
-        input.value = input.dataset.rawValue;
+        // Tangani kedua input
+        let inputs = ['#besar_hibah_penelitian', '#besar_hibah_pengabdian'];
+        inputs.forEach(function(selector) {
+            let input = document.querySelector(selector);
+            if (input) {
+                input.value = input.dataset.rawValue;
+            }
+        });
     });
 
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
@@ -908,13 +921,15 @@
             </div>
             <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_anggota_penelitian_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+                <input type="text" name="nama_anggota_penelitian[]" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
             </div>
         `;
 
         // Tambahkan elemen baru ke dalam kontainer
         container.appendChild(newGroup);
     });
+
+
 
     document.getElementById('addMahasiswaPenelitian').addEventListener('click', function() {
         const container = document.getElementById('dynamicMahasiswaPenelitianContainer');
@@ -928,11 +943,11 @@
         newGroup.innerHTML = `
             <label for="nim_mahasiswa_penelitian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat ${mahasiswaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nim_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
+                <input type="text" name="nim_mahasiswa_penelitian[]" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
             </div>
             <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat ${mahasiswaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_mahasiswa_penelitian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
+                <input type="text" name="nama_mahasiswa_penelitian[]" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
             </div>
         `;
 
@@ -967,7 +982,7 @@
             </div>
             <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_anggota_pengabdian_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+                <input type="text" name="nama_anggota_pengabdian[]" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
             </div>
         `;
 
@@ -987,11 +1002,11 @@
         newGroup.innerHTML = `
             <label for="nim_mahasiswa_pengabdian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat ${mahasiswaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nim_mahasiswa_pengabdian_${mahasiswaCount}" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
+                <input type="text" name="nim_mahasiswa_pengabdian[]" class="form-control" placeholder="Masukkan NIM mahasiswa ${mahasiswaCount}">
             </div>
             <label for="nama_mahasiswa_pengabdian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat ${mahasiswaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_mahasiswa_pengabdian_${mahasiswaCount}" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
+                <input type="text" name="nama_mahasiswa_pengabdian[]" class="form-control" placeholder="Masukkan nama mahasiswa ${mahasiswaCount}">
             </div>
         `;
 
@@ -1026,7 +1041,7 @@
             </div>
             <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_anggota_ilmiah_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+                <input type="text" name="nama_anggota_ilmiah[]" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
             </div>
         `;
 
@@ -1061,7 +1076,7 @@
             </div>
             <label class="col-sm-2 col-form-label mt-3">Nama Anggota ${anggotaCount}</label>
             <div class="col-sm-10 mt-3">
-                <input type="text" name="nama_anggota_prosiding_${anggotaCount}" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
+                <input type="text" name="nama_anggota_prosiding[]" class="form-control" placeholder="Masukkan nama anggota ${anggotaCount}">
             </div>
         `;
 
@@ -1081,7 +1096,7 @@
         newGroup.innerHTML = `
             <label class="col-sm-2 col-form-label">Nama Pemegang Hak Cipta ${anggotaCount}</label>
             <div class="col-sm-10">
-                <input type="text" name="nama_hcipta_${anggotaCount}" class="form-control" placeholder="Masukkan Nama Pemegang Hak Cipta ${anggotaCount}">
+                <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Hak Cipta ${anggotaCount}">
             </div>
         `;
 
@@ -1089,8 +1104,8 @@
         container.appendChild(newGroup);
     });
 
-    document.getElementById('addNamaInvestor').addEventListener('click', function() {
-        const container = document.getElementById('dynamicNamaInvestorContainer');
+    document.getElementById('addNamaInventor').addEventListener('click', function() {
+        const container = document.getElementById('dynamicNamaInventorContainer');
 
         // Hitung jumlah anggota yang ada
         const anggotaCount = container.childElementCount + 1;
@@ -1099,9 +1114,9 @@
         const newGroup = document.createElement('div');
         newGroup.className = 'row mb-3';
         newGroup.innerHTML = `
-            <label class="col-sm-2 col-form-label">Nama Investor 1 ${anggotaCount}</label>
+            <label class="col-sm-2 col-form-label">Nama Inventor ${anggotaCount}</label>
             <div class="col-sm-10">
-                <input type="text" name="nama_investor_${anggotaCount}" class="form-control" placeholder="Masukkan nama investor 1 ${anggotaCount}">
+                <input type="text" name="nama_inventor[]" class="form-control" placeholder="Masukkan nama inventor ${anggotaCount}">
             </div>
         `;
 
@@ -1121,7 +1136,7 @@
         newGroup.innerHTML = `
             <label class="col-sm-2 col-form-label">Nama Pengusul ${anggotaCount}</label>
             <div class="col-sm-10">
-                <input type="text" name="nama_pengusul_desain_${anggotaCount}" class="form-control" placeholder="Masukkan nama pengusul ${anggotaCount}">
+                <input type="text" name="nama_pengusul_desain[]" class="form-control" placeholder="Masukkan nama pengusul ${anggotaCount}">
             </div>
         `;
 
