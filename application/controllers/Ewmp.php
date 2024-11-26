@@ -31,16 +31,6 @@ class Ewmp extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $ins_time = date('Y-m-d H:i:s', time());
 
-        $data = array(
-            'email' => $this->input->post('email'),
-            'jenis_lapor' => $jenis_lapor,
-            'ins_time' => $ins_time
-        );
-
-        $this->Ewmp_model->add_pelaporan_ewmp($data);
-
-        $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
-
         if ($jenis_lapor == 'Penelitian') {
             $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
             $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
@@ -116,6 +106,18 @@ class Ewmp extends CI_Controller
             $this->session->set_flashdata('show_modal', true); // Indikator untuk memicu modal
             redirect('ewmp/create_view'); // Ganti dengan URL form Anda
         } else{
+
+            
+
+            $data = array(
+                'email' => $this->input->post('email'),
+                'jenis_lapor' => $jenis_lapor,
+                'ins_time' => $ins_time
+            );
+
+            $this->Ewmp_model->add_pelaporan_ewmp($data);
+
+            $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
 
             if ($jenis_lapor == 'Penelitian') {
                 $config = array(
