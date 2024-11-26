@@ -31,7 +31,7 @@
                             <div class="row mb-3">
                                 <label for="jenis_lapor" class="col-sm-2 col-form-label">Jenis Pelaporan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="jenis_lapor" id="jenis_lapor">
+                                    <select class="form-select" name="jenis_lapor" id="jenis_lapor" required>
                                         <option value="" selected hidden>Pilih Jenis Pelaporan</option>
                                         <option value="Penelitian">Penelitian</option>
                                         <option value="Pengabdian">Pengabdian</option>
@@ -802,6 +802,28 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Peringatan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php if ($this->session->flashdata('error')): ?>
+                        <ul>
+                            <?= $this->session->flashdata('error'); ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Check if success flashdata is set and trigger modal -->
     <?php if ($this->session->flashdata('success')): ?>
         <script>
@@ -811,6 +833,15 @@
             };
         </script>
     <?php endif; ?>
+
+    <!-- Cek apakah flash data untuk memicu modal ada -->
+    <?php if ($this->session->flashdata('show_modal')): ?>
+        <script>
+            var myModal = new bootstrap.Modal(document.getElementById('alertModal'), {});
+            myModal.show();
+        </script>
+    <?php endif; ?>
+
 </main>
 <script>
     function formatRupiah(input) {
@@ -1286,5 +1317,14 @@
 
         // Tambahkan elemen baru ke dalam kontainer
         container.appendChild(newGroup);
+    });
+
+    document.getElementById('ewmpForm').addEventListener('submit', function (event) {
+        const jenisLapor = document.getElementById('jenis_lapor').value;
+        if (!jenisLapor) {
+            event.preventDefault(); // Mencegah form submit
+            const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+            alertModal.show();
+        }
     });
 </script>
