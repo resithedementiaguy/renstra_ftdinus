@@ -88,6 +88,10 @@ class Ewmp extends CI_Controller
                 $this->form_validation->set_rules('judul_buku', 'judul', 'required');
             } elseif ($haki == 'Paten') {
                 $this->form_validation->set_rules('judul_invensi_paten', 'judul', 'required');
+            } elseif ($haki == 'Desain Industri') {
+                // Tambahkan validasi untuk Desain Industri
+                $this->form_validation->set_rules('nama_pengusul_desain[]', 'Nama Pengusul', 'required');
+                // Tambahkan validasi lain yang diperlukan
             }
         } elseif ($jenis_lapor == 'Editor Jurnal') {
             $this->form_validation->set_rules('nama_pengusul_editor', 'Nama pengusul', 'required');
