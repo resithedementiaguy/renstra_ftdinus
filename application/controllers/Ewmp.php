@@ -31,6 +31,16 @@ class Ewmp extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $ins_time = date('Y-m-d H:i:s', time());
 
+        $data = array(
+            'email' => $this->input->post('email'),
+            'jenis_lapor' => $jenis_lapor,
+            'ins_time' => $ins_time
+        );
+
+        $this->Ewmp_model->add_pelaporan_ewmp($data);
+
+        $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
+
         if ($jenis_lapor == 'Penelitian') {
             $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
             $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
@@ -61,9 +71,8 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('kategori_prosiding', 'Kategori', 'required');
             $this->form_validation->set_rules('judul_artikel_prosiding', 'judul artikel', 'required');
             $this->form_validation->set_rules('judul_seminar_prosiding', 'judul seminar', 'required');
-        } elseif ($jenis_lapor == 'Prosiding') {
+        } elseif ($jenis_lapor == 'HAKI') {
             $haki = $this->input->post('kategori_haki');
-
             if ($haki == 'Hak Cipta') {
                 $this->form_validation->set_rules('nama_pengusul_hcipta', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('judul_hcipta', 'judul', 'required');
@@ -105,18 +114,6 @@ class Ewmp extends CI_Controller
             $this->session->set_flashdata('show_modal', true); // Indikator untuk memicu modal
             redirect('ewmp/create_view'); // Ganti dengan URL form Anda
         } else {
-
-            
-
-            $data = array(
-                'email' => $this->input->post('email'),
-                'jenis_lapor' => $jenis_lapor,
-                'ins_time' => $ins_time
-            );
-
-            $this->Ewmp_model->add_pelaporan_ewmp($data);
-
-            $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
 
             if ($jenis_lapor == 'Penelitian') {
                 $config = array(
@@ -512,7 +509,7 @@ class Ewmp extends CI_Controller
                     $nama_anggota = $this->input->post('nama_hcipta');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
-                        $index = 1; // Mulai dari 1
+                        $index = 1;
                         foreach (array_values($nama_anggota) as $nama) {
                             $data_anggota = array(
                                 'id_jenis_lapor' => $id_hcipta,
@@ -560,6 +557,25 @@ class Ewmp extends CI_Controller
 
                     log_message('debug', 'Data Merk yang akan disimpan: ' . json_encode($data_merk));
                     $this->Ewmp_model->add_haki_merk($data_merk);
+
+                    // Menyimpan data anggota merk
+                    $nama_anggota = $this->input->post('nama_merk'); // Nama pemegang merk yang dikirim dari form
+
+                    if (!empty($nama_anggota) && is_array($nama_anggota)) {
+                        $index = 1;
+                        foreach (array_values($nama_anggota) as $nama) {
+                            $data_anggota = array(
+                                'id_jenis_lapor' => $id_haki,
+                                'kategori' => 'Merk',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan anggota
+                            $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
                 } elseif ($kategori_haki == 'Lisensi') {
                     $config = array(
                         'upload_path' => './uploads/haki/lisensi',
@@ -584,6 +600,7 @@ class Ewmp extends CI_Controller
                         }
                     }
 
+                    // Menyimpan data Lisensi
                     $data_lisensi = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_lisensi'),
@@ -594,6 +611,25 @@ class Ewmp extends CI_Controller
 
                     log_message('debug', 'Data Lisensi yang akan disimpan: ' . json_encode($data_lisensi));
                     $this->Ewmp_model->add_haki_lisensi($data_lisensi);
+
+                    // Menyimpan data anggota Lisensi
+                    $nama_anggota = $this->input->post('nama_lisensi'); // Nama pemegang lisensi yang dikirim dari form
+
+                    if (!empty($nama_anggota) && is_array($nama_anggota)) {
+                        $index = 1; // Mulai dari 1
+                        foreach (array_values($nama_anggota) as $nama) {
+                            $data_anggota = array(
+                                'id_jenis_lapor' => $id_haki, // ID haki lisensi yang baru saja disimpan
+                                'kategori' => 'Lisensi', // Menandakan kategori adalah lisensi
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan anggota
+                            $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
                 } elseif ($kategori_haki == 'Buku') {
                     $config = array(
                         'upload_path' => './uploads/haki/buku',

@@ -258,7 +258,11 @@ class Ewmp_model extends CI_Model
 
     public function add_haki_merk($data)
     {
-        $this->db->insert('haki_merk', $data);
+        if ($this->db->insert('haki_merk', $data)) {
+            log_message('debug', 'Data Merk berhasil disimpan');
+        } else {
+            log_message('error', 'Gagal menyimpan data Merk: ' . $this->db->error());
+        }
     }
 
     public function get_haki_merk_by_id($id)

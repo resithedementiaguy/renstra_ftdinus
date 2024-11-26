@@ -1254,7 +1254,7 @@
         newGroup.innerHTML = `
             <label class="col-sm-2 col-form-label">Nama Pemegang Lisensi ${anggotaCount}</label>
             <div class="col-sm-10">
-                <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Lisensi ${anggotaCount}">
+                <input type="text" name="nama_lisensi[]" class="form-control" placeholder="Masukkan Nama Pemegang Lisensi ${anggotaCount}">
             </div>
         `;
 
@@ -1274,7 +1274,7 @@
         newGroup.innerHTML = `
             <label class="col-sm-2 col-form-label">Nama Pemegang Merk ${anggotaCount}</label>
             <div class="col-sm-10">
-                <input type="text" name="nama_hcipta[]" class="form-control" placeholder="Masukkan Nama Pemegang Merk ${anggotaCount}">
+                <input type="text" name="nama_merk[]" class="form-control" placeholder="Masukkan Nama Pemegang Merk ${anggotaCount}">
             </div>
         `;
 
