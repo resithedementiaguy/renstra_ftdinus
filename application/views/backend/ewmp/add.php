@@ -795,14 +795,17 @@
                     Pelaporan EWMP Berhasil Disimpan!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <a href="<?= base_url('ewmp') ?>" class="btn btn-primary">Kembali</a>
+                    <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Tutup</button>
+                    <a href="<?= base_url('ewmp') ?>" class="btn btn-primary mb-4">Kembali</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Warning Modal -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -818,8 +821,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer">
-                    <!-- Button to close the modal -->
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -842,8 +844,8 @@
             myModal.show();
         </script>
     <?php endif; ?>
-
 </main>
+
 <script>
     function formatRupiah(input) {
         // Ambil nilai asli yang belum diformat
