@@ -26,6 +26,11 @@ class Ewmp extends CI_Controller
 
     public function add()
     {
+        header('Content-Type: application/json');
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Data berhasil disimpan'
+        ]);
         $jenis_lapor = $this->input->post('jenis_lapor');
 
         date_default_timezone_set('Asia/Jakarta');

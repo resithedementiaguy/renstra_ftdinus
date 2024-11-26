@@ -775,7 +775,7 @@
                             <div>
                                 <a href="<?= base_url('ewmp') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
                             </div>
-                            <button type="submit" class="btn btn-primary my-2">Simpan</button>
+                            <button type="submit" id="btnSimpan" class="btn btn-primary my-2">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -797,6 +797,24 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Tutup</button>
                     <a href="<?= base_url('ewmp') ?>" class="btn btn-primary mb-4">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warningModalLabel">Peringatan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Pesan kesalahan akan diisi secara dinamis -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -842,6 +860,57 @@
             }
         });
     });
+
+    document.getElementById("btnSimpan").addEventListener("click", function(event) {
+        event.preventDefault(); // Menghentikan pengiriman form jika validasi gagal
+        var jenisLapor = document.getElementById("jenis_lapor").value;
+        var email = document.getElementById("email").value;
+
+        // Validasi awal di frontend
+        if (!jenisLapor || jenisLapor === "" || jenisLapor === "Pilih Jenis Pelaporan") {
+            showWarningModal("Mohon pilih jenis pelaporan yang valid.");
+            return;
+        }
+
+        if (!email) {
+            showWarningModal("Mohon lengkapi semua bidang yang diperlukan sebelum menyimpan.");
+            return;
+        }
+
+        // Kirim data ke backend menggunakan AJAX
+        $.ajax({
+            url: "http://localhost/renstra/ewmp/add",
+            method: "POST",
+            dataType: "json", // Pastikan data yang dikirim adalah JSON
+            contentType: "application/x-www-form-urlencoded", // Sesuaikan jika perlu
+            headers: {
+                "Accept": "application/json" // Pastikan server mengirimkan JSON
+            },
+            data: {
+                email: email,
+                jenis_lapor: jenisLapor
+            },
+            success: function(response) {
+                if (response.status === "error") {
+                    showWarningModal(response.message); // Tampilkan pesan error dalam modal
+                } else if (response.status === "success") {
+                    alert("Data berhasil disimpan!"); // Atau gunakan modal sukses
+                    location.reload(); // Refresh halaman atau redirect jika perlu
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error: ", error);
+                console.error("Status: ", status);
+                console.error("Response Text: ", xhr.responseText); // Tampilkan respons dari server
+                showWarningModal("Terjadi kesalahan koneksi. Silakan coba lagi.");
+            }
+        });
+    });
+
+    function showWarningModal(message) {
+        document.querySelector("#warningModal .modal-body").textContent = message;
+        $("#warningModal").modal("show");
+    }
 
     // Mengontrol visibilitas komponen penelitian berdasarkan pilihan jenis pelaporan
     document.getElementById("jenis_lapor").addEventListener("change", function() {
