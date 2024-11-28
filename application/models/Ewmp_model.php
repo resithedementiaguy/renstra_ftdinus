@@ -523,4 +523,21 @@ class Ewmp_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_publikasi_internasional()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Internasional Q1',
+            'Internasional Q2',
+            'Internasional Q3',
+            'Internasional Q4',
+            'Internasional Non Scopus'
+        ]);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

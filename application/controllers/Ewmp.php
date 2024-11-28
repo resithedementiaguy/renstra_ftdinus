@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+//Include autoloader dari Composer
+require 'dompdf/vendor/autoload.php';
+
+use Dompdf\Dompdf;
+
 class Ewmp extends CI_Controller
 {
     public function __construct()
@@ -1132,4 +1137,21 @@ class Ewmp extends CI_Controller
         // Output PDF (1 = download, 0 = preview)
         $dompdf->stream("renstra.pdf", array("Attachment" => 0));
     }
+
+    public function publikasi_internasional()
+    {
+        $data['pub_internasional'] = $this->Ewmp_model->get_publikasi_internasional();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['pub_internasional'] as $key => $publikasi) {
+            $id_ilmiah = $publikasi->id; // Pastikan sesuai nama kolom di database
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['pub_internasional'][$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
+        }
+
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/publikasi_internasional', $data);
+        $this->load->view('backend/partials/footer');
+    }
+
 }

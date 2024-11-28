@@ -35,37 +35,37 @@
                                     <tr>
                                         <td style="text-align: start;">1</td>
                                         <td>Total Publikasi Internasional</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">2</td>
                                         <td>Total Publikasi Nasional</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">3</td>
                                         <td>Total Hibah Penelitian</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">4</td>
                                         <td>Total Hibah Pengabdian</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">5</td>
                                         <td>List Kesesuaian Publikasi per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">6</td>
                                         <td>List Kesesuaian Penelitian per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">7</td>
                                         <td>List Kesesuaian Pengabdian per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" target="_blank" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                 </tbody>
                             </table>
