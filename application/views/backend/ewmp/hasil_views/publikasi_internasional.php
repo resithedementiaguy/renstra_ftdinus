@@ -61,12 +61,11 @@
                             <table class="table" id="datatable">
                                 <thead>
                                     <tr>
-                                        <th class="text-start align-middle" style="width: 250px;">Kategori Publikasi</th>
-                                        <th class="text-start align-middle" style="width: 250px;">Nama</th>
-                                        <th class="text-start align-middle" style="width: 250px;">Judul Artikel</th>
-                                        <th class="text-start align-middle" style="width: 250px;">Judul Jurnal</th>
-                                        <th class="text-start align-middle" style="width: 150px;">Waktu Pengisian</th>
-                                        <th class="text-start align-middle" style="width: 150px;">Aksi</th>
+                                        <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
+                                        <th class="text-start align-middle" style="width: 350px;">Nama</th>
+                                        <th class="text-start align-middle" style="width: 350px;">Judul Artikel</th>
+                                        <th class="text-start align-middle" style="width: 350px;">Judul Jurnal</th>
+                                        <th class="text-start align-middle" style="width: 100px;">Waktu Pengisian</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,21 +85,6 @@
                                             <td class="align-middle"><?= $pi->judul_artikel ?></td>
                                             <td class="align-middle"><?= $pi->judul_jurnal ?></td>
                                             <td class="align-middle"><?= formatDateTime($pi->ins_time) ?></td>
-                                            <td class="align-middle">
-                                                <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($pi->id)) ?>" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-journal-text"></i> Detail
-                                                </a>
-                                                <button type="button" class="btn btn-sm btn-warning edit-suntik-btn"
-                                                    data-bs-toggle="modal" data-bs-target="#SuntikModal"
-                                                    data-id="<?= htmlspecialchars($pi->id) ?>">
-                                                    <i class="bi bi-pencil"></i> Edit
-                                                </button>
-                                                <a class="btn btn-sm btn-danger delete-suntik-btn"
-                                                    href="<?= site_url('ewmp/delete_pelaporan/' . htmlspecialchars($pi->id)) ?>"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
-                                                    <i class="bi bi-trash"></i> Hapus
-                                                </a>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -114,62 +98,56 @@
 </main>
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     new DataTable('#datatable');
+</script>
 
-    var options = {
-        series: [25, 15, 44, 55],
-        chart: {
-            width: '100%',
-            height: '100%',
-            type: 'pie',
-        },
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-        theme: {
-            monochrome: {
-                enabled: true,
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Data dari PHP untuk chart
+        var chartData = <?php echo json_encode($chart_data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+
+        console.log(chartData); // Debug di console
+
+        // Pisahkan labels dan values
+        var labels = Object.keys(chartData);
+        var values = Object.values(chartData);
+
+        // Warna untuk masing-masing kategori
+        var colors = [
+            '#1E90FF', // Internasional Q1 - Biru
+            '#32CD32', // Internasional Q2 - Hijau
+            '#FFD700', // Internasional Q3 - Kuning
+            '#FF4500', // Internasional Q4 - Oranye
+            '#8A2BE2' // Internasional Non Scopus - Ungu
+        ];
+
+        // Konfigurasi ApexCharts
+        var options = {
+            series: values, // Data untuk grafik
+            chart: {
+                type: 'pie',
+                height: '350px',
             },
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    offset: -5,
+            labels: labels, // Label kategori
+            colors: colors, // Warna untuk setiap kategori
+            legend: {
+                position: 'bottom',
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function(val, opts) {
+                    const name = opts.w.globals.labels[opts.seriesIndex];
+                    return name + ': ' + val.toFixed(1) + '%';
                 },
             },
-        },
-        grid: {
-            padding: {
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-            },
-        },
-        dataLabels: {
-            formatter(val, opts) {
-                const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, val.toFixed(1) + '%'];
-            },
-        },
-        legend: {
-            show: true, // Menampilkan legend
-            position: 'bottom', // Posisi legend di bawah
-            horizontalAlign: 'center', // Rata tengah secara horizontal
-            markers: {
-                width: 12,
-                height: 12,
-                radius: 12, // Membuat marker berbentuk lingkaran
-            },
-            itemMargin: {
-                horizontal: 10,
-                vertical: 5,
-            },
-        },
-    };
+        };
 
-    var chart = new ApexCharts(document.querySelector("#chartQ"), options);
-    chart.render();
+        // Render chart
+        var chart = new ApexCharts(document.querySelector("#chartQ"), options);
+        chart.render();
+    });
 </script>
 
 <?php

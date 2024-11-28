@@ -1149,6 +1149,9 @@ class Ewmp extends CI_Controller
             $data['pub_internasional'][$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
         }
 
+        // Hitung jumlah artikel per kategori untuk pie chart
+        $data['chart_data'] = $this->Ewmp_model->count_artikel_per_kategori();
+
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/publikasi_internasional', $data);
         $this->load->view('backend/partials/footer');

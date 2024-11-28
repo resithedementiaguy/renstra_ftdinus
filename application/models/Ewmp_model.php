@@ -540,4 +540,25 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_internasional_chart()
+    {
+        $this->db->select('kategori, COUNT(*) as jumlah');
+        $this->db->where_in('kategori', ['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4']);
+        $this->db->group_by('kategori');
+        $query = $this->db->get('artikel_ilmiah');
+        
+        $data = [
+            'Internasional Q1' => 0,
+            'Internasional Q2' => 0,
+            'Internasional Q3' => 0,
+            'Internasional Q4' => 0,
+        ];
+
+        foreach ($query->result() as $row) {
+            $data[$row->kategori] = $row->jumlah;
+        }
+
+        return array_values($data); // Mengembalikan data dalam format array untuk grafik
+    }
+
 }
