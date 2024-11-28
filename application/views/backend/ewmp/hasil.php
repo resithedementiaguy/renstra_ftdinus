@@ -9,7 +9,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Renstra</li>
+                <li class="breadcrumb-item active">Hasil Pencapaian</li>
             </ol>
         </nav>
     </div>
@@ -146,7 +146,7 @@
         },
         legend: {
             show: true, // Menampilkan legend
-            position: 'bottom', // Posisi legend di bawah
+            position: 'top', // Posisi legend di bawah
             horizontalAlign: 'center', // Rata tengah secara horizontal
             markers: {
                 width: 12,
