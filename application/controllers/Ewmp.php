@@ -26,7 +26,9 @@ class Ewmp extends CI_Controller
 
     public function hasil()
     {
-        $this->load->view('backend/ewmp/pdf/cetak_ewmp');
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil');
+        $this->load->view('backend/partials/footer');
     }
 
     public function add()
@@ -117,9 +119,9 @@ class Ewmp extends CI_Controller
                 'jenis_lapor' => $jenis_lapor,
                 'ins_time' => $ins_time
             );
-    
+
             $this->Ewmp_model->add_pelaporan_ewmp($data);
-    
+
             $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
 
             if ($jenis_lapor == 'Penelitian') {
@@ -989,12 +991,12 @@ class Ewmp extends CI_Controller
 
             $data['penelitian'] = $this->Ewmp_model->get_penelitian_by_id($id);
 
-            $id_penelitian= $data['penelitian']['id'];
-            $kategori='Penelitian';
+            $id_penelitian = $data['penelitian']['id'];
+            $kategori = 'Penelitian';
 
-            $data['anggota_penelitian']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian,$kategori);
-            $data['mahasiswa_penelitian']= $this->Ewmp_model->get_mhs_pelaporan_by_id($id_penelitian,$kategori);
-            
+            $data['anggota_penelitian'] = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian, $kategori);
+            $data['mahasiswa_penelitian'] = $this->Ewmp_model->get_mhs_pelaporan_by_id($id_penelitian, $kategori);
+
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_penelitian', $data);
@@ -1002,11 +1004,11 @@ class Ewmp extends CI_Controller
         } elseif ($pelaporan['jenis_lapor'] == "Pengabdian") {
             $data['pengabdian'] = $this->Ewmp_model->get_pengabdian_by_id($id);
 
-            $id_pengabdian= $data['pengabdian']['id'];
-            $kategori='Pengabdian';
+            $id_pengabdian = $data['pengabdian']['id'];
+            $kategori = 'Pengabdian';
 
-            $data['anggota_pengabdian']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian,$kategori);
-            $data['mahasiswa_pengabdian']= $this->Ewmp_model->get_mhs_pelaporan_by_id($id_pengabdian,$kategori);
+            $data['anggota_pengabdian'] = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian, $kategori);
+            $data['mahasiswa_pengabdian'] = $this->Ewmp_model->get_mhs_pelaporan_by_id($id_pengabdian, $kategori);
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_pengabdian', $data);
@@ -1014,10 +1016,10 @@ class Ewmp extends CI_Controller
         } elseif ($pelaporan['jenis_lapor'] == "Artikel/Karya Ilmiah") {
             $data['artikel_ilmiah'] = $this->Ewmp_model->get_artikel_ilmiah_by_id($id);
 
-            $id_ilmiah= $data['artikel_ilmiah']['id'];
-            $kategori='Artikel/Karya Ilmiah';
+            $id_ilmiah = $data['artikel_ilmiah']['id'];
+            $kategori = 'Artikel/Karya Ilmiah';
 
-            $data['anggota_ilmiah']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah,$kategori);
+            $data['anggota_ilmiah'] = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
 
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
@@ -1026,31 +1028,31 @@ class Ewmp extends CI_Controller
         } elseif ($pelaporan['jenis_lapor'] == "Prosiding") {
             $data['prosiding'] = $this->Ewmp_model->get_prosiding_by_id($id);
 
-            $id_prosiding= $data['prosiding']['id'];
-            $kategori='Prosiding';
+            $id_prosiding = $data['prosiding']['id'];
+            $kategori = 'Prosiding';
 
-            $data['anggota_prosiding']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_prosiding,$kategori);
+            $data['anggota_prosiding'] = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_prosiding, $kategori);
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_prosiding', $data);
             $this->load->view('backend/partials/footer');
         } elseif ($pelaporan['jenis_lapor'] == "HAKI") {
             $data['haki'] = $this->Ewmp_model->get_haki_by_id($id);
-        
+
             if (!$data['haki']) {
                 show_error('Data HAKI tidak ditemukan', 404, 'Error');
                 return;
             }
-        
+
             $id_haki = $data['haki']['id'];
-        
+
             $data['haki_hcipta'] = $this->Ewmp_model->get_haki_hcipta_by_id($id_haki) ?? [];
             $data['haki_merk'] = $this->Ewmp_model->get_haki_merk_by_id($id_haki) ?? [];
             $data['haki_lisensi'] = $this->Ewmp_model->get_haki_lisensi_by_id($id_haki) ?? [];
             $data['haki_buku'] = $this->Ewmp_model->get_haki_buku_by_id($id_haki) ?? [];
             $data['haki_paten'] = $this->Ewmp_model->get_haki_paten_by_id($id_haki) ?? [];
             $data['haki_dindustri'] = $this->Ewmp_model->get_haki_dindustri_by_id($id_haki) ?? [];
-        
+
             // Pemegang HAKI
             $data['pemegang_hcipta'] = $this->get_pemegang_haki($data['haki_hcipta'], 'Hak Cipta');
             $data['pemegang_merk'] = $this->get_pemegang_haki($data['haki_merk'], 'Merk');
@@ -1058,7 +1060,7 @@ class Ewmp extends CI_Controller
             $data['pemegang_buku'] = $this->get_pemegang_haki($data['haki_buku'], 'Buku');
             $data['pemegang_paten'] = $this->get_pemegang_haki($data['haki_paten'], 'Paten');
             $data['pemegang_dindustri'] = $this->get_pemegang_haki($data['haki_dindustri'], 'Desain Industri');
-        
+
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_haki', $data);
@@ -1108,5 +1110,26 @@ class Ewmp extends CI_Controller
     {
         $this->Ewmp_model->delete_pelaporan_ewmp($id);
         redirect('ewmp');
+    }
+
+    public function generate_pdf()
+    {
+        // Buat instance Dompdf
+        $dompdf = new Dompdf();
+
+        // Load view sebagai HTML
+        $html = $this->load->view('backend/ewmp/pdf/cetak_ewmp', true); // Pass true to get the output as a string
+
+        // Load HTML content ke Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF (1 = download, 0 = preview)
+        $dompdf->stream("renstra.pdf", array("Attachment" => 0));
     }
 }

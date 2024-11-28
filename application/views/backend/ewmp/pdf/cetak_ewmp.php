@@ -234,6 +234,72 @@
             <tr>
                 <td>Jazuli</td>
             </tr>
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah</td>
+                <td style="font-weight: bold; text-align: right;">Rp787.561.000,00</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>4. Hibah Penelitian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 50px;">Nama</th>
+                <th style="width: 50px;">Skim Penelitian</th>
+                <th style="width: 50px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nur Islahudin</td>
+                <td rowspan="4">MF Kedaireka</td>
+                <td rowspan="4">Pengembangan Teknologi Fast filling Pengisian Bahan Bakar Kendaraan Berat Melalui Kolaborasi Dudi Guna Penguatan Ekosistem MBKM di Bidang Desain Engineering</td>
+                <td rowspan="4" style="text-align: right;">Rp787.561.000,00</td>
+            </tr>
+            <tr>
+                <td>Dony Satriyo Nugroho</td>
+            </tr>
+            <tr>
+                <td>Amalia</td>
+            </tr>
+            <tr>
+                <td>Jazuli</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Internal</td>
+                <td style="font-weight: bold; text-align: right;">Rp787.561.000,00</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>5. Hibah Pengabdian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 50px;">Nama</th>
+                <th style="width: 50px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nur Islahudin</td>
+                <td rowspan="4">Pengembangan Teknologi Fast filling Pengisian Bahan Bakar Kendaraan Berat Melalui Kolaborasi Dudi Guna Penguatan Ekosistem MBKM di Bidang Desain Engineering</td>
+                <td rowspan="4" style="text-align: right;">Rp787.561.000,00</td>
+            </tr>
+            <tr>
+                <td>Dony Satriyo Nugroho</td>
+            </tr>
+            <tr>
+                <td>Amalia</td>
+            </tr>
+            <tr>
+                <td>Jazuli</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="font-weight: bold; text-align: right;">Total Hibah Internal</td>
+                <td style="font-weight: bold; text-align: right;">Rp787.561.000,00</td>
+            </tr>
         </tbody>
     </table>
 </body>
