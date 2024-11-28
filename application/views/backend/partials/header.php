@@ -116,22 +116,40 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp') ? '' : 'collapsed'; ?>" href="<?php echo site_url('ewmp'); ?>">
-                    <i class="bi bi-journal-text"></i>
-                    <span>Pelaporan EWMP</span>
+                <a
+                    class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil') ? '' : 'collapsed'; ?>"
+                    data-bs-target="#ewmp-nav"
+                    data-bs-toggle="collapse"
+                    href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Pelaporan EWMP</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul
+                    id="ewmp-nav"
+                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil') ? 'show' : ''; ?>"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp') ? 'active' : ''; ?>" href="<?php echo site_url('ewmp'); ?>">
+                            <i class="bi bi-circle"></i><span>Pelaporan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && $this->uri->segment(2) == 'hasil') ? 'active' : ''; ?>" href="<?php echo site_url('ewmp/hasil'); ?>">
+                            <i class="bi bi-circle"></i><span>Hasil</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item">
                 <a
                     class="nav-link <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa') ? '' : 'collapsed'; ?>"
-                    data-bs-target="#components-nav"
+                    data-bs-target="#akademik-nav"
                     data-bs-toggle="collapse"
                     href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Data Akademik</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul
-                    id="components-nav"
+                    id="akademik-nav"
                     class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>

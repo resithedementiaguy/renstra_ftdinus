@@ -24,6 +24,11 @@ class Ewmp extends CI_Controller
         $this->load->view('backend/partials/footer');
     }
 
+    public function hasil()
+    {
+        $this->load->view('backend/ewmp/pdf/cetak_ewmp');
+    }
+
     public function add()
     {
         $jenis_lapor = $this->input->post('jenis_lapor');

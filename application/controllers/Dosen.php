@@ -31,4 +31,3 @@ class Dosen extends CI_Controller
         redirect('dosen');
     }
 }
-?>

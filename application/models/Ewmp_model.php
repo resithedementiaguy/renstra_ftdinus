@@ -380,7 +380,7 @@ class Ewmp_model extends CI_Model
 
     public function get_last_dindustri_id()
     {
-        $this->db->select('id'); // Asumsi kolom ID adalah 'id'
+        $this->db->select('id');
         $this->db->from('haki_dindustri');
         $this->db->order_by('id', 'DESC');
         $this->db->limit(1);
