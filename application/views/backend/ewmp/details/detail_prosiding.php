@@ -53,7 +53,11 @@
                                 </tr>
                                 <tr>
                                     <th>Nama Anggota</th>
-                                    <td><?= htmlspecialchars($prosiding['nama_anggota']) ?></td>
+                                    <td>
+                                        <?php foreach($anggota_prosiding as $ap):?>
+                                            <?= $ap->nama?> - <?= $ap->prodi?>;
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Judul Artikel</th>

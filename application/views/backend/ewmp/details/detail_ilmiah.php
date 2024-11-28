@@ -53,7 +53,11 @@
                                 </tr>
                                 <tr>
                                     <th>Nama Anggota</th>
-                                    <td><?= htmlspecialchars($artikel_ilmiah['nama_anggota']) ?></td>
+                                    <td>
+                                        <?php foreach($anggota_ilmiah as $ai):?>
+                                            <?= $ai->nama?> - <?= $ai->prodi?>;
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Judul Artikel</th>
