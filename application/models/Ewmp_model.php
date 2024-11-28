@@ -540,25 +540,47 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function get_internasional_chart()
+    public function count_q1_data()
     {
-        $this->db->select('kategori, COUNT(*) as jumlah');
-        $this->db->where_in('kategori', ['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4']);
-        $this->db->group_by('kategori');
-        $query = $this->db->get('artikel_ilmiah');
-        
-        $data = [
-            'Internasional Q1' => 0,
-            'Internasional Q2' => 0,
-            'Internasional Q3' => 0,
-            'Internasional Q4' => 0,
-        ];
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Internasional Q1'); // Hanya menghitung Internasional Q1
+        $query = $this->db->get();
 
-        foreach ($query->result() as $row) {
-            $data[$row->kategori] = $row->jumlah;
-        }
-
-        return array_values($data); // Mengembalikan data dalam format array untuk grafik
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
+    public function count_q2_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Internasional Q2'); // Hanya menghitung Internasional Q1
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
+
+    public function count_q3_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Internasional Q3'); // Hanya menghitung Internasional Q1
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
+
+    public function count_q4_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Internasional Q4'); // Hanya menghitung Internasional Q1
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
 }

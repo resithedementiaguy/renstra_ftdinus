@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6" style="height: 300px;">
-                                <div id="chartQ"></div>
+                                <canvas id="chartQ" width="400" height="400"></canvas>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
@@ -101,52 +101,52 @@
 <script>
     new DataTable('#datatable');
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Data dari PHP untuk chart
-        var chartData = <?php echo json_encode($chart_data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+        // Data dari PHP
+        var q1Data = <?= json_encode($q1_data) ?>;
+        var q2Data = <?= json_encode($q2_data) ?>;
+        var q3Data = <?= json_encode($q3_data) ?>;
+        var q4Data = <?= json_encode($q4_data) ?>;
 
-        console.log(chartData); // Debug di console
+        // Ambil elemen canvas
+        var ctx = document.getElementById("chartQ").getContext("2d");
 
-        // Pisahkan labels dan values
-        var labels = Object.keys(chartData);
-        var values = Object.values(chartData);
-
-        // Warna untuk masing-masing kategori
-        var colors = [
-            '#1E90FF', // Internasional Q1 - Biru
-            '#32CD32', // Internasional Q2 - Hijau
-            '#FFD700', // Internasional Q3 - Kuning
-            '#FF4500', // Internasional Q4 - Oranye
-            '#8A2BE2' // Internasional Non Scopus - Ungu
-        ];
-
-        // Konfigurasi ApexCharts
-        var options = {
-            series: values, // Data untuk grafik
-            chart: {
-                type: 'pie',
-                height: '350px',
-            },
-            labels: labels, // Label kategori
-            colors: colors, // Warna untuk setiap kategori
-            legend: {
-                position: 'bottom',
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function(val, opts) {
-                    const name = opts.w.globals.labels[opts.seriesIndex];
-                    return name + ': ' + val.toFixed(1) + '%';
-                },
-            },
+        // Data untuk Chart.js
+        var data = {
+            labels: ["Q1", "Q2", "Q3", "Q4"],
+            datasets: [{
+                data: [q1Data, q2Data, q3Data, q4Data],
+                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
+            }]
         };
 
-        // Render chart
-        var chart = new ApexCharts(document.querySelector("#chartQ"), options);
-        chart.render();
+        // Membuat grafik pie
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var label = data.labels[tooltipItem.dataIndex];
+                                var value = data.datasets[0].data[tooltipItem.dataIndex];
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 </script>
 
