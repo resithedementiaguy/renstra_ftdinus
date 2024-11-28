@@ -554,9 +554,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
+                                    <label for="isbn_buku" class="col-sm-2 col-form-label">ISBN</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="isbn" id="isbn" class="form-control" placeholder="Masukkan nomor ISBN">
+                                        <input type="text" name="isbn_buku" id="isbn_buku" class="form-control" placeholder="Masukkan nomor ISBN">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

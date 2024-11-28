@@ -36,16 +36,6 @@ class Ewmp extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         $ins_time = date('Y-m-d H:i:s', time());
 
-        $data = array(
-            'email' => $this->input->post('email'),
-            'jenis_lapor' => $jenis_lapor,
-            'ins_time' => $ins_time
-        );
-
-        $this->Ewmp_model->add_pelaporan_ewmp($data);
-
-        $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
-
         if ($jenis_lapor == 'Penelitian') {
             $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
             $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
@@ -89,7 +79,7 @@ class Ewmp extends CI_Controller
                 $this->form_validation->set_rules('judul_lisensi', 'judul', 'required');
             } elseif ($haki == 'Buku') {
                 $this->form_validation->set_rules('nama_pengusul_buku', 'Nama pengusul', 'required');
-                $this->form_validation->set_rules('isbn', 'ISBN', 'required');
+                $this->form_validation->set_rules('isbn_buku', 'ISBN', 'required');
                 $this->form_validation->set_rules('judul_buku', 'judul', 'required');
             } elseif ($haki == 'Paten') {
                 $this->form_validation->set_rules('judul_invensi_paten', 'judul', 'required');
@@ -121,6 +111,16 @@ class Ewmp extends CI_Controller
             $this->session->set_flashdata('show_modal', true); // Indikator untuk memicu modal
             redirect('ewmp/create_view'); // Ganti dengan URL form Anda
         } else {
+
+            $data = array(
+                'email' => $this->input->post('email'),
+                'jenis_lapor' => $jenis_lapor,
+                'ins_time' => $ins_time
+            );
+    
+            $this->Ewmp_model->add_pelaporan_ewmp($data);
+    
+            $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
 
             if ($jenis_lapor == 'Penelitian') {
                 $config = array(
@@ -565,6 +565,9 @@ class Ewmp extends CI_Controller
                     log_message('debug', 'Data Merk yang akan disimpan: ' . json_encode($data_merk));
                     $this->Ewmp_model->add_haki_merk($data_merk);
 
+                    // Dapatkan ID merk terbaru
+                    $id_merk = $this->Ewmp_model->get_last_merk_id();
+
                     // Menyimpan data anggota merk
                     $nama_anggota = $this->input->post('nama_merk'); // Nama pemegang merk yang dikirim dari form
 
@@ -572,7 +575,7 @@ class Ewmp extends CI_Controller
                         $index = 1;
                         foreach (array_values($nama_anggota) as $nama) {
                             $data_anggota = array(
-                                'id_jenis_lapor' => $id_haki,
+                                'id_jenis_lapor' => $id_merk,
                                 'kategori' => 'Merk',
                                 'nama' => $nama
                             );
@@ -619,6 +622,9 @@ class Ewmp extends CI_Controller
                     log_message('debug', 'Data Lisensi yang akan disimpan: ' . json_encode($data_lisensi));
                     $this->Ewmp_model->add_haki_lisensi($data_lisensi);
 
+                    // Dapatkan ID lisensi terbaru
+                    $id_lisensi = $this->Ewmp_model->get_last_lisensi_id();
+
                     // Menyimpan data anggota Lisensi
                     $nama_anggota = $this->input->post('nama_lisensi'); // Nama pemegang lisensi yang dikirim dari form
 
@@ -626,7 +632,7 @@ class Ewmp extends CI_Controller
                         $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
                             $data_anggota = array(
-                                'id_jenis_lapor' => $id_haki, // ID haki lisensi yang baru saja disimpan
+                                'id_jenis_lapor' => $id_lisensi, // ID haki lisensi yang baru saja disimpan
                                 'kategori' => 'Lisensi', // Menandakan kategori adalah lisensi
                                 'nama' => $nama
                             );
@@ -982,37 +988,77 @@ class Ewmp extends CI_Controller
         if ($pelaporan['jenis_lapor'] == "Penelitian") {
 
             $data['penelitian'] = $this->Ewmp_model->get_penelitian_by_id($id);
+
+            $id_penelitian= $data['penelitian']['id'];
+            $kategori='Penelitian';
+
+            $data['anggota_penelitian']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian,$kategori);
+            $data['mahasiswa_penelitian']= $this->Ewmp_model->get_mhs_pelaporan_by_id($id_penelitian,$kategori);
+            
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_penelitian', $data);
             $this->load->view('backend/partials/footer');
         } elseif ($pelaporan['jenis_lapor'] == "Pengabdian") {
             $data['pengabdian'] = $this->Ewmp_model->get_pengabdian_by_id($id);
+
+            $id_pengabdian= $data['pengabdian']['id'];
+            $kategori='Pengabdian';
+
+            $data['anggota_pengabdian']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian,$kategori);
+            $data['mahasiswa_pengabdian']= $this->Ewmp_model->get_mhs_pelaporan_by_id($id_pengabdian,$kategori);
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_pengabdian', $data);
             $this->load->view('backend/partials/footer');
         } elseif ($pelaporan['jenis_lapor'] == "Artikel/Karya Ilmiah") {
             $data['artikel_ilmiah'] = $this->Ewmp_model->get_artikel_ilmiah_by_id($id);
+
+            $id_ilmiah= $data['artikel_ilmiah']['id'];
+            $kategori='Artikel/Karya Ilmiah';
+
+            $data['anggota_ilmiah']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah,$kategori);
+
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_ilmiah', $data);
             $this->load->view('backend/partials/footer');
         } elseif ($pelaporan['jenis_lapor'] == "Prosiding") {
             $data['prosiding'] = $this->Ewmp_model->get_prosiding_by_id($id);
+
+            $id_prosiding= $data['prosiding']['id'];
+            $kategori='Prosiding';
+
+            $data['anggota_prosiding']= $this->Ewmp_model->get_anggota_pelaporan_by_id($id_prosiding,$kategori);
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_prosiding', $data);
             $this->load->view('backend/partials/footer');
         } elseif ($pelaporan['jenis_lapor'] == "HAKI") {
             $data['haki'] = $this->Ewmp_model->get_haki_by_id($id);
-
+        
+            if (!$data['haki']) {
+                show_error('Data HAKI tidak ditemukan', 404, 'Error');
+                return;
+            }
+        
             $id_haki = $data['haki']['id'];
-
-            $data['haki_hcipta'] = $this->Ewmp_model->get_haki_hcipta_by_id($id_haki);
-            $data['haki_paten'] = $this->Ewmp_model->get_haki_paten_by_id($id_haki);
-            $data['haki_dindustri'] = $this->Ewmp_model->get_haki_dindustri_by_id($id_haki);
-
+        
+            $data['haki_hcipta'] = $this->Ewmp_model->get_haki_hcipta_by_id($id_haki) ?? [];
+            $data['haki_merk'] = $this->Ewmp_model->get_haki_merk_by_id($id_haki) ?? [];
+            $data['haki_lisensi'] = $this->Ewmp_model->get_haki_lisensi_by_id($id_haki) ?? [];
+            $data['haki_buku'] = $this->Ewmp_model->get_haki_buku_by_id($id_haki) ?? [];
+            $data['haki_paten'] = $this->Ewmp_model->get_haki_paten_by_id($id_haki) ?? [];
+            $data['haki_dindustri'] = $this->Ewmp_model->get_haki_dindustri_by_id($id_haki) ?? [];
+        
+            // Pemegang HAKI
+            $data['pemegang_hcipta'] = $this->get_pemegang_haki($data['haki_hcipta'], 'Hak Cipta');
+            $data['pemegang_merk'] = $this->get_pemegang_haki($data['haki_merk'], 'Merk');
+            $data['pemegang_lisensi'] = $this->get_pemegang_haki($data['haki_lisensi'], 'Lisensi');
+            $data['pemegang_buku'] = $this->get_pemegang_haki($data['haki_buku'], 'Buku');
+            $data['pemegang_paten'] = $this->get_pemegang_haki($data['haki_paten'], 'Paten');
+            $data['pemegang_dindustri'] = $this->get_pemegang_haki($data['haki_dindustri'], 'Desain Industri');
+        
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
             $this->load->view('backend/ewmp/details/detail_haki', $data);
@@ -1042,6 +1088,20 @@ class Ewmp extends CI_Controller
             $this->load->view('backend/ewmp/details/detail_pengurus_organisasi', $data);
             $this->load->view('backend/partials/footer');
         }
+    }
+
+    private function get_pemegang_haki($haki_data, $kategori)
+    {
+        if (empty($haki_data)) {
+            return [];
+        }
+
+        $id_haki = $haki_data['id'] ?? null;
+        if (!$id_haki) {
+            return [];
+        }
+
+        return $this->Ewmp_model->get_anggota_pelaporan_by_id($id_haki, $kategori) ?? [];
     }
 
     public function delete_pelaporan($id)

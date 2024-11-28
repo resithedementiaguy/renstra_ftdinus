@@ -53,7 +53,11 @@
                                 </tr>
                                 <tr>
                                     <th>Nama Anggota</th>
-                                    <td><?= htmlspecialchars($penelitian['nama_anggota']) ?></td>
+                                    <td>
+                                        <?php foreach($anggota_penelitian as $ap):?>
+                                            <?= $ap->nama?> - <?= $ap->prodi?>;
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Judul Penelitian</th>
@@ -69,11 +73,15 @@
                                 </tr>
                                 <tr>
                                     <th>Besar Hibah</th>
-                                    <td><?= htmlspecialchars($penelitian['besar_hibah']) ?></td>
+                                    <td><?= 'Rp' . number_format($penelitian['besar_hibah'], 0, ',', '.') ?></td>
                                 </tr>
                                 <tr>
                                     <th>Nama Mahasiswa yang Terlibat</th>
-                                    <td><?= htmlspecialchars($penelitian['mahasiswa']) ?></td>
+                                    <td>
+                                        <?php foreach($mahasiswa_penelitian as $mp):?>
+                                            <?= $mp->nama?> (<?= $mp->nim?>);
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>File Kontrak Penelitian</th>

@@ -499,8 +499,28 @@ class Ewmp_model extends CI_Model
         $this->db->insert('anggota_pelaporan', $data);
     }
 
+    public function get_anggota_pelaporan_by_id($id, $kategori)
+    {
+        $this->db->select('*');
+        $this->db->from('anggota_pelaporan');
+        $this->db->where('id_jenis_lapor', $id);
+        $this->db->where('kategori', $kategori);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function add_mhs_pelaporan($data)
     {
         $this->db->insert('mhs_pelaporan', $data);
+    }
+
+    public function get_mhs_pelaporan_by_id($id, $kategori)
+    {
+        $this->db->select('*');
+        $this->db->from('mhs_pelaporan');
+        $this->db->where('id_jenis_lapor', $id);
+        $this->db->where('kategori', $kategori);
+        $query = $this->db->get();
+        return $query->result();
     }
 }

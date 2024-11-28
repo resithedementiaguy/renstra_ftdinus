@@ -53,7 +53,11 @@
                                 </tr>
                                 <tr>
                                     <th>Nama Anggota</th>
-                                    <td><?= htmlspecialchars($pengabdian['nama_anggota']) ?></td>
+                                    <td>
+                                        <?php foreach($anggota_pengabdian as $ap):?>
+                                            <?= $ap->nama?> - <?= $ap->prodi?>;
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Judul Pengabdian</th>
@@ -69,11 +73,15 @@
                                 </tr>
                                 <tr>
                                     <th>Besar Hibah</th>
-                                    <td><?= htmlspecialchars($pengabdian['besar_hibah']) ?></td>
+                                    <td><?= 'Rp' . number_format($pengabdian['besar_hibah'], 0, ',', '.') ?></td>
                                 </tr>
                                 <tr>
                                     <th>Nama Mahasiswa yang Terlibat</th>
-                                    <td><?= htmlspecialchars($pengabdian['mahasiswa']) ?></td>
+                                    <td>
+                                        <?php foreach($mahasiswa_pengabdian as $mp):?>
+                                            <?= $mp->nama?> (<?= $mp->nim?>);
+                                        <?php endforeach;?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>File Kontrak pengabdian</th>

@@ -52,7 +52,11 @@
                                     </tr>
                                     <tr>
                                         <th>Nama Pemegang Hak Cipta</th>
-                                        <td><?= htmlspecialchars($haki_hcipta['nama_pemegang']) ?></td>
+                                        <td>
+                                            <?php foreach($pemegang_hcipta as $ph):?>
+                                                <?= $ph->nama?>;
+                                            <?php endforeach;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Judul Hak Cipta</th>
@@ -65,11 +69,86 @@
                                         </td>
                                     </tr>
                                 <?php
+                                } elseif ($haki['kategori'] == "Merk") {
+                                ?>
+                                    <tr>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_merk['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Pemegang Merk</th>
+                                        <td>
+                                            <?php foreach($pemegang_merk as $pm):?>
+                                                <?= $pm->nama?>;
+                                            <?php endforeach;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Merk</th>
+                                        <td><?= htmlspecialchars($haki_merk['judul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sertifikat Merk</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/merk/') . $haki_merk['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                } elseif ($haki['kategori'] == "Lisensi") {
+                                ?>
+                                    <tr>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_lisensi['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Pemegang Lisensi</th>
+                                        <td>
+                                            <?php foreach($pemegang_lisensi as $pl):?>
+                                                <?= $pl->nama?>;
+                                            <?php endforeach;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Lisensi</th>
+                                        <td><?= htmlspecialchars($haki_lisensi['judul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sertifikat Lisensi</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/lisensi/') . $haki_lisensi['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                } elseif ($haki['kategori'] == "Buku") {
+                                ?>
+                                    <tr>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_buku['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>ISBN Buku</th>
+                                        <td><?= htmlspecialchars($haki_buku['isbn']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Buku</th>
+                                        <td><?= htmlspecialchars($haki_buku['judul_buku']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>File Buku</th>
+                                        <td>
+                                            <a href="<?= base_url('uploads/haki/buku/') . $haki_buku['file_buku'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        </td>
+                                    </tr>
+                                <?php
                                 } elseif ($haki['kategori'] == "Paten") {
                                 ?>
                                     <tr>
                                         <th>Nama Inventor</th>
-                                        <td><?= htmlspecialchars($haki_paten['nama_inventor']) ?></td>
+                                        <td>
+                                            <?php foreach($pemegang_paten as $pp):?>
+                                                <?= $pp->nama?>;
+                                            <?php endforeach;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Judul Invensi</th>
@@ -86,7 +165,11 @@
                                 ?>
                                     <tr>
                                         <th>Nama Pengusul</th>
-                                        <td><?= htmlspecialchars($haki_dindustri['nama_usul']) ?></td>
+                                        <td>
+                                            <?php foreach($pemegang_dindustri as $pd):?>
+                                                <?= $pd->nama?>;
+                                            <?php endforeach;?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Sertifikat Desain Industri</th>
