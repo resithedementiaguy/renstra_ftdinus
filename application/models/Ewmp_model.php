@@ -715,7 +715,6 @@ class Ewmp_model extends CI_Model
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-<<<<<<< HEAD
     public function get_total_hibah_pengabdian()
     {
         $this->db->select('p.nama_ketua, p.judul, p.besar_hibah, ap.nama AS nama_anggota');
@@ -723,7 +722,8 @@ class Ewmp_model extends CI_Model
         $this->db->join('anggota_pelaporan ap', 'p.id = ap.id_jenis_lapor', 'left');
         $query = $this->db->get();
         return $query->result_array();
-=======
+    }
+
     public function get_hibah_penelitian()
     {
         $this->db->select('*');
@@ -773,6 +773,36 @@ class Ewmp_model extends CI_Model
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
->>>>>>> df5957df40a65dac85150141988694bba21d6864
     }
+
+    public function get_publikasi_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

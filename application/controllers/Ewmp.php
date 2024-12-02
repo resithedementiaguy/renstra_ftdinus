@@ -1223,4 +1223,49 @@ class Ewmp extends CI_Controller
         $this->load->view('backend/ewmp/hasil_views/total_hibah_pengabdian', $data);
         $this->load->view('backend/partials/footer');
     }
+
+    public function kesesuaian_publikasi()
+    {
+        // Add logging to debug data retrieval
+        log_message('debug', 'Starting kesesuaian_publikasi method');
+
+        // Fetch publikasi data for each department with error checking
+        $data['data_elektro'] = $this->Ewmp_model->get_publikasi_elektro();
+        log_message('debug', 'Elektro publikasi count: ' . count($data['data_elektro']));
+
+        $data['data_industri'] = $this->Ewmp_model->get_publikasi_industri();
+        log_message('debug', 'Industri publikasi count: ' . count($data['data_industri']));
+
+        $data['data_biomedis'] = $this->Ewmp_model->get_publikasi_biomedis();
+        log_message('debug', 'Biomedis publikasi count: ' . count($data['data_biomedis']));
+
+        // Add anggota information for each publikasi
+        $data_collections = [
+            &$data['data_elektro'],
+            &$data['data_industri'],
+            &$data['data_biomedis']
+        ];
+
+        foreach ($data_collections as &$publikasi_collection) {
+            foreach ($publikasi_collection as $key => $publikasi) {
+                $id_ilmiah = $publikasi->id;
+                $kategori = 'Artikel/Karya Ilmiah';
+                $publikasi_collection[$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
+                
+                // Add debug logging
+                log_message('debug', 'Publikasi ID: ' . $id_ilmiah . ', Anggota count: ' . count($publikasi_collection[$key]->anggota_ilmiah));
+            }
+        }
+
+        // Add a debug view to print out raw data
+        $data['debug_elektro'] = $data['data_elektro'];
+        $data['debug_industri'] = $data['data_industri'];
+        $data['debug_biomedis'] = $data['data_biomedis'];
+
+        // Load views
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/kesesuaian_publikasi', $data);
+        $this->load->view('backend/partials/footer');
+    }
+
 }
