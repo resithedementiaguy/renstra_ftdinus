@@ -2,6 +2,16 @@
     div.dt-container select.dt-input {
         margin-right: 8px;
     }
+
+    .chart-container {
+        display: flex;
+        justify-content: center;
+        /* Memusatkan secara horizontal */
+        align-items: center;
+        /* Memusatkan secara vertikal */
+        height: 100%;
+        /* Pastikan tinggi kolom tercakup */
+    }
 </style>
 
 <main id="main" class="main">
@@ -26,26 +36,28 @@
                             Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4">Cetak PDF</a>
+                            <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
                         </div>
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-6" style="height: 300px;">
-                                <div id="chartInternasional"></div>
+                                <div class="chart-container">
+                                    <canvas id="chartPublikasi" width="400" height="400"></canvas>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <td>Internasional</td>
-                                            <td>22</td>
+                                            <td><?= $data_internasional ?></td>
                                         </tr>
                                         <tr>
                                             <td>Nasional</td>
-                                            <td>11</td>
+                                            <td><?= $data_nasional ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td>33</td>
+                                            <td><?= $total = $data_internasional + $data_nasional ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -62,39 +74,60 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="text-align: start;">1</td>
+                                        <td style="text-align: center;">1</td>
                                         <td>Total Publikasi Internasional</td>
-                                        <td><a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">2</td>
+                                        <td style="text-align: center;">2</td>
                                         <td>Total Publikasi Nasional</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">3</td>
+                                        <td style="text-align: center;">3</td>
                                         <td>Total Hibah Penelitian</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">4</td>
+                                        <td style="text-align: center;">4</td>
                                         <td>Total Hibah Pengabdian</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">5</td>
+                                        <td style="text-align: center;">5</td>
                                         <td>List Kesesuaian Publikasi per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">6</td>
+                                        <td style="text-align: center;">6</td>
                                         <td>List Kesesuaian Penelitian per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: start;">7</td>
+                                        <td style="text-align: center;">7</td>
                                         <td>List Kesesuaian Pengabdian per Program Studi</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td>
+                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                                <i class="bi bi-journal-text"></i> Detail</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -107,59 +140,53 @@
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    new DataTable('#datatable');
+    document.addEventListener("DOMContentLoaded", function() {
+        // Data dari PHP
+        var nasionalData = <?= json_encode($data_nasional) ?>;
+        var internasionalData = <?= json_encode($data_internasional) ?>;
 
-    var options = {
-        series: [25, 15],
-        chart: {
-            width: '100%',
-            height: '100%',
+        // Ambil elemen canvas
+        var ctx = document.getElementById("chartPublikasi").getContext("2d");
+
+        // Data untuk Chart.js
+        var data = {
+            labels: ["Nasional", "Internasional"],
+            datasets: [{
+                data: [nasionalData, internasionalData],
+                backgroundColor: ["#FF6384", "#36A2EB"],
+                hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+            }]
+        };
+
+        // Membuat grafik pie
+        var myPieChart = new Chart(ctx, {
             type: 'pie',
-        },
-        labels: ['Internasinal', 'Nasional'],
-        theme: {
-            monochrome: {
-                enabled: true,
-            },
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    offset: -5,
-                },
-            },
-        },
-        grid: {
-            padding: {
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-            },
-        },
-        dataLabels: {
-            formatter(val, opts) {
-                const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, val.toFixed(1) + '%'];
-            },
-        },
-        legend: {
-            show: true, // Menampilkan legend
-            position: 'top', // Posisi legend di bawah
-            horizontalAlign: 'center', // Rata tengah secara horizontal
-            markers: {
-                width: 12,
-                height: 12,
-                radius: 12, // Membuat marker berbentuk lingkaran
-            },
-            itemMargin: {
-                horizontal: 10,
-                vertical: 5,
-            },
-        },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chartInternasional"), options);
-    chart.render();
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Menampilkan legend di atas
+                        labels: {
+                            font: {
+                                size: 14 // Ukuran font untuk legend
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var label = data.labels[tooltipItem.dataIndex];
+                                var value = data.datasets[0].data[tooltipItem.dataIndex];
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>
