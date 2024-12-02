@@ -20,7 +20,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Hasil Pelaporan EWMP</li>
-                <li class="breadcrumb-item active">Publikasi Internasional EWMP</li>
+                <li class="breadcrumb-item active">Publikasi Nasional EWMP</li>
             </ol>
         </nav>
     </div>
@@ -30,11 +30,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Daftar Publikasi Internasional EWMP</strong></h5>
+                        <h5 class="pt-2"><strong>Daftar Publikasi Nasional EWMP</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek Publikasi Internasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengecek Publikasi Nasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="row">
                             <div class="col-6" style="height: 300px;">
@@ -46,24 +46,36 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <td>Q1</td>
-                                            <td><?= $q1_data ?></td>
+                                            <td>S1</td>
+                                            <td><?= $s1_data ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Q2</td>
-                                            <td><?= $q2_data ?></td>
+                                            <td>S2</td>
+                                            <td><?= $s2_data ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Q3</td>
-                                            <td><?= $q3_data ?></td>
+                                            <td>S3</td>
+                                            <td><?= $s3_data ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Q4</td>
-                                            <td><?= $q4_data ?></td>
+                                            <td>S4</td>
+                                            <td><?= $s4_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S5</td>
+                                            <td><?= $s5_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S6</td>
+                                            <td><?= $s6_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nasional Tidak Terakreditasi</td>
+                                            <td><?= $tdk_terakreditasi_data ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td><?= $total = $q1_data + $q2_data + $q3_data + $q4_data ?></td>
+                                            <td><?= $total = $s1_data + $s2_data + $s3_data + $s4_data + $s5_data + $tdk_terakreditasi_data ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -81,7 +93,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pub_internasional as $pi): ?>
+                                    <?php foreach ($pub_nasional as $pi): ?>
                                         <tr>
                                             <td class="align-middle"><?= htmlspecialchars($pi->kategori) ?></td>
                                             <td class="align-middle">
@@ -124,21 +136,24 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Data dari PHP
-        var q1Data = <?= json_encode($q1_data) ?>;
-        var q2Data = <?= json_encode($q2_data) ?>;
-        var q3Data = <?= json_encode($q3_data) ?>;
-        var q4Data = <?= json_encode($q4_data) ?>;
+        var s1Data = <?= json_encode($s1_data) ?>;
+        var s2Data = <?= json_encode($s2_data) ?>;
+        var s3Data = <?= json_encode($s3_data) ?>;
+        var s4Data = <?= json_encode($s4_data) ?>;
+        var s5Data = <?= json_encode($s5_data) ?>;
+        var s6Data = <?= json_encode($s6_data) ?>;
+        var tdkTerakreditasiData = <?= json_encode($tdk_terakreditasi_data) ?>;
 
         // Ambil elemen canvas
         var ctx = document.getElementById("chartQ").getContext("2d");
 
         // Data untuk Chart.js
         var data = {
-            labels: ["Q1", "Q2", "Q3", "Q4"],
+            labels: ["S1", "S2", "S3", "S4", "S5", "S6", "Nasional Tidak Terakreditasi"],
             datasets: [{
-                data: [q1Data, q2Data, q3Data, q4Data],
-                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
+                data: [s1Data, s2Data, s3Data, s4Data, s5Data, s6Data, tdkTerakreditasiData],
+                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#E0E0E0"],
+                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#C0C0C0"]
             }]
         };
 

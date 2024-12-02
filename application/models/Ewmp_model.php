@@ -540,6 +540,24 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_publikasi_nasional()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Nasional Sinta 1',
+            'Nasional Sinta 2',
+            'Nasional Sinta 3',
+            'Nasional Sinta 4',
+            'Nasional Sinta 5',
+            'Nasional Sinta 6',
+            'Nasional Tidak Terakreditasi'
+        ]);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function count_q1_data()
     {
         $this->db->select('COUNT(*) as jumlah');
@@ -582,6 +600,83 @@ class Ewmp_model extends CI_Model
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
+
+    public function count_s1_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 1'); // Hanya menghitung Nasional Sinta 1
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
+
+    public function count_s2_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 2'); // Hanya menghitung Nasional Sinta 2
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
+    }
+
+    public function count_s3_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 3'); // Hanya menghitung Nasional Sinta 3
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
+    }
+
+    public function count_s4_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 4'); // Hanya menghitung Nasional Sinta 4
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
+    }
+
+    public function count_s5_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 5'); // Hanya menghitung Nasional Sinta 5
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
+    }
+
+    public function count_s6_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Sinta 6'); // Hanya menghitung Nasional Sinta 6
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
+    }
+
+    public function count_tidak_terakreditasi_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('kategori', 'Nasional Tidak Terakreditasi'); // Hanya menghitung Nasional Tidak Terakreditasi
+        $query = $this->db->get();
+
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
     }
 
     public function count_publikasi_internasional_data()

@@ -31,11 +31,11 @@ class Ewmp extends CI_Controller
 
     public function hasil()
     {
-        $data['data_internasional']=$this->Ewmp_model->count_publikasi_internasional_data();
-        $data['data_nasional']=$this->Ewmp_model->count_publikasi_nasional_data();
+        $data['data_internasional'] = $this->Ewmp_model->count_publikasi_internasional_data();
+        $data['data_nasional'] = $this->Ewmp_model->count_publikasi_nasional_data();
 
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/hasil',$data);
+        $this->load->view('backend/ewmp/hasil', $data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -1160,10 +1160,10 @@ class Ewmp extends CI_Controller
             $data['pub_internasional'][$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
         }
 
-        $data['q1_data']=$this->Ewmp_model->count_q1_data();
-        $data['q2_data']=$this->Ewmp_model->count_q2_data();
-        $data['q3_data']=$this->Ewmp_model->count_q3_data();
-        $data['q4_data']=$this->Ewmp_model->count_q4_data();
+        $data['q1_data'] = $this->Ewmp_model->count_q1_data();
+        $data['q2_data'] = $this->Ewmp_model->count_q2_data();
+        $data['q3_data'] = $this->Ewmp_model->count_q3_data();
+        $data['q4_data'] = $this->Ewmp_model->count_q4_data();
 
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/publikasi_internasional', $data);
@@ -1191,4 +1191,27 @@ class Ewmp extends CI_Controller
         $this->load->view('backend/partials/footer');
     }
 
+    public function publikasi_nasional()
+    {
+        $data['pub_nasional'] = $this->Ewmp_model->get_publikasi_nasional();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['pub_nasional'] as $key => $publikasi) {
+            $id_ilmiah = $publikasi->id; // Pastikan sesuai nama kolom di database
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['pub_nasional'][$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
+        }
+
+        $data['s1_data'] = $this->Ewmp_model->count_s1_data();
+        $data['s2_data'] = $this->Ewmp_model->count_s2_data();
+        $data['s3_data'] = $this->Ewmp_model->count_s3_data();
+        $data['s4_data'] = $this->Ewmp_model->count_s4_data();
+        $data['s5_data'] = $this->Ewmp_model->count_s5_data();
+        $data['s6_data'] = $this->Ewmp_model->count_s6_data();
+        $data['tdk_terakreditasi_data'] = $this->Ewmp_model->count_tidak_terakreditasi_data();
+
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/publikasi_nasional', $data);
+        $this->load->view('backend/partials/footer');
+    }
 }
