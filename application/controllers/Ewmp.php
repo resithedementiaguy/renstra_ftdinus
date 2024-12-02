@@ -70,6 +70,13 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('judul_jurnal_ilmiah', 'judul jurnal', 'required');
             $this->form_validation->set_rules('link_jurnal_ilmiah', 'Link jurnal', 'required');
             $this->form_validation->set_rules('volume_jurnal_ilmiah', 'volume jurnal', 'required');
+
+            $kategori = $this->input->post('kategori_ilmiah');
+            // Tambahkan field `pengindeks` jika kategori internasional
+            $internasional = ["Internasional Q1", "Internasional Q2", "Internasional Q3", "Internasional Q4", "Internasional Non Scopus"];
+            if (in_array($kategori, $internasional)) {
+                $this->form_validation->set_rules('pengindeks_ilmiah', 'pengindeks', 'required');
+            }
         } elseif ($jenis_lapor == 'Prosiding') {
             $this->form_validation->set_rules('nama_pertama_prosiding', 'Nama pertama', 'required');
             $this->form_validation->set_rules('nama_korespon_prosiding', 'Nama korespon', 'required');
@@ -343,6 +350,7 @@ class Ewmp extends CI_Controller
                     'id_pelaporan' => $id_pelaporan,
                     'kategori' => $kategori,
                     'nama_pertama' => $this->input->post('nama_pertama_ilmiah'),
+                    'prodi' => $this->input->post('prodi_ilmiah'),
                     'nama_korespon' => $this->input->post('nama_korespon_ilmiah'),
                     'judul_artikel' => $this->input->post('judul_artikel_ilmiah'),
                     'judul_jurnal' => $this->input->post('judul_jurnal_ilmiah'),

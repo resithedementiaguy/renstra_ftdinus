@@ -323,6 +323,23 @@
                                         <input type="text" name="nama_pertama_ilmiah" id="nama_pertama_ilmiah" class="form-control" placeholder="Masukkan nama penulis pertama">
                                     </div>
                                 </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_ilmiah" id="prodi_ilmiah1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_ilmiah1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_ilmiah" id="prodi_ilmiah2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_ilmiah2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_ilmiah" id="prodi_ilmiah3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_ilmiah3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <div class="row mb-3">
                                     <label for="nama_korespon_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
                                     <div class="col-sm-10">
