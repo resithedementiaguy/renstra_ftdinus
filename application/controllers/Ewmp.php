@@ -31,8 +31,11 @@ class Ewmp extends CI_Controller
 
     public function hasil()
     {
+        $data['data_internasional']=$this->Ewmp_model->count_publikasi_internasional_data();
+        $data['data_nasional']=$this->Ewmp_model->count_publikasi_nasional_data();
+
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/hasil');
+        $this->load->view('backend/ewmp/hasil',$data);
         $this->load->view('backend/partials/footer');
     }
 

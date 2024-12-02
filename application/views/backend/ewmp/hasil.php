@@ -2,6 +2,13 @@
     div.dt-container select.dt-input {
         margin-right: 8px;
     }
+
+    .chart-container {
+        display: flex;
+        justify-content: center; /* Memusatkan secara horizontal */
+        align-items: center;    /* Memusatkan secara vertikal */
+        height: 100%;           /* Pastikan tinggi kolom tercakup */
+    }
 </style>
 
 <main id="main" class="main">
@@ -30,22 +37,24 @@
                         </div>
                         <div class="row">
                             <div class="col-6" style="height: 300px;">
-                                <div id="chartInternasional"></div>
+                                <div class="chart-container">
+                                    <canvas id="chartPublikasi" width="400" height="400"></canvas>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <td>Internasional</td>
-                                            <td>22</td>
+                                            <td><?= $data_internasional?></td>
                                         </tr>
                                         <tr>
                                             <td>Nasional</td>
-                                            <td>11</td>
+                                            <td><?= $data_nasional?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td>33</td>
+                                            <td><?= $total=$data_internasional+$data_nasional?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -107,59 +116,48 @@
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    new DataTable('#datatable');
+    document.addEventListener("DOMContentLoaded", function () {
+        // Data dari PHP
+        var nasionalData = <?= json_encode($data_nasional) ?>;
+        var internasionalData = <?= json_encode($data_internasional) ?>;
 
-    var options = {
-        series: [25, 15],
-        chart: {
-            width: '100%',
-            height: '100%',
+        // Ambil elemen canvas
+        var ctx = document.getElementById("chartPublikasi").getContext("2d");
+
+        // Data untuk Chart.js
+        var data = {
+            labels: ["Nasional", "Internasional"],
+            datasets: [{
+                data: [nasionalData, internasionalData],
+                backgroundColor: ["#FF6384", "#36A2EB"],
+                hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+            }]
+        };
+
+        // Membuat grafik pie
+        var myPieChart = new Chart(ctx, {
             type: 'pie',
-        },
-        labels: ['Internasinal', 'Nasional'],
-        theme: {
-            monochrome: {
-                enabled: true,
-            },
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    offset: -5,
-                },
-            },
-        },
-        grid: {
-            padding: {
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-            },
-        },
-        dataLabels: {
-            formatter(val, opts) {
-                const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, val.toFixed(1) + '%'];
-            },
-        },
-        legend: {
-            show: true, // Menampilkan legend
-            position: 'bottom', // Posisi legend di bawah
-            horizontalAlign: 'center', // Rata tengah secara horizontal
-            markers: {
-                width: 12,
-                height: 12,
-                radius: 12, // Membuat marker berbentuk lingkaran
-            },
-            itemMargin: {
-                horizontal: 10,
-                vertical: 5,
-            },
-        },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chartInternasional"), options);
-    chart.render();
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var label = data.labels[tooltipItem.dataIndex];
+                                var value = data.datasets[0].data[tooltipItem.dataIndex];
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>

@@ -583,4 +583,40 @@ class Ewmp_model extends CI_Model
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
+
+    public function count_publikasi_internasional_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Internasional Q1',
+            'Internasional Q2',
+            'Internasional Q3',
+            'Internasional Q4',
+            'Internasional Non Scopus'
+        ]);
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
+
+    public function count_publikasi_nasional_data()
+    {
+        $this->db->select('COUNT(*) as jumlah');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Nasional Sinta 1',
+            'Nasional Sinta 2',
+            'Nasional Sinta 3',
+            'Nasional Sinta 4',
+            'Nasional Sinta 5',
+            'Nasional Sinta 6',
+            'Nasional Tidak Terakreditasi'
+        ]);
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+    }
 }

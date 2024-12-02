@@ -2,6 +2,13 @@
     div.dt-container select.dt-input {
         margin-right: 8px;
     }
+
+    .chart-container {
+        display: flex;
+        justify-content: center; /* Memusatkan secara horizontal */
+        align-items: center;    /* Memusatkan secara vertikal */
+        height: 100%;           /* Pastikan tinggi kolom tercakup */
+    }
 </style>
 
 <main id="main" class="main">
@@ -28,30 +35,32 @@
                         </div>
                         <div class="row">
                             <div class="col-6" style="height: 300px;">
-                                <canvas id="chartQ" width="400" height="400"></canvas>
+                                <div class="chart-container">
+                                    <canvas id="chartQ" width="400" height="400"></canvas>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <td>Q1</td>
-                                            <td>22</td>
+                                            <td><?= $q1_data?></td>
                                         </tr>
                                         <tr>
                                             <td>Q2</td>
-                                            <td>11</td>
+                                            <td><?= $q2_data?></td>
                                         </tr>
                                         <tr>
                                             <td>Q3</td>
-                                            <td>33</td>
+                                            <td><?= $q3_data?></td>
                                         </tr>
                                         <tr>
                                             <td>Q4</td>
-                                            <td>33</td>
+                                            <td><?= $q4_data?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td>33</td>
+                                            <td><?= $total=$q1_data+$q2_data+$q3_data+$q4_data?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -65,7 +74,7 @@
                                         <th class="text-start align-middle" style="width: 350px;">Nama</th>
                                         <th class="text-start align-middle" style="width: 350px;">Judul Artikel</th>
                                         <th class="text-start align-middle" style="width: 350px;">Judul Jurnal</th>
-                                        <th class="text-start align-middle" style="width: 100px;">Waktu Pengisian</th>
+                                        <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
                                     </tr>
                                 </thead>
                                 <tbody>
