@@ -85,7 +85,7 @@
                                         <td style="text-align: center;">2</td>
                                         <td>Total Publikasi Nasional</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('ewmp/publikasi_nasional') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>

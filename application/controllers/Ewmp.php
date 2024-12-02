@@ -70,6 +70,13 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('judul_jurnal_ilmiah', 'judul jurnal', 'required');
             $this->form_validation->set_rules('link_jurnal_ilmiah', 'Link jurnal', 'required');
             $this->form_validation->set_rules('volume_jurnal_ilmiah', 'volume jurnal', 'required');
+
+            $kategori = $this->input->post('kategori_ilmiah');
+            // Tambahkan field `pengindeks` jika kategori internasional
+            $internasional = ["Internasional Q1", "Internasional Q2", "Internasional Q3", "Internasional Q4", "Internasional Non Scopus"];
+            if (in_array($kategori, $internasional)) {
+                $this->form_validation->set_rules('pengindeks_ilmiah', 'pengindeks', 'required');
+            }
         } elseif ($jenis_lapor == 'Prosiding') {
             $this->form_validation->set_rules('nama_pertama_prosiding', 'Nama pertama', 'required');
             $this->form_validation->set_rules('nama_korespon_prosiding', 'Nama korespon', 'required');
@@ -343,6 +350,7 @@ class Ewmp extends CI_Controller
                     'id_pelaporan' => $id_pelaporan,
                     'kategori' => $kategori,
                     'nama_pertama' => $this->input->post('nama_pertama_ilmiah'),
+                    'prodi' => $this->input->post('prodi_ilmiah'),
                     'nama_korespon' => $this->input->post('nama_korespon_ilmiah'),
                     'judul_artikel' => $this->input->post('judul_artikel_ilmiah'),
                     'judul_jurnal' => $this->input->post('judul_jurnal_ilmiah'),
@@ -1159,6 +1167,30 @@ class Ewmp extends CI_Controller
 
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/publikasi_internasional', $data);
+        $this->load->view('backend/partials/footer');
+    }
+
+    public function publikasi_nasional()
+    {
+        $data['pub_nasional'] = $this->Ewmp_model->get_publikasi_nasional();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['pub_nasional'] as $key => $publikasi) {
+            $id_ilmiah = $publikasi->id; // Pastikan sesuai nama kolom di database
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['pub_nasional'][$key]->anggota_ilmiah = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
+        }
+
+        $data['s1_data'] = $this->Ewmp_model->count_s1_data();
+        $data['s2_data'] = $this->Ewmp_model->count_s2_data();
+        $data['s3_data'] = $this->Ewmp_model->count_s3_data();
+        $data['s4_data'] = $this->Ewmp_model->count_s4_data();
+        $data['s5_data'] = $this->Ewmp_model->count_s5_data();
+        $data['s6_data'] = $this->Ewmp_model->count_s6_data();
+        $data['tdk_terakreditasi_data'] = $this->Ewmp_model->count_tidak_terakreditasi_data();
+
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/publikasi_nasional', $data);
         $this->load->view('backend/partials/footer');
     }
 }

@@ -103,6 +103,11 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <div>
+                            <a href="<?= base_url('ewmp/hasil') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
