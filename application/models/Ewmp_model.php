@@ -714,4 +714,13 @@ class Ewmp_model extends CI_Model
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
+
+    public function get_total_hibah_pengabdian()
+    {
+        $this->db->select('p.nama_ketua, p.judul, p.besar_hibah, ap.nama AS nama_anggota');
+        $this->db->from('pengabdian p');
+        $this->db->join('anggota_pelaporan ap', 'p.id = ap.id_jenis_lapor', 'left');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

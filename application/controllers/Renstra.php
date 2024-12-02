@@ -48,6 +48,9 @@ class Renstra extends CI_Controller
         // Optionally: Get the target for the selected year, for example 2023
         $data['target'] = $this->Mod_iku->get_target_level3($id_level2, 2023);
 
+        // Get the capaian for the selected year, for example 2023
+        $data['capaian'] = $this->Mod_iku->get_capaian_level3($id_level2, 2023);
+
         $this->load->view('iku_level3_view', $data);
     }
 
@@ -60,6 +63,9 @@ class Renstra extends CI_Controller
 
         // Optionally: Get the target for the selected year, for example 2023
         $data['target'] = $this->Mod_iku->get_target_level4($id_level3, 2023);
+
+        // Get the capaian for the selected year, for example 2023
+        $data['capaian'] = $this->Mod_iku->get_capaian_level4($id_level3, 2023);
 
         $this->load->view('iku_level4_view', $data);
     }
@@ -87,6 +93,32 @@ class Renstra extends CI_Controller
         } else {
             log_message('error', 'Gagal memperbarui target');
             echo json_encode(['success' => false, 'message' => 'Gagal memperbarui target']);
+        }
+    }
+
+    public function update_capaian()
+    {
+        log_message('debug', 'update_capaian() called');
+        $capaian_id = $this->input->post('capaian_id');
+        $year = $this->input->post('year');
+        $value = $this->input->post('value');
+        $level_type = $this->input->post('level_type');
+
+        if (!isset($capaian_id, $year, $value, $level_type) || $capaian_id === '' || $year === '' || $level_type === '') {
+            log_message('error', 'Data tidak lengkap: capaian_id=' . $capaian_id . ', year=' . $year . ', value=' . $value . ', level_type=' . $level_type);
+            echo json_encode(['success' => false, 'message' => 'Data tidak lengkap']);
+            return;
+        }
+
+        $this->load->model('Mod_iku');
+        $updated = $this->Mod_iku->update_capaian($capaian_id, $year, $value, $level_type);
+
+        if ($updated) {
+            log_message('debug', 'Update capaian berhasil');
+            echo json_encode(['success' => true]);
+        } else {
+            log_message('error', 'Gagal memperbarui capaian');
+            echo json_encode(['success' => false, 'message' => 'Gagal memperbarui capaian']);
         }
     }
 

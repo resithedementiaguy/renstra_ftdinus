@@ -1193,4 +1193,13 @@ class Ewmp extends CI_Controller
         $this->load->view('backend/ewmp/hasil_views/publikasi_nasional', $data);
         $this->load->view('backend/partials/footer');
     }
+
+    public function total_hibah_pengabdian()
+    {
+        $this->load->model('Ewmp_model');
+        $data['pengabdian'] = $this->Ewmp_model->get_total_hibah_pengabdian();
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/total_hibah_pengabdian', $data);
+        $this->load->view('backend/partials/footer');
+    }
 }
