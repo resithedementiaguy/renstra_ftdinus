@@ -130,13 +130,13 @@ class Mod_iku extends CI_Model
             // Jika capaian ada, lakukan update
             $this->db->where('id_level' . ($level_type === 'level3' ? '3' : '4'), $capaian_id);
             $this->db->where('tahun_capaian', $year);
-            return $this->db->update($table, ['isi_target' => $value]);
+            return $this->db->update($table, ['isi_capaian' => $value]);
         } else {
             // Jika tidak ada, lakukan insert
             return $this->db->insert($table, [
                 'id_level' . ($level_type === 'level3' ? '3' : '4') => $capaian_id,
                 'tahun_capaian' => $year,
-                'isi_target' => $value
+                'isi_capaian' => $value
             ]);
         }
     }

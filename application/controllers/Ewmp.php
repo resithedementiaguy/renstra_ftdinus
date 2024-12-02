@@ -1181,13 +1181,34 @@ class Ewmp extends CI_Controller
             $data['penelitian'][$key]->anggota_penelitian = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian, $kategori);
         }
 
-        $data['mandiri_data']=$this->Ewmp_model->count_mandiri_penelitian();
-        $data['internal_data']=$this->Ewmp_model->count_internal_penelitian();
-        $data['nasional_data']=$this->Ewmp_model->count_nasional_penelitian();
-        $data['internasional_data']=$this->Ewmp_model->count_internasional_penelitian();
+        $data['mandiri_data'] = $this->Ewmp_model->count_mandiri_penelitian();
+        $data['internal_data'] = $this->Ewmp_model->count_internal_penelitian();
+        $data['nasional_data'] = $this->Ewmp_model->count_nasional_penelitian();
+        $data['internasional_data'] = $this->Ewmp_model->count_internasional_penelitian();
 
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/hibah_penelitian', $data);
+        $this->load->view('backend/partials/footer');
+    }
+
+    public function hibah_pengabdian()
+    {
+        $data['pengabdian'] = $this->Ewmp_model->get_hibah_pengabdian();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['pengabdian'] as $key => $pengabdian) {
+            $id_pengabdian = $pengabdian->id; // Pastikan sesuai nama kolom di database
+            $kategori = 'pengabdian';
+            $data['pengabdian'][$key]->anggota_pengabdian = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian, $kategori);
+        }
+
+        $data['mandiri_data'] = $this->Ewmp_model->count_mandiri_pengabdian();
+        $data['internal_data'] = $this->Ewmp_model->count_internal_pengabdian();
+        $data['nasional_data'] = $this->Ewmp_model->count_nasional_pengabdian();
+        $data['internasional_data'] = $this->Ewmp_model->count_internasional_pengabdian();
+
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/hibah_pengabdian', $data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -1212,15 +1233,6 @@ class Ewmp extends CI_Controller
 
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/publikasi_nasional', $data);
-        $this->load->view('backend/partials/footer');
-    }
-
-    public function total_hibah_pengabdian()
-    {
-        $this->load->model('Ewmp_model');
-        $data['pengabdian'] = $this->Ewmp_model->get_total_hibah_pengabdian();
-        $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/hasil_views/total_hibah_pengabdian', $data);
         $this->load->view('backend/partials/footer');
     }
 }

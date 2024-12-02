@@ -101,7 +101,7 @@
                                         <td style="text-align: center;">4</td>
                                         <td>Total Hibah Pengabdian</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/total_hibah_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('ewmp/hibah_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
