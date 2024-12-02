@@ -619,4 +619,55 @@ class Ewmp_model extends CI_Model
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
+
+    public function get_hibah_penelitian()
+    {
+        $this->db->select('*');
+        $this->db->from('penelitian');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function count_mandiri_penelitian()
+    {
+        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
+        $this->db->from('penelitian');
+        $this->db->where('kategori', 'Mandiri'); // Hanya menghitung kategori Mandiri
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    }
+
+    public function count_internal_penelitian()
+    {
+        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
+        $this->db->from('penelitian');
+        $this->db->where('kategori', 'Internal'); // Hanya menghitung kategori Mandiri
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    }
+    public function count_nasional_penelitian()
+    {
+        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
+        $this->db->from('penelitian');
+        $this->db->where('kategori', 'Nasional'); // Hanya menghitung kategori Mandiri
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    }
+    public function count_internasional_penelitian()
+    {
+        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
+        $this->db->from('penelitian');
+        $this->db->where('kategori', 'Internasional'); // Hanya menghitung kategori Mandiri
+        $query = $this->db->get();
+
+        $result = $query->row(); // Ambil satu baris hasil
+        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    }
 }

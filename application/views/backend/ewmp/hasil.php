@@ -83,7 +83,7 @@
                                     <tr>
                                         <td style="text-align: start;">3</td>
                                         <td>Total Hibah Penelitian</td>
-                                        <td><a href="<?= base_url('ewmp/generate_pdf') ?>" type="button" class="btn btn-success">Detail</a></td>
+                                        <td><a href="<?= base_url('ewmp/hibah_penelitian') ?>" type="button" class="btn btn-success">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: start;">4</td>
