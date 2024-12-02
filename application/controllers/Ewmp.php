@@ -1149,6 +1149,13 @@ class Ewmp extends CI_Controller
         $dompdf->stream("renstra.pdf", array("Attachment" => 0));
     }
 
+    public function penelitian_prodi()
+    {
+        $this->load->view('backend/partials/header');
+        $this->load->view('backend/ewmp/hasil_views/penelitian_prodi');
+        $this->load->view('backend/partials/footer');
+    }
+
     public function publikasi_internasional()
     {
         $data['pub_internasional'] = $this->Ewmp_model->get_publikasi_internasional();
