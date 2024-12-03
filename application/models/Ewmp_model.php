@@ -786,46 +786,48 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function count_mandiri_pengabdian()
+    public function count_mandiri_pengabdian($prodi = null)
     {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('pengabdian');
-        $this->db->where('kategori', 'Mandiri'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
-
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+        $this->db->select_sum('besar_hibah', 'total_hibah');
+        $this->db->where('kategori', 'Mandiri');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('pengabdian');
+        return $query->row()->total_hibah ?? 0;
     }
 
-    public function count_internal_pengabdian()
+    public function count_internal_pengabdian($prodi = null)
     {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('pengabdian');
-        $this->db->where('kategori', 'Internal'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
-
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+        $this->db->select_sum('besar_hibah', 'total_hibah');
+        $this->db->where('kategori', 'Internal');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('pengabdian');
+        return $query->row()->total_hibah ?? 0;
     }
-    public function count_nasional_pengabdian()
-    {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('pengabdian');
-        $this->db->where('kategori', 'Nasional'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    public function count_nasional_pengabdian($prodi = null)
+    {
+        $this->db->select_sum('besar_hibah', 'total_hibah');
+        $this->db->where('kategori', 'Nasional');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('pengabdian');
+        return $query->row()->total_hibah ?? 0;
     }
-    public function count_internasional_pengabdian()
-    {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('pengabdian');
-        $this->db->where('kategori', 'Internasional'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    public function count_internasional_pengabdian($prodi = null)
+    {
+        $this->db->select_sum('besar_hibah', 'total_hibah');
+        $this->db->where('kategori', 'Internasional');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('pengabdian');
+        return $query->row()->total_hibah ?? 0;
     }
 
     public function get_publikasi_elektro()
