@@ -143,50 +143,46 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Data dari PHP
-        var nasionalData = <?= json_encode($data_nasional) ?>;
-        var internasionalData = <?= json_encode($data_internasional) ?>;
+    document.addEventListener("DOMContentLoaded", function () {
+    // Data dari PHP
+    var persentaseNasional = <?= json_encode($persentase_nasional) ?>;
+    var persentaseInternasional = <?= json_encode($persentase_internasional) ?>;
 
-        // Ambil elemen canvas
-        var ctx = document.getElementById("chartPublikasi").getContext("2d");
+    // Ambil elemen canvas
+    var ctx = document.getElementById("chartPublikasi").getContext("2d");
 
-        // Data untuk Chart.js
-        var data = {
-            labels: ["Nasional", "Internasional"],
-            datasets: [{
-                data: [nasionalData, internasionalData],
-                backgroundColor: ["#FF6384", "#36A2EB"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB"]
-            }]
-        };
+    // Data untuk Chart.js
+    var data = {
+        labels: ["Nasional", "Internasional"],
+        datasets: [{
+            data: [persentaseNasional, persentaseInternasional],
+            backgroundColor: ["#FF6384", "#36A2EB"],
+            hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+        }]
+    };
 
-        // Membuat grafik pie
-        var myPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top', // Menampilkan legend di atas
-                        labels: {
-                            font: {
-                                size: 14 // Ukuran font untuk legend
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = data.labels[tooltipItem.dataIndex];
-                                var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value;
-                            }
+    // Membuat grafik pie
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top', // Menampilkan legend di atas
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            var label = data.labels[tooltipItem.dataIndex];
+                            var value = data.datasets[0].data[tooltipItem.dataIndex];
+                            return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
                         }
                     }
                 }
             }
-        });
+        }
     });
+});
+
 </script>

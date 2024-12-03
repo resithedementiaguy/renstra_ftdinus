@@ -134,7 +134,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Data dari PHP
         var s1Data = <?= json_encode($s1_data) ?>;
         var s2Data = <?= json_encode($s2_data) ?>;
@@ -143,15 +143,27 @@
         var s5Data = <?= json_encode($s5_data) ?>;
         var s6Data = <?= json_encode($s6_data) ?>;
         var tdkTerakreditasiData = <?= json_encode($tdk_terakreditasi_data) ?>;
+        var totalData = <?= json_encode($total_data) ?>;
+
+        // Hitung persentase
+        var percentages = [
+            (s1Data / totalData) * 100,
+            (s2Data / totalData) * 100,
+            (s3Data / totalData) * 100,
+            (s4Data / totalData) * 100,
+            (s5Data / totalData) * 100,
+            (s6Data / totalData) * 100,
+            (tdkTerakreditasiData / totalData) * 100,
+        ];
 
         // Ambil elemen canvas
         var ctx = document.getElementById("chartQ").getContext("2d");
 
         // Data untuk Chart.js
         var data = {
-            labels: ["S1", "S2", "S3", "S4", "S5", "S6", "Nasional Tidak Terakreditasi"],
+            labels: ["S1", "S2", "S3", "S4", "S5", "S6", "Tidak Terakreditasi"],
             datasets: [{
-                data: [s1Data, s2Data, s3Data, s4Data, s5Data, s6Data, tdkTerakreditasiData],
+                data: percentages,
                 backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#E0E0E0"],
                 hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#C0C0C0"]
             }]
@@ -169,10 +181,10 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 var label = data.labels[tooltipItem.dataIndex];
                                 var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value;
+                                return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
                             }
                         }
                     }
@@ -180,6 +192,7 @@
             }
         });
     });
+
 </script>
 
 <?php
