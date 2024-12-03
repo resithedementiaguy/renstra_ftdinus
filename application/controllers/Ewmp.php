@@ -1264,7 +1264,7 @@ class Ewmp extends CI_Controller
         // Logging untuk debugging
         log_message('debug', 'Starting kesesuaian_penelitian method');
 
-        // Fetch data penelitian untuk masing-masing departemen
+        // Fetch data penelitian untuk masing-masing prodi
         $data['data_elektro'] = $this->Ewmp_model->get_penelitian_elektro();
         log_message('debug', 'Elektro penelitian count: ' . count($data['data_elektro']));
 
@@ -1325,7 +1325,7 @@ class Ewmp extends CI_Controller
         // Logging untuk debugging
         log_message('debug', 'Starting kesesuaian_pengabdian method');
 
-        // Fetch data pengabdian untuk masing-masing departemen
+        // Fetch data pengabdian untuk masing-masing prodi
         $data['data_elektro'] = $this->Ewmp_model->get_pengabdian_elektro();
         log_message('debug', 'Elektro pengabdian count: ' . count($data['data_elektro']));
 
@@ -1344,7 +1344,7 @@ class Ewmp extends CI_Controller
 
         foreach ($data_collections as &$pengabdian_collection) {
             foreach ($pengabdian_collection as $key => $pengabdian) {
-                $id_pengabdian = $pengabdian->id; // Pastikan nama kolom sesuai database
+                $id_pengabdian = $pengabdian->id;
                 $kategori = 'Pengabdian';
                 $pengabdian_collection[$key]->anggota_pengabdian = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian, $kategori);
 
@@ -1354,10 +1354,26 @@ class Ewmp extends CI_Controller
         }
 
         // Hitung jumlah pengabdian berdasarkan kategori
-        $data['mandiri_data'] = $this->Ewmp_model->count_mandiri_pengabdian();
-        $data['internal_data'] = $this->Ewmp_model->count_internal_pengabdian();
-        $data['nasional_data'] = $this->Ewmp_model->count_nasional_pengabdian();
-        $data['internasional_data'] = $this->Ewmp_model->count_internasional_pengabdian();
+        $data['elektro_data'] = [
+            'mandiri' => $this->Ewmp_model->count_mandiri_pengabdian('Teknik Elektro'),
+            'internal' => $this->Ewmp_model->count_internal_pengabdian('Teknik Elektro'),
+            'nasional' => $this->Ewmp_model->count_nasional_pengabdian('Teknik Elektro'),
+            'internasional' => $this->Ewmp_model->count_internasional_pengabdian('Teknik Elektro'),
+        ];
+
+        $data['industri_data'] = [
+            'mandiri' => $this->Ewmp_model->count_mandiri_pengabdian('Teknik Industri'),
+            'internal' => $this->Ewmp_model->count_internal_pengabdian('Teknik Industri'),
+            'nasional' => $this->Ewmp_model->count_nasional_pengabdian('Teknik Industri'),
+            'internasional' => $this->Ewmp_model->count_internasional_pengabdian('Teknik Industri'),
+        ];
+
+        $data['biomedis_data'] = [
+            'mandiri' => $this->Ewmp_model->count_mandiri_pengabdian('Teknik Biomedis'),
+            'internal' => $this->Ewmp_model->count_internal_pengabdian('Teknik Biomedis'),
+            'nasional' => $this->Ewmp_model->count_nasional_pengabdian('Teknik Biomedis'),
+            'internasional' => $this->Ewmp_model->count_internasional_pengabdian('Teknik Biomedis'),
+        ];
 
         // Load views
         $this->load->view('backend/partials/header');

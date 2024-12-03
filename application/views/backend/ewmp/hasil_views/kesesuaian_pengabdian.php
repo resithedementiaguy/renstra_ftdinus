@@ -46,14 +46,41 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="elektro" role="tabpanel" aria-labelledby="elektro-tab">
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <h5><strong>Total Hibah Teknik Elektro</strong></h5>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Total Hibah Mandiri</td>
+                                                    <td><?= 'Rp' . number_format($elektro_data['mandiri'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internal</td>
+                                                    <td><?= 'Rp' . number_format($elektro_data['internal'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Nasional</td>
+                                                    <td><?= 'Rp' . number_format($elektro_data['nasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internasional</td>
+                                                    <td><?= 'Rp' . number_format($elektro_data['internasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table" id="datatable-elektro">
                                         <thead>
                                             <tr>
                                                 <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Nama</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Artikel</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Jurnal</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Judul Pengabdian</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Skim</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
                                                 <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
                                             </tr>
                                         </thead>
@@ -61,16 +88,18 @@
                                             <?php foreach ($data_elektro as $elektro): ?>
                                                 <tr>
                                                     <td class="align-middle"><?= htmlspecialchars($elektro->kategori) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($elektro->nama_ketua) ?></td>
                                                     <td class="align-middle">
-                                                        <?= htmlspecialchars($elektro->nama_pertama) ?>;
-                                                        <?php if (!empty($elektro->anggota_ilmiah)): ?>
-                                                            <?php foreach ($elektro->anggota_ilmiah as $anggota): ?>
+                                                        <!-- Iterasi anggota penelitian -->
+                                                        <?php if (!empty($elektro->anggota_pengabdian)): ?>
+                                                            <?php foreach ($elektro->anggota_pengabdian as $anggota): ?>
                                                                 <?= htmlspecialchars($anggota->nama) ?>;
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </td>
-                                                    <td class="align-middle"><?= $elektro->judul_artikel ?></td>
-                                                    <td class="align-middle"><?= $elektro->judul_jurnal ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($elektro->judul) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($elektro->skim) ?></td>
+                                                    <td class="align-middle"><?= 'Rp' . number_format($elektro->besar_hibah, 0, ',', '.') ?></td>
                                                     <td class="align-middle"><?= formatDateTime($elektro->ins_time) ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -79,14 +108,41 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="industri" role="tabpanel" aria-labelledby="industri-tab">
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <h5><strong>Total Hibah Teknik Industri</strong></h5>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Total Hibah Mandiri</td>
+                                                    <td><?= 'Rp' . number_format($industri_data['mandiri'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internal</td>
+                                                    <td><?= 'Rp' . number_format($industri_data['internal'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Nasional</td>
+                                                    <td><?= 'Rp' . number_format($industri_data['nasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internasional</td>
+                                                    <td><?= 'Rp' . number_format($industri_data['internasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table" id="datatable-industri">
                                         <thead>
                                             <tr>
                                                 <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Nama</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Artikel</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Jurnal</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Judul Pengabdian</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Skim</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
                                                 <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
                                             </tr>
                                         </thead>
@@ -94,18 +150,18 @@
                                             <?php foreach ($data_industri as $industri): ?>
                                                 <tr>
                                                     <td class="align-middle"><?= htmlspecialchars($industri->kategori) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($industri->nama_ketua) ?></td>
                                                     <td class="align-middle">
-                                                        <!-- Tampilkan nama pertama -->
-                                                        <?= htmlspecialchars($industri->nama_pertama) ?>;
-                                                        <!-- Iterasi anggota ilmiah -->
-                                                        <?php if (!empty($industri->anggota_ilmiah)): ?>
-                                                            <?php foreach ($industri->anggota_ilmiah as $ai): ?>
-                                                                <?= htmlspecialchars($ai->nama) ?>;
+                                                        <!-- Iterasi anggota penelitian -->
+                                                        <?php if (!empty($industri->anggota_pengabdian)): ?>
+                                                            <?php foreach ($industri->anggota_pengabdian as $anggota): ?>
+                                                                <?= htmlspecialchars($anggota->nama) ?>;
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </td>
-                                                    <td class="align-middle"><?= $industri->judul_artikel ?></td>
-                                                    <td class="align-middle"><?= $industri->judul_jurnal ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($industri->judul) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($industri->skim) ?></td>
+                                                    <td class="align-middle"><?= 'Rp' . number_format($industri->besar_hibah, 0, ',', '.') ?></td>
                                                     <td class="align-middle"><?= formatDateTime($industri->ins_time) ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -114,14 +170,41 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="biomedis" role="tabpanel" aria-labelledby="biomedis-tab">
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <h5><strong>Total Hibah Teknik Biomedis</strong></h5>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Total Hibah Mandiri</td>
+                                                    <td><?= 'Rp' . number_format($biomedis_data['mandiri'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internal</td>
+                                                    <td><?= 'Rp' . number_format($biomedis_data['internal'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Nasional</td>
+                                                    <td><?= 'Rp' . number_format($biomedis_data['nasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Hibah Internasional</td>
+                                                    <td><?= 'Rp' . number_format($biomedis_data['internasional'], 0, ',', '.') ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table" id="datatable-biomedis">
                                         <thead>
                                             <tr>
                                                 <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Nama</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Artikel</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Judul Jurnal</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Judul Pengabdian</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Skim</th>
+                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
                                                 <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
                                             </tr>
                                         </thead>
@@ -129,18 +212,18 @@
                                             <?php foreach ($data_biomedis as $biomedis): ?>
                                                 <tr>
                                                     <td class="align-middle"><?= htmlspecialchars($biomedis->kategori) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($biomedis->nama_ketua) ?></td>
                                                     <td class="align-middle">
-                                                        <!-- Tampilkan nama pertama -->
-                                                        <?= htmlspecialchars($biomedis->nama_pertama) ?>;
-                                                        <!-- Iterasi anggota ilmiah -->
-                                                        <?php if (!empty($biomedis->anggota_ilmiah)): ?>
-                                                            <?php foreach ($biomedis->anggota_ilmiah as $ai): ?>
-                                                                <?= htmlspecialchars($ai->nama) ?>;
+                                                        <!-- Iterasi anggota penelitian -->
+                                                        <?php if (!empty($biomedis->anggota_pengabdian)): ?>
+                                                            <?php foreach ($biomedis->anggota_pengabdian as $anggota): ?>
+                                                                <?= htmlspecialchars($anggota->nama) ?>;
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </td>
-                                                    <td class="align-middle"><?= $biomedis->judul_artikel ?></td>
-                                                    <td class="align-middle"><?= $biomedis->judul_jurnal ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($biomedis->judul) ?></td>
+                                                    <td class="align-middle"><?= htmlspecialchars($biomedis->skim) ?></td>
+                                                    <td class="align-middle"><?= 'Rp' . number_format($biomedis->besar_hibah, 0, ',', '.') ?></td>
                                                     <td class="align-middle"><?= formatDateTime($biomedis->ins_time) ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
