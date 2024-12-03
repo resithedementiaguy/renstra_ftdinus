@@ -122,12 +122,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Data dari PHP
         var q1Data = <?= json_encode($q1_data) ?>;
         var q2Data = <?= json_encode($q2_data) ?>;
         var q3Data = <?= json_encode($q3_data) ?>;
         var q4Data = <?= json_encode($q4_data) ?>;
+        var totalData = <?= json_encode($total_data) ?>;
+
+        // Hitung persentase
+        var percentages = [
+            (q1Data / totalData) * 100,
+            (q2Data / totalData) * 100,
+            (q3Data / totalData) * 100,
+            (q4Data / totalData) * 100,
+        ];
 
         // Ambil elemen canvas
         var ctx = document.getElementById("chartQ").getContext("2d");
@@ -136,7 +145,7 @@
         var data = {
             labels: ["Q1", "Q2", "Q3", "Q4"],
             datasets: [{
-                data: [q1Data, q2Data, q3Data, q4Data],
+                data: percentages,
                 backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
                 hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
             }]
@@ -154,10 +163,10 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 var label = data.labels[tooltipItem.dataIndex];
                                 var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value;
+                                return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
                             }
                         }
                     }
@@ -165,6 +174,7 @@
             }
         });
     });
+
 </script>
 
 <?php

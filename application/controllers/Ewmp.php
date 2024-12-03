@@ -1165,10 +1165,14 @@ class Ewmp extends CI_Controller
         $data['q3_data'] = $this->Ewmp_model->count_q3_data();
         $data['q4_data'] = $this->Ewmp_model->count_q4_data();
 
+        // Hitung total data
+        $data['total_data'] = $data['q1_data'] + $data['q2_data'] + $data['q3_data'] + $data['q4_data'];
+
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/publikasi_internasional', $data);
         $this->load->view('backend/partials/footer');
     }
+
 
     public function publikasi_nasional()
     {
