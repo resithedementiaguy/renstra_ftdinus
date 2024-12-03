@@ -20,7 +20,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Hasil Pelaporan EWMP</li>
-                <li class="breadcrumb-item active">Publikasi Internasional EWMP</li>
+                <li class="breadcrumb-item active">Hibah Penelitian EWMP</li>
             </ol>
         </nav>
     </div>
@@ -30,11 +30,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Daftar Publikasi Internasional EWMP</strong></h5>
+                        <h5 class="pt-2"><strong>Daftar Hibah Penelitian EWMP</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek Publikasi Internasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengecek Hibah Penelitian Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="row">
                             <div class="col-6">

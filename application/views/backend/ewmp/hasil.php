@@ -109,7 +109,7 @@
                                         <td style="text-align: center;">5</td>
                                         <td>List Kesesuaian Publikasi per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('ewmp/kesesuaian_publikasi') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -117,7 +117,7 @@
                                         <td style="text-align: center;">6</td>
                                         <td>List Kesesuaian Penelitian per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/penelitian_prodi') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('ewmp/kesesuaian_penelitian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -125,7 +125,7 @@
                                         <td style="text-align: center;">7</td>
                                         <td>List Kesesuaian Pengabdian per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('ewmp/kesesuaian_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
