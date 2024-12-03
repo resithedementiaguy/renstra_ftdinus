@@ -733,46 +733,48 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function count_mandiri_penelitian()
+    public function count_mandiri_penelitian($prodi = null)
     {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('penelitian');
-        $this->db->where('kategori', 'Mandiri'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
-
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+        $this->db->select_sum('besar_hibah');
+        $this->db->where('kategori', 'Mandiri');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('penelitian');
+        return $query->row()->besar_hibah ?? 0;
     }
 
-    public function count_internal_penelitian()
+    public function count_internal_penelitian($prodi = null)
     {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('penelitian');
-        $this->db->where('kategori', 'Internal'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
-
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+        $this->db->select_sum('besar_hibah');
+        $this->db->where('kategori', 'Internal');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('penelitian');
+        return $query->row()->besar_hibah ?? 0;
     }
-    public function count_nasional_penelitian()
-    {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('penelitian');
-        $this->db->where('kategori', 'Nasional'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    public function count_nasional_penelitian($prodi = null)
+    {
+        $this->db->select_sum('besar_hibah');
+        $this->db->where('kategori', 'Nasional');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('penelitian');
+        return $query->row()->besar_hibah ?? 0;
     }
-    public function count_internasional_penelitian()
-    {
-        $this->db->select('SUM(besar_hibah) as total_hibah'); // Menggunakan SUM untuk menjumlahkan besar_hibah
-        $this->db->from('penelitian');
-        $this->db->where('kategori', 'Internasional'); // Hanya menghitung kategori Mandiri
-        $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->total_hibah : 0; // Jika hasil ada, kembalikan total_hibah,
+    public function count_internasional_penelitian($prodi = null)
+    {
+        $this->db->select_sum('besar_hibah');
+        $this->db->where('kategori', 'Internasional');
+        if ($prodi) {
+            $this->db->where('prodi', $prodi);
+        }
+        $query = $this->db->get('penelitian');
+        return $query->row()->besar_hibah ?? 0;
     }
 
     public function get_hibah_pengabdian()
@@ -856,4 +858,63 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_penelitian_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('penelitian');
+        $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('penelitian');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('penelitian');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('pengabdian');
+        $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('pengabdian');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('pengabdian');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

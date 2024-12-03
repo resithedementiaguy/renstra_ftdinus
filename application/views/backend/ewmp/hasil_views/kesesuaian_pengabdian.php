@@ -17,7 +17,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Hasil Pelaporan EWMP</li>
-                <li class="breadcrumb-item active">Kesesuaian Publikasi Program Studi</li>
+                <li class="breadcrumb-item active">Kesesuaian Pengabdian Program Studi</li>
             </ol>
         </nav>
     </div>
@@ -27,11 +27,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Daftar Kesesuaian Publikasi Program Studi</strong></h5>
+                        <h5 class="pt-2"><strong>Daftar Kesesuaian Pengabdian Program Studi</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek Kesesuaian Publikasi Program Studi Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengecek Kesesuaian Pengabdian Program Studi Fakultas Teknik UDINUS Semarang
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
