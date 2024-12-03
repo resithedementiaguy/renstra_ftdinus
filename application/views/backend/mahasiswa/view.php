@@ -27,7 +27,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="<?= base_url('mahasiswa/add') ?>" type="button" class="btn btn-primary mb-4">Tambah Data Mahasiswa</a>
+                                <a href="<?= base_url('mahasiswa/create_view') ?>" type="button" class="btn btn-primary mb-4">Tambah Data Mahasiswa</a>
                             </div>
                         </div>
                         <div class="table-responsive">

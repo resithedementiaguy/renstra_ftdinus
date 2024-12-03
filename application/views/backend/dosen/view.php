@@ -35,8 +35,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-start align-middle" style="width: 200px;">No</th>
-                                        <th class="text-start align-middle" style="width: 200px;">Nama Dosen</th>
+                                        <th class="text-start align-middle" style="width: 200px;">Tahun</th>
                                         <th class="text-start align-middle" style="width: 200px;">Prodi</th>
+                                        <th class="text-start align-middle" style="width: 200px;">Jumlah Dosen</th>
                                         <th class="text-start align-middle" style="width: 200px;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -44,9 +45,10 @@
                                     <?php $no = 1; ?>
                                     <?php foreach ($dosen as $dsn): ?>
                                         <tr>
-                                            <td class="align-middle"><?= $no++ ?></td>
-                                            <td class="align-middle"><?= htmlspecialchars($dsn->nama_dosen) ?></td>
+                                            <td class="align-middle text-start"><?= $no++ ?></td>
+                                            <td class="align-middle text-start"><?= htmlspecialchars($dsn->tahun) ?></td>
                                             <td class="align-middle"><?= htmlspecialchars($dsn->prodi) ?></td>
+                                            <td class="align-middle text-start"><?= htmlspecialchars($dsn->jumlah) ?></td>
                                             <td class="align-middle">
                                                 <a href="<?= site_url('dosen/detail/' . htmlspecialchars($dsn->id)) ?>" class="btn btn-sm btn-warning">
                                                     <i class="bi bi-journal-text"></i> Edit
