@@ -75,13 +75,13 @@
                                     <table class="table" id="datatable-elektro">
                                         <thead>
                                             <tr>
-                                                <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
+                                                <th class="text-start align-middle" style="width: 300px;">Kategori Publikasi</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Judul Penelitian</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Skim</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
-                                                <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
+                                                <th class="text-start align-middle" style="width: 200px;">Biaya</th>
+                                                <th class="text-start align-middle" style="width: 500px;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,7 +100,17 @@
                                                     <td class="align-middle"><?= htmlspecialchars($elektro->judul) ?></td>
                                                     <td class="align-middle"><?= htmlspecialchars($elektro->skim) ?></td>
                                                     <td class="align-middle"><?= 'Rp' . number_format($elektro->besar_hibah, 0, ',', '.') ?></td>
-                                                    <td class="align-middle"><?= formatDateTime($elektro->ins_time) ?></td>
+                                                    <td class="align-middle">
+                                                        <select class="form-select" name="kesesuaian_penelitian" id="kesesuaian_penelitian_<?= $elektro->id ?>" onchange="updateKesesuaian(<?= $elektro->id ?>)" required>
+                                                            <?php if ($elektro->kesesuaian) { ?>
+                                                                <option value="" selected hidden><?= $elektro->kesesuaian ?></option>
+                                                            <?php } else { ?>
+                                                                <option value="" selected hidden>Pilih Kesesuaian</option>
+                                                            <?php } ?>
+                                                            <option value="Kurang Sesuai">Kurang Sesuai</option>
+                                                            <option value="Sesuai">Sesuai</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -137,13 +147,13 @@
                                     <table class="table" id="datatable-industri">
                                         <thead>
                                             <tr>
-                                                <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
+                                                <th class="text-start align-middle" style="width: 300px;">Kategori Publikasi</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Judul Penelitian</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Skim</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
-                                                <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
+                                                <th class="text-start align-middle" style="width: 200px;">Biaya</th>
+                                                <th class="text-start align-middle" style="width: 500px;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -162,7 +172,17 @@
                                                     <td class="align-middle"><?= htmlspecialchars($industri->judul) ?></td>
                                                     <td class="align-middle"><?= htmlspecialchars($industri->skim) ?></td>
                                                     <td class="align-middle"><?= 'Rp' . number_format($industri->besar_hibah, 0, ',', '.') ?></td>
-                                                    <td class="align-middle"><?= formatDateTime($industri->ins_time) ?></td>
+                                                    <td class="align-middle">
+                                                        <select class="form-select" name="kesesuaian_penelitian" id="kesesuaian_penelitian_<?= $industri->id ?>" onchange="updateKesesuaian(<?= $industri->id ?>)" required>
+                                                            <?php if ($industri->kesesuaian) { ?>
+                                                                <option value="" selected hidden><?= $industri->kesesuaian ?></option>
+                                                            <?php } else { ?>
+                                                                <option value="" selected hidden>Pilih Kesesuaian</option>
+                                                            <?php } ?>
+                                                            <option value="Kurang Sesuai">Kurang Sesuai</option>
+                                                            <option value="Sesuai">Sesuai</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -199,13 +219,13 @@
                                     <table class="table" id="datatable-biomedis">
                                         <thead>
                                             <tr>
-                                                <th class="text-start align-middle" style="width: 350px;">Kategori Publikasi</th>
+                                                <th class="text-start align-middle" style="width: 300px;">Kategori Publikasi</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Ketua</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Nama Anggota</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Judul Penelitian</th>
                                                 <th class="text-start align-middle" style="width: 350px;">Skim</th>
-                                                <th class="text-start align-middle" style="width: 350px;">Biaya</th>
-                                                <th class="text-start align-middle" style="width: 250px;">Waktu Pengisian</th>
+                                                <th class="text-start align-middle" style="width: 200px;">Biaya</th>
+                                                <th class="text-start align-middle" style="width: 500px;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -224,7 +244,17 @@
                                                     <td class="align-middle"><?= htmlspecialchars($biomedis->judul) ?></td>
                                                     <td class="align-middle"><?= htmlspecialchars($biomedis->skim) ?></td>
                                                     <td class="align-middle"><?= 'Rp' . number_format($biomedis->besar_hibah, 0, ',', '.') ?></td>
-                                                    <td class="align-middle"><?= formatDateTime($biomedis->ins_time) ?></td>
+                                                    <td class="align-middle">
+                                                        <select class="form-select" name="kesesuaian_penelitian" id="kesesuaian_penelitian_<?= $biomedis->id ?>" onchange="updateKesesuaian(<?= $biomedis->id ?>)" required>
+                                                            <?php if ($biomedis->kesesuaian) { ?>
+                                                                <option value="" selected hidden><?= $biomedis->kesesuaian ?></option>
+                                                            <?php } else { ?>
+                                                                <option value="" selected hidden>Pilih Kesesuaian</option>
+                                                            <?php } ?>
+                                                            <option value="Kurang Sesuai">Kurang Sesuai</option>
+                                                            <option value="Sesuai">Sesuai</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -245,6 +275,25 @@
     </section>
 </main>
 
+<!-- Modal Sukses -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="successModalLabel">Sukses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Data berhasil diperbarui!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script>
     new DataTable('#datatable-elektro');
@@ -254,6 +303,29 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function updateKesesuaian(id) {
+        const kesesuaian = document.getElementById(`kesesuaian_penelitian_${id}`).value;
+
+        $.ajax({
+            url: '<?= base_url("ewmp/update_kesesuaian_penelitian/") ?>' + id,
+            method: 'POST',
+            data: { kesesuaian_penelitian: kesesuaian },
+            success: function (response) {
+                if (response === 'success') {
+                    $('#successModal').modal('show');
+                } else {
+                    alert('Terjadi kesalahan saat memperbarui data!');
+                }
+            },
+            error: function () {
+                alert('Gagal menghubungi server!');
+            }
+        });
+    }
+
+</script>
 
 
 <?php
