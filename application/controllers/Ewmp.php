@@ -1141,27 +1141,6 @@ class Ewmp extends CI_Controller
         redirect('ewmp');
     }
 
-    public function generate_pdf()
-    {
-        // Buat instance Dompdf
-        $dompdf = new Dompdf();
-
-        // Load view sebagai HTML
-        $html = $this->load->view('backend/ewmp/pdf/cetak_ewmp', true); // Pass true to get the output as a string
-
-        // Load HTML content ke Dompdf
-        $dompdf->loadHtml($html);
-
-        // Set ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render PDF
-        $dompdf->render();
-
-        // Output PDF (1 = download, 0 = preview)
-        $dompdf->stream("renstra.pdf", array("Attachment" => 0));
-    }
-
     public function publikasi_internasional()
     {
         $data['pub_internasional'] = $this->Ewmp_model->get_publikasi_internasional();

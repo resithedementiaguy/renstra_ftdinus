@@ -6,11 +6,8 @@
     .chart-container {
         display: flex;
         justify-content: center;
-        /* Memusatkan secara horizontal */
         align-items: center;
-        /* Memusatkan secara vertikal */
         height: 100%;
-        /* Pastikan tinggi kolom tercakup */
     }
 </style>
 
@@ -36,7 +33,8 @@
                             Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
+                            <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
+                            <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi</a>
                         </div>
                         <div class="row mb-4">
                             <div class="col-6" style="height: 300px;">
@@ -143,46 +141,45 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    // Data dari PHP
-    var persentaseNasional = <?= json_encode($persentase_nasional) ?>;
-    var persentaseInternasional = <?= json_encode($persentase_internasional) ?>;
+    document.addEventListener("DOMContentLoaded", function() {
+        // Data dari PHP
+        var persentaseNasional = <?= json_encode($persentase_nasional) ?>;
+        var persentaseInternasional = <?= json_encode($persentase_internasional) ?>;
 
-    // Ambil elemen canvas
-    var ctx = document.getElementById("chartPublikasi").getContext("2d");
+        // Ambil elemen canvas
+        var ctx = document.getElementById("chartPublikasi").getContext("2d");
 
-    // Data untuk Chart.js
-    var data = {
-        labels: ["Nasional", "Internasional"],
-        datasets: [{
-            data: [persentaseNasional, persentaseInternasional],
-            backgroundColor: ["#FF6384", "#36A2EB"],
-            hoverBackgroundColor: ["#FF6384", "#36A2EB"]
-        }]
-    };
+        // Data untuk Chart.js
+        var data = {
+            labels: ["Nasional", "Internasional"],
+            datasets: [{
+                data: [persentaseNasional, persentaseInternasional],
+                backgroundColor: ["#FF6384", "#36A2EB"],
+                hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+            }]
+        };
 
-    // Membuat grafik pie
-    var myPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top', // Menampilkan legend di atas
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            var label = data.labels[tooltipItem.dataIndex];
-                            var value = data.datasets[0].data[tooltipItem.dataIndex];
-                            return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
+        // Membuat grafik pie
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Menampilkan legend di atas
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var label = data.labels[tooltipItem.dataIndex];
+                                var value = data.datasets[0].data[tooltipItem.dataIndex];
+                                return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
+                            }
                         }
                     }
                 }
             }
-        }
+        });
     });
-});
-
 </script>
