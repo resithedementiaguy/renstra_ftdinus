@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         p {
@@ -173,67 +173,71 @@
     </div>
 
     <table class="table">
-        <thead class="table-header">
-            <tr class="table-header-row" style="border: 1px solid;">
-                <th class="text-center align-middle" rowspan="2" style="width: 50px; border: 1px solid;">No.</th>
-                <th class="text-center align-middle" rowspan="2" colspan="2" style="width: 100px; border: 1px solid;">Butir</th>
-                <th class="text-start align-middle" rowspan="2" style="width: 250px; border: 1px solid;">Indikator Kinerja Utama</th>
-                <th class="text-center align-middle" colspan="<?php echo count($years); ?>" style="width: 300px; border: 1px solid;">Tahun</th>
+        <thead style="border: 1px solid #072a75 !important;">
+            <tr class="table-header" style="border: 1px solid #072a75 !important;">
+                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 50px;">No.</th>
+                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid; width: 170px;">Butir</th>
+                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 250px;">Indikator Kinerja Utama</th>
+                <th class="table-header-row" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid; width: 500px; text-align: center;">Tahun</th>
             </tr>
-            <tr style="text-align: center;">
+            <tr class="table-header" style="border: 1px solid #072a75 !important;">
                 <?php foreach ($years as $year): ?>
-                    <th style="border: 1px solid;"><?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid; text-align: center;"><?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid; text-align: center;">Capaian <?php echo $year; ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($level1 as $key => $level1_item): ?>
-                <tr>
-                    <td><?php echo $level1_item->no_iku; ?></td>
-                    <td colspan="<?php echo count($years) + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
+                <tr style="border: 1px solid;">
+                    <td style="border: 1px solid;"><?php echo $level1_item->no_iku; ?></td>
+                    <td style="border: 1px solid;" colspan="<?php echo count($years) * 2 + 3; ?>"><?php echo $level1_item->isi_iku; ?></td>
                 </tr>
                 <?php
                 $level2 = $this->Mod_iku->get_level2($level1_item->id);
                 foreach ($level2 as $level2_item):
                 ?>
-                    <tr>
-                        <td></td>
-                        <td><?php echo $level2_item->no_iku; ?></td>
-                        <td colspan="<?php echo count($years) + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
+                    <tr style="border: 1px solid;">
+                        <td style="border: 1px solid;"></td>
+                        <td style="border: 1px solid;"><?php echo $level2_item->no_iku; ?></td>
+                        <td style="border: 1px solid;" colspan="<?php echo count($years) * 2 + 2; ?>"><?php echo $level2_item->isi_iku; ?></td>
                     </tr>
                     <?php
                     $level3 = $this->Mod_iku->get_level3($level2_item->id);
                     foreach ($level3 as $level3_item):
                         $target_level3 = $this->Mod_iku->get_target_level3($level3_item->id);
+                        $capaian_level3 = $this->Mod_iku->get_capaian_level3($level3_item->id);
                     ?>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td><?php echo $level3_item->no_iku; ?></td>
-
-                            <?php if ($level3_item->ket_target === 'Iya'): ?>
-                                <td><?php echo $level3_item->isi_iku; ?></td>
-                                <?php foreach ($years as $year):
-                                    $value = isset($target_level3[$year]) ? $target_level3[$year] : '-'; ?>
-                                    <td><?php echo $value; ?></td>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <td colspan="<?php echo count($years) + 1; ?>"><?php echo $level3_item->isi_iku; ?></td>
-                            <?php endif; ?>
+                        <tr style="border: 1px solid;">
+                            <td style="border: 1px solid;"></td>
+                            <td style="border: 1px solid;"></td>
+                            <td style="border: 1px solid;"><?php echo $level3_item->no_iku; ?></td>
+                            <td style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
+                            <?php foreach ($years as $year):
+                                $target_value = isset($target_level3[$year]) ? $target_level3[$year] : '-';
+                                $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '-';
+                            ?>
+                                <td style="border: 1px solid;"><?php echo $target_value; ?></td>
+                                <td style="border: 1px solid;"><?php echo $capaian_value; ?></td>
+                            <?php endforeach; ?>
                         </tr>
                         <?php
                         $level4 = $this->Mod_iku->get_level4($level3_item->id);
                         foreach ($level4 as $level4_item):
                             $target_level4 = $this->Mod_iku->get_target_level4($level4_item->id);
+                            $capaian_level4 = $this->Mod_iku->get_capaian_level4($level4_item->id);
                         ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td style="text-align: right;"><?php echo $level4_item->no_iku; ?></td>
-                                <td style="text-align: right;"><?php echo $level4_item->isi_iku; ?></td>
+                            <tr style="border: 1px solid;">
+                                <td style="border: 1px solid;"></td>
+                                <td style="border: 1px solid;"></td>
+                                <td style="border: 1px solid; text-align: right;"><?php echo $level4_item->no_iku; ?></td>
+                                <td style="border: 1px solid; text-align: right;"><?php echo $level4_item->isi_iku; ?></td>
                                 <?php foreach ($years as $year):
-                                    $value = isset($target_level4[$year]) ? $target_level4[$year] : '-'; ?>
-                                    <td><?php echo $value; ?></td>
+                                    $target_value = isset($target_level4[$year]) ? $target_level4[$year] : '-';
+                                    $capaian_value = isset($capaian_level4[$year]) ? $capaian_level4[$year] : '-';
+                                ?>
+                                    <td style="border: 1px solid;"><?php echo $target_value; ?></td>
+                                    <td style="border: 1px solid;"><?php echo $capaian_value; ?></td>
                                 <?php endforeach; ?>
                             </tr>
             <?php endforeach;

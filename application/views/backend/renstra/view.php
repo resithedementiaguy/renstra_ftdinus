@@ -23,21 +23,21 @@
                             <div>
                                 <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
                             </div>
-                            <a href="<?= base_url('renstra/generate_pdf') ?>" type="button" target="_blank" class="btn btn-danger mb-4">Cetak PDF</a>
+                            <a href="<?= base_url('cetak/generate_pdf_renstra') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered" style="border: 1px solid;">
                                 <thead class="table-primary" style="border: 1px solid #072a75 !important;">
                                     <tr style="border: 1px solid #072a75 !important;">
-                                        <th class="text-center align-middle" rowspan="2" style="border: 1px solid;width: 50px;">No.</th>
-                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid;width: 170px;">Butir</th>
-                                        <th class="text-start align-middle" rowspan="2" style="border: 1px solid;width: 250px;">Indikator Kinerja Utama</th>
-                                        <th class="text-center align-middle" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid;width: 500px;">Tahun</th>
+                                        <th class="text-center align-middle" rowspan="2" style="border: 1px solid; width: 50px;">No.</th>
+                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid; width: 170px;">Butir</th>
+                                        <th class="text-start align-middle" rowspan="2" style="border: 1px solid; width: 250px;">Indikator Kinerja Utama</th>
+                                        <th class="text-center align-middle" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid; width: 500px;">Tahun</th>
                                     </tr>
                                     <tr class="text-center align-middle" style="border: 1px solid #072a75 !important;">
                                         <?php foreach ($years as $year): ?>
-                                            <th style="border: 1px solid;"><?php echo $year; ?></th>
-                                            <th style="border: 1px solid;">Capaian <?php echo $year; ?></th>
+                                            <th style="border: 1px solid; min-width: 100px; width: auto;" class="text-center align-middle"><?php echo $year; ?></th>
+                                            <th style="border: 1px solid; min-width: 100px; width: auto;" class="text-center align-middle">Capaian <?php echo $year; ?></th>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
