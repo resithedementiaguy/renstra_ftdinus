@@ -170,6 +170,7 @@
             <?php endforeach;?>
         </tbody>
     </table>
+
     <h3>2. Rekapitulasi Pengabdian 2021-2022</h3>
     <table class="table">
         <thead class="table-header">
@@ -183,7 +184,7 @@
         </thead>
         <?php $no=1;?>
         <tbody>
-            <?php foreach($penelitian_elektro as $elektro) : ?>
+            <?php foreach($pengabdian_elektro as $elektro) : ?>
                 <tr>
                     <td><?= $no++?></td>
                     <td><?= $elektro->judul?></td>
@@ -192,7 +193,7 @@
                     <td>S1 - <?= $elektro->prodi?></td>
                 </tr>
             <?php endforeach;?>
-            <?php foreach($penelitian_industri as $industri) : ?>
+            <?php foreach($pengabdian_industri as $industri) : ?>
                 <tr>
                     <td><?= $no++?></td>
                     <td><?= $industri->judul?></td>
@@ -201,7 +202,7 @@
                     <td>S1 - <?= $industri->prodi?></td>
                 </tr>
             <?php endforeach;?>
-            <?php foreach($penelitian_biomedis as $biomedis) : ?>
+            <?php foreach($pengabdian_biomedis as $biomedis) : ?>
                 <tr>
                     <td><?= $no++?></td>
                     <td><?= $biomedis->judul?></td>

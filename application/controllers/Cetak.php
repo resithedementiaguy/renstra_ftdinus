@@ -62,8 +62,8 @@ class Cetak extends CI_Controller
         $data['pengabdian_elektro'] = $this->Ewmp_model->get_pengabdian_elektro();
         log_message('debug', 'Elektro pengabdian count: ' . count($data['pengabdian_elektro']));
 
-        $data['pengandian_industri'] = $this->Ewmp_model->get_pengabdian_industri();
-        log_message('debug', 'Industri pengabdian count: ' . count($data['pengandian_industri']));
+        $data['pengabdian_industri'] = $this->Ewmp_model->get_pengabdian_industri();
+        log_message('debug', 'Industri pengabdian count: ' . count($data['pengabdian_industri']));
 
         $data['pengabdian_biomedis'] = $this->Ewmp_model->get_pengabdian_biomedis();
         log_message('debug', 'Biomedis pengabdian count: ' . count($data['pengabdian_biomedis']));

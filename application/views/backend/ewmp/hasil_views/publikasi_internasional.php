@@ -36,11 +36,9 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Publikasi Internasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-6" style="height: 300px;">
-                                <div class="chart-container">
-                                    <canvas id="chartQ" width="400" height="400"></canvas>
-                                </div>
+                                <div id="chartQ"></div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
@@ -122,7 +120,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
         // Data dari PHP
         var q1Data = <?= json_encode($q1_data) ?>;
         var q2Data = <?= json_encode($q2_data) ?>;
@@ -138,43 +136,30 @@
             (q4Data / totalData) * 100,
         ];
 
-        // Ambil elemen canvas
-        var ctx = document.getElementById("chartQ").getContext("2d");
-
-        // Data untuk Chart.js
-        var data = {
+        // Data untuk ApexCharts
+        new ApexCharts(document.querySelector("#chartQ"), {
+            series: percentages,
+            chart: {
+                height: 350,
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                },
+            },
             labels: ["Q1", "Q2", "Q3", "Q4"],
-            datasets: [{
-                data: percentages,
-                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
-            }]
-        };
-
-        // Membuat grafik pie
-        var myPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
+            colors: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                var label = data.labels[tooltipItem.dataIndex];
-                                var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
-                            }
-                        }
-                    }
-                }
-            }
-        });
+                },
+            },
+            legend: {
+                position: 'top', // Menampilkan legend di atas
+            },
+        }).render();
     });
-
 </script>
 
 <?php

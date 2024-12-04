@@ -36,11 +36,9 @@
                             <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
                             <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi</a>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-5">
                             <div class="col-6" style="height: 300px;">
-                                <div class="chart-container">
-                                    <canvas id="chartPublikasi" width="400" height="400"></canvas>
-                                </div>
+                                <div id="pieChart"></div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
@@ -141,45 +139,33 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", () => {
         // Data dari PHP
         var persentaseNasional = <?= json_encode($persentase_nasional) ?>;
         var persentaseInternasional = <?= json_encode($persentase_internasional) ?>;
 
-        // Ambil elemen canvas
-        var ctx = document.getElementById("chartPublikasi").getContext("2d");
-
-        // Data untuk Chart.js
-        var data = {
-            labels: ["Nasional", "Internasional"],
-            datasets: [{
-                data: [persentaseNasional, persentaseInternasional],
-                backgroundColor: ["#FF6384", "#36A2EB"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB"]
-            }]
-        };
-
-        // Membuat grafik pie
-        var myPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top', // Menampilkan legend di atas
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = data.labels[tooltipItem.dataIndex];
-                                var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
-                            }
-                        }
+        // Data untuk ApexCharts
+        new ApexCharts(document.querySelector("#pieChart"), {
+            series: [persentaseNasional, persentaseInternasional],
+            chart: {
+                height: 350,
+                type: 'pie',
+                toolbar: {
+                    show: true
+                }
+            },
+            labels: ['Nasional', 'Internasional'],
+            colors: ["#FF6384", "#36A2EB"],
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
                     }
                 }
+            },
+            legend: {
+                position: 'top' // Menampilkan legend di atas
             }
-        });
+        }).render();
     });
 </script>
