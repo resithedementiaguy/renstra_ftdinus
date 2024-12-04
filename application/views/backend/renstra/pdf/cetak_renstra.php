@@ -174,16 +174,16 @@
 
     <table class="table">
         <thead style="border: 1px solid #072a75 !important;">
-            <tr class="table-header-row" style="border: 1px solid #072a75 !important;">
-                <th rowspan="2" style="border: 1px solid; width: 50px;">No.</th>
-                <th rowspan="2" colspan="2" style="border: 1px solid; width: 170px;">Butir</th>
-                <th rowspan="2" style="border: 1px solid; width: 250px;">Indikator Kinerja Utama</th>
-                <th colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid; width: 500px;">Tahun</th>
+            <tr class="table-header" style="border: 1px solid #072a75 !important;">
+                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 50px;">No.</th>
+                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid; width: 170px;">Butir</th>
+                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 250px;">Indikator Kinerja Utama</th>
+                <th class="table-header-row" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid; width: 500px; text-align: center;">Tahun</th>
             </tr>
-            <tr style="border: 1px solid #072a75 !important;">
+            <tr class="table-header" style="border: 1px solid #072a75 !important;">
                 <?php foreach ($years as $year): ?>
-                    <th style="border: 1px solid;"><?php echo $year; ?></th>
-                    <th style="border: 1px solid;">Capaian <?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid; text-align: center;"><?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid; text-align: center;">Capaian <?php echo $year; ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
