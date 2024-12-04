@@ -136,17 +136,38 @@
                 <th style="width: 100px;">Judul Penelitian</th>
                 <th style="width: 50px;">Skim Penelitian</th>
                 <th style="width: 50px;">Kesesuaian</th>
-                <th style="width: 50px;">Prodi</th>
+                <th style="width: 60px;">Prodi</th>
             </tr>
         </thead>
+        <?php $no=1;?>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>"The Heavy Metal Caracteristics (Pb And Cu) In Wideng Crab Tissue From The Gonjol River, Demak”</td>
-                <td>Hibah DIKTI</td>
-                <td>Sesuai</td>
-                <td>S1 - Teknik Industri</td>
-            </tr>
+            <?php foreach($penelitian_elektro as $elektro) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $elektro->judul?></td>
+                    <td><?= $elektro->skim?></td>
+                    <td><?= $elektro->kesesuaian?></td>
+                    <td>S1 - <?= $elektro->prodi?></td>
+                </tr>
+            <?php endforeach;?>
+            <?php foreach($penelitian_industri as $industri) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $industri->judul?></td>
+                    <td><?= $industri->skim?></td>
+                    <td><?= $industri->kesesuaian?></td>
+                    <td>S1 - <?= $industri->prodi?></td>
+                </tr>
+            <?php endforeach;?>
+            <?php foreach($penelitian_biomedis as $biomedis) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $biomedis->judul?></td>
+                    <td><?= $biomedis->skim?></td>
+                    <td><?= $biomedis->kesesuaian?></td>
+                    <td>S1 - <?= $biomedis->prodi?></td>
+                </tr>
+            <?php endforeach;?>
         </tbody>
     </table>
     <h3>2. Rekapitulasi Pengabdian 2021-2022</h3>
@@ -154,20 +175,41 @@
         <thead class="table-header">
             <tr>
                 <th style="width: 10px;">No</th>
-                <th style="width: 100px;">Judul Penelitian</th>
-                <th style="width: 50px;">Skim Penelitian</th>
+                <th style="width: 100px;">Judul Pengabdian</th>
+                <th style="width: 50px;">Skim Pengabdian</th>
                 <th style="width: 50px;">Kesesuaian</th>
-                <th style="width: 50px;">Prodi</th>
+                <th style="width: 60px;">Prodi</th>
             </tr>
         </thead>
+        <?php $no=1;?>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>"The Heavy Metal Caracteristics (Pb And Cu) In Wideng Crab Tissue From The Gonjol River, Demak”</td>
-                <td>Hibah DIKTI</td>
-                <td>Sesuai</td>
-                <td>S1 - Teknik Industri</td>
-            </tr>
+            <?php foreach($penelitian_elektro as $elektro) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $elektro->judul?></td>
+                    <td><?= $elektro->skim?></td>
+                    <td><?= $elektro->kesesuaian?></td>
+                    <td>S1 - <?= $elektro->prodi?></td>
+                </tr>
+            <?php endforeach;?>
+            <?php foreach($penelitian_industri as $industri) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $industri->judul?></td>
+                    <td><?= $industri->skim?></td>
+                    <td><?= $industri->kesesuaian?></td>
+                    <td>S1 - <?= $industri->prodi?></td>
+                </tr>
+            <?php endforeach;?>
+            <?php foreach($penelitian_biomedis as $biomedis) : ?>
+                <tr>
+                    <td><?= $no++?></td>
+                    <td><?= $biomedis->judul?></td>
+                    <td><?= $biomedis->skim?></td>
+                    <td><?= $biomedis->kesesuaian?></td>
+                    <td>S1 - <?= $biomedis->prodi?></td>
+                </tr>
+            <?php endforeach;?>
         </tbody>
     </table>
 </body>
