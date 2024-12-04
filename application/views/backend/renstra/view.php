@@ -3,12 +3,13 @@
         position: sticky;
         top: 0;
         z-index: 10;
+        border: 1px solid black !important;
     }
 
     table thead th {
         background-color: #072a75;
         color: #fff;
-        border: 1px solid black;
+        border: 1px solid black !important;
     }
 </style>
 
@@ -39,16 +40,16 @@
                             </div>
                             <a href="<?= base_url('cetak/generate_pdf_renstra') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
                         </div>
-                        <div class="table-responsive" style="overflow-x: auto; max-height: 800px;"> <!-- Membatasi tinggi tabel dengan scroll -->
-                            <table class="table table-bordered" style="border: 1px solid;">
+                        <div class="table-responsive" style="overflow-x: auto; max-height: 800px;">
+                            <table class="table table-bordered" style="border: 1px solid black;">
                                 <thead style="border: 1px solid black; background-color: #072a75 !important; color: #fff !important;">
-                                    <tr>
+                                    <tr style="border: 1px solid black !important;">
                                         <th class="text-center align-middle" rowspan="2" style="border: 1px solid black; width: 50px; background-color: #092b6b !important; color: #fff !important;">No.</th>
                                         <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid black; width: 170px; background-color: #092b6b !important; color: #fff !important;">Butir</th>
                                         <th class="text-start align-middle" rowspan="2" style="border: 1px solid black; width: 250px; background-color: #092b6b !important; color: #fff !important;">Indikator Kinerja Utama</th>
                                         <th class="text-center align-middle" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid black; width: 500px; background-color: #092b6b !important; color: #fff !important;">Tahun</th>
                                     </tr>
-                                    <tr>
+                                    <tr style="border: 1px solid black !important;">
                                         <?php foreach ($years as $year): ?>
                                             <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #092b6b !important; color: #fff !important;" class="text-center align-middle"><?php echo $year; ?></th>
                                             <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #092b6b !important; color: #fff !important;" class="text-center align-middle">Capaian <?php echo $year; ?></th>
