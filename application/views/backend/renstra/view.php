@@ -1,14 +1,43 @@
 <style>
+    /* Ensure table header remains opaque and has consistent borders when scrolled */
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
     table thead {
         position: sticky;
         top: 0;
         z-index: 10;
+        background-color: #072a75 !important;
+    }
+
+    table thead tr {
+        background-color: #072a75 !important;
     }
 
     table thead th {
-        background-color: #072a75;
-        color: #fff;
-        border: 1px solid black;
+        background-color: #072a75 !important;
+        color: #fff !important;
+        border: 1px solid black !important;
+        padding: 8px;
+        position: sticky;
+        top: 0;
+        z-index: 11;
+    }
+
+    /* Ensure first row of headers maintains border and color */
+    table thead tr:first-child th {
+        background-color: #092b6b !important;
+        border: 1px solid black !important;
+        color: #fff !important;
+    }
+
+    /* Ensure second row of headers maintains border and color */
+    table thead tr:nth-child(2) th {
+        background-color: #092b6b !important;
+        border: 1px solid black !important;
+        color: #fff !important;
     }
 </style>
 
