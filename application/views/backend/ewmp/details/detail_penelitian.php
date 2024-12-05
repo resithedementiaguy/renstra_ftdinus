@@ -4,7 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Pelaporan EWMP</li>
-                <li class="breadcrumb-item active">Detail</li>
+                <li class="breadcrumb-item active">Detail Penelitian</li>
             </ol>
         </nav>
     </div>
@@ -14,17 +14,15 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP</strong></h5>
+                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP - Penelitian</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek detail Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengecek detail pelaporan penelitian Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
-                            </div>
-                        </div>
+                        <!-- <div class="d-flex justify-content-between">
+                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
+                        </div> -->
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
@@ -54,9 +52,9 @@
                                 <tr>
                                     <th>Nama Anggota</th>
                                     <td>
-                                        <?php foreach($anggota_penelitian as $ap):?>
-                                            <?= $ap->nama?> - <?= $ap->prodi?>;
-                                        <?php endforeach;?>
+                                        <?php foreach ($anggota_penelitian as $ap): ?>
+                                            <?= $ap->nama ?> - <?= $ap->prodi ?>;
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,27 +76,33 @@
                                 <tr>
                                     <th>Nama Mahasiswa yang Terlibat</th>
                                     <td>
-                                        <?php foreach($mahasiswa_penelitian as $mp):?>
-                                            <?= $mp->nama?> (<?= $mp->nim?>);
-                                        <?php endforeach;?>
+                                        <?php foreach ($mahasiswa_penelitian as $mp): ?>
+                                            <?= $mp->nama ?> (<?= $mp->nim ?>);
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>File Kontrak Penelitian</th>
                                     <td>
-                                        <a href="<?= base_url('./uploads/penelitian/' . $penelitian['kontrak']) ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        <a href="<?= $penelitian['kontrak'] ?>" target="_blank" class="btn btn-danger">
+                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>File Laporan Maju</th>
                                     <td>
-                                        <a href="<?= base_url('./uploads/penelitian/' . $penelitian['laporan_maju']) ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        <a href="<?= $penelitian['laporan_maju'] ?>" target="_blank" class="btn btn-danger">
+                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        </a>
                                     </td>
                                 </tr>
                             </table>
-                            <div class="text-end">
-                                <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-end">
+                            <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
                         </div>
                     </div>
                 </div>

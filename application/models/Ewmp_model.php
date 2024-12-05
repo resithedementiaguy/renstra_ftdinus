@@ -856,7 +856,7 @@ class Ewmp_model extends CI_Model
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Biomedis');
         $this->db->order_by('id', 'DESC');
-        $query = $this->db->get(); 
+        $query = $this->db->get();
         return $query->result();
     }
 

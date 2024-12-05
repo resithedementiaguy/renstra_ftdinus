@@ -172,17 +172,15 @@
                                     </div>
                                 </div> -->
                                 <div class="row mb-3">
-                                    <label for="kontrak_penelitian" class="col-sm-2 col-form-label">Unggah Kontrak Penelitian</label>
+                                    <label for="kontrak_penelitian" class="col-sm-2 col-form-label">Link Google Drive Kontrak Penelitian</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="kontrak_penelitian" id="kontrak_penelitian">
-                                        Upload 1 file yang didukung: PDF. Maks 100 MB.
+                                        <textarea class="form-control" style="height: 100px" name="kontrak_penelitian" id="kontrak_penelitian" placeholder="Masukkan link kontrak penelitian"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_maju_penelitian" class="col-sm-2 col-form-label">Unggah Laporan Kemajuan / Akhir Penelitian</label>
+                                    <label for="laporan_maju_penelitian" class="col-sm-2 col-form-label">Link Google Drive Laporan Kemajuan / Akhir Penelitian</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_maju_penelitian" id="laporan_maju_penelitian">
-                                        Upload 1 file yang didukung: PDF. Maks 100 MB.
+                                        <textarea class="form-control" style="height: 100px" name="laporan_maju_penelitian" id="laporan_maju_penelitian" placeholder="Masukkan link laporan maju penelitian"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -278,17 +276,15 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="kontrak_pengabdian" class="col-sm-2 col-form-label">Unggah Kontrak Pengabdian</label>
+                                    <label for="kontrak_pengabdian" class="col-sm-2 col-form-label">Link Google Drive Kontrak Pengabdian</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="kontrak_pengabdian" id="kontrak_pengabdian">
-                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
+                                        <textarea class="form-control" style="height: 100px" name="kontrak_pengabdian" id="kontrak_pengabdian" placeholder="Masukkan link kontrak pengabdian"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_pengabdian" class="col-sm-2 col-form-label">Unggah Laporan Pengabdian</label>
+                                    <label for="laporan_pengabdian" class="col-sm-2 col-form-label">Link Google Drive Laporan Pengabdian</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_pengabdian" id="laporan_pengabdian">
-                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
+                                        <textarea class="form-control" style="height: 100px" name="laporan_pengabdian" id="laporan_pengabdian" placeholder="Masukkan link laporan pengabdian"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -445,10 +441,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="bukti_loa_prosiding" class="col-sm-2 col-form-label">Bukti LOA</label>
+                                    <label for="bukti_loa_prosiding" class="col-sm-2 col-form-label">Link Google Drive Bukti LOA</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="bukti_loa_prosiding" id="bukti_loa_prosiding">
-                                        Upload 1 file yang didukung: PDF. Maks 10 MB.
+                                        <textarea class="form-control" style="height: 100px" name="bukti_loa_prosiding" id="bukti_loa_prosiding" placeholder="Masukkan link bukti LOA"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -497,10 +492,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_hcipta" class="col-sm-2 col-form-label">Unggah Sertifikat Hak Cipta</label>
+                                    <label for="sertifikat_hcipta" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Hak Cipta</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_hcipta" id="sertifikat_hcipta">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_hcipta" id="sertifikat_hcipta" placeholder="Masukkan link sertifikat"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -526,10 +520,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_merk" class="col-sm-2 col-form-label">Unggah Sertifikat Merk</label>
+                                    <label for="sertifikat_merk" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Merk</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_merk" id="sertifikat_merk">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_merk" id="sertifikat_merk" placeholder="Masukkan link sertifikat"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -555,10 +548,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_lisensi" class="col-sm-2 col-form-label">Unggah Sertifikat Lisensi</label>
+                                    <label for="sertifikat_lisensi" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Lisensi</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_lisensi" id="sertifikat_lisensi">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_lisensi" id="sertifikat_lisensi" placeholder="Masukkan link sertifikat"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -583,10 +575,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="file_buku" class="col-sm-2 col-form-label">Unggah File buku</label>
+                                    <label for="file_buku" class="col-sm-2 col-form-label">Link Google Drive File Buku</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="file_buku" id="file_buku">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="file_buku" id="file_buku" placeholder="Masukkan link file buku"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -606,10 +597,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_paten" class="col-sm-2 col-form-label">Unggah Sertifikat Paten</label>
+                                    <label for="sertifikat_paten" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Paten</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_paten" id="sertifikat_paten">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_paten" id="sertifikat_paten" placeholder="Masukkan link sertifikat"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -623,10 +613,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_desain" class="col-sm-2 col-form-label">Unggah Sertifikat Desain Industri</label>
+                                    <label for="sertifikat_desain" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Desain Industri</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_desain" id="sertifikat_desain">
-                                        <p class="text-danger">*Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_desain" id="sertifikat_desain" placeholder="Masukkan link sertifikat"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -662,10 +651,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sk_editor" class="col-sm-2 col-form-label">Unggah SK</label>
+                                    <label for="sk_editor" class="col-sm-2 col-form-label">Link Google Drive SK</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sk_editor" id="sk_editor">
-                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sk_editor" id="sk_editor" placeholder="Masukkan link SK"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -707,10 +695,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sertifikat_reviewer" class="col-sm-2 col-form-label">Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</label>
+                                    <label for="sertifikat_reviewer" class="col-sm-2 col-form-label">Link Google Drive Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="sertifikat_reviewer" id="sertifikat_reviewer">
-                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="sertifikat_reviewer" id="sertifikat_reviewer" placeholder="Masukkan link sertifikat/bukti lain"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -752,10 +739,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="laporan_maju_speaker" class="col-sm-2 col-form-label">Unggah Undangan, sertifikat dan bukti telah menyelesaikan kegiatan (dijadikan 1 dokumen)</label>
+                                    <label for="laporan_maju_speaker" class="col-sm-2 col-form-label">Link Google Drive Undangan, sertifikat dan bukti telah menyelesaikan kegiatan (dijadikan 1 dokumen)</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="laporan_maju_speaker" id="laporan_maju_speaker">
-                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="laporan_maju_speaker" id="laporan_maju_speaker" placeholder="Masukkan link google drive"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -780,10 +766,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="dokumen_organisasi" class="col-sm-2 col-form-label">Unggah SK dan Surat tugas serta bukti lain telah menyelesaikan tugas</label>
+                                    <label for="dokumen_organisasi" class="col-sm-2 col-form-label">Link Google Drive SK dan Surat tugas serta bukti lain telah menyelesaikan tugas</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="dokumen_organisasi" id="dokumen_organisasi">
-                                        <p>Upload 1 file yang didukung: PDF. Maks 10 MB.</p>
+                                        <textarea class="form-control" style="height: 100px" name="dokumen_organisasi" id="dokumen_organisasi" placeholder="Masukkan link google drive"></textarea>
                                     </div>
                                 </div>
                             </div>
