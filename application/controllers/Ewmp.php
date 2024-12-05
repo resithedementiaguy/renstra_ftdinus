@@ -67,6 +67,8 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('skim_penelitian', 'skim', 'required');
             $this->form_validation->set_rules('pemberi_hibah_penelitian', 'pemberi hibah', 'required');
             $this->form_validation->set_rules('besar_hibah_penelitian', 'besar hibah', 'required');
+            $this->form_validation->set_rules('kontrak_penelitian', 'link kontrak penelitian', 'required');
+            $this->form_validation->set_rules('laporan_maju_penelitian', 'link laporan maju penelitian', 'required');
         } elseif ($jenis_lapor == 'Pengabdian') {
             $this->form_validation->set_rules('nama_ketua_pengabdian', 'Nama Ketua', 'required');
             $this->form_validation->set_rules('prodi_pengabdian', 'Program Studi', 'required');
@@ -75,6 +77,8 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('skim_pengabdian', 'skim', 'required');
             $this->form_validation->set_rules('pemberi_hibah_pengabdian', 'pemberi hibah', 'required');
             $this->form_validation->set_rules('besar_hibah_pengabdian', 'besar hibah', 'required');
+            $this->form_validation->set_rules('kontrak_pengabdian', 'link kontrak pengabdian', 'required');
+            $this->form_validation->set_rules('laporan_pengabdian', 'link laporan pengabdian', 'required');
         } elseif ($jenis_lapor == 'Artikel/Karya Ilmiah') {
             $this->form_validation->set_rules('nama_pertama_ilmiah', 'Nama pertama', 'required');
             $this->form_validation->set_rules('nama_korespon_ilmiah', 'Nama korespon', 'required');
@@ -96,43 +100,54 @@ class Ewmp extends CI_Controller
             $this->form_validation->set_rules('kategori_prosiding', 'Kategori', 'required');
             $this->form_validation->set_rules('judul_artikel_prosiding', 'judul artikel', 'required');
             $this->form_validation->set_rules('judul_seminar_prosiding', 'judul seminar', 'required');
+            $this->form_validation->set_rules('bukti_loa_prosiding', 'link bukti LOA', 'required');
         } elseif ($jenis_lapor == 'HAKI') {
             $haki = $this->input->post('kategori_haki');
             if ($haki == 'Hak Cipta') {
                 $this->form_validation->set_rules('nama_pengusul_hcipta', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('judul_hcipta', 'judul', 'required');
+                $this->form_validation->set_rules('sertifikat_hcipta', 'sertifikat hak cipta', 'required');
             } elseif ($haki == 'Merk') {
                 $this->form_validation->set_rules('nama_pengusul_merk', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('judul_merk', 'judul', 'required');
+                $this->form_validation->set_rules('sertifikat_merk', 'sertifikat merk', 'required');
             } elseif ($haki == 'Lisensi') {
                 $this->form_validation->set_rules('nama_pengusul_lisensi', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('judul_lisensi', 'judul', 'required');
+                $this->form_validation->set_rules('sertifikat_lisensi', 'sertifikat lisensi', 'required');
             } elseif ($haki == 'Buku') {
                 $this->form_validation->set_rules('nama_pengusul_buku', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('isbn_buku', 'ISBN', 'required');
                 $this->form_validation->set_rules('judul_buku', 'judul', 'required');
+                $this->form_validation->set_rules('file_buku', 'file buku', 'required');
             } elseif ($haki == 'Paten') {
                 $this->form_validation->set_rules('judul_invensi_paten', 'judul', 'required');
+                $this->form_validation->set_rules('sertifikat_paten', 'sertifikat paten', 'required');
             } elseif ($haki == 'Desain Industri') {
                 // Tambahkan validasi untuk Desain Industri
                 $this->form_validation->set_rules('nama_pengusul_desain[]', 'Nama Pengusul', 'required');
+                $this->form_validation->set_rules('sertifikat_desain', 'sertifikat desain', 'required');
                 // Tambahkan validasi lain yang diperlukan
             }
         } elseif ($jenis_lapor == 'Editor Jurnal') {
             $this->form_validation->set_rules('nama_pengusul_editor', 'Nama pengusul', 'required');
             $this->form_validation->set_rules('judul_jurnal_editor', 'judul jurnal', 'required');
+            $this->form_validation->set_rules('sk_editor', 'link sk', 'required');
         } elseif ($jenis_lapor == 'Reviewer Jurnal') {
             $this->form_validation->set_rules('nama_pengusul_reviewer', 'Nama pengusul', 'required');
             $this->form_validation->set_rules('judul_artikel_reviewer', 'judul artikel', 'required');
             $this->form_validation->set_rules('judul_jurnal_reviewer', 'judul jurnal', 'required');
+            $this->form_validation->set_rules('sertifikat_reviewer', 'link sertifikat reviewer', 'required');
         } elseif ($jenis_lapor == 'Invited Speaker') {
             $this->form_validation->set_rules('nama_pengusul_speaker', 'Nama pengusul', 'required');
             $this->form_validation->set_rules('judul_kegiatan', 'judul kegiatan', 'required');
             $this->form_validation->set_rules('penyelenggara', 'penyelenggara', 'required');
+            $this->form_validation->set_rules('laporan_maju_speaker', 'link laporan maju', 'required');
         } elseif ($jenis_lapor == 'Pengurus Organisasi Profesi') {
             $this->form_validation->set_rules('nama_organisasi', 'Nama organisasi', 'required');
             $this->form_validation->set_rules('jabatan_organisasi', 'jabatan organisasi', 'required');
             $this->form_validation->set_rules('masa_jabatan_organisasi', 'masa jabatan', 'required');
+            $this->form_validation->set_rules('dokumen_organisasi', 'link dokumen', 'required');
         }
 
         if ($this->form_validation->run() === FALSE) {
@@ -153,42 +168,42 @@ class Ewmp extends CI_Controller
             $id_pelaporan = $this->Ewmp_model->get_last_pelaporan_id();
 
             if ($jenis_lapor == 'Penelitian') {
-                $config = array(
-                    'upload_path' => './uploads/penelitian',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 102400, // Maks 100 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/penelitian',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 102400, // Maks 100 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $kontrak = null;
-                $laporan_maju = null;
+                // $kontrak = null;
+                // $laporan_maju = null;
 
-                // Upload kontrak penelitian
-                if (!empty($_FILES['kontrak_penelitian']['name'])) {
-                    $config['file_name'] = 'kontrak_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload kontrak penelitian
+                // if (!empty($_FILES['kontrak_penelitian']['name'])) {
+                //     $config['file_name'] = 'kontrak_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('kontrak_penelitian')) {
-                        $kontrak = $this->upload->data('file_name');
-                    } else {
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('kontrak_penelitian')) {
+                //         $kontrak = $this->upload->data('file_name');
+                //     } else {
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
-                // Upload laporan kemajuan penelitian
-                if (!empty($_FILES['laporan_maju_penelitian']['name'])) {
-                    $config['file_name'] = 'laporan_maju_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload laporan kemajuan penelitian
+                // if (!empty($_FILES['laporan_maju_penelitian']['name'])) {
+                //     $config['file_name'] = 'laporan_maju_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('laporan_maju_penelitian')) {
-                        $laporan_maju = $this->upload->data('file_name');
-                    } else {
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('laporan_maju_penelitian')) {
+                //         $laporan_maju = $this->upload->data('file_name');
+                //     } else {
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik penelitian
                 $data_penelitian = array(
@@ -200,8 +215,8 @@ class Ewmp extends CI_Controller
                     'skim' => $this->input->post('skim_penelitian'),
                     'pemberi_hibah' => $this->input->post('pemberi_hibah_penelitian'),
                     'besar_hibah' => $this->input->post('besar_hibah_penelitian'),
-                    'kontrak' => $kontrak,
-                    'laporan_maju' => $laporan_maju,
+                    'kontrak' => $this->input->post('kontrak_penelitian'),
+                    'laporan_maju' => $this->input->post('laporan_maju_penelitian'),
                     'ins_time' => $ins_time
                 );
 
@@ -255,44 +270,44 @@ class Ewmp extends CI_Controller
                     }
                 }
             } elseif ($jenis_lapor == 'Pengabdian') {
-                $config = array(
-                    'upload_path' => './uploads/pengabdian',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 10240, // Maks 100 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/pengabdian',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 10240, // Maks 100 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $kontrak = null;
-                $laporan = null;
+                // $kontrak = null;
+                // $laporan = null;
 
-                // Upload kontrak pengabdian
-                if (!empty($_FILES['kontrak_pengabdian']['name'])) {
-                    $config['file_name'] = 'kontrak_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload kontrak pengabdian
+                // if (!empty($_FILES['kontrak_pengabdian']['name'])) {
+                //     $config['file_name'] = 'kontrak_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('kontrak_pengabdian')) {
-                        $kontrak = $this->upload->data('file_name');
-                    } else {
-                        // Tangani error upload
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('kontrak_pengabdian')) {
+                //         $kontrak = $this->upload->data('file_name');
+                //     } else {
+                //         // Tangani error upload
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
-                // Upload laporan kemajuan pengabdian
-                if (!empty($_FILES['laporan_pengabdian']['name'])) {
-                    $config['file_name'] = 'laporan_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload laporan kemajuan pengabdian
+                // if (!empty($_FILES['laporan_pengabdian']['name'])) {
+                //     $config['file_name'] = 'laporan_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('laporan_pengabdian')) {
-                        $laporan = $this->upload->data('file_name');
-                    } else {
-                        // Tangani error upload
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('laporan_pengabdian')) {
+                //         $laporan = $this->upload->data('file_name');
+                //     } else {
+                //         // Tangani error upload
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik pengabdian
                 $data_pengabdian = array(
@@ -304,8 +319,8 @@ class Ewmp extends CI_Controller
                     'skim' => $this->input->post('skim_pengabdian'),
                     'pemberi_hibah' => $this->input->post('pemberi_hibah_pengabdian'),
                     'besar_hibah' => $this->input->post('besar_hibah_pengabdian'),
-                    'kontrak' => $kontrak,
-                    'laporan' => $laporan,
+                    'kontrak' => $this->input->post('kontrak_pengabdian'),
+                    'laporan' => $this->input->post('laporan_pengabdian'),
                     'ins_time' => $ins_time
                 );
                 // Menyimpan data pengabdian
@@ -411,29 +426,29 @@ class Ewmp extends CI_Controller
                     }
                 }
             } elseif ($jenis_lapor == 'Prosiding') {
-                $config = array(
-                    'upload_path' => './uploads/prosiding',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 10240, // Maks 100 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/prosiding',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 10240, // Maks 100 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $bukti_loa = null;
+                // $bukti_loa = null;
 
-                // Upload bukti_loa prosiding
-                if (!empty($_FILES['bukti_loa_prosiding']['name'])) {
-                    $config['file_name'] = 'bukti_loa_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload bukti_loa prosiding
+                // if (!empty($_FILES['bukti_loa_prosiding']['name'])) {
+                //     $config['file_name'] = 'bukti_loa_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('bukti_loa_prosiding')) {
-                        $bukti_loa = $this->upload->data('file_name');
-                    } else {
-                        // Tangani error upload
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('bukti_loa_prosiding')) {
+                //         $bukti_loa = $this->upload->data('file_name');
+                //     } else {
+                //         // Tangani error upload
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik prosiding
                 $data_prosiding = array(
@@ -443,7 +458,7 @@ class Ewmp extends CI_Controller
                     'nama_korespon' => $this->input->post('nama_korespon_prosiding'),
                     'judul_artikel' => $this->input->post('judul_artikel_prosiding'),
                     'judul_seminar' => $this->input->post('judul_seminar_prosiding'),
-                    'bukti_loa' => $bukti_loa,
+                    'bukti_loa' => $this->input->post('bukti_loa_prosiding'),
                     'doi' => $this->input->post('doi_prosiding'),
                     'ins_time' => $ins_time
                 );
@@ -501,36 +516,36 @@ class Ewmp extends CI_Controller
                     log_message('debug', 'Judul Hak Cipta: ' . $this->input->post('judul_hcipta'));
 
                     // Menyiapkan konfigurasi untuk file upload
-                    $config = array(
-                        'upload_path' => './uploads/haki/hak_cipta',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/hak_cipta',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $sertifikat = null;
+                    // $sertifikat = null;
 
-                    // Upload file sertifikat
-                    if (!empty($_FILES['sertifikat_hcipta']['name'])) {
-                        $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
-                        $this->upload->initialize($config);
+                    // // Upload file sertifikat
+                    // if (!empty($_FILES['sertifikat_hcipta']['name'])) {
+                    //     $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('sertifikat_hcipta')) {
-                            $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
-                            log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
-                        } else {
-                            log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('sertifikat_hcipta')) {
+                    //         $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                    //         log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    //     } else {
+                    //         log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     // Menyimpan data Hak Cipta
                     $data_hak_cipta = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_hcipta'),
                         'judul' => $this->input->post('judul_hcipta'),
-                        'sertifikat' => $sertifikat,
+                        'sertifikat' => $this->input->post('sertifikat_hcipta'),
                         'ins_time' => $ins_time
                     );
 
@@ -562,34 +577,34 @@ class Ewmp extends CI_Controller
                         }
                     }
                 } elseif ($kategori_haki == 'Merk') {
-                    $config = array(
-                        'upload_path' => './uploads/haki/merk',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/merk',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $sertifikat = null;
+                    // $sertifikat = null;
 
-                    if (!empty($_FILES['sertifikat_merk']['name'])) {
-                        $config['file_name'] = 'sertifikat_' . time();
-                        $this->upload->initialize($config);
+                    // if (!empty($_FILES['sertifikat_merk']['name'])) {
+                    //     $config['file_name'] = 'sertifikat_' . time();
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('sertifikat_merk')) {
-                            $sertifikat = $this->upload->data('file_name');
-                            log_message('debug', 'Sertifikat Merk berhasil di-upload: ' . $sertifikat);
-                        } else {
-                            log_message('error', 'Upload file sertifikat Merk gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('sertifikat_merk')) {
+                    //         $sertifikat = $this->upload->data('file_name');
+                    //         log_message('debug', 'Sertifikat Merk berhasil di-upload: ' . $sertifikat);
+                    //     } else {
+                    //         log_message('error', 'Upload file sertifikat Merk gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     $data_merk = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_merk'),
                         'judul' => $this->input->post('judul_merk'),
-                        'sertifikat' => $sertifikat,
+                        'sertifikat' => $this->input->post('sertifikat_merk'),
                         'ins_time' => $ins_time
                     );
 
@@ -618,35 +633,35 @@ class Ewmp extends CI_Controller
                         }
                     }
                 } elseif ($kategori_haki == 'Lisensi') {
-                    $config = array(
-                        'upload_path' => './uploads/haki/lisensi',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/lisensi',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $sertifikat = null;
+                    // $sertifikat = null;
 
-                    if (!empty($_FILES['sertifikat_lisensi']['name'])) {
-                        $config['file_name'] = 'sertifikat_' . time();
-                        $this->upload->initialize($config);
+                    // if (!empty($_FILES['sertifikat_lisensi']['name'])) {
+                    //     $config['file_name'] = 'sertifikat_' . time();
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('sertifikat_lisensi')) {
-                            $sertifikat = $this->upload->data('file_name');
-                            log_message('debug', 'Sertifikat Lisensi berhasil di-upload: ' . $sertifikat);
-                        } else {
-                            log_message('error', 'Upload file sertifikat Lisensi gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('sertifikat_lisensi')) {
+                    //         $sertifikat = $this->upload->data('file_name');
+                    //         log_message('debug', 'Sertifikat Lisensi berhasil di-upload: ' . $sertifikat);
+                    //     } else {
+                    //         log_message('error', 'Upload file sertifikat Lisensi gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     // Menyimpan data Lisensi
                     $data_lisensi = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_lisensi'),
                         'judul' => $this->input->post('judul_lisensi'),
-                        'sertifikat' => $sertifikat,
+                        'sertifikat' => $this->input->post('sertifikat_lisensi'),
                         'ins_time' => $ins_time
                     );
 
@@ -675,35 +690,35 @@ class Ewmp extends CI_Controller
                         }
                     }
                 } elseif ($kategori_haki == 'Buku') {
-                    $config = array(
-                        'upload_path' => './uploads/haki/buku',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/buku',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $file_buku = null;
+                    // $file_buku = null;
 
-                    if (!empty($_FILES['file_buku']['name'])) {
-                        $config['file_name'] = 'buku_' . time();
-                        $this->upload->initialize($config);
+                    // if (!empty($_FILES['file_buku']['name'])) {
+                    //     $config['file_name'] = 'buku_' . time();
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('file_buku')) {
-                            $file_buku = $this->upload->data('file_name');
-                            log_message('debug', 'File Buku berhasil di-upload: ' . $file_buku);
-                        } else {
-                            log_message('error', 'Upload file Buku gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload file buku.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('file_buku')) {
+                    //         $file_buku = $this->upload->data('file_name');
+                    //         log_message('debug', 'File Buku berhasil di-upload: ' . $file_buku);
+                    //     } else {
+                    //         log_message('error', 'Upload file Buku gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload file buku.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     $data_buku = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_buku'),
                         'isbn' => $this->input->post('isbn_buku'),
                         'judul_buku' => $this->input->post('judul_buku'),
-                        'file_buku' => $file_buku,
+                        'file_buku' => $this->input->post('file_buku'),
                         'ins_time' => $ins_time
                     );
 
@@ -712,35 +727,35 @@ class Ewmp extends CI_Controller
                 } elseif ($kategori_haki == 'Paten') {
 
                     // Menyiapkan konfigurasi untuk file upload
-                    $config = array(
-                        'upload_path' => './uploads/haki/paten',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/paten',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $sertifikat = null;
+                    // $sertifikat = null;
 
-                    // Upload file sertifikat
-                    if (!empty($_FILES['sertifikat_paten']['name'])) {
-                        $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
-                        $this->upload->initialize($config);
+                    // // Upload file sertifikat
+                    // if (!empty($_FILES['sertifikat_paten']['name'])) {
+                    //     $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('sertifikat_paten')) {
-                            $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
-                            log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
-                        } else {
-                            log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('sertifikat_paten')) {
+                    //         $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                    //         log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    //     } else {
+                    //         log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     // Menyimpan data Hak Cipta
                     $data_paten = array(
                         'id_haki' => $id_haki,
                         'judul' => $this->input->post('judul_invensi_paten'),
-                        'sertifikat' => $sertifikat,
+                        'sertifikat' => $this->input->post('sertifikat_paten'),
                         'ins_time' => $ins_time
                     );
 
@@ -774,34 +789,34 @@ class Ewmp extends CI_Controller
                 } elseif ($kategori_haki == 'Desain Industri') {
 
                     // Menyiapkan konfigurasi untuk file upload
-                    $config = array(
-                        'upload_path' => './uploads/haki/desain_industri',
-                        'allowed_types' => 'pdf',
-                        'max_size' => 10240, // Maks 10 MB
-                    );
-                    $this->load->library('upload', $config);
+                    // $config = array(
+                    //     'upload_path' => './uploads/haki/desain_industri',
+                    //     'allowed_types' => 'pdf',
+                    //     'max_size' => 10240, // Maks 10 MB
+                    // );
+                    // $this->load->library('upload', $config);
 
-                    $sertifikat = null;
+                    // $sertifikat = null;
 
-                    // Upload file sertifikat
-                    if (!empty($_FILES['sertifikat_desain']['name'])) {
-                        $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
-                        $this->upload->initialize($config);
+                    // // Upload file sertifikat
+                    // if (!empty($_FILES['sertifikat_desain']['name'])) {
+                    //     $config['file_name'] = 'sertifikat_' . time(); // Ganti nama file dengan timestamp
+                    //     $this->upload->initialize($config);
 
-                        if ($this->upload->do_upload('sertifikat_desain')) {
-                            $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
-                            log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
-                        } else {
-                            log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
-                            $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
-                            redirect('ewmp/create_view');
-                        }
-                    }
+                    //     if ($this->upload->do_upload('sertifikat_desain')) {
+                    //         $sertifikat = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                    //         log_message('debug', 'Sertifikat berhasil di-upload: ' . $sertifikat);
+                    //     } else {
+                    //         log_message('error', 'Upload file sertifikat gagal: ' . $this->upload->display_errors());
+                    //         $this->session->set_flashdata('error', 'Gagal meng-upload sertifikat.');
+                    //         redirect('ewmp/create_view');
+                    //     }
+                    // }
 
                     // Menyimpan data Hak Cipta
                     $data_desain = array(
                         'id_haki' => $id_haki,
-                        'sertifikat' => $sertifikat,
+                        'sertifikat' => $this->input->post('sertifikat_desain'),
                         'ins_time' => $ins_time
                     );
 
@@ -834,29 +849,29 @@ class Ewmp extends CI_Controller
                     }
                 }
             } elseif ($jenis_lapor == "Editor Jurnal") {
-                $config = array(
-                    'upload_path' => './uploads/jurnal/editor_jurnal',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 10240, // Maks 100 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/jurnal/editor_jurnal',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 10240, // Maks 100 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $sk = null;
+                // $sk = null;
 
-                // Upload sk editor
-                if (!empty($_FILES['sk_editor']['name'])) {
-                    $config['file_name'] = 'sk_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload sk editor
+                // if (!empty($_FILES['sk_editor']['name'])) {
+                //     $config['file_name'] = 'sk_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('sk_editor')) {
-                        $sk = $this->upload->data('file_name');
-                    } else {
-                        // Tangani error upload
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('sk_editor')) {
+                //         $sk = $this->upload->data('file_name');
+                //     } else {
+                //         // Tangani error upload
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik editor
                 $data_editor = array(
@@ -864,36 +879,36 @@ class Ewmp extends CI_Controller
                     'nama_usul' => $this->input->post('nama_pengusul_editor'),
                     'prodi' => $this->input->post('prodi_editor'),
                     'judul' => $this->input->post('judul_jurnal_editor'),
-                    'file_sk' => $sk,
+                    'file_sk' => $this->input->post('sk_editor'),
                     'ins_time' => $ins_time
                 );
 
                 // Menyimpan data editor
                 $this->Ewmp_model->add_editor_jurnal($data_editor);
             } elseif ($jenis_lapor == "Reviewer Jurnal") {
-                $config = array(
-                    'upload_path' => './uploads/jurnal/reviewer_jurnal',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 10240, // Maks 100 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/jurnal/reviewer_jurnal',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 10240, // Maks 100 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $sertifikat = null;
+                // $sertifikat = null;
 
-                // Upload sertifikat reviewer
-                if (!empty($_FILES['sertifikat_reviewer']['name'])) {
-                    $config['file_name'] = 'sertifikat_' . time(); // Rename file
-                    $this->upload->initialize($config);
+                // // Upload sertifikat reviewer
+                // if (!empty($_FILES['sertifikat_reviewer']['name'])) {
+                //     $config['file_name'] = 'sertifikat_' . time(); // Rename file
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('sertifikat_reviewer')) {
-                        $sertifikat = $this->upload->data('file_name');
-                    } else {
-                        // Tangani error upload
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('sertifikat_reviewer')) {
+                //         $sertifikat = $this->upload->data('file_name');
+                //     } else {
+                //         // Tangani error upload
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik reviewer
                 $data_reviewer = array(
@@ -902,7 +917,7 @@ class Ewmp extends CI_Controller
                     'prodi' => $this->input->post('prodi_reviewer'),
                     'judul_artikel' => $this->input->post('judul_artikel_reviewer'),
                     'judul_jurnal' => $this->input->post('judul_jurnal_reviewer'),
-                    'sertifikat' => $sertifikat,
+                    'sertifikat' => $this->input->post('sertifikat_reviewer'),
                     'ins_time' => $ins_time
                 );
 
@@ -910,32 +925,32 @@ class Ewmp extends CI_Controller
                 $this->Ewmp_model->add_reviewer_jurnal($data_reviewer);
             } elseif ($jenis_lapor == 'Invited Speaker') {
                 // Menyiapkan konfigurasi untuk file upload
-                $config = array(
-                    'upload_path' => './uploads/invited_speaker',
-                    'allowed_types' => 'pdf',
-                    'max_size' => 10240, // Maks 10 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/invited_speaker',
+                //     'allowed_types' => 'pdf',
+                //     'max_size' => 10240, // Maks 10 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $laporan_maju_speaker = null;
+                // $laporan_maju_speaker = null;
 
-                // Upload file laporan undangan, sertifikat, dan bukti kegiatan
-                if (!empty($_FILES['laporan_maju_speaker']['name'])) {
-                    $config['file_name'] = 'laporan_speaker_' . time(); // Ganti nama file dengan timestamp
-                    $this->upload->initialize($config);
+                // // Upload file laporan undangan, sertifikat, dan bukti kegiatan
+                // if (!empty($_FILES['laporan_maju_speaker']['name'])) {
+                //     $config['file_name'] = 'laporan_speaker_' . time(); // Ganti nama file dengan timestamp
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('laporan_maju_speaker')) {
-                        $laporan_maju_speaker = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
-                        log_message('debug', 'File laporan speaker berhasil di-upload: ' . $laporan_maju_speaker);
-                    } else {
-                        // Tangani error jika upload gagal
-                        $error_message = $this->upload->display_errors();
-                        log_message('error', 'Upload file laporan speaker gagal: ' . $error_message);
-                        $this->session->set_flashdata('error', 'Gagal meng-upload laporan.');
-                        redirect('ewmp/create_view');
-                    }
-                }
+                //     if ($this->upload->do_upload('laporan_maju_speaker')) {
+                //         $laporan_maju_speaker = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                //         log_message('debug', 'File laporan speaker berhasil di-upload: ' . $laporan_maju_speaker);
+                //     } else {
+                //         // Tangani error jika upload gagal
+                //         $error_message = $this->upload->display_errors();
+                //         log_message('error', 'Upload file laporan speaker gagal: ' . $error_message);
+                //         $this->session->set_flashdata('error', 'Gagal meng-upload laporan.');
+                //         redirect('ewmp/create_view');
+                //     }
+                // }
 
                 // Data spesifik Invited Speaker
                 $data_invited_speaker = array(
@@ -944,7 +959,7 @@ class Ewmp extends CI_Controller
                     'prodi' => $this->input->post('prodi_speaker'),
                     'judul' => $this->input->post('judul_kegiatan'),
                     'penyelenggara' => $this->input->post('penyelenggara'),
-                    'dokumen' => $laporan_maju_speaker,
+                    'dokumen' => $this->input->post('laporan_maju_speaker'),
                     'ins_time' => $ins_time
                 );
 
@@ -956,30 +971,30 @@ class Ewmp extends CI_Controller
                 log_message('debug', 'Data Invited Speaker berhasil disimpan.');
             } elseif ($jenis_lapor == "Pengurus Organisasi Profesi") {
                 // Menyiapkan konfigurasi untuk file upload
-                $config = array(
-                    'upload_path' => './uploads/pengurus_organisasi_profesi', // Path untuk folder upload
-                    'allowed_types' => 'pdf', // Hanya tipe file PDF yang diizinkan
-                    'max_size' => 10240, // Maksimal ukuran file 10 MB
-                );
+                // $config = array(
+                //     'upload_path' => './uploads/pengurus_organisasi_profesi', // Path untuk folder upload
+                //     'allowed_types' => 'pdf', // Hanya tipe file PDF yang diizinkan
+                //     'max_size' => 10240, // Maksimal ukuran file 10 MB
+                // );
 
-                $this->load->library('upload', $config);
+                // $this->load->library('upload', $config);
 
-                $dokumen_organisasi = null;
+                // $dokumen_organisasi = null;
 
-                // Upload file dokumen SK, Surat Tugas, dan bukti lainnya
-                if (!empty($_FILES['dokumen_organisasi']['name'])) {
-                    $config['file_name'] = 'dokumen_organisasi_' . time(); // Ganti nama file dengan timestamp
-                    $this->upload->initialize($config);
+                // // Upload file dokumen SK, Surat Tugas, dan bukti lainnya
+                // if (!empty($_FILES['dokumen_organisasi']['name'])) {
+                //     $config['file_name'] = 'dokumen_organisasi_' . time(); // Ganti nama file dengan timestamp
+                //     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('dokumen_organisasi')) {
-                        $dokumen_organisasi = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
-                    } else {
-                        // Tangani error jika upload gagal
-                        log_message('error', 'Upload file dokumen organisasi gagal: ' . $this->upload->display_errors());
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect('ewmp/create_view'); // Redirect jika gagal upload
-                    }
-                }
+                //     if ($this->upload->do_upload('dokumen_organisasi')) {
+                //         $dokumen_organisasi = $this->upload->data('file_name'); // Menyimpan nama file yang di-upload
+                //     } else {
+                //         // Tangani error jika upload gagal
+                //         log_message('error', 'Upload file dokumen organisasi gagal: ' . $this->upload->display_errors());
+                //         $this->session->set_flashdata('error', $this->upload->display_errors());
+                //         redirect('ewmp/create_view'); // Redirect jika gagal upload
+                //     }
+                // }
 
                 // Data spesifik Pengurus Organisasi
                 $data_pengurus_organisasi = array(
@@ -987,7 +1002,7 @@ class Ewmp extends CI_Controller
                     'nama_org' => $this->input->post('nama_organisasi'),
                     'jabatan' => $this->input->post('jabatan_organisasi'),
                     'masa_jabatan' => $this->input->post('masa_jabatan_organisasi'),
-                    'file_sk' => $dokumen_organisasi,
+                    'file_sk' => $this->input->post('dokumen_organisasi'),
                     'ins_time' => $ins_time
                 );
 
