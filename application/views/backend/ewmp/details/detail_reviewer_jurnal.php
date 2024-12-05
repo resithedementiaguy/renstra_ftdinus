@@ -14,17 +14,15 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP</strong></h5>
+                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP - Reviewer Jurnal</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengecek detail Pelaporan EWMP Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengecek detail pelaporan Reviewer Jurnal Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
-                            </div>
-                        </div>
+                        <!-- <div class="d-flex justify-content-between">
+                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
+                        </div> -->
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
@@ -56,15 +54,19 @@
                                     <td><?= htmlspecialchars($reviewer_jurnal['judul_jurnal']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Sertifikat Reviewer / bukti lain yang menyatakan telah menyelesaikan proses review</th>
+                                    <th>Sertifikat Reviewer / Bukti Lain yang Menyatakan Telah Menyelesaikan Proses Review</th>
                                     <td>
-                                        <a href="<?= base_url('uploads/jurnal/reviewer_jurnal/') . $reviewer_jurnal['sertifikat'] ?>" target="_blank" class="btn btn-danger"><i class="bi bi-file-pdf"></i> PDF</a>
+                                        <a href="<?= $reviewer_jurnal['sertifikat'] ?>" target="_blank" class="btn btn-danger">
+                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        </a>
                                     </td>
                                 </tr>
                             </table>
-                            <div class="text-end">
-                                <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-end">
+                            <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
                         </div>
                     </div>
                 </div>
