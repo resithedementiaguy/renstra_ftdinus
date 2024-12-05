@@ -151,7 +151,7 @@
     <div class="header">
         <table style="width: 100%;">
             <tr>
-                <td style="width: 15%;">
+                <td style="width: 20%;">
                     <?php
                     $path = base_url('assets/img/udinus.png');
                     $type = pathinfo($path, PATHINFO_EXTENSION);
