@@ -163,7 +163,7 @@
                     <img src="<?= $base64 ?>" alt="Logo" />
                 </td>
                 <td style="text-align: center;">
-                    <h3 style="font-size: 20px;"><strong>FAKULTAS TEKNIK</strong><br>
+                    <h3 style="font-size: 20px;"><strong>RENCANA STRATEGIS FAKULTAS TEKNIK</strong><br>
                         <strong>UNIVERSITAS DIAN NUSWANTORO SEMARANG</strong>
                     </h3>
                 </td>
