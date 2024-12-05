@@ -83,4 +83,45 @@ class Cetak extends CI_Controller
         // Output PDF (1 = download, 0 = preview)
         $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
     }
+
+    public function generate_pdf_hasil()
+    {
+        // Buat instance Dompdf
+        $dompdf = new Dompdf();
+
+        // Fetch data penelitian untuk masing-masing prodi
+        $data['penelitian_elektro'] = $this->Ewmp_model->get_penelitian_elektro();
+        log_message('debug', 'Elektro penelitian count: ' . count($data['penelitian_elektro']));
+
+        $data['penelitian_industri'] = $this->Ewmp_model->get_penelitian_industri();
+        log_message('debug', 'Industri penelitian count: ' . count($data['penelitian_industri']));
+
+        $data['penelitian_biomedis'] = $this->Ewmp_model->get_penelitian_biomedis();
+        log_message('debug', 'Biomedis penelitian count: ' . count($data['penelitian_biomedis']));
+
+        // Fetch data pengabdian untuk masing-masing prodi
+        $data['pengabdian_elektro'] = $this->Ewmp_model->get_pengabdian_elektro();
+        log_message('debug', 'Elektro pengabdian count: ' . count($data['pengabdian_elektro']));
+
+        $data['pengabdian_industri'] = $this->Ewmp_model->get_pengabdian_industri();
+        log_message('debug', 'Industri pengabdian count: ' . count($data['pengabdian_industri']));
+
+        $data['pengabdian_biomedis'] = $this->Ewmp_model->get_pengabdian_biomedis();
+        log_message('debug', 'Biomedis pengabdian count: ' . count($data['pengabdian_biomedis']));
+
+        // Load view sebagai HTML
+        $html = $this->load->view('backend/ewmp/pdf/cetak_rekapitulasi', $data, true);
+
+        // Load HTML content ke Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF (1 = download, 0 = preview)
+        $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
+    }
 }
