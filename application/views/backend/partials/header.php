@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Renstra FT UDINUS</title>
+    <title>RENSTRA FT UDINUS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="<?= base_url('') ?>/assets/img/favicon.png" rel="icon">
-    <link href="<?= base_url('') ?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="<?= base_url('') ?>/assets/img/udinus.png" rel="icon">
+    <link href="<?= base_url('') ?>/assets/img/udinus.png" rel="udinus">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -39,13 +39,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+<style>
+    .logo span {
+        font-size: 24px;
+    }
+</style>
+
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="<?= base_url('') ?>/assets/img/udinus.png" alt="" />
-                <span class="d-none d-lg-block">Rencana Strategi FT</span>
+                <span class="d-none d-lg-block">Rencana Strategis FT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
@@ -112,7 +118,7 @@
             <li class="nav-item">
                 <a class="nav-link <?php echo ($this->uri->segment(1) == 'renstra') ? '' : 'collapsed'; ?>" href="<?php echo site_url('renstra'); ?>">
                     <i class="bi bi-layout-text-window-reverse"></i>
-                    <span>Rencana Strategi</span>
+                    <span>Rencana Strategis</span>
                 </a>
             </li>
 
