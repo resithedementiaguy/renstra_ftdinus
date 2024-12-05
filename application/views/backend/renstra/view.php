@@ -9,15 +9,15 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        background-color: #072a75 !important;
+        background-color: #1153a1 !important;
     }
 
     table thead tr {
-        background-color: #072a75 !important;
+        background-color: #1153a1 !important;
     }
 
     table thead th {
-        background-color: #072a75 !important;
+        background-color: #1153a1 !important;
         color: #fff !important;
         border: 1px solid black !important;
         padding: 8px;
@@ -28,14 +28,14 @@
 
     /* Ensure first row of headers maintains border and color */
     table thead tr:first-child th {
-        background-color: #092b6b !important;
+        background-color: #1153a1 !important;
         border: 1px solid black !important;
         color: #fff !important;
     }
 
     /* Ensure second row of headers maintains border and color */
     table thead tr:nth-child(2) th {
-        background-color: #092b6b !important;
+        background-color: #1153a1 !important;
         border: 1px solid black !important;
         color: #fff !important;
     }
@@ -56,11 +56,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-primary">
-                        <h5 class="pt-2"><strong>Daftar Rencana Strategis</strong></h5>
+                        <h5 class="pt-2"><strong>Rencana Strategis Fakultas Teknik Universitas Dian Nuswantoro Semarang</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
+                            Silahkan untuk mengisi Target Indikator Kinerja Utama Fakultas Teknik
                         </div>
                         <div class="d-flex justify-content-between">
                             <div>
@@ -70,17 +70,17 @@
                         </div>
                         <div class="table-responsive" style="overflow-x: auto; max-height: 800px;">
                             <table class="table table-bordered" style="border: 1px solid black;">
-                                <thead style="border: 1px solid black; background-color: #072a75 !important; color: #fff !important;">
+                                <thead style="border: 1px solid black; background-color: #1153a1 !important; color: #fff !important;">
                                     <tr style="border: 1px solid black !important;">
-                                        <th class="text-center align-middle" rowspan="2" style="border: 1px solid black; width: 50px; background-color: #092b6b !important; color: #fff !important;">No.</th>
-                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid black; width: 170px; background-color: #092b6b !important; color: #fff !important;">Butir</th>
-                                        <th class="text-start align-middle" rowspan="2" style="border: 1px solid black; width: 250px; background-color: #092b6b !important; color: #fff !important;">Indikator Kinerja Utama</th>
-                                        <th class="text-center align-middle" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid black; width: 500px; background-color: #092b6b !important; color: #fff !important;">Tahun</th>
+                                        <th class="text-center align-middle" rowspan="2" style="border: 1px solid black; width: 50px; background-color: #1153a1 !important; color: #fff !important;">No.</th>
+                                        <th class="text-center align-middle" rowspan="2" colspan="2" style="border: 1px solid black; width: 170px; background-color: #1153a1 !important; color: #fff !important;">Butir</th>
+                                        <th class="text-start align-middle" rowspan="2" style="border: 1px solid black; width: 250px; background-color: #1153a1 !important; color: #fff !important;">Indikator Kinerja Utama</th>
+                                        <th class="text-center align-middle" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid black; width: 500px; background-color: #1153a1 !important; color: #fff !important;">Tahun</th>
                                     </tr>
                                     <tr style="border: 1px solid black !important;">
                                         <?php foreach ($years as $year): ?>
-                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #092b6b !important; color: #fff !important;" class="text-center align-middle"><?php echo $year; ?></th>
-                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #092b6b !important; color: #fff !important;" class="text-center align-middle">Capaian <?php echo $year; ?></th>
+                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #1153a1 !important; color: #fff !important;" class="text-center align-middle"><?php echo $year; ?></th>
+                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #1153a1 !important; color: #fff !important;" class="text-center align-middle">Capaian <?php echo $year; ?></th>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>

@@ -16,7 +16,6 @@
 
         .header {
             text-align: center;
-            padding: 10px;
         }
 
         .header::after {
@@ -32,7 +31,7 @@
         }
 
         .header img {
-            max-height: 100px;
+            max-height: 80px;
             margin-right: 20px;
         }
 
@@ -152,7 +151,7 @@
     <div class="header">
         <table style="width: 100%;">
             <tr>
-                <td style="width: 20%;">
+                <td style="width: 15%;">
                     <?php
                     $path = base_url('assets/img/udinus.png');
                     $type = pathinfo($path, PATHINFO_EXTENSION);
@@ -165,7 +164,7 @@
                 </td>
                 <td style="text-align: center;">
                     <h3 style="font-size: 20px;"><strong>FAKULTAS TEKNIK</strong><br>
-                        <strong>UNIVERSITAS DIAN NUSWANTORO</strong>
+                        <strong>UNIVERSITAS DIAN NUSWANTORO SEMARANG</strong>
                     </h3>
                 </td>
             </tr>
@@ -173,17 +172,17 @@
     </div>
 
     <table class="table">
-        <thead style="border: 1px solid #072a75 !important;">
-            <tr class="table-header" style="border: 1px solid #072a75 !important;">
-                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 50px;">No.</th>
-                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid; width: 170px;">Butir</th>
-                <th class="table-header-row" rowspan="2" style="border: 1px solid; width: 250px;">Indikator Kinerja Utama</th>
-                <th class="table-header-row" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid; width: 500px; text-align: center;">Tahun</th>
+        <thead style="border: 1px solid #000000 !important;">
+            <tr class="table-header" style="border: 1px solid #000000 !important;">
+                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 10px;">No.</th>
+                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid #000000; width: 170px;">Butir</th>
+                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 250px;">Indikator Kinerja Utama</th>
+                <th class="table-header-row" colspan="<?php echo count($years) * 2; ?>" style="border: 1px solid #000000; text-align: center;">Tahun</th>
             </tr>
-            <tr class="table-header" style="border: 1px solid #072a75 !important;">
+            <tr class="table-header" style="border: 1px solid #000000 !important;">
                 <?php foreach ($years as $year): ?>
-                    <th class="table-header-row" style="border: 1px solid; text-align: center;"><?php echo $year; ?></th>
-                    <th class="table-header-row" style="border: 1px solid; text-align: center;">Capaian <?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid #000000; text-align: center;"><?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Capaian <?php echo $year; ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
@@ -217,8 +216,8 @@
                                 $target_value = isset($target_level3[$year]) ? $target_level3[$year] : '-';
                                 $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '-';
                             ?>
-                                <td style="border: 1px solid;"><?php echo $target_value; ?></td>
-                                <td style="border: 1px solid;"><?php echo $capaian_value; ?></td>
+                                <td style="border: 1px solid; text-align: center;"><?php echo $target_value; ?></td>
+                                <td style="border: 1px solid; text-align: center;"><?php echo $capaian_value; ?></td>
                             <?php endforeach; ?>
                         </tr>
                         <?php
@@ -236,8 +235,8 @@
                                     $target_value = isset($target_level4[$year]) ? $target_level4[$year] : '-';
                                     $capaian_value = isset($capaian_level4[$year]) ? $capaian_level4[$year] : '-';
                                 ?>
-                                    <td style="border: 1px solid;"><?php echo $target_value; ?></td>
-                                    <td style="border: 1px solid;"><?php echo $capaian_value; ?></td>
+                                    <td style="border: 1px solid; text-align: center;"><?php echo $target_value; ?></td>
+                                    <td style="border: 1px solid; text-align: center;"><?php echo $capaian_value; ?></td>
                                 <?php endforeach; ?>
                             </tr>
             <?php endforeach;
