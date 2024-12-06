@@ -18,49 +18,52 @@
                     <div class="card-body">
                         <ul class="nav nav-tabs mb-3" id="tabs-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="tabs-profil-tab" data-bs-toggle="pill" data-bs-target="#tabs-profil" type="button" role="tab" aria-controls="tabs-profil" aria-selected="false">Profil</button>
+                                <button class="nav-link active" id="tabs-profil-tab" data-bs-toggle="pill" data-bs-target="#tabs-profil" type="button" role="tab" aria-controls="tabs-profil" aria-selected="true">Profil</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="tabs-contact-tab" data-bs-toggle="pill" data-bs-target="#tabs-contact" type="button" role="tab" aria-controls="tabs-contact" aria-selected="false">Edit</button>
                             </li>
                         </ul>
                         <div class="tab-content pt-2" id="myTabContent">
+                            <!-- Tab Profil -->
                             <div class="tab-pane fade show active" id="tabs-profil" role="tabpanel" aria-labelledby="profil-tab">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
-                                            <th style="border: none; width: 100px;">Username</th>
-                                            <td style="border: none; width: 100px;">A22.2022.02929</td>
+                                            <th>Username</th>
+                                            <td><?= $user->username; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Nama</th>
-                                            <td>Alfaturachman</td>
+                                            <td><?= $user->nama; ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="border: none;">Level</th>
-                                            <td style="border: none;">Mahasiswa</td>
+                                            <th>Level</th>
+                                            <td><?= $user->level; ?></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
+
+                            <!-- Tab Edit -->
                             <div class="tab-pane fade" id="tabs-contact" role="tabpanel" aria-labelledby="contact-tab">
-                                <form method="post" action="<?= base_url('renstra/add_level1') ?>">
+                                <form method="post" action="<?= site_url('profil/update') ?>">
                                     <div class="row mb-3">
-                                        <label for="no_iku" class="col-sm-2 col-form-label">Nama</label>
+                                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="no_iku" id="no_iku" class="form-control" placeholder="Masukkan Nama" required>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="<?= $user['nama']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="isi_iku1" class="col-sm-2 col-form-label">Password</label>
+                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="isi_iku1" id="isi_iku1" class="form-control" placeholder="Masukkan password" required>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password baru" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="isi_iku1" class="col-sm-2 col-form-label">Konfirmasi Password</label>
+                                        <label for="confirm_password" class="col-sm-2 col-form-label">Konfirmasi Password</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="isi_iku1" id="isi_iku1" class="form-control" placeholder="Masukkan Konfirmasi Password" required>
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Konfirmasi password baru" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info my-3"><i class="ri-save-2-line"></i> Simpan Profil</button>
