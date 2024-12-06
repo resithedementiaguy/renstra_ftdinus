@@ -76,21 +76,17 @@
                             <span><?php echo $this->session->userdata('level'); ?></span>
                         </li>
 
-                        <!-- <li>
-                            <hr class="dropdown-divider" />
-                        </li> -->
-
-                        <!-- <li>
-                            <a
-                                class="dropdown-item d-flex align-items-center"
-                                href="#">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li> -->
-
                         <li>
                             <hr class="dropdown-divider" />
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item d-flex align-items-center"
+                                href="profil">
+                                <i class="bi bi-person"></i>
+                                <span>Profil Saya</span>
+                            </a>
                         </li>
 
                         <li>
@@ -99,8 +95,8 @@
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="auth/logout">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Logout</span>
+                                <i class="bi bi-box-arrow-right text-danger"></i>
+                                <span class="text-danger">Keluar Akun</span>
                             </a>
                         </li>
                     </ul>
