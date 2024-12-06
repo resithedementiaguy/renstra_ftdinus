@@ -12,6 +12,11 @@ class Ewmp extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Ewmp_model');
+
+        // Cek login
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
     }
 
     public function index()

@@ -7,6 +7,11 @@ class Dosen extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mod_dosen');
+
+        // Cek login
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
     }
 
     // Menampilkan daftar dosen

@@ -7,6 +7,11 @@ class Mahasiswa extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mod_mahasiswa');
+
+        // Cek login
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
     }
 
     public function index()

@@ -9,7 +9,6 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
     <link href="<?= base_url('') ?>/assets/img/udinus.png" rel="icon">
     <link href="<?= base_url('') ?>/assets/img/udinus.png" rel="udinus">
 
@@ -43,6 +42,10 @@
     .logo span {
         font-size: 24px;
     }
+
+    .dropdown-toggle::after {
+        margin-left: 4px;
+    }
 </style>
 
 <body>
@@ -63,27 +66,28 @@
                         class="nav-link nav-profile d-flex align-items-center pe-0"
                         href="#"
                         data-bs-toggle="dropdown">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Alfaurachman</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                            <?php echo $this->session->userdata('nama'); ?>
+                        </span>
                     </a>
-                    <ul
-                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Alfaurachman</h6>
-                            <span>Web Developer</span>
+                            <h6><?php echo $this->session->userdata('nama'); ?></h6>
+                            <span><?php echo $this->session->userdata('level'); ?></span>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <hr class="dropdown-divider" />
-                        </li>
+                        </li> -->
 
-                        <li>
+                        <!-- <li>
                             <a
                                 class="dropdown-item d-flex align-items-center"
-                                href="users-profile.html">
+                                href="#">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li>
                             <hr class="dropdown-divider" />
@@ -94,9 +98,9 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="auth/logout">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Logout</span>
                             </a>
                         </li>
                     </ul>

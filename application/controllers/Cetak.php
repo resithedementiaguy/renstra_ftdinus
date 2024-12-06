@@ -15,6 +15,11 @@ class Cetak extends CI_Controller
         $this->load->model('Mod_iku');
         $this->load->model('Mod_renstra');
         $this->load->model('Ewmp_model');
+
+        // Cek login
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
     }
 
     public function generate_pdf_renstra()
