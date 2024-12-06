@@ -30,16 +30,16 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
-                                            <th>Username</th>
-                                            <td><?= $user->username; ?></td>
+                                            <th style="border: none;">Username</th>
+                                            <td style="border: none;"><?= $user->username; ?></td>
                                         </tr>
                                         <tr>
-                                            <th>Nama</th>
-                                            <td><?= $user->nama; ?></td>
+                                            <th style="border: none;">Nama</th>
+                                            <td style="border: none;"><?= $user->nama; ?></td>
                                         </tr>
                                         <tr>
-                                            <th>Level</th>
-                                            <td><?= $user->level; ?></td>
+                                            <th style="border: none;">Level</th>
+                                            <td style="border: none;"><?= $user->level; ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -51,7 +51,7 @@
                                     <div class="row mb-3">
                                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama" id="nama" class="form-control" value="<?= $user['nama']; ?>" required>
+                                            <input type="text" name="nama" id="nama" class="form-control" value="<?= $user->nama; ?>" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">

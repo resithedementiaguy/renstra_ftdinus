@@ -30,7 +30,7 @@ class Auth extends CI_Controller
 
             if ($user) {
                 $this->session->set_userdata([
-                    'id' => $user['id'],
+                    'user_id' => $user['id'],
                     'nama' => $user['nama'],
                     'username' => $user['username'],
                     'level' => $user['level'],
