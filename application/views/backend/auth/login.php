@@ -41,27 +41,27 @@
                                     <div class="text-center pb-2">
                                         <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="150px" />
                                         <h5 class="card-title text-center pb-0 mb-1 fs-4">Rencana Strategis FT</h5>
-                                        <p class="text-center small">Masukkan Username & Password Anda!</p>
+                                        <p class="text-center small">Masukkan Username & Password untuk login!</p>
                                     </div>
                                     <form class="row g-3 needs-validation" action="auth/login" method="post" novalidate>
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-person-fill"></i>
+                                                    <i class="bi bi-person-fill text-secondary"></i>
                                                 </span>
                                                 <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Masukkan Username" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                <div class="invalid-feedback">Masukkan nama terlebih dahulu!</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-lock-fill"></i>
+                                                    <i class="bi bi-lock-fill text-secondary"></i>
                                                 </span>
                                                 <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Masukkan Password" required>
-                                                <div class="invalid-feedback">Please enter your password!</div>
+                                                <div class="invalid-feedback">Masukkan password terlebih dahulu!</div>
                                             </div>
                                         </div>
                                         <div class="col-12 pt-3">
