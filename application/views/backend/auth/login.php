@@ -37,9 +37,9 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="card py-4 mb-0">
-                                <div class="card-body p-3 m-0">
+                                <div class="card-body px-4 m-0">
                                     <div class="text-center pb-2">
-                                        <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="125px" />
+                                        <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="150px" />
                                         <h5 class="card-title text-center pb-0 mb-1 fs-4">Rencana Strategis FT</h5>
                                         <p class="text-center small">Masukkan Username & Password Anda!</p>
                                     </div>
@@ -48,7 +48,7 @@
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-person-fill"></i> <!-- Ikon Username -->
+                                                    <i class="bi bi-person-fill"></i>
                                                 </span>
                                                 <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Masukkan Username" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
@@ -58,7 +58,7 @@
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-lock-fill"></i> <!-- Ikon Password -->
+                                                    <i class="bi bi-lock-fill"></i>
                                                 </span>
                                                 <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Masukkan Password" required>
                                                 <div class="invalid-feedback">Please enter your password!</div>
@@ -75,7 +75,7 @@
                 </div>
             </section>
         </div>
-    </main><!-- End #main -->
+    </main>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
