@@ -33,8 +33,8 @@
                             Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
-                            <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi</a>
+                            <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP</a>
+                            <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian</a>
                         </div>
                         <div class="row mb-5">
                             <div class="col-6" style="height: 300px;">

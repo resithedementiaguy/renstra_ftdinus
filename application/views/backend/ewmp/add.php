@@ -415,6 +415,23 @@
                                         <input type="text" name="nama_pertama_prosiding" id="nama_pertama_prosiding" class="form-control" placeholder="Masukkan nama penulis pertama">
                                     </div>
                                 </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_prosiding" id="prodi_prosiding1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_prosiding1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_prosiding" id="prodi_prosiding2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_prosiding2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_prosiding" id="prodi_prosiding3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_prosiding3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <div class="row mb-3">
                                     <label for="nama_korespon_prosiding" class="col-sm-2 col-form-label">Nama Penulis Korespondensi</label>
                                     <div class="col-sm-10">
@@ -478,6 +495,23 @@
                                         <input type="text" name="nama_pengusul_hcipta" id="nama_pengusul_hcipta" class="form-control" placeholder="Masukkan nama Pengusul">
                                     </div>
                                 </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_hcipta" id="prodi_hcipta1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_hcipta1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_hcipta" id="prodi_hcipta2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_hcipta2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_hcipta" id="prodi_hcipta3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_hcipta3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <div id="dynamicNamaHakCiptaContainer"></div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
@@ -583,7 +617,24 @@
                             </div>
                             <!-- Komponen Paten -->
                             <div class="paten d-none" id="paten">
-                                <div id="dynamicNamaInventorContainer"></div>
+                            <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_paten" id="prodi_paten1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_paten1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_paten" id="prodi_paten2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_paten2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_paten" id="prodi_paten3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_paten3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div id="dynamicNamaInventorContainer"></div>                                
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
@@ -605,11 +656,34 @@
                             </div>
                             <!-- Komponen Desain Industri -->
                             <div class="desain_industri d-none" id="desain_industri">
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_desain" id="prodi_desain1" value="Teknik Elektro" checked>
+                                            <label class="form-check-label" for="prodi_desain1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_desain" id="prodi_desain2" value="Teknik Industri">
+                                            <label class="form-check-label" for="prodi_desain2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi_desain" id="prodi_desain3" value="Teknik Biomedis">
+                                            <label class="form-check-label" for="prodi_desain3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <div id="dynamicNamaDesainContainer"></div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
                                         <button type="button" class="btn btn-primary" id="addNamaDesain">Tambah Nama Pengusul</button>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="judul_desain" class="col-sm-2 col-form-label">Judul Desain Invensi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="judul_desain" id="judul_desain" class="form-control" placeholder="Masukkan judul invensi">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

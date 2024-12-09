@@ -460,6 +460,7 @@ class Ewmp extends CI_Controller
                     'id_pelaporan' => $id_pelaporan,
                     'kategori' => $this->input->post('kategori_prosiding'),
                     'nama_pertama' => $this->input->post('nama_pertama_prosiding'),
+                    'prodi' => $this->input->post('prodi_prosiding'),
                     'nama_korespon' => $this->input->post('nama_korespon_prosiding'),
                     'judul_artikel' => $this->input->post('judul_artikel_prosiding'),
                     'judul_seminar' => $this->input->post('judul_seminar_prosiding'),
@@ -549,6 +550,7 @@ class Ewmp extends CI_Controller
                     $data_hak_cipta = array(
                         'id_haki' => $id_haki,
                         'nama_usul' => $this->input->post('nama_pengusul_hcipta'),
+                        'prodi' => $this->input->post('prodi_hcipta'),
                         'judul' => $this->input->post('judul_hcipta'),
                         'sertifikat' => $this->input->post('sertifikat_hcipta'),
                         'ins_time' => $ins_time
@@ -759,6 +761,7 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Hak Cipta
                     $data_paten = array(
                         'id_haki' => $id_haki,
+                        'prodi' => $this->input->post('prodi_paten'),
                         'judul' => $this->input->post('judul_invensi_paten'),
                         'sertifikat' => $this->input->post('sertifikat_paten'),
                         'ins_time' => $ins_time
@@ -821,6 +824,8 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Hak Cipta
                     $data_desain = array(
                         'id_haki' => $id_haki,
+                        'prodi' => $this->input->post('prodi_desain'),
+                        'judul' => $this->input->post('judul_desain'),
                         'sertifikat' => $this->input->post('sertifikat_desain'),
                         'ins_time' => $ins_time
                     );
