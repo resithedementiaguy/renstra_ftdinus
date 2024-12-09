@@ -14,17 +14,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="card info-card sales-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tahun Ajaran</h5>
-                        <div class="d-flex align-items-center">
-                            <div
-                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6>45</h6>
-                            </div>
-                        </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-0">Tahun Ajaran</h5>
+                        <h6 class="text-center"><?= date('Y') ?></h6>
                     </div>
                 </div>
             </div>
@@ -36,12 +28,11 @@
                         <h5 class="card-title">Jumlah Dosen</h5>
 
                         <div class="d-flex align-items-center">
-                            <div
-                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                 <i class="bi bi-people"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>45</h6>
+                                <h6><?= htmlspecialchars($jumlah_dosen) ?></h6>
                             </div>
                         </div>
                     </div>
@@ -51,17 +42,14 @@
             <div class="col-xxl-4 col-md-6">
                 <div class="card info-card revenue-card">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            Jumlah Mahasiswa</span>
-                        </h5>
+                        <h5 class="card-title">Jumlah Mahasiswa</h5>
 
                         <div class="d-flex align-items-center">
-                            <div
-                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                 <i class="bi bi-people"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>738</h6>
+                                <h6><?= htmlspecialchars($jumlah_mahasiswa) ?></h6>
                             </div>
                         </div>
                     </div>

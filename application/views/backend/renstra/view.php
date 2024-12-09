@@ -322,9 +322,24 @@
         });
     });
 
-    document.getElementById('tahun').addEventListener('change', function() {
-        var selectedYear = this.value;
-        var pdfYearlyLink = '<?= base_url('cetak/generate_pdf_renstra_tahunan/') ?>' + selectedYear;
-        document.getElementById('cetak-renstra-tahunan').href = pdfYearlyLink;
-    });
+    // Add event listener for PDF print button
+    $('#cetak-renstra-tahunan').on('click', function(e) {
+            var selectedYear = $('#tahun').val();
+            
+            if (!selectedYear) {
+                e.preventDefault(); // Prevent default link behavior
+                
+                // Populate modal with warning message
+                $('#responseModalLabel').text('Peringatan');
+                $('#responseMessage').html('Silahkan pilih tahun terlebih dahulu sebelum mencetak Renstra tahunan.');
+                $('#responseModal').modal('show');
+            }
+        });
+
+        // Existing year change event listener...
+        document.getElementById('tahun').addEventListener('change', function() {
+            var selectedYear = this.value;
+            var pdfYearlyLink = '<?= base_url('cetak/generate_pdf_renstra_tahunan/') ?>' + selectedYear;
+            document.getElementById('cetak-renstra-tahunan').href = pdfYearlyLink;
+        });
 </script>
