@@ -189,30 +189,35 @@
                 <th style="width: 40px;">Biaya</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_internal as $neliti_internal) : ?>
+            <?php foreach ($penelitian_internal as $neliti_internal): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal->nama_ketua) ?>;
-                        <?php if (!empty($neliti_internal->anggota_penelitian_internal)): ?>
-                            <?php foreach ($neliti_internal->anggota_penelitian_internal as $a_neliti_internal): ?>
-                                <?= htmlspecialchars($a_neliti_internal->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($neliti_internal->nama_ketua) ?>
                     </td>
-                    <td><?= $neliti_internal->skim ?></td>`
-                    <td><?= $neliti_internal->judul ?></td>
-                    <td>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal) + 1 ?>"><?= $neliti_internal->skim ?></td>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal) + 1 ?>"><?= $neliti_internal->judul ?></td>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal) + 1 ?>" class="text-end">
                         <?= 'Rp' . number_format($neliti_internal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_internal->besar_hibah; ?>
                     </td>
                 </tr>
+
+                <?php foreach ($neliti_internal->anggota_penelitian_internal as $a_neliti_internal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_neliti_internal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php $total_hibah += $neliti_internal->besar_hibah; ?>
+
             <?php endforeach; ?>
+
             <tr>
-                <td colspan="3" style="text-align: center;">Total Hibah</td>
-                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah</td>
+                <td class="text-end" style="font-weight: bold;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -227,30 +232,36 @@
                 <th style="width: 40px;">Biaya</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($pengabdian_eksternal as $abdi_eksternal) : ?>
+            <?php foreach ($pengabdian_eksternal as $abdi_eksternal): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($abdi_eksternal->nama_ketua) ?>;
-                        <?php if (!empty($abdi_eksternal->anggota_pengabdian_eksternal)): ?>
-                            <?php foreach ($abdi_eksternal->anggota_pengabdian_eksternal as $a_abdi_eksternal): ?>
-                                <?= htmlspecialchars($a_abdi_eksternal->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($abdi_eksternal->nama_ketua) ?>
                     </td>
-                    <td><?= $abdi_eksternal->skim ?></td>`
-                    <td><?= $abdi_eksternal->judul ?></td>
-                    <td>
+
+                    <td rowspan="<?= count($abdi_eksternal->anggota_pengabdian_eksternal) + 1 ?>"><?= $abdi_eksternal->skim ?></td>
+                    <td rowspan="<?= count($abdi_eksternal->anggota_pengabdian_eksternal) + 1 ?>"><?= $abdi_eksternal->judul ?></td>
+                    <td rowspan="<?= count($abdi_eksternal->anggota_pengabdian_eksternal) + 1 ?>" class="text-end">
                         <?= 'Rp' . number_format($abdi_eksternal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $abdi_eksternal->besar_hibah; ?>
                     </td>
                 </tr>
+
+                <?php foreach ($abdi_eksternal->anggota_pengabdian_eksternal as $a_abdi_eksternal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_abdi_eksternal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php $total_hibah += $abdi_eksternal->besar_hibah; ?>
+
             <?php endforeach; ?>
+
             <tr>
-                <td colspan="3" style="text-align: center;">Total Hibah</td>
-                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah</td>
+                <td class="text-end" style="font-weight: bold;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
             </tr>
         </tbody>
     </table>
