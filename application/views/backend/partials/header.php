@@ -87,7 +87,7 @@
                         <li>
                             <a
                                 class="dropdown-item d-flex align-items-center"
-                                href="profil">
+                                href="<?= base_url('') ?>profil">
                                 <i class="bi bi-person"></i>
                                 <span>Profil Saya</span>
                             </a>
