@@ -29,7 +29,11 @@ class Cetak extends CI_Controller
         $data['level1'] = $this->Mod_iku->get_level1();
 
         // Ambil nilai tahun dari database
-        $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
+        $years = $this->db->query("
+            SELECT tahun 
+            FROM (SELECT * FROM tahun ORDER BY tahun DESC LIMIT 6) subquery 
+            ORDER BY tahun ASC
+        ")->result_array();
         $data['years'] = array_column($years, 'tahun');
 
         // Load view sebagai HTML
