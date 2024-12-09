@@ -569,6 +569,82 @@
         </tbody>
     </table>
 
+    <h3>Hibah Pengabdian Eksternal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($pengabdian_eksternal_elektro as $pengabdian_eksternal_elektro): ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pengabdian_eksternal_elektro->nama_ketua) ?>
+                    </td>
+                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->skim ?></td>
+                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->judul ?></td>
+                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($pengabdian_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
+                    </td>
+                </tr>
+                <?php foreach ($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro as $a_pengabdian_eksternal_elektro): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_pengabdian_eksternal_elektro->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Hibah Pengabdian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($pengabdian_internal_elektro as $pengabdian_internal_elektro): ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pengabdian_internal_elektro->nama_ketua) ?>
+                    </td>
+                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->skim ?></td>
+                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->judul ?></td>
+                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($pengabdian_internal_elektro->besar_hibah, 0, ',', '.') ?>
+                    </td>
+                </tr>
+                <?php foreach ($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro as $a_pengabdian_internal_elektro): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_pengabdian_internal_elektro->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <div class="print-center">
         <h1>Program Studi Teknik Industri</h1>
     </div>
@@ -829,6 +905,86 @@
 
             <tr>
                 <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Hibah Pengabdian Eksternal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($pengabdian_eksternal_industri as $pengabdian_eksternal_industri): ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pengabdian_eksternal_industri->nama_ketua) ?>
+                    </td>
+                    <td rowspan="<?= count($pengabdian_eksternal_industri->anggota_pengabdian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal_industri->skim) ?></td>
+                    <td rowspan="<?= count($pengabdian_eksternal_industri->anggota_pengabdian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal_industri->judul) ?></td>
+                    <td rowspan="<?= count($pengabdian_eksternal_industri->anggota_pengabdian_eksternal_industri) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($pengabdian_eksternal_industri->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $pengabdian_eksternal_industri->besar_hibah; ?>
+                    </td>
+                </tr>
+                <?php foreach ($pengabdian_eksternal_industri->anggota_pengabdian_eksternal_industri as $a_pengabdian_eksternal_industri): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_pengabdian_eksternal_industri->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Hibah Pengabdian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($pengabdian_internal_industri as $pengabdian_internal_industri): ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pengabdian_internal_industri->nama_ketua) ?>
+                    </td>
+                    <td rowspan="<?= count($pengabdian_internal_industri->anggota_pengabdian_internal_industri) + 1 ?>"><?= htmlspecialchars($pengabdian_internal_industri->skim) ?></td>
+                    <td rowspan="<?= count($pengabdian_internal_industri->anggota_pengabdian_internal_industri) + 1 ?>"><?= htmlspecialchars($pengabdian_internal_industri->judul) ?></td>
+                    <td rowspan="<?= count($pengabdian_internal_industri->anggota_pengabdian_internal_industri) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($pengabdian_internal_industri->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $pengabdian_internal_industri->besar_hibah; ?>
+                    </td>
+                </tr>
+                <?php foreach ($pengabdian_internal_industri->anggota_pengabdian_internal_industri as $a_pengabdian_internal_industri): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_pengabdian_internal_industri->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
                 <td style="font-weight: bold; text-align: right;">
                     <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
                 </td>

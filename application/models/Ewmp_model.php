@@ -1072,22 +1072,22 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function get_pengabdian_internal_elektro()
+    public function get_pengabdian_eksternal_elektro()
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
-        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_eksternal_elektro()
+    public function get_pengabdian_internal_elektro()
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
-        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
