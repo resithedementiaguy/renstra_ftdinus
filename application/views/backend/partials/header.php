@@ -157,7 +157,7 @@
                 </a>
                 <ul
                     id="akademik-nav"
-                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa') ? 'show' : ''; ?>"
+                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa' || $this->uri->segment(1) == 'tahun') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
                         <a class="<?php echo ($this->uri->segment(1) == 'dosen') ? 'active' : ''; ?>" href="<?php echo site_url('dosen'); ?>">
