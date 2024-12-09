@@ -919,4 +919,230 @@ class Ewmp_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_penelitian_eksternal()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_internal()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_eksternal()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_internal()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // FUNCTION GET CETAK PELAPORAN TEKNIK ELEKTRO
+
+    public function get_publikasi_nasional_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Nasional Sinta 1',
+            'Nasional Sinta 2',
+            'Nasional Sinta 3',
+            'Nasional Sinta 4',
+            'Nasional Sinta 5',
+            'Nasional Sinta 6',
+            'Nasional Tidak Terakreditasi'
+        ]);
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_internasional_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Internasional Q1',
+            'Internasional Q2',
+            'Internasional Q3',
+            'Internasional Q4',
+            'Internasional Non Scopus'
+        ]);
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_seminar_internasional_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Internasional');
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_seminar_nasional_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Nasional');
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_hcipta_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_hcipta');
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_dindustri_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_dindustri');
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_paten_elektro()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_paten');
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_eksternal_elektro()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_internal_elektro()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // FUNCTION GET CETAK PELAPORAN TEKNIK INDUSTRI
+
+    public function get_publikasi_nasional_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Nasional Sinta 1',
+            'Nasional Sinta 2',
+            'Nasional Sinta 3',
+            'Nasional Sinta 4',
+            'Nasional Sinta 5',
+            'Nasional Sinta 6',
+            'Nasional Tidak Terakreditasi'
+        ]);
+        $this->db->where('prodi', 'Teknik Industri'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_internasional_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Internasional Q1',
+            'Internasional Q2',
+            'Internasional Q3',
+            'Internasional Q4',
+            'Internasional Non Scopus'
+        ]);
+        $this->db->where('prodi', 'Teknik Industri'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_nasional_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Nasional Sinta 1',
+            'Nasional Sinta 2',
+            'Nasional Sinta 3',
+            'Nasional Sinta 4',
+            'Nasional Sinta 5',
+            'Nasional Sinta 6',
+            'Nasional Tidak Terakreditasi'
+        ]);
+        $this->db->where('prodi', 'Teknik Biomedis'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_publikasi_internasional_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where_in('kategori', [
+            'Internasional Q1',
+            'Internasional Q2',
+            'Internasional Q3',
+            'Internasional Q4',
+            'Internasional Non Scopus'
+        ]);
+        $this->db->where('prodi', 'Teknik Biomedis'); // Pastikan kedua kondisi terpenuhi
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
