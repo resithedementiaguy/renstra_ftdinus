@@ -123,6 +123,15 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
         }
+
+        .print-center {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            page-break-after: always;
+        }
     </style>
 </head>
 
@@ -280,9 +289,11 @@
         </tbody>
     </table>
 
-    <h1 style="text-align: center; page-break-before: always;">Program Studi Teknik Elektro</h1>
+    <div class="print-center">
+        <h1>Program Studi Teknik Industri</h1>
+    </div>
 
-    <h3 style="page-break-before: always;">>Laporan Publikasi Nasional</h3>
+    <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
             <tr>
@@ -539,9 +550,11 @@
         </tbody>
     </table>
 
-    <h1 style="text-align: center; align-middle: center; page-break-before: always;">Program Studi Teknik Industri</h1>
+    <div class="print-center">
+        <h1>Program Studi Teknik Industri</h1>
+    </div>
 
-    <h3 style="page-break-before: always;">Laporan Publikasi Nasional</h3>
+    <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
             <tr>
@@ -794,9 +807,11 @@
         </tbody>
     </table>
 
-    <h1 style="text-align: center; page-break-before: always;">Program Studi Teknik Biomedis</h1>
+    <div class="print-center">
+        <h1>Program Studi Teknik Biomedis</h1>
+    </div>
 
-    <h3 style="page-break-before: always;">Laporan Publikasi Nasional</h3>
+    <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
             <tr>
