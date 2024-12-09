@@ -123,16 +123,6 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
         }
-
-        .print-center {
-            display: flex;
-            flex-direction: column;
-            vertical-align: middle;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            page-break-before: always;
-        }
     </style>
 </head>
 
@@ -549,9 +539,7 @@
         </tbody>
     </table>
 
-    <div class="print-center">
-        <h1>Program Studi Teknik Industri</h1>
-    </div>
+    <h1 style="text-align: center; align-middle: center; page-break-before: always;">Program Studi Teknik Industri</h1>
 
     <h3 style="page-break-before: always;">Laporan Publikasi Nasional</h3>
     <table class="table">
