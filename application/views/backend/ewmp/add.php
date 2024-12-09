@@ -617,7 +617,7 @@
                             </div>
                             <!-- Komponen Paten -->
                             <div class="paten d-none" id="paten">
-                            <fieldset class="row mb-3">
+                                <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Program Studi</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
@@ -634,7 +634,7 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <div id="dynamicNamaInventorContainer"></div>                                
+                                <div id="dynamicNamaInventorContainer"></div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-10">
