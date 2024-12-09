@@ -148,33 +148,38 @@
                 <th style="width: 60px;">Nama</th>
                 <th style="width: 40px;">Skim</th>
                 <th style="width: 150px;">Judul</th>
-                <th style="width: 40px;">Biaya</th>
+                <th style="width: 50px;">Biaya</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_eksternal as $neliti_eksternal) : ?>
+            <?php foreach ($penelitian_eksternal as $neliti_eksternal): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal->nama_ketua) ?>;
-                        <?php if (!empty($neliti_eksternal->anggota_penelitian_eksternal)): ?>
-                            <?php foreach ($neliti_eksternal->anggota_penelitian_eksternal as $a_neliti_eksternal): ?>
-                                <?= htmlspecialchars($a_neliti_eksternal->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($neliti_eksternal->nama_ketua) ?>
                     </td>
-                    <td><?= $neliti_eksternal->skim ?></td>`
-                    <td><?= $neliti_eksternal->judul ?></td>
-                    <td>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal) + 1 ?>"><?= $neliti_eksternal->skim ?></td>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal) + 1 ?>"><?= $neliti_eksternal->judul ?></td>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal) + 1 ?>" class="text-end" style="text-align: right;">
                         <?= 'Rp' . number_format($neliti_eksternal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_eksternal->besar_hibah; ?>
                     </td>
                 </tr>
+
+                <?php foreach ($neliti_eksternal->anggota_penelitian_eksternal as $a_neliti_eksternal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_neliti_eksternal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php $total_hibah += $neliti_eksternal->besar_hibah; ?>
+
             <?php endforeach; ?>
+
             <tr>
-                <td colspan="3" style="text-align: center;">Total Hibah</td>
-                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah</td>
+                <td class="text-end" style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -186,7 +191,7 @@
                 <th style="width: 60px;">Nama</th>
                 <th style="width: 40px;">Skim</th>
                 <th style="width: 150px;">Judul</th>
-                <th style="width: 40px;">Biaya</th>
+                <th style="width: 50px;">Biaya</th>
             </tr>
         </thead>
         <tbody>
@@ -229,7 +234,7 @@
                 <th style="width: 60px;">Nama</th>
                 <th style="width: 40px;">Skim</th>
                 <th style="width: 150px;">Judul</th>
-                <th style="width: 40px;">Biaya</th>
+                <th style="width: 50px;">Biaya</th>
             </tr>
         </thead>
         <tbody>
