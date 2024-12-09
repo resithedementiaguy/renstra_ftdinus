@@ -39,6 +39,10 @@
 </head>
 
 <style>
+    body {
+        background-color: #f6f9ff;
+    }
+
     .logo span {
         font-size: 24px;
     }

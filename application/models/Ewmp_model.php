@@ -1063,8 +1063,30 @@ class Ewmp_model extends CI_Model
 
     public function get_penelitian_internal_elektro()
     {
-        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
-        $this->db->from('penelitian');
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_eksternal_elektro()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_internal_elektro()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
@@ -1184,6 +1206,28 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_pengabdian_eksternal_industri()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_internal_industri()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     // FUNCTION GET CETAK PELAPORAN TEKNIK BIOMEDIS
 
     public function get_publikasi_nasional_biomedis()
@@ -1289,6 +1333,28 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_eksternal_biomedis()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_pengabdian_internal_biomedis()
+    {
+        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Biomedis');
         $this->db->order_by('id', 'ASC');

@@ -163,26 +163,6 @@ class Cetak extends CI_Controller
             $data['pengabdian_internal'][$key]->anggota_pengabdian_internal = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_internal, $kategori);
         }
 
-        // Fetch data penelitian untuk masing-masing prodi
-        $data['penelitian_elektro'] = $this->Ewmp_model->get_penelitian_elektro();
-        log_message('debug', 'Elektro penelitian count: ' . count($data['penelitian_elektro']));
-
-        $data['penelitian_industri'] = $this->Ewmp_model->get_penelitian_industri();
-        log_message('debug', 'Industri penelitian count: ' . count($data['penelitian_industri']));
-
-        $data['penelitian_biomedis'] = $this->Ewmp_model->get_penelitian_biomedis();
-        log_message('debug', 'Biomedis penelitian count: ' . count($data['penelitian_biomedis']));
-
-        // Fetch data pengabdian untuk masing-masing prodi
-        $data['pengabdian_elektro'] = $this->Ewmp_model->get_pengabdian_elektro();
-        log_message('debug', 'Elektro pengabdian count: ' . count($data['pengabdian_elektro']));
-
-        $data['pengabdian_industri'] = $this->Ewmp_model->get_pengabdian_industri();
-        log_message('debug', 'Industri pengabdian count: ' . count($data['pengabdian_industri']));
-
-        $data['pengabdian_biomedis'] = $this->Ewmp_model->get_pengabdian_biomedis();
-        log_message('debug', 'Biomedis pengabdian count: ' . count($data['pengabdian_biomedis']));
-
         // CETAK PELAPORAN TEKNIK ELEKTRO
 
         // Publikasi Teknik Elektro
@@ -265,6 +245,24 @@ class Cetak extends CI_Controller
             $id_penelitian_internal_elektro = $penelitian_internal->id;
             $kategori = 'Penelitian';
             $data['penelitian_internal_elektro'][$key]->anggota_penelitian_internal_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_elektro, $kategori);
+        }
+
+        $data['pengabdian_internal_elektro'] = $this->Ewmp_model->get_pengabdian_internal_elektro();
+
+        // Iterasi untuk mendapatkan anggota setiap pengabdian_internal
+        foreach ($data['pengabdian_internal_elektro'] as $key => $pengabdian_internal) {
+            $id_pengabdian_internal_elektro = $pengabdian_internal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_internal_elektro'][$key]->anggota_pengabdian_internal_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_internal_elektro, $kategori);
+        }
+
+        $data['pengabdian_eksternal_elektro'] = $this->Ewmp_model->get_pengabdian_eksternal_elektro();
+
+        // Iterasi untuk mendapatkan anggota setiap pengabdian_eksternal
+        foreach ($data['pengabdian_eksternal_elektro'] as $key => $pengabdian_eksternal) {
+            $id_pengabdian_eksternal_elektro = $pengabdian_eksternal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_eksternal_elektro'][$key]->anggota_pengabdian_eksternal_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_eksternal_elektro, $kategori);
         }
 
         // CETAK PELAPORAN TEKNIK INDUSTRI
@@ -351,9 +349,25 @@ class Cetak extends CI_Controller
             $data['penelitian_internal_industri'][$key]->anggota_penelitian_internal_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_industri, $kategori);
         }
 
-        // CETAK PELAPORAN TEKNIK BIOMEDIS
+        $data['pengabdian_eksternal_industri'] = $this->Ewmp_model->get_pengabdian_eksternal_industri();
 
-        // CETAK PELAPORAN BIOMEDIS
+        // Iterasi untuk mendapatkan anggota setiap pengabdian eksternal
+        foreach ($data['pengabdian_eksternal_industri'] as $key => $pengabdian_eksternal) {
+            $id_pengabdian_eksternal_industri = $pengabdian_eksternal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_eksternal_industri'][$key]->anggota_pengabdian_eksternal_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_eksternal_industri, $kategori);
+        }
+
+        $data['pengabdian_internal_industri'] = $this->Ewmp_model->get_pengabdian_internal_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap pengabdian internal
+        foreach ($data['pengabdian_internal_industri'] as $key => $pengabdian_internal) {
+            $id_pengabdian_internal_industri = $pengabdian_internal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_internal_industri'][$key]->anggota_pengabdian_internal_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_internal_industri, $kategori);
+        }
+
+        // CETAK PELAPORAN TEKNIK BIOMEDIS
 
         // Publikasi Biomedis
         $data['publikasi_nasional_biomedis'] = $this->Ewmp_model->get_publikasi_nasional_biomedis();
@@ -435,6 +449,24 @@ class Cetak extends CI_Controller
             $id_penelitian_internal_biomedis = $penelitian_internal->id;
             $kategori = 'Penelitian';
             $data['penelitian_internal_biomedis'][$key]->anggota_penelitian_internal_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_biomedis, $kategori);
+        }
+
+        $data['pengabdian_eksternal_biomedis'] = $this->Ewmp_model->get_pengabdian_eksternal_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap pengabdian eksternal
+        foreach ($data['pengabdian_eksternal_biomedis'] as $key => $pengabdian_eksternal) {
+            $id_pengabdian_eksternal_biomedis = $pengabdian_eksternal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_eksternal_biomedis'][$key]->anggota_pengabdian_eksternal_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_eksternal_biomedis, $kategori);
+        }
+
+        $data['pengabdian_internal_biomedis'] = $this->Ewmp_model->get_pengabdian_internal_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap pengabdian internal
+        foreach ($data['pengabdian_internal_biomedis'] as $key => $pengabdian_internal) {
+            $id_pengabdian_internal_biomedis = $pengabdian_internal->id;
+            $kategori = 'pengabdian';
+            $data['pengabdian_internal_biomedis'][$key]->anggota_pengabdian_internal_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_internal_biomedis, $kategori);
         }
 
         // Load view sebagai HTML
