@@ -123,6 +123,16 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
         }
+
+        .print-center {
+            display: flex;
+            flex-direction: column;
+            vertical-align: middle;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            page-break-before: always;
+        }
     </style>
 </head>
 
@@ -280,8 +290,9 @@
         </tbody>
     </table>
 
-    <h1 style="text-align: center;">Program Studi Teknik Elektro</h1>
-    <h3>Laporan Publikasi Nasional</h3>
+    <h1 style="text-align: center; page-break-before: always;">Program Studi Teknik Elektro</h1>
+
+    <h3 style="page-break-before: always;">>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
             <tr>
@@ -538,8 +549,11 @@
         </tbody>
     </table>
 
-    <h1 style="text-align: center;">Program Studi Teknik Elektro</h1>
-    <h3>Laporan Publikasi Nasional</h3>
+    <div class="print-center">
+        <h1>Program Studi Teknik Industri</h1>
+    </div>
+
+    <h3 style="page-break-before: always;">Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
             <tr>
@@ -550,23 +564,21 @@
                 <th style="width: 55px;">Kategori</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
-            <?php $total_hibah = 0; ?>
-            <?php foreach ($publikasi_nasional_elektro as $pubnas_elektro) : ?>
+            <?php foreach ($publikasi_nasional_industri as $pubnas_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($pubnas_elektro->nama_pertama) ?>;
-                        <?php if (!empty($pubnas_elektro->anggota_publikasi_nasional_elektro)): ?>
-                            <?php foreach ($pubnas_elektro->anggota_publikasi_nasional_elektro as $a_pubnas_elektro): ?>
-                                <?= htmlspecialchars($a_pubnas_elektro->nama) ?>;
+                        <?= htmlspecialchars($pubnas_industri->nama_pertama) ?>;
+                        <?php if (!empty($pubnas_industri->anggota_publikasi_nasional_industri)): ?>
+                            <?php foreach ($pubnas_industri->anggota_publikasi_nasional_industri as $a_pubnas_industri): ?>
+                                <?= htmlspecialchars($a_pubnas_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $pubnas_elektro->judul_artikel ?></td>`
-                    <td><?= $pubnas_elektro->judul_jurnal ?></td>
-                    <td><?= $pubnas_elektro->doi ?></td>
-                    <td><?= $pubnas_elektro->kategori ?></td>
+                    <td><?= htmlspecialchars($pubnas_industri->judul_artikel) ?></td>
+                    <td><?= htmlspecialchars($pubnas_industri->judul_jurnal) ?></td>
+                    <td><?= htmlspecialchars($pubnas_industri->doi) ?></td>
+                    <td><?= htmlspecialchars($pubnas_industri->kategori) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -583,23 +595,21 @@
                 <th style="width: 55px;">Kategori</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
-            <?php $total_hibah = 0; ?>
-            <?php foreach ($publikasi_internasional_elektro as $pubinter_elektro) : ?>
+            <?php foreach ($publikasi_internasional_industri as $pubinter_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($pubinter_elektro->nama_pertama) ?>;
-                        <?php if (!empty($pubinter_elektro->anggota_publikasi_internasional_elektro)): ?>
-                            <?php foreach ($pubinter_elektro->anggota_publikasi_internasional_elektro as $a_pubinter_elektro): ?>
-                                <?= htmlspecialchars($a_pubinter_elektro->nama) ?>;
+                        <?= htmlspecialchars($pubinter_industri->nama_pertama) ?>;
+                        <?php if (!empty($pubinter_industri->anggota_publikasi_internasional_industri)): ?>
+                            <?php foreach ($pubinter_industri->anggota_publikasi_internasional_industri as $a_pubinter_industri): ?>
+                                <?= htmlspecialchars($a_pubinter_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $pubinter_elektro->judul_artikel ?></td>`
-                    <td><?= $pubinter_elektro->judul_jurnal ?></td>
-                    <td><?= $pubinter_elektro->doi ?></td>
-                    <td><?= $pubinter_elektro->kategori ?></td>
+                    <td><?= htmlspecialchars($pubinter_industri->judul_artikel) ?></td>
+                    <td><?= htmlspecialchars($pubinter_industri->judul_jurnal) ?></td>
+                    <td><?= htmlspecialchars($pubinter_industri->doi) ?></td>
+                    <td><?= htmlspecialchars($pubinter_industri->kategori) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -618,19 +628,19 @@
         <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($seminar_internasional_elektro as $seminter_elektro) : ?>
+            <?php foreach ($seminar_internasional_industri as $seminter_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($seminter_elektro->nama_pertama) ?>;
-                        <?php if (!empty($seminter_elektro->anggota_seminar_internasional_elektro)): ?>
-                            <?php foreach ($seminter_elektro->anggota_seminar_internasional_elektro as $a_seminter_elektro): ?>
-                                <?= htmlspecialchars($a_seminter_elektro->nama) ?>;
+                        <?= htmlspecialchars($seminter_industri->nama_pertama) ?>;
+                        <?php if (!empty($seminter_industri->anggota_seminar_internasional_industri)): ?>
+                            <?php foreach ($seminter_industri->anggota_seminar_internasional_industri as $a_seminter_industri): ?>
+                                <?= htmlspecialchars($a_seminter_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $seminter_elektro->judul_artikel ?></td>`
-                    <td><?= $seminter_elektro->judul_seminar ?></td>
-                    <td><?= $seminter_elektro->doi ?></td>
+                    <td><?= $seminter_industri->judul_artikel ?></td>`
+                    <td><?= $seminter_industri->judul_seminar ?></td>
+                    <td><?= $seminter_industri->doi ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -648,18 +658,18 @@
         <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($seminar_nasional_elektro as $seminas_elektro) : ?>
+            <?php foreach ($seminar_nasional_industri as $seminas_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($seminas_elektro->nama_pertama) ?>;
-                        <?php if (!empty($seminas_elektro->anggota_seminar_nasional_elektro)): ?>
-                            <?php foreach ($seminas_elektro->anggota_seminar_nasional_elektro as $a_seminas_elektro): ?>
-                                <?= htmlspecialchars($a_seminas_elektro->nama) ?>;
+                        <?= htmlspecialchars($seminas_industri->nama_pertama) ?>;
+                        <?php if (!empty($seminas_industri->anggota_seminar_nasional_industri)): ?>
+                            <?php foreach ($seminas_industri->anggota_seminar_nasional_industri as $a_seminas_industri): ?>
+                                <?= htmlspecialchars($a_seminas_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $seminas_elektro->judul_artikel ?></td>
-                    <td><?= $seminas_elektro->judul_seminar ?></td>
+                    <td><?= $seminas_industri->judul_artikel ?></td>
+                    <td><?= $seminas_industri->judul_seminar ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -677,12 +687,12 @@
         <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($hcipta_elektro as $hcipta_e) : ?>
+            <?php foreach ($hcipta_industri as $hcipta_e) : ?>
                 <tr>
                     <td class="align-middle">
                         <?= htmlspecialchars($hcipta_e->nama_usul) ?>;
-                        <?php if (!empty($hcipta_e->anggota_hcipta_elektro)): ?>
-                            <?php foreach ($hcipta_e->anggota_hcipta_elektro as $a_hcipta_e): ?>
+                        <?php if (!empty($hcipta_e->anggota_hcipta_industri)): ?>
+                            <?php foreach ($hcipta_e->anggota_hcipta_industri as $a_hcipta_e): ?>
                                 <?= htmlspecialchars($a_hcipta_e->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -691,11 +701,11 @@
                     <td>Hak Cipta</td>
                 </tr>
             <?php endforeach; ?>
-            <?php foreach ($dindustri_elektro as $dindustri_e) : ?>
+            <?php foreach ($dindustri_industri as $dindustri_e) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?php if (!empty($dindustri_e->anggota_dindustri_elektro)): ?>
-                            <?php foreach ($dindustri_e->anggota_dindustri_elektro as $a_dindustri_e): ?>
+                        <?php if (!empty($dindustri_e->anggota_dindustri_industri)): ?>
+                            <?php foreach ($dindustri_e->anggota_dindustri_industri as $a_dindustri_e): ?>
                                 <?= htmlspecialchars($a_dindustri_e->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -704,11 +714,11 @@
                     <td>Desain Industri</td>
                 </tr>
             <?php endforeach; ?>
-            <?php foreach ($paten_elektro as $paten_e) : ?>
+            <?php foreach ($paten_industri as $paten_e) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?php if (!empty($paten_e->anggota_paten_elektro)): ?>
-                            <?php foreach ($paten_e->anggota_paten_elektro as $a_paten_e): ?>
+                        <?php if (!empty($paten_e->anggota_paten_industri)): ?>
+                            <?php foreach ($paten_e->anggota_paten_industri as $a_paten_e): ?>
                                 <?= htmlspecialchars($a_paten_e->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -733,21 +743,21 @@
         <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_eksternal_elektro as $neliti_eksternal_elektro) : ?>
+            <?php foreach ($penelitian_eksternal_industri as $neliti_eksternal_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal_elektro->nama_ketua) ?>;
-                        <?php if (!empty($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro)): ?>
-                            <?php foreach ($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro as $a_neliti_eksternal_elektro): ?>
-                                <?= htmlspecialchars($a_neliti_eksternal_elektro->nama) ?>;
+                        <?= htmlspecialchars($neliti_eksternal_industri->nama_ketua) ?>;
+                        <?php if (!empty($neliti_eksternal_industri->anggota_penelitian_eksternal_industri)): ?>
+                            <?php foreach ($neliti_eksternal_industri->anggota_penelitian_eksternal_industri as $a_neliti_eksternal_industri): ?>
+                                <?= htmlspecialchars($a_neliti_eksternal_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $neliti_eksternal_elektro->skim ?></td>`
-                    <td><?= $neliti_eksternal_elektro->judul ?></td>
+                    <td><?= $neliti_eksternal_industri->skim ?></td>`
+                    <td><?= $neliti_eksternal_industri->judul ?></td>
                     <td>
-                        <?= 'Rp' . number_format($neliti_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_eksternal_elektro->besar_hibah; ?>
+                        <?= 'Rp' . number_format($neliti_eksternal_industri->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_eksternal_industri->besar_hibah; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -771,21 +781,276 @@
         <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_internal_elektro as $neliti_internal_elektro) : ?>
+            <?php foreach ($penelitian_internal_industri as $neliti_internal_industri) : ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal_elektro->nama_ketua) ?>;
-                        <?php if (!empty($neliti_internal_elektro->anggota_penelitian_internal_elektro)): ?>
-                            <?php foreach ($neliti_internal_elektro->anggota_penelitian_internal_elektro as $a_neliti_internal_elektro): ?>
-                                <?= htmlspecialchars($a_neliti_internal_elektro->nama) ?>;
+                        <?= htmlspecialchars($neliti_internal_industri->nama_ketua) ?>;
+                        <?php if (!empty($neliti_internal_industri->anggota_penelitian_internal_industri)): ?>
+                            <?php foreach ($neliti_internal_industri->anggota_penelitian_internal_industri as $a_neliti_internal_industri): ?>
+                                <?= htmlspecialchars($a_neliti_internal_industri->nama) ?>;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </td>
-                    <td><?= $neliti_internal_elektro->skim ?></td>`
-                    <td><?= $neliti_internal_elektro->judul ?></td>
+                    <td><?= $neliti_internal_industri->skim ?></td>`
+                    <td><?= $neliti_internal_industri->judul ?></td>
                     <td>
-                        <?= 'Rp' . number_format($neliti_internal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_internal_elektro->besar_hibah; ?>
+                        <?= 'Rp' . number_format($neliti_internal_industri->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_internal_industri->besar_hibah; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="3" style="text-align: center;">Total Hibah</td>
+                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 style="text-align: center; page-break-before: always;">Program Studi Teknik Biomedis</h1>
+
+    <h3 style="page-break-before: always;">Laporan Publikasi Nasional</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 55px;">Nama</th>
+                <th style="width: 120px;">Judul Artikel</th>
+                <th style="width: 50px;">Judul Jurnal</th>
+                <th style="width: 50px;">DOI</th>
+                <th style="width: 55px;">Kategori</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($publikasi_nasional_biomedis as $pubnas_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pubnas_biomedis->nama_pertama) ?>;
+                        <?php if (!empty($pubnas_biomedis->anggota_publikasi_nasional_biomedis)): ?>
+                            <?php foreach ($pubnas_biomedis->anggota_publikasi_nasional_biomedis as $a_pubnas_biomedis): ?>
+                                <?= htmlspecialchars($a_pubnas_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= htmlspecialchars($pubnas_biomedis->judul_artikel) ?></td>
+                    <td><?= htmlspecialchars($pubnas_biomedis->judul_jurnal) ?></td>
+                    <td><?= htmlspecialchars($pubnas_biomedis->doi) ?></td>
+                    <td><?= htmlspecialchars($pubnas_biomedis->kategori) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>Laporan Publikasi Internasional</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 55px;">Nama</th>
+                <th style="width: 120px;">Judul Artikel</th>
+                <th style="width: 50px;">Judul Jurnal</th>
+                <th style="width: 50px;">DOI</th>
+                <th style="width: 55px;">Kategori</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($publikasi_internasional_biomedis as $pubinter_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($pubinter_biomedis->nama_pertama) ?>;
+                        <?php if (!empty($pubinter_biomedis->anggota_publikasi_internasional_biomedis)): ?>
+                            <?php foreach ($pubinter_biomedis->anggota_publikasi_internasional_biomedis as $a_pubinter_biomedis): ?>
+                                <?= htmlspecialchars($a_pubinter_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= htmlspecialchars($pubinter_biomedis->judul_artikel) ?></td>
+                    <td><?= htmlspecialchars($pubinter_biomedis->judul_jurnal) ?></td>
+                    <td><?= htmlspecialchars($pubinter_biomedis->doi) ?></td>
+                    <td><?= htmlspecialchars($pubinter_biomedis->kategori) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>Laporan Seminar Internasional</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 55px;">Nama</th>
+                <th style="width: 60px;">Judul Artikel</th>
+                <th style="width: 60px;">Judul Jurnal</th>
+                <th style="width: 100px;">DOI</th>
+            </tr>
+        </thead>
+        <?php $no = 1; ?>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($seminar_internasional_biomedis as $seminter_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($seminter_biomedis->nama_pertama) ?>;
+                        <?php if (!empty($seminter_biomedis->anggota_seminar_internasional_biomedis)): ?>
+                            <?php foreach ($seminter_biomedis->anggota_seminar_internasional_biomedis as $a_seminter_biomedis): ?>
+                                <?= htmlspecialchars($a_seminter_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $seminter_biomedis->judul_artikel ?></td>`
+                    <td><?= $seminter_biomedis->judul_seminar ?></td>
+                    <td><?= $seminter_biomedis->doi ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>Laporan Seminar Nasional</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 55px;">Nama</th>
+                <th style="width: 190px;">Judul Artikel</th>
+                <th style="width: 60px;">Judul Jurnal</th>
+            </tr>
+        </thead>
+        <?php $no = 1; ?>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($seminar_nasional_biomedis as $seminas_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($seminas_biomedis->nama_pertama) ?>;
+                        <?php if (!empty($seminas_biomedis->anggota_seminar_nasional_biomedis)): ?>
+                            <?php foreach ($seminas_biomedis->anggota_seminar_nasional_biomedis as $a_seminas_biomedis): ?>
+                                <?= htmlspecialchars($a_seminas_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $seminas_biomedis->judul_artikel ?></td>
+                    <td><?= $seminas_biomedis->judul_seminar ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>Laporan HKI</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 55px;">Nama</th>
+                <th style="width: 210px;">Judul Invensi</th>
+                <th style="width: 40px;">Jenis HKI</th>
+            </tr>
+        </thead>
+        <?php $no = 1; ?>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($hcipta_biomedis as $hcipta_e) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>;
+                        <?php if (!empty($hcipta_e->anggota_hcipta_biomedis)): ?>
+                            <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
+                                <?= htmlspecialchars($a_hcipta_e->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $hcipta_e->judul ?></td>
+                    <td>Hak Cipta</td>
+                </tr>
+            <?php endforeach; ?>
+            <?php foreach ($dindustri_biomedis as $dindustri_e) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?php if (!empty($dindustri_e->anggota_dindustri_biomedis)): ?>
+                            <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
+                                <?= htmlspecialchars($a_dindustri_e->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $dindustri_e->judul ?></td>
+                    <td>Desain biomedis</td>
+                </tr>
+            <?php endforeach; ?>
+            <?php foreach ($paten_biomedis as $paten_e) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?php if (!empty($paten_e->anggota_paten_biomedis)): ?>
+                            <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
+                                <?= htmlspecialchars($a_paten_e->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $paten_e->judul ?></td>
+                    <td>Paten</td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>Hibah Penelitian Eksternal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <?php $no = 1; ?>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($penelitian_eksternal_biomedis as $neliti_eksternal_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($neliti_eksternal_biomedis->nama_ketua) ?>;
+                        <?php if (!empty($neliti_eksternal_biomedis->anggota_penelitian_eksternal_biomedis)): ?>
+                            <?php foreach ($neliti_eksternal_biomedis->anggota_penelitian_eksternal_biomedis as $a_neliti_eksternal_biomedis): ?>
+                                <?= htmlspecialchars($a_neliti_eksternal_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $neliti_eksternal_biomedis->skim ?></td>`
+                    <td><?= $neliti_eksternal_biomedis->judul ?></td>
+                    <td>
+                        <?= 'Rp' . number_format($neliti_eksternal_biomedis->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_eksternal_biomedis->besar_hibah; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="3" style="text-align: center;">Total Hibah</td>
+                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Hibah Penelitian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <?php $no = 1; ?>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($penelitian_internal_biomedis as $neliti_internal_biomedis) : ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($neliti_internal_biomedis->nama_ketua) ?>;
+                        <?php if (!empty($neliti_internal_biomedis->anggota_penelitian_internal_biomedis)): ?>
+                            <?php foreach ($neliti_internal_biomedis->anggota_penelitian_internal_biomedis as $a_neliti_internal_biomedis): ?>
+                                <?= htmlspecialchars($a_neliti_internal_biomedis->nama) ?>;
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $neliti_internal_biomedis->skim ?></td>`
+                    <td><?= $neliti_internal_biomedis->judul ?></td>
+                    <td>
+                        <?= 'Rp' . number_format($neliti_internal_biomedis->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_internal_biomedis->besar_hibah; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -1184,7 +1184,7 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    // FUNCTION GET CETAK PELAPORAN TEKNIK INDUSTRI
+    // FUNCTION GET CETAK PELAPORAN TEKNIK BIOMEDIS
 
     public function get_publikasi_nasional_biomedis()
     {
