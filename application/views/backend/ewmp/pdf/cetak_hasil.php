@@ -967,48 +967,50 @@
                 <th style="width: 40px;">Jenis HKI</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
-            <?php $total_hibah = 0; ?>
-            <?php foreach ($hcipta_biomedis as $hcipta_e) : ?>
+            <?php foreach ($hcipta_biomedis as $hcipta_e): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>;
-                        <?php if (!empty($hcipta_e->anggota_hcipta_biomedis)): ?>
-                            <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
-                                <?= htmlspecialchars($a_hcipta_e->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>
                     </td>
-                    <td><?= $hcipta_e->judul ?></td>
-                    <td>Hak Cipta</td>
+                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
+                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>">Hak Cipta</td>
                 </tr>
+                <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
-            <?php foreach ($dindustri_biomedis as $dindustri_e) : ?>
+
+            <?php foreach ($dindustri_biomedis as $dindustri_e): ?>
                 <tr>
                     <td class="align-middle">
-                        <?php if (!empty($dindustri_e->anggota_dindustri_biomedis)): ?>
-                            <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
-                                <?= htmlspecialchars($a_dindustri_e->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($dindustri_e->nama_usul) ?>
                     </td>
-                    <td><?= $dindustri_e->judul ?></td>
-                    <td>Desain biomedis</td>
+                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
+                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>">Desain Industri</td>
                 </tr>
+                <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
-            <?php foreach ($paten_biomedis as $paten_e) : ?>
+
+            <?php foreach ($paten_biomedis as $paten_e): ?>
                 <tr>
                     <td class="align-middle">
-                        <?php if (!empty($paten_e->anggota_paten_biomedis)): ?>
-                            <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
-                                <?= htmlspecialchars($a_paten_e->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($paten_e->nama_usul) ?>
                     </td>
-                    <td><?= $paten_e->judul ?></td>
-                    <td>Paten</td>
+                    <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
+                    <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>">Paten</td>
                 </tr>
+                <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -1023,30 +1025,32 @@
                 <th style="width: 50px;">Biaya</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_eksternal_biomedis as $neliti_eksternal_biomedis) : ?>
+            <?php foreach ($penelitian_eksternal_biomedis as $neliti_eksternal): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal_biomedis->nama_ketua) ?>;
-                        <?php if (!empty($neliti_eksternal_biomedis->anggota_penelitian_eksternal_biomedis)): ?>
-                            <?php foreach ($neliti_eksternal_biomedis->anggota_penelitian_eksternal_biomedis as $a_neliti_eksternal_biomedis): ?>
-                                <?= htmlspecialchars($a_neliti_eksternal_biomedis->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($neliti_eksternal->nama_ketua) ?>
                     </td>
-                    <td><?= $neliti_eksternal_biomedis->skim ?></td>`
-                    <td><?= $neliti_eksternal_biomedis->judul ?></td>
-                    <td>
-                        <?= 'Rp' . number_format($neliti_eksternal_biomedis->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_eksternal_biomedis->besar_hibah; ?>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->skim) ?></td>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->judul) ?></td>
+                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($neliti_eksternal->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_eksternal->besar_hibah; ?>
                     </td>
                 </tr>
+                <?php foreach ($neliti_eksternal->anggota_penelitian_eksternal_biomedis as $a_neliti_eksternal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_neliti_eksternal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
+
             <tr>
-                <td colspan="3" style="text-align: center;">Total Hibah</td>
-                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -1061,30 +1065,32 @@
                 <th style="width: 50px;">Biaya</th>
             </tr>
         </thead>
-        <?php $no = 1; ?>
         <tbody>
             <?php $total_hibah = 0; ?>
-            <?php foreach ($penelitian_internal_biomedis as $neliti_internal_biomedis) : ?>
+            <?php foreach ($penelitian_internal_biomedis as $neliti_internal): ?>
                 <tr>
                     <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal_biomedis->nama_ketua) ?>;
-                        <?php if (!empty($neliti_internal_biomedis->anggota_penelitian_internal_biomedis)): ?>
-                            <?php foreach ($neliti_internal_biomedis->anggota_penelitian_internal_biomedis as $a_neliti_internal_biomedis): ?>
-                                <?= htmlspecialchars($a_neliti_internal_biomedis->nama) ?>;
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?= htmlspecialchars($neliti_internal->nama_ketua) ?>
                     </td>
-                    <td><?= $neliti_internal_biomedis->skim ?></td>`
-                    <td><?= $neliti_internal_biomedis->judul ?></td>
-                    <td>
-                        <?= 'Rp' . number_format($neliti_internal_biomedis->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah += $neliti_internal_biomedis->besar_hibah; ?>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->skim) ?></td>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->judul) ?></td>
+                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($neliti_internal->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah += $neliti_internal->besar_hibah; ?>
                     </td>
                 </tr>
+                <?php foreach ($neliti_internal->anggota_penelitian_internal_biomedis as $a_neliti_internal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_neliti_internal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
+
             <tr>
-                <td colspan="3" style="text-align: center;">Total Hibah</td>
-                <td class="align-end"><?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?></td>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
             </tr>
         </tbody>
     </table>
