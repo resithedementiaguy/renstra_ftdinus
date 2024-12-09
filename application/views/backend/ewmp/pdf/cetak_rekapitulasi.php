@@ -139,35 +139,35 @@
                 <th style="width: 60px;">Prodi</th>
             </tr>
         </thead>
-        <?php $no=1;?>
+        <?php $no = 1; ?>
         <tbody>
-            <?php foreach($penelitian_elektro as $elektro) : ?>
+            <?php foreach ($penelitian_elektro as $elektro) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $elektro->judul?></td>
-                    <td><?= $elektro->skim?></td>
-                    <td><?= $elektro->kesesuaian?></td>
-                    <td>S1 - <?= $elektro->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $elektro->judul ?></td>
+                    <td><?= $elektro->skim ?></td>
+                    <td><?= $elektro->kesesuaian ?></td>
+                    <td>S1 - <?= $elektro->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
-            <?php foreach($penelitian_industri as $industri) : ?>
+            <?php endforeach; ?>
+            <?php foreach ($penelitian_industri as $industri) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $industri->judul?></td>
-                    <td><?= $industri->skim?></td>
-                    <td><?= $industri->kesesuaian?></td>
-                    <td>S1 - <?= $industri->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $industri->judul ?></td>
+                    <td><?= $industri->skim ?></td>
+                    <td><?= $industri->kesesuaian ?></td>
+                    <td>S1 - <?= $industri->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
-            <?php foreach($penelitian_biomedis as $biomedis) : ?>
+            <?php endforeach; ?>
+            <?php foreach ($penelitian_biomedis as $biomedis) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $biomedis->judul?></td>
-                    <td><?= $biomedis->skim?></td>
-                    <td><?= $biomedis->kesesuaian?></td>
-                    <td>S1 - <?= $biomedis->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $biomedis->judul ?></td>
+                    <td><?= $biomedis->skim ?></td>
+                    <td><?= $biomedis->kesesuaian ?></td>
+                    <td>S1 - <?= $biomedis->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -182,35 +182,35 @@
                 <th style="width: 60px;">Prodi</th>
             </tr>
         </thead>
-        <?php $no=1;?>
+        <?php $no = 1; ?>
         <tbody>
-            <?php foreach($pengabdian_elektro as $elektro) : ?>
+            <?php foreach ($pengabdian_elektro as $elektro) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $elektro->judul?></td>
-                    <td><?= $elektro->skim?></td>
-                    <td><?= $elektro->kesesuaian?></td>
-                    <td>S1 - <?= $elektro->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $elektro->judul ?></td>
+                    <td><?= $elektro->skim ?></td>
+                    <td><?= $elektro->kesesuaian ?></td>
+                    <td>S1 - <?= $elektro->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
-            <?php foreach($pengabdian_industri as $industri) : ?>
+            <?php endforeach; ?>
+            <?php foreach ($pengabdian_industri as $industri) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $industri->judul?></td>
-                    <td><?= $industri->skim?></td>
-                    <td><?= $industri->kesesuaian?></td>
-                    <td>S1 - <?= $industri->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $industri->judul ?></td>
+                    <td><?= $industri->skim ?></td>
+                    <td><?= $industri->kesesuaian ?></td>
+                    <td>S1 - <?= $industri->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
-            <?php foreach($pengabdian_biomedis as $biomedis) : ?>
+            <?php endforeach; ?>
+            <?php foreach ($pengabdian_biomedis as $biomedis) : ?>
                 <tr>
-                    <td><?= $no++?></td>
-                    <td><?= $biomedis->judul?></td>
-                    <td><?= $biomedis->skim?></td>
-                    <td><?= $biomedis->kesesuaian?></td>
-                    <td>S1 - <?= $biomedis->prodi?></td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $biomedis->judul ?></td>
+                    <td><?= $biomedis->skim ?></td>
+                    <td><?= $biomedis->kesesuaian ?></td>
+                    <td>S1 - <?= $biomedis->prodi ?></td>
                 </tr>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </body>
