@@ -169,6 +169,11 @@
                             <i class="bi bi-circle"></i><span>Mahasiswa</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="<?php echo ($this->uri->segment(1) == 'tahun') ? 'active' : ''; ?>" href="<?php echo site_url('tahun'); ?>">
+                            <i class="bi bi-circle"></i><span>Tahun</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

@@ -48,6 +48,35 @@ class Cetak extends CI_Controller
         $dompdf->stream("renstra.pdf", array("Attachment" => 0));
     }
 
+    public function generate_pdf_renstra_tahunan($year = null)
+    {
+        // Buat instance Dompdf
+        $dompdf = new Dompdf();
+
+        // Gunakan tahun yang dipilih atau tahun pertama dari database
+        if ($year === null) {
+            $year = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->row()->tahun;
+        }
+
+        $data['selected_year'] = $year;
+        $data['level1'] = $this->Mod_iku->get_level1_for_year($year);
+
+        // Load view sebagai HTML
+        $html = $this->load->view('backend/renstra/pdf/cetak_renstra_tahunan', $data, true);
+
+        // Load HTML content ke Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF (1 = download, 0 = preview)
+        $dompdf->stream("renstra_{$year}.pdf", array("Attachment" => 0));
+    }
+
     public function generate_pdf_rekapitulasi()
     {
         // Buat instance Dompdf

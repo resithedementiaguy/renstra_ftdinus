@@ -62,11 +62,35 @@
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             Silahkan untuk mengisi Target Indikator Kinerja Utama Fakultas Teknik
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
+                        <!-- Tambahkan wrapper untuk menata layout -->
+                        <div class="d-flex flex-column align-items-end">
+                            <!-- Select Option -->
+                            <div style="width: 200px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Cetak Renstra</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" selected hidden>Pilih Tahun</option>
+                                    <?php foreach($tahun as $thn): ?>
+                                        <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
-                            <a href="<?= base_url('cetak/generate_pdf_renstra') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF</a>
+                            
+                            <!-- Tombol Tambah dan Cetak -->
+                            <div class="d-flex justify-content-between w-100">
+                                <div>
+                                    <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
+                                </div>
+                                <div>
+                                    <a href="<?= base_url('cetak/generate_pdf_renstra_tahunan') ?>" 
+                                        id="cetak-renstra-tahunan" 
+                                        type="button" 
+                                        target="_blank" 
+                                        class="btn btn-danger mb-4">
+                                        <i class="bi bi-file-pdf"></i> Cetak PDF Renstra Sesuai Tahun
+                                    </a>
+                                    <a href="<?= base_url('cetak/generate_pdf_renstra') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Renstra 6 Tahun</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="table-responsive" style="overflow-x: auto; max-height: 800px;">
                             <table class="table table-bordered" style="border: 1px solid black;">
@@ -296,5 +320,11 @@
                 }
             });
         });
+    });
+
+    document.getElementById('tahun').addEventListener('change', function() {
+        var selectedYear = this.value;
+        var pdfYearlyLink = '<?= base_url('cetak/generate_pdf_renstra_tahunan/') ?>' + selectedYear;
+        document.getElementById('cetak-renstra-tahunan').href = pdfYearlyLink;
     });
 </script>
