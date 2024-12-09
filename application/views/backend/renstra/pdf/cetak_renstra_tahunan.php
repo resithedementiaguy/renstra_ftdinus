@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         p {
@@ -174,11 +174,11 @@
     <table class="table">
         <thead style="border: 1px solid #000000 !important;">
             <tr class="table-header" style="border: 1px solid #000000 !important;">
-                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 10px;">No.</th>
-                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid #000000; width: 170px;">Butir</th>
-                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 250px;">Indikator Kinerja Utama</th>
-                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; text-align: center;">Tahun <?= $selected_year?></th>
-                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; text-align: center;">Capaian</th>
+                <th class="table-header-row" style="border: 1px solid #000000; width: 10px;">No.</th>
+                <th class="table-header-row" colspan="2" style="border: 1px solid #000000; width: 170px;">Butir</th>
+                <th class="table-header-row" style="border: 1px solid #000000; width: 250px;">Indikator Kinerja Utama</th>
+                <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Tahun <?= $selected_year?></th>
+                <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Capaian</th>
             </tr>
         </thead>
         <tbody>

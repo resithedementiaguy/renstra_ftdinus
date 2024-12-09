@@ -975,7 +975,7 @@ class Ewmp_model extends CI_Model
             'Nasional Sinta 6',
             'Nasional Tidak Terakreditasi'
         ]);
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -992,7 +992,7 @@ class Ewmp_model extends CI_Model
             'Internasional Q4',
             'Internasional Non Scopus'
         ]);
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1003,7 +1003,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Internasional');
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1014,7 +1014,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Nasional');
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1024,7 +1024,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('haki_hcipta');
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1034,7 +1034,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('haki_dindustri');
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1044,7 +1044,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('haki_paten');
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1055,7 +1055,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1066,7 +1066,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
-        $this->db->where('prodi', 'Teknik Elektro'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Elektro');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1087,7 +1087,7 @@ class Ewmp_model extends CI_Model
             'Nasional Sinta 6',
             'Nasional Tidak Terakreditasi'
         ]);
-        $this->db->where('prodi', 'Teknik Industri'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Industri');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1104,11 +1104,87 @@ class Ewmp_model extends CI_Model
             'Internasional Q4',
             'Internasional Non Scopus'
         ]);
-        $this->db->where('prodi', 'Teknik Industri'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Industri');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_seminar_internasional_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Internasional');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_seminar_nasional_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Nasional');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_hcipta_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_hcipta');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_dindustri_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_dindustri');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_paten_industri()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_paten');
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_eksternal_industri()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_internal_industri()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Industri');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // FUNCTION GET CETAK PELAPORAN TEKNIK BIOMEDIS
 
     public function get_publikasi_nasional_biomedis()
     {
@@ -1123,7 +1199,7 @@ class Ewmp_model extends CI_Model
             'Nasional Sinta 6',
             'Nasional Tidak Terakreditasi'
         ]);
-        $this->db->where('prodi', 'Teknik Biomedis'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Biomedis');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1140,7 +1216,81 @@ class Ewmp_model extends CI_Model
             'Internasional Q4',
             'Internasional Non Scopus'
         ]);
-        $this->db->where('prodi', 'Teknik Biomedis'); // Pastikan kedua kondisi terpenuhi
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_seminar_internasional_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Internasional');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_seminar_nasional_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('prosiding');
+        $this->db->where_in('kategori', 'Nasional');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_hcipta_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_hcipta');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_dindustri_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_dindustri');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_paten_biomedis()
+    {
+        $this->db->select('*');
+        $this->db->from('haki_paten');
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_eksternal_biomedis()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_penelitian_internal_biomedis()
+    {
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
+        $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('prodi', 'Teknik Biomedis');
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();

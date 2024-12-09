@@ -127,38 +127,38 @@ class Cetak extends CI_Controller
         // Buat instance Dompdf
         $dompdf = new Dompdf();
 
-        $data['penelitian_eksternal']=$this->Ewmp_model->get_penelitian_eksternal();
+        $data['penelitian_eksternal'] = $this->Ewmp_model->get_penelitian_eksternal();
 
         // Iterasi untuk mendapatkan anggota setiap penelitian
         foreach ($data['penelitian_eksternal'] as $key => $penelitian) {
-            $id_penelitian_eksternal = $penelitian->id; // Pastikan sesuai nama kolom di database
+            $id_penelitian_eksternal = $penelitian->id;
             $kategori = 'Penelitian';
             $data['penelitian_eksternal'][$key]->anggota_penelitian_eksternal = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_eksternal, $kategori);
         }
 
-        $data['penelitian_internal']=$this->Ewmp_model->get_penelitian_internal();
+        $data['penelitian_internal'] = $this->Ewmp_model->get_penelitian_internal();
 
         // Iterasi untuk mendapatkan anggota setiap penelitian
         foreach ($data['penelitian_internal'] as $key => $penelitian) {
-            $id_penelitian_internal = $penelitian->id; // Pastikan sesuai nama kolom di database
+            $id_penelitian_internal = $penelitian->id;
             $kategori = 'Penelitian';
             $data['penelitian_internal'][$key]->anggota_penelitian_internal = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal, $kategori);
         }
 
-        $data['pengabdian_eksternal']=$this->Ewmp_model->get_pengabdian_eksternal();
+        $data['pengabdian_eksternal'] = $this->Ewmp_model->get_pengabdian_eksternal();
 
         // Iterasi untuk mendapatkan anggota setiap pengabdian
         foreach ($data['pengabdian_eksternal'] as $key => $pengabdian) {
-            $id_pengabdian_eksternal = $pengabdian->id; // Pastikan sesuai nama kolom di database
+            $id_pengabdian_eksternal = $pengabdian->id;
             $kategori = 'Pengabdian';
             $data['pengabdian_eksternal'][$key]->anggota_pengabdian_eksternal = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_eksternal, $kategori);
         }
 
-        $data['pengabdian_internal']=$this->Ewmp_model->get_pengabdian_internal();
+        $data['pengabdian_internal'] = $this->Ewmp_model->get_pengabdian_internal();
 
         // Iterasi untuk mendapatkan anggota setiap pengabdian
         foreach ($data['pengabdian_internal'] as $key => $pengabdian) {
-            $id_pengabdian_internal = $pengabdian->id; // Pastikan sesuai nama kolom di database
+            $id_pengabdian_internal = $pengabdian->id;
             $kategori = 'Pengabdian';
             $data['pengabdian_internal'][$key]->anggota_pengabdian_internal = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_pengabdian_internal, $kategori);
         }
@@ -190,7 +190,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap publikasi
         foreach ($data['publikasi_nasional_elektro'] as $key => $publikasi) {
-            $id_publikasi_nasional_elektro = $publikasi->id; // Pastikan sesuai nama kolom di database
+            $id_publikasi_nasional_elektro = $publikasi->id;
             $kategori = 'Artikel/Karya Ilmiah';
             $data['publikasi_nasional_elektro'][$key]->anggota_publikasi_nasional_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_nasional_elektro, $kategori);
         }
@@ -199,7 +199,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap publikasi
         foreach ($data['publikasi_internasional_elektro'] as $key => $publikasi) {
-            $id_publikasi_internasional_elektro = $publikasi->id; // Pastikan sesuai nama kolom di database
+            $id_publikasi_internasional_elektro = $publikasi->id;
             $kategori = 'Artikel/Karya Ilmiah';
             $data['publikasi_internasional_elektro'][$key]->anggota_publikasi_internasional_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_internasional_elektro, $kategori);
         }
@@ -208,7 +208,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap seminar
         foreach ($data['seminar_nasional_elektro'] as $key => $seminar) {
-            $id_seminar_nasional_elektro = $seminar->id; // Pastikan sesuai nama kolom di database
+            $id_seminar_nasional_elektro = $seminar->id;
             $kategori = 'Prosiding';
             $data['seminar_nasional_elektro'][$key]->anggota_seminar_nasional_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_nasional_elektro, $kategori);
         }
@@ -217,7 +217,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap seminar
         foreach ($data['seminar_internasional_elektro'] as $key => $seminar) {
-            $id_seminar_internasional_elektro = $seminar->id; // Pastikan sesuai nama kolom di database
+            $id_seminar_internasional_elektro = $seminar->id;
             $kategori = 'Prosiding';
             $data['seminar_internasional_elektro'][$key]->anggota_seminar_internasional_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_internasional_elektro, $kategori);
         }
@@ -226,7 +226,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap hcipta
         foreach ($data['hcipta_elektro'] as $key => $hcipta) {
-            $id_hcipta_elektro = $hcipta->id; // Pastikan sesuai nama kolom di database
+            $id_hcipta_elektro = $hcipta->id;
             $kategori = 'Hak Cipta';
             $data['hcipta_elektro'][$key]->anggota_hcipta_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_elektro, $kategori);
         }
@@ -235,7 +235,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap dindustri
         foreach ($data['dindustri_elektro'] as $key => $dindustri) {
-            $id_dindustri_elektro = $dindustri->id; // Pastikan sesuai nama kolom di database
+            $id_dindustri_elektro = $dindustri->id;
             $kategori = 'Hak Cipta';
             $data['dindustri_elektro'][$key]->anggota_dindustri_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_elektro, $kategori);
         }
@@ -244,7 +244,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap paten
         foreach ($data['paten_elektro'] as $key => $paten) {
-            $id_paten_elektro = $paten->id; // Pastikan sesuai nama kolom di database
+            $id_paten_elektro = $paten->id;
             $kategori = 'Paten';
             $data['paten_elektro'][$key]->anggota_paten_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_elektro, $kategori);
         }
@@ -253,7 +253,7 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap penelitian_eksternal
         foreach ($data['penelitian_eksternal_elektro'] as $key => $penelitian_eksternal) {
-            $id_penelitian_eksternal_elektro = $penelitian_eksternal->id; // Pastikan sesuai nama kolom di database
+            $id_penelitian_eksternal_elektro = $penelitian_eksternal->id;
             $kategori = 'Penelitian';
             $data['penelitian_eksternal_elektro'][$key]->anggota_penelitian_eksternal_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_eksternal_elektro, $kategori);
         }
@@ -262,17 +262,180 @@ class Cetak extends CI_Controller
 
         // Iterasi untuk mendapatkan anggota setiap penelitian_internal
         foreach ($data['penelitian_internal_elektro'] as $key => $penelitian_internal) {
-            $id_penelitian_internal_elektro = $penelitian_internal->id; // Pastikan sesuai nama kolom di database
+            $id_penelitian_internal_elektro = $penelitian_internal->id;
             $kategori = 'Penelitian';
             $data['penelitian_internal_elektro'][$key]->anggota_penelitian_internal_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_elektro, $kategori);
         }
 
         // CETAK PELAPORAN TEKNIK INDUSTRI
 
+        // Publikasi Teknik Industri
         $data['publikasi_nasional_industri'] = $this->Ewmp_model->get_publikasi_nasional_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['publikasi_nasional_industri'] as $key => $publikasi) {
+            $id_publikasi_nasional_industri = $publikasi->id;
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['publikasi_nasional_industri'][$key]->anggota_publikasi_nasional_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_nasional_industri, $kategori);
+        }
+
         $data['publikasi_internasional_industri'] = $this->Ewmp_model->get_publikasi_internasional_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['publikasi_internasional_industri'] as $key => $publikasi) {
+            $id_publikasi_internasional_industri = $publikasi->id;
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['publikasi_internasional_industri'][$key]->anggota_publikasi_internasional_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_internasional_industri, $kategori);
+        }
+
+        $data['seminar_nasional_industri'] = $this->Ewmp_model->get_seminar_nasional_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap seminar
+        foreach ($data['seminar_nasional_industri'] as $key => $seminar) {
+            $id_seminar_nasional_industri = $seminar->id;
+            $kategori = 'Prosiding';
+            $data['seminar_nasional_industri'][$key]->anggota_seminar_nasional_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_nasional_industri, $kategori);
+        }
+
+        $data['seminar_internasional_industri'] = $this->Ewmp_model->get_seminar_internasional_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap seminar
+        foreach ($data['seminar_internasional_industri'] as $key => $seminar) {
+            $id_seminar_internasional_industri = $seminar->id;
+            $kategori = 'Prosiding';
+            $data['seminar_internasional_industri'][$key]->anggota_seminar_internasional_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_internasional_industri, $kategori);
+        }
+
+        $data['hcipta_industri'] = $this->Ewmp_model->get_hcipta_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap hcipta
+        foreach ($data['hcipta_industri'] as $key => $hcipta) {
+            $id_hcipta_industri = $hcipta->id;
+            $kategori = 'Hak Cipta';
+            $data['hcipta_industri'][$key]->anggota_hcipta_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_industri, $kategori);
+        }
+
+        $data['dindustri_industri'] = $this->Ewmp_model->get_dindustri_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap dindustri
+        foreach ($data['dindustri_industri'] as $key => $dindustri) {
+            $id_dindustri_industri = $dindustri->id;
+            $kategori = 'Hak Cipta';
+            $data['dindustri_industri'][$key]->anggota_dindustri_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_industri, $kategori);
+        }
+
+        $data['paten_industri'] = $this->Ewmp_model->get_paten_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap paten
+        foreach ($data['paten_industri'] as $key => $paten) {
+            $id_paten_industri = $paten->id;
+            $kategori = 'Paten';
+            $data['paten_industri'][$key]->anggota_paten_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_industri, $kategori);
+        }
+
+        $data['penelitian_eksternal_industri'] = $this->Ewmp_model->get_penelitian_eksternal_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap penelitian eksternal
+        foreach ($data['penelitian_eksternal_industri'] as $key => $penelitian_eksternal) {
+            $id_penelitian_eksternal_industri = $penelitian_eksternal->id;
+            $kategori = 'Penelitian';
+            $data['penelitian_eksternal_industri'][$key]->anggota_penelitian_eksternal_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_eksternal_industri, $kategori);
+        }
+
+        $data['penelitian_internal_industri'] = $this->Ewmp_model->get_penelitian_internal_industri();
+
+        // Iterasi untuk mendapatkan anggota setiap penelitian internal
+        foreach ($data['penelitian_internal_industri'] as $key => $penelitian_internal) {
+            $id_penelitian_internal_industri = $penelitian_internal->id;
+            $kategori = 'Penelitian';
+            $data['penelitian_internal_industri'][$key]->anggota_penelitian_internal_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_industri, $kategori);
+        }
+
+        // CETAK PELAPORAN TEKNIK BIOMEDIS
+
+        // CETAK PELAPORAN BIOMEDIS
+
+        // Publikasi Biomedis
         $data['publikasi_nasional_biomedis'] = $this->Ewmp_model->get_publikasi_nasional_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['publikasi_nasional_biomedis'] as $key => $publikasi) {
+            $id_publikasi_nasional_biomedis = $publikasi->id;
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['publikasi_nasional_biomedis'][$key]->anggota_publikasi_nasional_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_nasional_biomedis, $kategori);
+        }
+
         $data['publikasi_internasional_biomedis'] = $this->Ewmp_model->get_publikasi_internasional_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap publikasi
+        foreach ($data['publikasi_internasional_biomedis'] as $key => $publikasi) {
+            $id_publikasi_internasional_biomedis = $publikasi->id;
+            $kategori = 'Artikel/Karya Ilmiah';
+            $data['publikasi_internasional_biomedis'][$key]->anggota_publikasi_internasional_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_publikasi_internasional_biomedis, $kategori);
+        }
+
+        $data['seminar_nasional_biomedis'] = $this->Ewmp_model->get_seminar_nasional_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap seminar
+        foreach ($data['seminar_nasional_biomedis'] as $key => $seminar) {
+            $id_seminar_nasional_biomedis = $seminar->id;
+            $kategori = 'Prosiding';
+            $data['seminar_nasional_biomedis'][$key]->anggota_seminar_nasional_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_nasional_biomedis, $kategori);
+        }
+
+        $data['seminar_internasional_biomedis'] = $this->Ewmp_model->get_seminar_internasional_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap seminar
+        foreach ($data['seminar_internasional_biomedis'] as $key => $seminar) {
+            $id_seminar_internasional_biomedis = $seminar->id;
+            $kategori = 'Prosiding';
+            $data['seminar_internasional_biomedis'][$key]->anggota_seminar_internasional_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_seminar_internasional_biomedis, $kategori);
+        }
+
+        $data['hcipta_biomedis'] = $this->Ewmp_model->get_hcipta_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap hcipta
+        foreach ($data['hcipta_biomedis'] as $key => $hcipta) {
+            $id_hcipta_biomedis = $hcipta->id;
+            $kategori = 'Hak Cipta';
+            $data['hcipta_biomedis'][$key]->anggota_hcipta_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_biomedis, $kategori);
+        }
+
+        $data['dindustri_biomedis'] = $this->Ewmp_model->get_dindustri_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap dindustri
+        foreach ($data['dindustri_biomedis'] as $key => $dindustri) {
+            $id_dindustri_biomedis = $dindustri->id;
+            $kategori = 'Hak Cipta';
+            $data['dindustri_biomedis'][$key]->anggota_dindustri_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_biomedis, $kategori);
+        }
+
+        $data['paten_biomedis'] = $this->Ewmp_model->get_paten_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap paten
+        foreach ($data['paten_biomedis'] as $key => $paten) {
+            $id_paten_biomedis = $paten->id;
+            $kategori = 'Paten';
+            $data['paten_biomedis'][$key]->anggota_paten_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_biomedis, $kategori);
+        }
+
+        $data['penelitian_eksternal_biomedis'] = $this->Ewmp_model->get_penelitian_eksternal_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap penelitian eksternal
+        foreach ($data['penelitian_eksternal_biomedis'] as $key => $penelitian_eksternal) {
+            $id_penelitian_eksternal_biomedis = $penelitian_eksternal->id;
+            $kategori = 'Penelitian';
+            $data['penelitian_eksternal_biomedis'][$key]->anggota_penelitian_eksternal_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_eksternal_biomedis, $kategori);
+        }
+
+        $data['penelitian_internal_biomedis'] = $this->Ewmp_model->get_penelitian_internal_biomedis();
+
+        // Iterasi untuk mendapatkan anggota setiap penelitian internal
+        foreach ($data['penelitian_internal_biomedis'] as $key => $penelitian_internal) {
+            $id_penelitian_internal_biomedis = $penelitian_internal->id;
+            $kategori = 'Penelitian';
+            $data['penelitian_internal_biomedis'][$key]->anggota_penelitian_internal_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_penelitian_internal_biomedis, $kategori);
+        }
 
         // Load view sebagai HTML
         $html = $this->load->view('backend/ewmp/pdf/cetak_hasil', $data, true);
