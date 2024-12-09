@@ -125,12 +125,16 @@
         }
 
         .print-center {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
             page-break-after: always;
+            page-break-before: always;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
