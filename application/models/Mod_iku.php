@@ -11,6 +11,17 @@ class Mod_iku extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function get_level1_for_year($year = null)
+    {
+        $this->db->select('*');
+        $this->db->from('iku_level1');
+        
+        // If a specific year is provided, you might want to add year-specific filtering logic
+        // This depends on your exact requirements for year-based level1 selection
+        
+        return $this->db->get()->result();
+    }
+
     public function get_level2($id_level1)
     {
         $this->db->select('*');
@@ -35,10 +46,20 @@ class Mod_iku extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_target_level3($level3_id)
+    public function get_target_level3($level3_id, $year = null)
     {
         $this->db->select('tahun_target, isi_target');
         $this->db->where('id_level3', $level3_id);
+        
+        // If a specific year is provided, filter by that year
+        if ($year !== null) {
+            $this->db->where('tahun_target', $year);
+            $query = $this->db->get('target_level3');
+            $result = $query->row();
+            return $result ? $result->isi_target : null;
+        }
+        
+        // If no year specified, return all targets as before
         $query = $this->db->get('target_level3');
         $results = $query->result();
 
@@ -49,10 +70,20 @@ class Mod_iku extends CI_Model
         return $targets;
     }
 
-    public function get_target_level4($level4_id)
+    public function get_target_level4($level4_id, $year = null)
     {
         $this->db->select('tahun_target, isi_target');
         $this->db->where('id_level4', $level4_id);
+        
+        // If a specific year is provided, filter by that year
+        if ($year !== null) {
+            $this->db->where('tahun_target', $year);
+            $query = $this->db->get('target_level4');
+            $result = $query->row();
+            return $result ? $result->isi_target : null;
+        }
+        
+        // If no year specified, return all targets as before
         $query = $this->db->get('target_level4');
         $results = $query->result();
 
@@ -63,10 +94,20 @@ class Mod_iku extends CI_Model
         return $targets;
     }
 
-    public function get_capaian_level3($level3_id)
+    public function get_capaian_level3($level3_id, $year = null)
     {
         $this->db->select('tahun_capaian, isi_capaian');
         $this->db->where('id_level3', $level3_id);
+        
+        // If a specific year is provided, filter by that year
+        if ($year !== null) {
+            $this->db->where('tahun_capaian', $year);
+            $query = $this->db->get('capaian_level3');
+            $result = $query->row();
+            return $result ? $result->isi_capaian : null;
+        }
+        
+        // If no year specified, return all capaian as before
         $query = $this->db->get('capaian_level3');
         $results = $query->result();
 
@@ -77,10 +118,20 @@ class Mod_iku extends CI_Model
         return $capaian;
     }
 
-    public function get_capaian_level4($level4_id)
+    public function get_capaian_level4($level4_id, $year = null)
     {
         $this->db->select('tahun_capaian, isi_capaian');
         $this->db->where('id_level4', $level4_id);
+        
+        // If a specific year is provided, filter by that year
+        if ($year !== null) {
+            $this->db->where('tahun_capaian', $year);
+            $query = $this->db->get('capaian_level4');
+            $result = $query->row();
+            return $result ? $result->isi_capaian : null;
+        }
+        
+        // If no year specified, return all capaian as before
         $query = $this->db->get('capaian_level4');
         $results = $query->result();
 
