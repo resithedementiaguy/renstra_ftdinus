@@ -1094,6 +1094,50 @@
             </tr>
         </tbody>
     </table>
+
+    <h3>Hibah Pengabdian Internal</h3>
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th style="width: 60px;">Nama</th>
+                <th style="width: 40px;">Skim</th>
+                <th style="width: 150px;">Judul</th>
+                <th style="width: 50px;">Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total_hibah = 0; ?>
+            <?php foreach ($pengabdian_internal as $abdi_internal): ?>
+                <tr>
+                    <td class="align-middle">
+                        <?= htmlspecialchars($abdi_internal->nama_ketua) ?>
+                    </td>
+
+                    <td rowspan="<?= count($abdi_internal->anggota_pengabdian_internal) + 1 ?>"><?= $abdi_internal->skim ?></td>
+                    <td rowspan="<?= count($abdi_internal->anggota_pengabdian_internal) + 1 ?>"><?= $abdi_internal->judul ?></td>
+                    <td rowspan="<?= count($abdi_internal->anggota_pengabdian_internal) + 1 ?>" style="text-align: right;">
+                        <?= 'Rp' . number_format($abdi_internal->besar_hibah, 0, ',', '.') ?>
+                    </td>
+                </tr>
+
+                <?php foreach ($abdi_internal->anggota_pengabdian_internal as $a_abdi_internal): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a_abdi_internal->nama) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php $total_hibah += $abdi_internal->besar_hibah; ?>
+
+            <?php endforeach; ?>
+
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
+                <td style="font-weight: bold; text-align: right;">
+                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>

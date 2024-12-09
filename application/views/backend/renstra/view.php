@@ -1,5 +1,4 @@
 <style>
-    /* Ensure table header remains opaque and has consistent borders when scrolled */
     table {
         border-collapse: separate;
         border-spacing: 0;
