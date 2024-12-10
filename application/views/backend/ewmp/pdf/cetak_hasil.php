@@ -571,83 +571,89 @@
         </tbody>
     </table>
 
-    <h3>Hibah Pengabdian Eksternal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_pengabdian_eksternal_elektro = 0; ?>
-            <?php foreach ($pengabdian_eksternal_elektro as $pengabdian_eksternal_elektro): ?>
+    <?php if (!empty($pengabdian_eksternal_elektro)): ?>
+        <h3>Hibah Pengabdian Eksternal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pengabdian_eksternal_elektro->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->skim ?></td>
-                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->judul ?></td>
-                    <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($pengabdian_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_pengabdian_eksternal_elektro += $pengabdian_eksternal_elektro->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_pengabdian_eksternal_elektro = 0; ?>
+                <?php foreach ($pengabdian_eksternal_elektro as $pengabdian_eksternal_elektro): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pengabdian_eksternal_elektro->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->skim ?></td>
+                        <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->judul ?></td>
+                        <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($pengabdian_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_pengabdian_eksternal_elektro += $pengabdian_eksternal_elektro->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro as $a_pengabdian_eksternal_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pengabdian_eksternal_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_pengabdian_eksternal_elektro, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro as $a_pengabdian_eksternal_elektro): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_pengabdian_eksternal_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_pengabdian_eksternal_elektro, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <?php else: ?>
+    <?php endif; ?>
 
-    <h3>Hibah Pengabdian Internal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_pengabdian_internal_elektro = 0; ?>
-            <?php foreach ($pengabdian_internal_elektro as $pengabdian_internal_elektro): ?>
+    <?php if (!empty($pengabdian_internal_elektro)): ?>
+        <h3>Hibah Pengabdian Internal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pengabdian_internal_elektro->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->skim ?></td>
-                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->judul ?></td>
-                    <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($pengabdian_internal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_pengabdian_internal_elektro += $pengabdian_internal_elektro->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_pengabdian_internal_elektro = 0; ?>
+                <?php foreach ($pengabdian_internal_elektro as $pengabdian_internal_elektro): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pengabdian_internal_elektro->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->skim ?></td>
+                        <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->judul ?></td>
+                        <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($pengabdian_internal_elektro->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_pengabdian_internal_elektro += $pengabdian_internal_elektro->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro as $a_pengabdian_internal_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pengabdian_internal_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_pengabdian_internal_elektro, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro as $a_pengabdian_internal_elektro): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_pengabdian_internal_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_pengabdian_internal_elektro, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <?php else: ?>
+    <?php endif; ?>
 
     <div class="print-center">
         <h1>Program Studi Teknik Industri</h1>
@@ -1261,85 +1267,91 @@
         </tbody>
     </table>
 
-    <h3>Hibah Pengabdian Eksternal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_eksternal = 0; ?>
-            <?php foreach ($pengabdian_eksternal_biomedis as $pengabdian_eksternal): ?>
+    <?php if (!empty($pengabdian_eksternal_biomedis)): ?>
+        <h3>Hibah Pengabdian Eksternal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pengabdian_eksternal->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal->skim) ?></td>
-                    <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal->judul) ?></td>
-                    <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($pengabdian_eksternal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_eksternal += $pengabdian_eksternal->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_eksternal = 0; ?>
+                <?php foreach ($pengabdian_eksternal_biomedis as $pengabdian_eksternal): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pengabdian_eksternal->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal->skim) ?></td>
+                        <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_eksternal->judul) ?></td>
+                        <td rowspan="<?= count($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($pengabdian_eksternal->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_eksternal += $pengabdian_eksternal->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis as $a_pengabdian_eksternal): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pengabdian_eksternal->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_eksternal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($pengabdian_eksternal->anggota_pengabdian_eksternal_biomedis as $a_pengabdian_eksternal): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_pengabdian_eksternal->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+    <?php endif; ?>
 
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_eksternal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>Hibah Pengabdian Internal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_internal = 0; ?>
-            <?php foreach ($pengabdian_internal_biomedis as $pengabdian_internal): ?>
+    <?php if (!empty($pengabdian_internal_biomedis)): ?>
+        <h3>Hibah Pengabdian Internal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pengabdian_internal->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_internal->skim) ?></td>
-                    <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_internal->judul) ?></td>
-                    <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($pengabdian_internal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_internal += $pengabdian_internal->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_internal = 0; ?>
+                <?php foreach ($pengabdian_internal_biomedis as $pengabdian_internal): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pengabdian_internal->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_internal->skim) ?></td>
+                        <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($pengabdian_internal->judul) ?></td>
+                        <td rowspan="<?= count($pengabdian_internal->anggota_pengabdian_internal_biomedis) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($pengabdian_internal->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_internal += $pengabdian_internal->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($pengabdian_internal->anggota_pengabdian_internal_biomedis as $a_pengabdian_internal): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pengabdian_internal->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_internal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($pengabdian_internal->anggota_pengabdian_internal_biomedis as $a_pengabdian_internal): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_pengabdian_internal->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_internal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <?php else: ?>
+    <?php endif; ?>
 </body>
 
 </html>
