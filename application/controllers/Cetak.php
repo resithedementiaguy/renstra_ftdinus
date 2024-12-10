@@ -86,6 +86,8 @@ class Cetak extends CI_Controller
         // Buat instance Dompdf
         $dompdf = new Dompdf();
 
+        $data['tahun']=$tahun;
+
         // Fetch data penelitian dan pengabdian berdasarkan tahun
         $data['penelitian_elektro'] = $this->Ewmp_model->get_penelitian_elektro($tahun);
         $data['penelitian_industri'] = $this->Ewmp_model->get_penelitian_industri($tahun);
@@ -116,6 +118,8 @@ class Cetak extends CI_Controller
     {
         // Buat instance Dompdf
         $dompdf = new Dompdf();
+
+        $data['tahun']=$tahun;
 
         $data['penelitian_eksternal'] = $this->Ewmp_model->get_penelitian_eksternal($tahun);
 
