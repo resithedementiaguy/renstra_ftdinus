@@ -315,6 +315,7 @@
         <h1>Program Studi Teknik Elektro</h1>
     </div>
 
+    <?php if (!empty($publikasi_nasional_elektro)): ?>
     <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -349,7 +350,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($publikasi_internasional_elektro)): ?>
     <h3>Laporan Publikasi Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -383,7 +387,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_nasional_elektro)): ?>
     <h3>Laporan Seminar Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -412,7 +419,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_internasional_elektro)): ?>
     <h3>Laporan Seminar Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -441,7 +451,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($hcipta_elektro || $dindustri_elektro || $paten_elektro)): ?>
     <h3>Laporan HKI</h3>
     <table class="table">
         <thead class="table-header">
@@ -492,7 +505,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_eksternal_elektro)): ?>
     <h3>Hibah Penelitian Eksternal</h3>
     <table class="table">
         <thead class="table-header">
@@ -531,7 +547,10 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_internal_elektro)): ?>
     <h3>Hibah Penelitian Internal</h3>
     <table class="table">
         <thead class="table-header">
@@ -570,6 +589,8 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
     <?php if (!empty($pengabdian_eksternal_elektro)): ?>
         <h3>Hibah Pengabdian Eksternal</h3>
@@ -659,6 +680,7 @@
         <h1>Program Studi Teknik Industri</h1>
     </div>
 
+    <?php if (!empty($publikasi_nasional_industri)): ?>
     <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -688,7 +710,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($publikasi_internasional_industri)): ?>
     <h3>Laporan Publikasi Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -718,7 +743,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_nasional_industri)): ?>
     <h3>Laporan Seminar Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -749,7 +777,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_internasional_industri)): ?>
     <h3>Laporan Seminar Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -784,7 +815,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($hcipta_industri || $dindustri_industri || $paten_industri)): ?>
     <h3>Laporan HKI</h3>
     <table class="table">
         <thead class="table-header">
@@ -841,7 +875,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_eksternal_industri)): ?>
     <h3>Hibah Penelitian Eksternal</h3>
     <table class="table">
         <thead class="table-header">
@@ -881,7 +918,10 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_internal_industri)): ?>
     <h3>Hibah Penelitian Internal</h3>
     <table class="table">
         <thead class="table-header">
@@ -921,6 +961,8 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
     <?php if (!empty($pengabdian_eksternal_industri)): ?>
         <h3>Hibah Pengabdian Eksternal</h3>
@@ -1012,6 +1054,7 @@
         <h1>Program Studi Teknik Biomedis</h1>
     </div>
 
+    <?php if (!empty($publikasi_nasional_biomedis)): ?>
     <h3>Laporan Publikasi Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -1042,7 +1085,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($publikasi_internasional_biomedis)): ?>
     <h3>Laporan Publikasi Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -1073,7 +1119,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_nasional_biomedis)): ?>
     <h3>Laporan Seminar Nasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -1100,7 +1149,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($seminar_internasional_biomedis)): ?>
     <h3>Laporan Seminar Internasional</h3>
     <table class="table">
         <thead class="table-header">
@@ -1129,7 +1181,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($hcipta_biomedis || $dindustri_biomedis || $paten_biomedis)): ?>
     <h3>Laporan HKI</h3>
     <table class="table">
         <thead class="table-header">
@@ -1186,7 +1241,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_eksternal_biomedis)): ?>
     <h3>Hibah Penelitian Eksternal</h3>
     <table class="table">
         <thead class="table-header">
@@ -1226,7 +1284,10 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
+    <?php if (!empty($penelitian_internal_biomedis)): ?>
     <h3>Hibah Penelitian Internal</h3>
     <table class="table">
         <thead class="table-header">
@@ -1266,6 +1327,8 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <?php endif; ?>
 
     <?php if (!empty($pengabdian_eksternal_biomedis)): ?>
         <h3>Hibah Pengabdian Eksternal</h3>

@@ -161,11 +161,7 @@
                 </a>
                 <ul
                     id="akademik-nav"
-<<<<<<< HEAD
-                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa' || $this->uri->segment(1) == 'tahun') ? 'show' : ''; ?>"
-=======
-                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa' || $this->uri->segment(1) == 'tahun' || $this->uri->segment(1) == 'tahun_baru') ? 'show' : ''; ?>"
->>>>>>> e6e1686cfde1c77169a47dbfd498405ad4bc798f
+                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'dosen' || $this->uri->segment(1) == 'mahasiswa' || $this->uri->segment(1) == 'tahun' || $this->uri->segment(1) == 'tahun') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
                         <a class="<?php echo ($this->uri->segment(1) == 'dosen') ? 'active' : ''; ?>" href="<?php echo site_url('dosen'); ?>">

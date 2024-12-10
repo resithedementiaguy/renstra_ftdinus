@@ -46,11 +46,15 @@
                             
                             <!-- Tombol Tambah dan Cetak -->
                             <div class="d-flex justify-content-between w-100">               
-                                <div>                                    
-                                    <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP</a>
+                                <div>
+                                    <a id="cetak-hasil" href="#" target="_blank" class="btn btn-danger mb-4">
+                                        <i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP
+                                    </a>
                                 </div>                 
                                 <div>
-                                    <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian</a>
+                                    <a id="cetak-rekapitulasi" href="#" target="_blank" class="btn btn-danger mb-4">
+                                        <i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -152,6 +156,23 @@
     </section>
 </main>
 
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="responseMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -186,5 +207,28 @@
                 position: 'top' // Menampilkan legend di atas
             }
         }).render();
+    });
+
+    // Event listener untuk tombol cetak PDF Rekapitulasi
+    $('#cetak-rekapitulasi').on('click', function(e) {
+        var selectedYear = $('#tahun').val();
+        
+        if (!selectedYear) {
+            e.preventDefault(); // Mencegah aksi default tombol
+
+            // Menampilkan modal dengan pesan peringatan
+            $('#responseModalLabel').text('Peringatan');
+            $('#responseMessage').html('Silahkan pilih tahun terlebih dahulu sebelum mencetak Rekapitulasi Penelitian & Pengabdian.');
+            $('#responseModal').modal('show');
+        }
+    });
+
+    // Event listener untuk mengubah URL tombol cetak saat tahun dipilih
+    document.getElementById('tahun').addEventListener('change', function() {
+        var selectedYear = this.value;
+        var rekapitulasiLink = '<?= base_url('cetak/generate_pdf_rekapitulasi/') ?>' + selectedYear;
+        document.getElementById('cetak-rekapitulasi').setAttribute('href', rekapitulasiLink);
+        var hasilLink = '<?= base_url('cetak/generate_pdf_hasil/') ?>' + selectedYear;
+        document.getElementById('cetak-hasil').setAttribute('href', hasilLink);
     });
 </script>

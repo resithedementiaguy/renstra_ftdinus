@@ -860,101 +860,112 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function get_penelitian_elektro()
+    public function get_penelitian_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('penelitian');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_industri()
+    public function get_penelitian_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('penelitian');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_biomedis()
+    public function get_penelitian_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('penelitian');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_elektro()
+    public function get_pengabdian_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_industri()
+    public function get_pengabdian_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_biomedis()
+    public function get_pengabdian_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_eksternal()
+
+    public function get_penelitian_eksternal($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_internal()
+    public function get_penelitian_internal($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_eksternal()
+    public function get_pengabdian_eksternal($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_internal()
+    public function get_pengabdian_internal($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -962,7 +973,7 @@ class Ewmp_model extends CI_Model
 
     // FUNCTION GET CETAK PELAPORAN TEKNIK ELEKTRO
 
-    public function get_publikasi_nasional_elektro()
+    public function get_publikasi_nasional_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -976,12 +987,13 @@ class Ewmp_model extends CI_Model
             'Nasional Tidak Terakreditasi'
         ]);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_internasional_elektro()
+    public function get_publikasi_internasional_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -993,102 +1005,112 @@ class Ewmp_model extends CI_Model
             'Internasional Non Scopus'
         ]);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_internasional_elektro()
+    public function get_seminar_internasional_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Internasional');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_nasional_elektro()
+    public function get_seminar_nasional_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Nasional');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_hcipta_elektro()
+    public function get_hcipta_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_hcipta');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_dindustri_elektro()
+    public function get_dindustri_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_dindustri');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_paten_elektro()
+    public function get_paten_elektro($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_paten');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_eksternal_elektro()
+    public function get_penelitian_eksternal_elektro($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_internal_elektro()
+    public function get_penelitian_internal_elektro($tahun)
     {
-        $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
-        $this->db->from('pengabdian');
+        $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
+        $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_eksternal_elektro()
+    public function get_pengabdian_eksternal_elektro($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_internal_elektro()
+    public function get_pengabdian_internal_elektro($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1096,7 +1118,7 @@ class Ewmp_model extends CI_Model
 
     // FUNCTION GET CETAK PELAPORAN TEKNIK INDUSTRI
 
-    public function get_publikasi_nasional_industri()
+    public function get_publikasi_nasional_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -1110,12 +1132,13 @@ class Ewmp_model extends CI_Model
             'Nasional Tidak Terakreditasi'
         ]);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_internasional_industri()
+    public function get_publikasi_internasional_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -1127,102 +1150,112 @@ class Ewmp_model extends CI_Model
             'Internasional Non Scopus'
         ]);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_internasional_industri()
+    public function get_seminar_internasional_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Internasional');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_nasional_industri()
+    public function get_seminar_nasional_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Nasional');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_hcipta_industri()
+    public function get_hcipta_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_hcipta');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_dindustri_industri()
+    public function get_dindustri_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_dindustri');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_paten_industri()
+    public function get_paten_industri($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_paten');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_eksternal_industri()
+    public function get_penelitian_eksternal_industri($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_internal_industri()
+    public function get_penelitian_internal_industri($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_eksternal_industri()
+    public function get_pengabdian_eksternal_industri($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_internal_industri()
+    public function get_pengabdian_internal_industri($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
@@ -1230,7 +1263,7 @@ class Ewmp_model extends CI_Model
 
     // FUNCTION GET CETAK PELAPORAN TEKNIK BIOMEDIS
 
-    public function get_publikasi_nasional_biomedis()
+    public function get_publikasi_nasional_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -1244,12 +1277,13 @@ class Ewmp_model extends CI_Model
             'Nasional Tidak Terakreditasi'
         ]);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_internasional_biomedis()
+    public function get_publikasi_internasional_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -1261,102 +1295,112 @@ class Ewmp_model extends CI_Model
             'Internasional Non Scopus'
         ]);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_internasional_biomedis()
+    public function get_seminar_internasional_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Internasional');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_seminar_nasional_biomedis()
+    public function get_seminar_nasional_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('prosiding');
         $this->db->where_in('kategori', 'Nasional');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_hcipta_biomedis()
+    public function get_hcipta_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_hcipta');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_dindustri_biomedis()
+    public function get_dindustri_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_dindustri');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_paten_biomedis()
+    public function get_paten_biomedis($tahun)
     {
         $this->db->select('*');
         $this->db->from('haki_paten');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_eksternal_biomedis()
+    public function get_penelitian_eksternal_biomedis($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_penelitian_internal_biomedis()
+    public function get_penelitian_internal_biomedis($tahun)
     {
         $this->db->select('penelitian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('penelitian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_eksternal_biomedis()
+    public function get_pengabdian_eksternal_biomedis($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Nasional', 'Internasional']);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_pengabdian_internal_biomedis()
+    public function get_pengabdian_internal_biomedis($tahun)
     {
         $this->db->select('pengabdian.*, SUM(besar_hibah) OVER() as total_hibah');
         $this->db->from('pengabdian');
         $this->db->where_in('kategori', ['Mandiri', 'Internal']);
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
