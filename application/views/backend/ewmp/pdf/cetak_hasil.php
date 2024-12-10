@@ -504,6 +504,7 @@
             </tr>
         </thead>
         <tbody>
+            <?php $total_hibah_penelitian_eksternal = 0; ?>
             <?php foreach ($penelitian_eksternal_elektro as $neliti_eksternal_elektro): ?>
                 <tr>
                     <td class="align-middle">
@@ -513,6 +514,7 @@
                     <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>"><?= $neliti_eksternal_elektro->judul ?></td>
                     <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>" style="text-align: right;">
                         <?= 'Rp' . number_format($neliti_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah_penelitian_eksternal += $neliti_eksternal_elektro->besar_hibah; ?>
                     </td>
                 </tr>
                 <?php foreach ($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro as $a_neliti_eksternal_elektro): ?>
@@ -521,11 +523,10 @@
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-
             <tr>
                 <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
                 <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                    <?= 'Rp' . number_format($total_hibah_penelitian_eksternal, 0, ',', '.') ?>
                 </td>
             </tr>
         </tbody>
@@ -542,6 +543,7 @@
             </tr>
         </thead>
         <tbody>
+            <?php $total_hibah_penelitian_internal = 0; ?>
             <?php foreach ($penelitian_internal_elektro as $neliti_internal_elektro): ?>
                 <tr>
                     <td class="align-middle">
@@ -551,6 +553,7 @@
                     <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>"><?= $neliti_internal_elektro->judul ?></td>
                     <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>" style="text-align: right;">
                         <?= 'Rp' . number_format($neliti_internal_elektro->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah_penelitian_internal += $neliti_internal_elektro->besar_hibah; ?>
                     </td>
                 </tr>
                 <?php foreach ($neliti_internal_elektro->anggota_penelitian_internal_elektro as $a_neliti_internal_elektro): ?>
@@ -559,11 +562,10 @@
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-
             <tr>
                 <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
                 <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                    <?= 'Rp' . number_format($total_hibah_penelitian_internal, 0, ',', '.') ?>
                 </td>
             </tr>
         </tbody>
@@ -580,6 +582,7 @@
             </tr>
         </thead>
         <tbody>
+            <?php $total_hibah_pengabdian_eksternal_elektro = 0; ?>
             <?php foreach ($pengabdian_eksternal_elektro as $pengabdian_eksternal_elektro): ?>
                 <tr>
                     <td class="align-middle">
@@ -589,6 +592,7 @@
                     <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>"><?= $pengabdian_eksternal_elektro->judul ?></td>
                     <td rowspan="<?= count($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro) + 1 ?>" style="text-align: right;">
                         <?= 'Rp' . number_format($pengabdian_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah_pengabdian_eksternal_elektro += $pengabdian_eksternal_elektro->besar_hibah; ?>
                     </td>
                 </tr>
                 <?php foreach ($pengabdian_eksternal_elektro->anggota_pengabdian_eksternal_elektro as $a_pengabdian_eksternal_elektro): ?>
@@ -597,11 +601,10 @@
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-
             <tr>
                 <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Eksternal</td>
                 <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                    <?= 'Rp' . number_format($total_hibah_pengabdian_eksternal_elektro, 0, ',', '.') ?>
                 </td>
             </tr>
         </tbody>
@@ -618,6 +621,7 @@
             </tr>
         </thead>
         <tbody>
+            <?php $total_hibah_pengabdian_internal_elektro = 0; ?>
             <?php foreach ($pengabdian_internal_elektro as $pengabdian_internal_elektro): ?>
                 <tr>
                     <td class="align-middle">
@@ -627,6 +631,7 @@
                     <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>"><?= $pengabdian_internal_elektro->judul ?></td>
                     <td rowspan="<?= count($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro) + 1 ?>" style="text-align: right;">
                         <?= 'Rp' . number_format($pengabdian_internal_elektro->besar_hibah, 0, ',', '.') ?>
+                        <?php $total_hibah_pengabdian_internal_elektro += $pengabdian_internal_elektro->besar_hibah; ?>
                     </td>
                 </tr>
                 <?php foreach ($pengabdian_internal_elektro->anggota_pengabdian_internal_elektro as $a_pengabdian_internal_elektro): ?>
@@ -635,11 +640,10 @@
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-
             <tr>
                 <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Pengabdian Internal</td>
                 <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah, 0, ',', '.') ?>
+                    <?= 'Rp' . number_format($total_hibah_pengabdian_internal_elektro, 0, ',', '.') ?>
                 </td>
             </tr>
         </tbody>
