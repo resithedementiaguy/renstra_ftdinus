@@ -136,7 +136,7 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">Pencapaian Fakultas Teknik</h1>
+    <h1 style="text-align: center;">Pencapaian Fakultas Teknik Tahun <?= $tahun?></h1>
     <h3>1. Hibah Penelitian Eksternal</h3>
     <table class="table">
         <thead class="table-header">
