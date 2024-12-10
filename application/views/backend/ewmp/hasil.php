@@ -32,9 +32,27 @@
                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
                             Silahkan untuk mengisi Rencana Strategis Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP</a>
-                            <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian</a>
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 282px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Cetak PDF</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" selected hidden>Pilih Tahun</option>
+                                    <?php foreach($tahun as $thn): ?>
+                                        <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            
+                            <!-- Tombol Tambah dan Cetak -->
+                            <div class="d-flex justify-content-between w-100">               
+                                <div>                                    
+                                    <a href="<?= base_url('cetak/generate_pdf_hasil') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP</a>
+                                </div>                 
+                                <div>
+                                    <a href="<?= base_url('cetak/generate_pdf_rekapitulasi') ?>" type="button" target="_blank" class="btn btn-danger mb-4"><i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-6" style="height: 300px;">

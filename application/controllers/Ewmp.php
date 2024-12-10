@@ -12,6 +12,7 @@ class Ewmp extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Ewmp_model');
+        $this->load->model('Mod_tahun');
 
         // Cek login
         if (!$this->session->userdata('logged_in')) {
@@ -29,8 +30,9 @@ class Ewmp extends CI_Controller
 
     public function create_view()
     {
+        $data['tahun']=$this->Mod_tahun->get_all_tahun();
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/add');
+        $this->load->view('backend/ewmp/add',$data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -50,6 +52,8 @@ class Ewmp extends CI_Controller
             $data['persentase_nasional'] = 0;
             $data['persentase_internasional'] = 0;
         }
+
+        $data['tahun']=$this->Mod_tahun->get_all_tahun();
 
         // Kirim data ke view
         $this->load->view('backend/partials/header');
@@ -213,6 +217,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik penelitian
                 $data_penelitian = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_ketua' => $this->input->post('nama_ketua_penelitian'),
                     'prodi' => $this->input->post('prodi_penelitian'),
                     'kategori' => $this->input->post('kategori_penelitian'),
@@ -317,6 +322,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik pengabdian
                 $data_pengabdian = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_ketua' => $this->input->post('nama_ketua_pengabdian'),
                     'prodi' => $this->input->post('prodi_pengabdian'),
                     'kategori' => $this->input->post('kategori_pengabdian'),
@@ -381,6 +387,7 @@ class Ewmp extends CI_Controller
                 $kategori = $this->input->post('kategori_ilmiah');
                 $data_ilmiah = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'kategori' => $kategori,
                     'nama_pertama' => $this->input->post('nama_pertama_ilmiah'),
                     'prodi' => $this->input->post('prodi_ilmiah'),
@@ -458,6 +465,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik prosiding
                 $data_prosiding = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'kategori' => $this->input->post('kategori_prosiding'),
                     'nama_pertama' => $this->input->post('nama_pertama_prosiding'),
                     'prodi' => $this->input->post('prodi_prosiding'),
@@ -549,6 +557,7 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Hak Cipta
                     $data_hak_cipta = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_hcipta'),
                         'prodi' => $this->input->post('prodi_hcipta'),
                         'judul' => $this->input->post('judul_hcipta'),
@@ -609,6 +618,7 @@ class Ewmp extends CI_Controller
 
                     $data_merk = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_merk'),
                         'judul' => $this->input->post('judul_merk'),
                         'sertifikat' => $this->input->post('sertifikat_merk'),
@@ -666,6 +676,7 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Lisensi
                     $data_lisensi = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_lisensi'),
                         'judul' => $this->input->post('judul_lisensi'),
                         'sertifikat' => $this->input->post('sertifikat_lisensi'),
@@ -722,6 +733,7 @@ class Ewmp extends CI_Controller
 
                     $data_buku = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_buku'),
                         'isbn' => $this->input->post('isbn_buku'),
                         'judul_buku' => $this->input->post('judul_buku'),
@@ -761,6 +773,7 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Hak Cipta
                     $data_paten = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'prodi' => $this->input->post('prodi_paten'),
                         'judul' => $this->input->post('judul_invensi_paten'),
                         'sertifikat' => $this->input->post('sertifikat_paten'),
@@ -824,6 +837,7 @@ class Ewmp extends CI_Controller
                     // Menyimpan data Hak Cipta
                     $data_desain = array(
                         'id_haki' => $id_haki,
+                        'tahun' => $this->input->post('tahun'),
                         'prodi' => $this->input->post('prodi_desain'),
                         'judul' => $this->input->post('judul_desain'),
                         'sertifikat' => $this->input->post('sertifikat_desain'),
@@ -886,6 +900,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik editor
                 $data_editor = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_usul' => $this->input->post('nama_pengusul_editor'),
                     'prodi' => $this->input->post('prodi_editor'),
                     'judul' => $this->input->post('judul_jurnal_editor'),
@@ -923,6 +938,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik reviewer
                 $data_reviewer = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_usul' => $this->input->post('nama_pengusul_reviewer'),
                     'prodi' => $this->input->post('prodi_reviewer'),
                     'judul_artikel' => $this->input->post('judul_artikel_reviewer'),
@@ -965,6 +981,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik Invited Speaker
                 $data_invited_speaker = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_usul' => $this->input->post('nama_pengusul_speaker'),
                     'prodi' => $this->input->post('prodi_speaker'),
                     'judul' => $this->input->post('judul_kegiatan'),
@@ -1009,6 +1026,7 @@ class Ewmp extends CI_Controller
                 // Data spesifik Pengurus Organisasi
                 $data_pengurus_organisasi = array(
                     'id_pelaporan' => $id_pelaporan,
+                    'tahun' => $this->input->post('tahun'),
                     'nama_org' => $this->input->post('nama_organisasi'),
                     'jabatan' => $this->input->post('jabatan_organisasi'),
                     'masa_jabatan' => $this->input->post('masa_jabatan_organisasi'),

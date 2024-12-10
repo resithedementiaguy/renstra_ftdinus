@@ -29,6 +29,17 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="tahun" class="col-sm-2 col-form-label">Pilih Tahun Pelaporan</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="tahun" id="tahun" required>
+                                        <option value="<?= date('Y')?>" selected hidden><?= date('Y')?></option>
+                                        <?php foreach($tahun as $thn): ?>
+                                            <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="jenis_lapor" class="col-sm-2 col-form-label">Jenis Pelaporan</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="jenis_lapor" id="jenis_lapor" required>
