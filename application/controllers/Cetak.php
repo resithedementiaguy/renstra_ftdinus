@@ -72,7 +72,7 @@ class Cetak extends CI_Controller
         $dompdf->loadHtml($html);
 
         // Set ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'potrait');
 
         // Render PDF
         $dompdf->render();
@@ -110,7 +110,7 @@ class Cetak extends CI_Controller
         $dompdf->render();
 
         // Output PDF (1 = download, 0 = preview)
-        $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
+        $dompdf->stream("rekapitulasi_{$tahun}.pdf", array("Attachment" => 0));
     }
 
 
@@ -476,6 +476,6 @@ class Cetak extends CI_Controller
         $dompdf->render();
 
         // Output PDF (1 = download, 0 = preview)
-        $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
+        $dompdf->stream("hasil_pelaporan_{$tahun}.pdf", array("Attachment" => 0));
     }
 }
