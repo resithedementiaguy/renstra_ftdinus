@@ -38,33 +38,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Berhasil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Data Tahun Akademik Berhasil Disimpan!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Tutup</button>
-                    <a href="<?= base_url('tahun') ?>" class="btn btn-primary mb-4">Kembali</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Check if success flashdata is set and trigger modal -->
-    <?php if ($this->session->flashdata('success')): ?>
-        <script>
-            window.onload = function() {
-                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-            };
-        </script>
-    <?php endif; ?>
 </main>

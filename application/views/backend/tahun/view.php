@@ -26,9 +26,9 @@
                             Silahkan untuk mengecek atau menambah Tahun Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="<?= base_url('tahun/create_view') ?>" type="button" class="btn btn-primary mb-4">Tambah Tahun</a>
-                            </div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahTahunModal">
+                                Tambah Tahun
+                            </button>
                         </div>
                         <div class="table-responsive">
                             <table class="table" id="datatable">
@@ -48,12 +48,10 @@
                                             <td class="align-middle text-start"><?= htmlspecialchars($thn->tahun) ?></td>
                                             <td class="align-middle"><?= formatDateTime($thn->ins_time) ?></td>
                                             <td class="align-middle">
-                                                <a href="<?= site_url('tahun/detail/' . htmlspecialchars($thn->id)) ?>" class="btn btn-sm btn-warning">
-                                                    <i class="bi bi-journal-text"></i> Edit
-                                                </a>
-                                                <a class="btn btn-sm btn-danger" href="<?= site_url('tahun/delete/' . $thn->id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapusTahunModal"
+                                                    data-id="<?= $thn->id ?>" data-tahun="<?= $thn->tahun ?>">
                                                     <i class="bi bi-trash"></i> Hapus
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -67,10 +65,99 @@
     </section>
 </main>
 
+<!-- Modal Tambah Tahun -->
+<div class="modal fade" id="tambahTahunModal" tabindex="-1" aria-labelledby="tambahTahunModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white d-flex align-items-center">
+                <h5 class="modal-title" id="tambahTahunModalLabel">Tambah Tahun Akademik</h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="<?= base_url('tahun/add') ?>">
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        *Silahkan isi form tahun akademik di bawah
+                    </div>
+                    <div class="mb-3">
+                        <label for="tahun" class="form-label">Tahun</label>
+                        <input type="number" name="tahun" id="tahun" class="form-control" placeholder="Masukkan tahun akademik (e.g., 2024, 2025)" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="hapusTahunModal" tabindex="-1" aria-labelledby="hapusTahunModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white d-flex align-items-center">
+                <h5 class="modal-title" id="hapusTahunModalLabel">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus data tahun <strong id="tahunHapus"></strong>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <a href="#" id="hapusTahunLink" class="btn btn-danger">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Berhasil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Data Tahun Akademik Berhasil Disimpan!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <a href="<?= base_url('tahun') ?>" class="btn btn-primary">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php if ($this->session->flashdata('success')): ?>
+    <script>
+        window.onload = function() {
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        };
+    </script>
+<?php endif; ?>
+
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 <script>
     new DataTable('#datatable');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var hapusModal = document.getElementById('hapusTahunModal');
+        hapusModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var idTahun = button.getAttribute('data-id');
+            var tahun = button.getAttribute('data-tahun');
+
+            var tahunHapus = hapusModal.querySelector('#tahunHapus');
+            tahunHapus.textContent = tahun;
+
+            var hapusLink = hapusModal.querySelector('#hapusTahunLink');
+            hapusLink.href = '<?= site_url('tahun/delete/') ?>' + idTahun;
+        });
+    });
 </script>
 
 <?php
@@ -78,7 +165,7 @@
 function formatDateTime($datetime)
 {
     if (empty($datetime)) {
-        return "-"; // Atau teks lain sesuai kebutuhan
+        return "-";
     }
 
     $date = new DateTime($datetime);

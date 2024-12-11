@@ -37,7 +37,6 @@ class Artikel extends CI_Controller
             $jurnal_nasional += $kategori[$kategori_key] ?? 0;
         }
 
-        // Data akhir yang dikirim ke view
         $data = [
             'tahun' => $tahun,
             'kategori' => $kategori,
