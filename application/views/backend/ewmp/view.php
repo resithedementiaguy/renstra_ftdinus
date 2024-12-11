@@ -8,7 +8,7 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
                 <li class="breadcrumb-item active">Pelaporan EWMP</li>
             </ol>
         </nav>
@@ -26,9 +26,7 @@
                             Silahkan untuk mengecek atau menambah Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-primary mb-4">Tambah Pelaporan</a>
-                            </div>
+                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-primary mb-3">Tambah Pelaporan</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table" id="datatable">

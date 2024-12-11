@@ -2,13 +2,12 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
                 <li class="breadcrumb-item">Pelaporan EWMP</li>
                 <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
     </div>
-    <!-- End Page Title -->
 
     <section class="section">
         <div class="row">
@@ -32,10 +31,10 @@
                                 <label for="tahun" class="col-sm-2 col-form-label">Pilih Tahun Pelaporan</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="tahun" id="tahun" required>
-                                        <option value="<?= date('Y')?>" selected hidden><?= date('Y')?></option>
-                                        <?php foreach($tahun as $thn): ?>
-                                            <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
-                                        <?php endforeach;?>
+                                        <option value="<?= date('Y') ?>" selected hidden><?= date('Y') ?></option>
+                                        <?php foreach ($tahun as $thn): ?>
+                                            <option value="<?= $thn->tahun ?>"><?= $thn->tahun ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>

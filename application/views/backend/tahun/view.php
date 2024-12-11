@@ -37,7 +37,7 @@
                                         <th class="text-start align-middle" style="width: 50px;">No.</th>
                                         <th class="text-start align-middle" style="width: 50px;">Tahun</th>
                                         <th class="text-start align-middle" style="width: 200px;">Waktu Input</th>
-                                        <th class="text-start align-middle" style="width: 200px;">Aksi</th>
+                                        <th class="text-start align-middle" style="width: 100px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

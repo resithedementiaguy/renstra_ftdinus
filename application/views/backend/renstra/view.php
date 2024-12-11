@@ -44,7 +44,7 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
                 <li class="breadcrumb-item active">Renstra</li>
             </ol>
         </nav>
@@ -68,22 +68,22 @@
                                 <label for="tahun" class="col-form-label">Tahun Cetak Renstra</label>
                                 <select class="form-select" name="tahun" id="tahun" required>
                                     <option value="" selected hidden>Pilih Tahun</option>
-                                    <?php foreach($tahun as $thn): ?>
-                                        <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
-                                    <?php endforeach;?>
+                                    <?php foreach ($tahun as $thn): ?>
+                                        <option value="<?= $thn->tahun ?>"><?= $thn->tahun ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
-                            
+
                             <!-- Tombol Tambah dan Cetak -->
                             <div class="d-flex justify-content-between w-100">
                                 <div>
                                     <a href="<?= base_url('renstra/create_view1') ?>" type="button" class="btn btn-primary mb-4">Tambah Indikator</a>
                                 </div>
                                 <div>
-                                    <a href="<?= base_url('cetak/generate_pdf_renstra_tahunan') ?>" 
-                                        id="cetak-renstra-tahunan" 
-                                        type="button" 
-                                        target="_blank" 
+                                    <a href="<?= base_url('cetak/generate_pdf_renstra_tahunan') ?>"
+                                        id="cetak-renstra-tahunan"
+                                        type="button"
+                                        target="_blank"
                                         class="btn btn-danger mb-4">
                                         <i class="bi bi-file-pdf"></i> Cetak PDF Renstra Sesuai Tahun
                                     </a>
@@ -323,22 +323,22 @@
 
     // Add event listener for PDF print button
     $('#cetak-renstra-tahunan').on('click', function(e) {
-            var selectedYear = $('#tahun').val();
-            
-            if (!selectedYear) {
-                e.preventDefault(); // Prevent default link behavior
-                
-                // Populate modal with warning message
-                $('#responseModalLabel').text('Peringatan');
-                $('#responseMessage').html('Silahkan pilih tahun terlebih dahulu sebelum mencetak Renstra tahunan.');
-                $('#responseModal').modal('show');
-            }
-        });
+        var selectedYear = $('#tahun').val();
 
-        // Existing year change event listener...
-        document.getElementById('tahun').addEventListener('change', function() {
-            var selectedYear = this.value;
-            var pdfYearlyLink = '<?= base_url('cetak/generate_pdf_renstra_tahunan/') ?>' + selectedYear;
-            document.getElementById('cetak-renstra-tahunan').href = pdfYearlyLink;
-        });
+        if (!selectedYear) {
+            e.preventDefault(); // Prevent default link behavior
+
+            // Populate modal with warning message
+            $('#responseModalLabel').text('Peringatan');
+            $('#responseMessage').html('Silahkan pilih tahun terlebih dahulu sebelum mencetak Renstra tahunan.');
+            $('#responseModal').modal('show');
+        }
+    });
+
+    // Existing year change event listener...
+    document.getElementById('tahun').addEventListener('change', function() {
+        var selectedYear = this.value;
+        var pdfYearlyLink = '<?= base_url('cetak/generate_pdf_renstra_tahunan/') ?>' + selectedYear;
+        document.getElementById('cetak-renstra-tahunan').href = pdfYearlyLink;
+    });
 </script>
