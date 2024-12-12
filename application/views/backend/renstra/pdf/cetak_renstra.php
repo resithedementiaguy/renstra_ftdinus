@@ -181,7 +181,7 @@
             </tr>
             <tr class="table-header" style="border: 1px solid #000000 !important;">
                 <?php foreach ($years as $year): ?>
-                    <th class="table-header-row" style="border: 1px solid #000000; text-align: center;"><?php echo $year; ?></th>
+                    <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Target <?php echo $year; ?></th>
                     <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Capaian <?php echo $year; ?></th>
                 <?php endforeach; ?>
             </tr>

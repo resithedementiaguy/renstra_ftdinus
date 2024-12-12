@@ -223,6 +223,20 @@
         }
     });
 
+    // Event listener untuk tombol cetak PDF Rekapitulasi
+    $('#cetak-hasil').on('click', function(e) {
+        var selectedYear = $('#tahun').val();
+        
+        if (!selectedYear) {
+            e.preventDefault(); // Mencegah aksi default tombol
+
+            // Menampilkan modal dengan pesan peringatan
+            $('#responseModalLabel').text('Peringatan');
+            $('#responseMessage').html('Silahkan pilih tahun terlebih dahulu sebelum mencetak Hasil Pelaporan EWMP.');
+            $('#responseModal').modal('show');
+        }
+    });
+
     // Event listener untuk mengubah URL tombol cetak saat tahun dipilih
     document.getElementById('tahun').addEventListener('change', function() {
         var selectedYear = this.value;

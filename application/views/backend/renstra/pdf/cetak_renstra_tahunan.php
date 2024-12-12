@@ -174,10 +174,13 @@
     <table class="table">
         <thead style="border: 1px solid #000000 !important;">
             <tr class="table-header" style="border: 1px solid #000000 !important;">
-                <th class="table-header-row" style="border: 1px solid #000000; width: 10px;">No.</th>
-                <th class="table-header-row" colspan="2" style="border: 1px solid #000000; width: 170px;">Butir</th>
-                <th class="table-header-row" style="border: 1px solid #000000; width: 250px;">Indikator Kinerja Utama</th>
-                <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Tahun <?= $selected_year ?></th>
+                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 10px;">No.</th>
+                <th class="table-header-row" rowspan="2" colspan="2" style="border: 1px solid #000000; width: 170px;">Butir</th>
+                <th class="table-header-row" rowspan="2" style="border: 1px solid #000000; width: 250px;">Indikator Kinerja Utama</th>
+                <th class="table-header-row" colspan="2" style="border: 1px solid #000000; width: 250px; text-align: center;">Tahun <?= $selected_year ?></th>                
+            </tr>
+            <tr class="table-header" style="border: 1px solid #000000 !important;">
+                <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Target</th>
                 <th class="table-header-row" style="border: 1px solid #000000; text-align: center;">Capaian</th>
             </tr>
         </thead>
@@ -219,8 +222,8 @@
                             <tr style="border: 1px solid;">
                                 <td style="border: 1px solid;"></td>
                                 <td style="border: 1px solid;"></td>
-                                <td style="border: 1px solid;"><?php echo $level4_item->no_iku; ?></td>
-                                <td style="border: 1px solid;"><?php echo $level4_item->isi_iku; ?></td>
+                                <td style="border: 1px solid; text-align: right;"><?php echo $level4_item->no_iku; ?></td>
+                                <td style="border: 1px solid; text-align: right;"><?php echo $level4_item->isi_iku; ?></td>
                                 <td style="border: 1px solid; text-align: center;"><?php echo $target_level4 ?? '-'; ?></td>
                                 <td style="border: 1px solid; text-align: center;"><?php echo $capaian_level4 ?? '-'; ?></td>
                             </tr>

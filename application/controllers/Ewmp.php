@@ -30,9 +30,9 @@ class Ewmp extends CI_Controller
 
     public function create_view()
     {
-        $data['tahun']=$this->Mod_tahun->get_all_tahun();
+        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
         $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/add',$data);
+        $this->load->view('backend/ewmp/add', $data);
         $this->load->view('backend/partials/footer');
     }
 
@@ -53,7 +53,7 @@ class Ewmp extends CI_Controller
             $data['persentase_internasional'] = 0;
         }
 
-        $data['tahun']=$this->Mod_tahun->get_all_tahun();
+        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
 
         // Kirim data ke view
         $this->load->view('backend/partials/header');
@@ -1391,7 +1391,7 @@ class Ewmp extends CI_Controller
         $data = array(
             'kesesuaian' => $this->input->post('kesesuaian_penelitian')
         );
-        
+
         if ($this->Ewmp_model->update_penelitian($id, $data)) {
             echo 'success';
         } else {
@@ -1468,7 +1468,7 @@ class Ewmp extends CI_Controller
         $data = array(
             'kesesuaian' => $this->input->post('kesesuaian_pengabdian')
         );
-        
+
         if ($this->Ewmp_model->update_pengabdian($id, $data)) {
             echo 'success';
         } else {

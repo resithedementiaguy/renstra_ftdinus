@@ -72,7 +72,7 @@ class Cetak extends CI_Controller
         $dompdf->loadHtml($html);
 
         // Set ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'potrait');
 
         // Render PDF
         $dompdf->render();
@@ -86,13 +86,13 @@ class Cetak extends CI_Controller
         // Buat instance Dompdf
         $dompdf = new Dompdf();
 
-        $data['tahun']=$tahun;
+        $data['tahun'] = $tahun;
 
         // Fetch data penelitian dan pengabdian berdasarkan tahun
         $data['penelitian_elektro'] = $this->Ewmp_model->get_penelitian_elektro($tahun);
         $data['penelitian_industri'] = $this->Ewmp_model->get_penelitian_industri($tahun);
         $data['penelitian_biomedis'] = $this->Ewmp_model->get_penelitian_biomedis($tahun);
-        
+
         $data['pengabdian_elektro'] = $this->Ewmp_model->get_pengabdian_elektro($tahun);
         $data['pengabdian_industri'] = $this->Ewmp_model->get_pengabdian_industri($tahun);
         $data['pengabdian_biomedis'] = $this->Ewmp_model->get_pengabdian_biomedis($tahun);
@@ -110,7 +110,7 @@ class Cetak extends CI_Controller
         $dompdf->render();
 
         // Output PDF (1 = download, 0 = preview)
-        $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
+        $dompdf->stream("rekapitulasi_{$tahun}.pdf", array("Attachment" => 0));
     }
 
 
@@ -119,7 +119,7 @@ class Cetak extends CI_Controller
         // Buat instance Dompdf
         $dompdf = new Dompdf();
 
-        $data['tahun']=$tahun;
+        $data['tahun'] = $tahun;
 
         $data['penelitian_eksternal'] = $this->Ewmp_model->get_penelitian_eksternal($tahun);
 
@@ -476,6 +476,6 @@ class Cetak extends CI_Controller
         $dompdf->render();
 
         // Output PDF (1 = download, 0 = preview)
-        $dompdf->stream("rekapitulasi.pdf", array("Attachment" => 0));
+        $dompdf->stream("hasil_pelaporan_{$tahun}.pdf", array("Attachment" => 0));
     }
 }

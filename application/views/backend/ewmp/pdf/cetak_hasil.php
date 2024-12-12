@@ -136,7 +136,7 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">Pencapaian Fakultas Teknik Tahun <?= $tahun?></h1>
+    <h1 style="text-align: center;">Pencapaian Fakultas Teknik Tahun <?= $tahun ?></h1>
     <h3>1. Hibah Penelitian Eksternal</h3>
     <table class="table">
         <thead class="table-header">
@@ -316,279 +316,279 @@
     </div>
 
     <?php if (!empty($publikasi_nasional_elektro)): ?>
-    <h3>Laporan Publikasi Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah = 0; ?>
-            <?php foreach ($publikasi_nasional_elektro as $pubnas_elektro): ?>
+        <h3>Laporan Publikasi Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pubnas_elektro->nama_pertama) ?>
-                    </td>
-
-                    <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->judul_artikel ?></td>
-                    <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->judul_jurnal ?></td>
-                    <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->doi ?></td>
-                    <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->kategori ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-
-                <?php foreach ($pubnas_elektro->anggota_publikasi_nasional_elektro as $a_pubnas_elektro): ?>
+            </thead>
+            <tbody>
+                <?php $total_hibah = 0; ?>
+                <?php foreach ($publikasi_nasional_elektro as $pubnas_elektro): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubnas_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pubnas_elektro->nama_pertama) ?>
+                        </td>
 
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                        <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->judul_artikel ?></td>
+                        <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->judul_jurnal ?></td>
+                        <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->doi ?></td>
+                        <td rowspan="<?= count($pubnas_elektro->anggota_publikasi_nasional_elektro) + 1 ?>"><?= $pubnas_elektro->kategori ?></td>
+                    </tr>
+
+                    <?php foreach ($pubnas_elektro->anggota_publikasi_nasional_elektro as $a_pubnas_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubnas_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($publikasi_internasional_elektro)): ?>
-    <h3>Laporan Publikasi Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publikasi_internasional_elektro as $pubinter_elektro): ?>
+        <h3>Laporan Publikasi Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pubinter_elektro->nama_pertama) ?>
-                    </td>
-
-                    <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->judul_artikel ?></td>
-                    <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->judul_jurnal ?></td>
-                    <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->doi ?></td>
-                    <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->kategori ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-
-                <?php foreach ($pubinter_elektro->anggota_publikasi_internasional_elektro as $a_pubinter_elektro): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($publikasi_internasional_elektro as $pubinter_elektro): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubinter_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pubinter_elektro->nama_pertama) ?>
+                        </td>
 
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                        <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->judul_artikel ?></td>
+                        <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->judul_jurnal ?></td>
+                        <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->doi ?></td>
+                        <td rowspan="<?= count($pubinter_elektro->anggota_publikasi_internasional_elektro) + 1 ?>"><?= $pubinter_elektro->kategori ?></td>
+                    </tr>
+
+                    <?php foreach ($pubinter_elektro->anggota_publikasi_internasional_elektro as $a_pubinter_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubinter_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_nasional_elektro)): ?>
-    <h3>Laporan Seminar Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 190px;">Judul Artikel</th>
-                <th style="width: 60px;">Judul Seminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_nasional_elektro as $seminas_elektro): ?>
+        <h3>Laporan Seminar Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminas_elektro->nama_pertama) ?>
-                    </td>
-
-                    <td rowspan="<?= count($seminas_elektro->anggota_seminar_nasional_elektro) + 1 ?>"><?= $seminas_elektro->judul_artikel ?></td>
-                    <td rowspan="<?= count($seminas_elektro->anggota_seminar_nasional_elektro) + 1 ?>"><?= $seminas_elektro->judul_seminar ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 190px;">Judul Artikel</th>
+                    <th style="width: 60px;">Judul Seminar</th>
                 </tr>
-
-                <?php foreach ($seminas_elektro->anggota_seminar_nasional_elektro as $a_seminas_elektro): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_nasional_elektro as $seminas_elektro): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminas_elektro->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminas_elektro->nama_pertama) ?>
+                        </td>
+
+                        <td rowspan="<?= count($seminas_elektro->anggota_seminar_nasional_elektro) + 1 ?>"><?= $seminas_elektro->judul_artikel ?></td>
+                        <td rowspan="<?= count($seminas_elektro->anggota_seminar_nasional_elektro) + 1 ?>"><?= $seminas_elektro->judul_seminar ?></td>
                     </tr>
+
+                    <?php foreach ($seminas_elektro->anggota_seminar_nasional_elektro as $a_seminas_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminas_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_internasional_elektro)): ?>
-    <h3>Laporan Seminar Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 60px;">Judul Artikel</th>
-                <th style="width: 60px;">Judul Jurnal</th>
-                <th style="width: 100px;">DOI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_internasional_elektro as $seminter_elektro): ?>
+        <h3>Laporan Seminar Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminter_elektro->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->judul_artikel ?></td>
-                    <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->judul_seminar ?></td>
-                    <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->doi ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 60px;">Judul Artikel</th>
+                    <th style="width: 60px;">Judul Jurnal</th>
+                    <th style="width: 100px;">DOI</th>
                 </tr>
-                <?php foreach ($seminter_elektro->anggota_seminar_internasional_elektro as $a_seminter_elektro): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_internasional_elektro as $seminter_elektro): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminter_elektro->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminter_elektro->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->judul_artikel ?></td>
+                        <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->judul_seminar ?></td>
+                        <td rowspan="<?= count($seminter_elektro->anggota_seminar_internasional_elektro) + 1 ?>"><?= $seminter_elektro->doi ?></td>
                     </tr>
+                    <?php foreach ($seminter_elektro->anggota_seminar_internasional_elektro as $a_seminter_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminter_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($hcipta_elektro || $dindustri_elektro || $paten_elektro)): ?>
-    <h3>Laporan HKI</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 210px;">Judul Invensi</th>
-                <th style="width: 40px;">Jenis HKI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($hcipta_elektro as $hcipta_e): ?>
+        <h3>Laporan HKI</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_elektro) + 1 ?>"><?= $hcipta_e->judul ?></td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_elektro) + 1 ?>">Hak Cipta</td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 210px;">Judul Invensi</th>
+                    <th style="width: 40px;">Jenis HKI</th>
                 </tr>
-                <?php foreach ($hcipta_e->anggota_hcipta_elektro as $a_hcipta_e): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($hcipta_elektro as $hcipta_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($hcipta_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_elektro) + 1 ?>"><?= $hcipta_e->judul ?></td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_elektro) + 1 ?>">Hak Cipta</td>
+                    </tr>
+                    <?php foreach ($hcipta_e->anggota_hcipta_elektro as $a_hcipta_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <?php foreach ($dindustri_elektro as $dindustri_e): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?php foreach ($dindustri_e->anggota_dindustri_elektro as $a_dindustri_e): ?>
+                                <?= htmlspecialchars($a_dindustri_e->nama) ?>;
+                            <?php endforeach; ?>
+                        </td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>"><?= $dindustri_e->judul ?></td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>">Desain Industri</td>
                     </tr>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
 
-            <?php foreach ($dindustri_elektro as $dindustri_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?php foreach ($dindustri_e->anggota_dindustri_elektro as $a_dindustri_e): ?>
-                            <?= htmlspecialchars($a_dindustri_e->nama) ?>;
-                        <?php endforeach; ?>
-                    </td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>"><?= $dindustri_e->judul ?></td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>">Desain Industri</td>
-                </tr>
-            <?php endforeach; ?>
-
-            <?php foreach ($paten_elektro as $paten_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?php foreach ($paten_e->anggota_paten_elektro as $a_paten_e): ?>
-                            <?= htmlspecialchars($a_paten_e->nama) ?>;
-                        <?php endforeach; ?>
-                    </td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>"><?= $paten_e->judul ?></td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>">Paten</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                <?php foreach ($paten_elektro as $paten_e): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?php foreach ($paten_e->anggota_paten_elektro as $a_paten_e): ?>
+                                <?= htmlspecialchars($a_paten_e->nama) ?>;
+                            <?php endforeach; ?>
+                        </td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>"><?= $paten_e->judul ?></td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>">Paten</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_eksternal_elektro)): ?>
-    <h3>Hibah Penelitian Eksternal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_penelitian_eksternal = 0; ?>
-            <?php foreach ($penelitian_eksternal_elektro as $neliti_eksternal_elektro): ?>
+        <h3>Hibah Penelitian Eksternal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal_elektro->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>"><?= $neliti_eksternal_elektro->skim ?></td>
-                    <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>"><?= $neliti_eksternal_elektro->judul ?></td>
-                    <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_penelitian_eksternal += $neliti_eksternal_elektro->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_penelitian_eksternal = 0; ?>
+                <?php foreach ($penelitian_eksternal_elektro as $neliti_eksternal_elektro): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_eksternal_elektro->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>"><?= $neliti_eksternal_elektro->skim ?></td>
+                        <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>"><?= $neliti_eksternal_elektro->judul ?></td>
+                        <td rowspan="<?= count($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_eksternal_elektro->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_penelitian_eksternal += $neliti_eksternal_elektro->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro as $a_neliti_eksternal_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_eksternal_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_penelitian_eksternal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_eksternal_elektro->anggota_penelitian_eksternal_elektro as $a_neliti_eksternal_elektro): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_eksternal_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_penelitian_eksternal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_internal_elektro)): ?>
-    <h3>Hibah Penelitian Internal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_penelitian_internal = 0; ?>
-            <?php foreach ($penelitian_internal_elektro as $neliti_internal_elektro): ?>
+        <h3>Hibah Penelitian Internal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal_elektro->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>"><?= $neliti_internal_elektro->skim ?></td>
-                    <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>"><?= $neliti_internal_elektro->judul ?></td>
-                    <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_internal_elektro->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_penelitian_internal += $neliti_internal_elektro->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_penelitian_internal = 0; ?>
+                <?php foreach ($penelitian_internal_elektro as $neliti_internal_elektro): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_internal_elektro->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>"><?= $neliti_internal_elektro->skim ?></td>
+                        <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>"><?= $neliti_internal_elektro->judul ?></td>
+                        <td rowspan="<?= count($neliti_internal_elektro->anggota_penelitian_internal_elektro) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_internal_elektro->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_penelitian_internal += $neliti_internal_elektro->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_internal_elektro->anggota_penelitian_internal_elektro as $a_neliti_internal_elektro): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_internal_elektro->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_penelitian_internal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_internal_elektro->anggota_penelitian_internal_elektro as $a_neliti_internal_elektro): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_internal_elektro->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_penelitian_internal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
@@ -681,286 +681,286 @@
     </div>
 
     <?php if (!empty($publikasi_nasional_industri)): ?>
-    <h3>Laporan Publikasi Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publikasi_nasional_industri as $pubnas_industri): ?>
+        <h3>Laporan Publikasi Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle"><?= htmlspecialchars($pubnas_industri->nama_pertama) ?></td>
-                    <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->judul_artikel) ?></td>
-                    <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->judul_jurnal) ?></td>
-                    <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->doi) ?></td>
-                    <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->kategori) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-
-                <?php foreach ($pubnas_industri->anggota_publikasi_nasional_industri as $a_pubnas_industri): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($publikasi_nasional_industri as $pubnas_industri): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubnas_industri->nama) ?></td>
+                        <td class="align-middle"><?= htmlspecialchars($pubnas_industri->nama_pertama) ?></td>
+                        <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->judul_artikel) ?></td>
+                        <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->judul_jurnal) ?></td>
+                        <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->doi) ?></td>
+                        <td rowspan="<?= count($pubnas_industri->anggota_publikasi_nasional_industri) + 1 ?>"><?= htmlspecialchars($pubnas_industri->kategori) ?></td>
                     </tr>
+
+                    <?php foreach ($pubnas_industri->anggota_publikasi_nasional_industri as $a_pubnas_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubnas_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($publikasi_internasional_industri)): ?>
-    <h3>Laporan Publikasi Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publikasi_internasional_industri as $pubinter_industri): ?>
+        <h3>Laporan Publikasi Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle"><?= htmlspecialchars($pubinter_industri->nama_pertama) ?></td>
-                    <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->judul_artikel) ?></td>
-                    <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->judul_jurnal) ?></td>
-                    <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->doi) ?></td>
-                    <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->kategori) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-
-                <?php foreach ($pubinter_industri->anggota_publikasi_internasional_industri as $a_pubinter_industri): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($publikasi_internasional_industri as $pubinter_industri): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubinter_industri->nama) ?></td>
+                        <td class="align-middle"><?= htmlspecialchars($pubinter_industri->nama_pertama) ?></td>
+                        <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->judul_artikel) ?></td>
+                        <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->judul_jurnal) ?></td>
+                        <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->doi) ?></td>
+                        <td rowspan="<?= count($pubinter_industri->anggota_publikasi_internasional_industri) + 1 ?>"><?= htmlspecialchars($pubinter_industri->kategori) ?></td>
                     </tr>
+
+                    <?php foreach ($pubinter_industri->anggota_publikasi_internasional_industri as $a_pubinter_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubinter_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_nasional_industri)): ?>
-    <h3>Laporan Seminar Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 190px;">Judul Artikel</th>
-                <th style="width: 60px;">Judul Seminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_nasional_industri as $seminas_industri): ?>
+        <h3>Laporan Seminar Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminas_industri->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($seminas_industri->anggota_seminar_nasional_industri) + 1 ?>">
-                        <?= htmlspecialchars($seminas_industri->judul_artikel) ?>
-                    </td>
-                    <td rowspan="<?= count($seminas_industri->anggota_seminar_nasional_industri) + 1 ?>">
-                        <?= htmlspecialchars($seminas_industri->judul_seminar) ?>
-                    </td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 190px;">Judul Artikel</th>
+                    <th style="width: 60px;">Judul Seminar</th>
                 </tr>
-                <?php foreach ($seminas_industri->anggota_seminar_nasional_industri as $a_seminas_industri): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_nasional_industri as $seminas_industri): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminas_industri->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminas_industri->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($seminas_industri->anggota_seminar_nasional_industri) + 1 ?>">
+                            <?= htmlspecialchars($seminas_industri->judul_artikel) ?>
+                        </td>
+                        <td rowspan="<?= count($seminas_industri->anggota_seminar_nasional_industri) + 1 ?>">
+                            <?= htmlspecialchars($seminas_industri->judul_seminar) ?>
+                        </td>
                     </tr>
+                    <?php foreach ($seminas_industri->anggota_seminar_nasional_industri as $a_seminas_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminas_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_internasional_industri)): ?>
-    <h3>Laporan Seminar Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 60px;">Judul Artikel</th>
-                <th style="width: 60px;">Judul Seminar</th>
-                <th style="width: 100px;">DOI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_internasional_industri as $seminter_industri): ?>
+        <h3>Laporan Seminar Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminter_industri->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
-                        <?= htmlspecialchars($seminter_industri->judul_artikel) ?>
-                    </td>
-                    <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
-                        <?= htmlspecialchars($seminter_industri->judul_seminar) ?>
-                    </td>
-                    <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
-                        <?= htmlspecialchars($seminter_industri->doi) ?>
-                    </td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 60px;">Judul Artikel</th>
+                    <th style="width: 60px;">Judul Seminar</th>
+                    <th style="width: 100px;">DOI</th>
                 </tr>
-                <?php foreach ($seminter_industri->anggota_seminar_internasional_industri as $a_seminter_industri): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_internasional_industri as $seminter_industri): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminter_industri->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminter_industri->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
+                            <?= htmlspecialchars($seminter_industri->judul_artikel) ?>
+                        </td>
+                        <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
+                            <?= htmlspecialchars($seminter_industri->judul_seminar) ?>
+                        </td>
+                        <td rowspan="<?= count($seminter_industri->anggota_seminar_internasional_industri) + 1 ?>">
+                            <?= htmlspecialchars($seminter_industri->doi) ?>
+                        </td>
                     </tr>
+                    <?php foreach ($seminter_industri->anggota_seminar_internasional_industri as $a_seminter_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminter_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($hcipta_industri || $dindustri_industri || $paten_industri)): ?>
-    <h3>Laporan HKI</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 210px;">Judul Invensi</th>
-                <th style="width: 40px;">Jenis HKI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($hcipta_industri as $hcipta_e): ?>
+        <h3>Laporan HKI</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>">Hak Cipta</td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 210px;">Judul Invensi</th>
+                    <th style="width: 40px;">Jenis HKI</th>
                 </tr>
-                <?php foreach ($hcipta_e->anggota_hcipta_industri as $a_hcipta_e): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($hcipta_industri as $hcipta_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($hcipta_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>">Hak Cipta</td>
                     </tr>
+                    <?php foreach ($hcipta_e->anggota_hcipta_industri as $a_hcipta_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
 
-            <?php foreach ($dindustri_industri as $dindustri_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($dindustri_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>">Desain Industri</td>
-                </tr>
-                <?php foreach ($dindustri_e->anggota_dindustri_industri as $a_dindustri_e): ?>
+                <?php foreach ($dindustri_industri as $dindustri_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($dindustri_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>">Desain Industri</td>
                     </tr>
+                    <?php foreach ($dindustri_e->anggota_dindustri_industri as $a_dindustri_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
 
-            <?php foreach ($paten_industri as $paten_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($paten_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>">Paten</td>
-                </tr>
-                <?php foreach ($paten_e->anggota_paten_industri as $a_paten_e): ?>
+                <?php foreach ($paten_industri as $paten_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($paten_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>">Paten</td>
                     </tr>
+                    <?php foreach ($paten_e->anggota_paten_industri as $a_paten_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_eksternal_industri)): ?>
-    <h3>Hibah Penelitian Eksternal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_penelitian_eksternal = 0; ?>
-            <?php foreach ($penelitian_eksternal_industri as $neliti_eksternal_industri): ?>
+        <h3>Hibah Penelitian Eksternal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal_industri->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($neliti_eksternal_industri->skim) ?></td>
-                    <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($neliti_eksternal_industri->judul) ?></td>
-                    <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_eksternal_industri->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_penelitian_eksternal += $neliti_eksternal_industri->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_penelitian_eksternal = 0; ?>
+                <?php foreach ($penelitian_eksternal_industri as $neliti_eksternal_industri): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_eksternal_industri->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($neliti_eksternal_industri->skim) ?></td>
+                        <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>"><?= htmlspecialchars($neliti_eksternal_industri->judul) ?></td>
+                        <td rowspan="<?= count($neliti_eksternal_industri->anggota_penelitian_eksternal_industri) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_eksternal_industri->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_penelitian_eksternal += $neliti_eksternal_industri->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_eksternal_industri->anggota_penelitian_eksternal_industri as $a_neliti_eksternal_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_eksternal_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_penelitian_eksternal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_eksternal_industri->anggota_penelitian_eksternal_industri as $a_neliti_eksternal_industri): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_eksternal_industri->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_penelitian_eksternal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_internal_industri)): ?>
-    <h3>Hibah Penelitian Internal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_penelitian_internal = 0; ?>
-            <?php foreach ($penelitian_internal_industri as $neliti_internal_industri): ?>
+        <h3>Hibah Penelitian Internal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal_industri->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>"><?= htmlspecialchars($neliti_internal_industri->skim) ?></td>
-                    <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>"><?= htmlspecialchars($neliti_internal_industri->judul) ?></td>
-                    <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_internal_industri->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_penelitian_internal += $neliti_internal_industri->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_penelitian_internal = 0; ?>
+                <?php foreach ($penelitian_internal_industri as $neliti_internal_industri): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_internal_industri->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>"><?= htmlspecialchars($neliti_internal_industri->skim) ?></td>
+                        <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>"><?= htmlspecialchars($neliti_internal_industri->judul) ?></td>
+                        <td rowspan="<?= count($neliti_internal_industri->anggota_penelitian_internal_industri) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_internal_industri->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_penelitian_internal += $neliti_internal_industri->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_internal_industri->anggota_penelitian_internal_industri as $a_neliti_internal_industri): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_internal_industri->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_penelitian_internal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_internal_industri->anggota_penelitian_internal_industri as $a_neliti_internal_industri): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_internal_industri->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_penelitian_internal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
@@ -1055,278 +1055,278 @@
     </div>
 
     <?php if (!empty($publikasi_nasional_biomedis)): ?>
-    <h3>Laporan Publikasi Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publikasi_nasional_biomedis as $pubnas_biomedis): ?>
+        <h3>Laporan Publikasi Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pubnas_biomedis->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->judul_artikel) ?></td>
-                    <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->judul_jurnal) ?></td>
-                    <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->doi) ?></td>
-                    <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->kategori) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-                <?php foreach ($pubnas_biomedis->anggota_publikasi_nasional_biomedis as $a_pubnas_biomedis): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($publikasi_nasional_biomedis as $pubnas_biomedis): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubnas_biomedis->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pubnas_biomedis->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->judul_artikel) ?></td>
+                        <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->judul_jurnal) ?></td>
+                        <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->doi) ?></td>
+                        <td rowspan="<?= count($pubnas_biomedis->anggota_publikasi_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubnas_biomedis->kategori) ?></td>
                     </tr>
+                    <?php foreach ($pubnas_biomedis->anggota_publikasi_nasional_biomedis as $a_pubnas_biomedis): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubnas_biomedis->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($publikasi_internasional_biomedis)): ?>
-    <h3>Laporan Publikasi Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Jurnal</th>
-                <th style="width: 50px;">DOI</th>
-                <th style="width: 55px;">Kategori</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($publikasi_internasional_biomedis as $pubinter_biomedis): ?>
+        <h3>Laporan Publikasi Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($pubinter_biomedis->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->judul_artikel) ?></td>
-                    <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->judul_jurnal) ?></td>
-                    <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->doi) ?></td>
-                    <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->kategori) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Jurnal</th>
+                    <th style="width: 50px;">DOI</th>
+                    <th style="width: 55px;">Kategori</th>
                 </tr>
-                <?php foreach ($pubinter_biomedis->anggota_publikasi_internasional_biomedis as $a_pubinter_biomedis): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($publikasi_internasional_biomedis as $pubinter_biomedis): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_pubinter_biomedis->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($pubinter_biomedis->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->judul_artikel) ?></td>
+                        <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->judul_jurnal) ?></td>
+                        <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->doi) ?></td>
+                        <td rowspan="<?= count($pubinter_biomedis->anggota_publikasi_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($pubinter_biomedis->kategori) ?></td>
                     </tr>
+                    <?php foreach ($pubinter_biomedis->anggota_publikasi_internasional_biomedis as $a_pubinter_biomedis): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_pubinter_biomedis->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_nasional_biomedis)): ?>
-    <h3>Laporan Seminar Nasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Seminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_nasional_biomedis as $seminas_biomedis): ?>
+        <h3>Laporan Seminar Nasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminas_biomedis->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($seminas_biomedis->anggota_seminar_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminas_biomedis->judul_artikel) ?></td>
-                    <td rowspan="<?= count($seminas_biomedis->anggota_seminar_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminas_biomedis->judul_seminar) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Seminar</th>
                 </tr>
-                <?php foreach ($seminas_biomedis->anggota_seminar_nasional_biomedis as $a_seminas_biomedis): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_nasional_biomedis as $seminas_biomedis): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminas_biomedis->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminas_biomedis->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($seminas_biomedis->anggota_seminar_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminas_biomedis->judul_artikel) ?></td>
+                        <td rowspan="<?= count($seminas_biomedis->anggota_seminar_nasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminas_biomedis->judul_seminar) ?></td>
                     </tr>
+                    <?php foreach ($seminas_biomedis->anggota_seminar_nasional_biomedis as $a_seminas_biomedis): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminas_biomedis->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($seminar_internasional_biomedis)): ?>
-    <h3>Laporan Seminar Internasional</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 120px;">Judul Artikel</th>
-                <th style="width: 50px;">Judul Seminar</th>
-                <th style="width: 50px;">DOI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($seminar_internasional_biomedis as $seminter_biomedis): ?>
+        <h3>Laporan Seminar Internasional</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($seminter_biomedis->nama_pertama) ?>
-                    </td>
-                    <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->judul_artikel) ?></td>
-                    <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->judul_seminar) ?></td>
-                    <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->doi) ?></td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 120px;">Judul Artikel</th>
+                    <th style="width: 50px;">Judul Seminar</th>
+                    <th style="width: 50px;">DOI</th>
                 </tr>
-                <?php foreach ($seminter_biomedis->anggota_seminar_internasional_biomedis as $a_seminter_biomedis): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($seminar_internasional_biomedis as $seminter_biomedis): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_seminter_biomedis->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($seminter_biomedis->nama_pertama) ?>
+                        </td>
+                        <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->judul_artikel) ?></td>
+                        <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->judul_seminar) ?></td>
+                        <td rowspan="<?= count($seminter_biomedis->anggota_seminar_internasional_biomedis) + 1 ?>"><?= htmlspecialchars($seminter_biomedis->doi) ?></td>
                     </tr>
+                    <?php foreach ($seminter_biomedis->anggota_seminar_internasional_biomedis as $a_seminter_biomedis): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_seminter_biomedis->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($hcipta_biomedis || $dindustri_biomedis || $paten_biomedis)): ?>
-    <h3>Laporan HKI</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 55px;">Nama</th>
-                <th style="width: 210px;">Judul Invensi</th>
-                <th style="width: 40px;">Jenis HKI</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($hcipta_biomedis as $hcipta_e): ?>
+        <h3>Laporan HKI</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($hcipta_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
-                    <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>">Hak Cipta</td>
+                    <th style="width: 55px;">Nama</th>
+                    <th style="width: 210px;">Judul Invensi</th>
+                    <th style="width: 40px;">Jenis HKI</th>
                 </tr>
-                <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($hcipta_biomedis as $hcipta_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($hcipta_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
+                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>">Hak Cipta</td>
                     </tr>
+                    <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
 
-            <?php foreach ($dindustri_biomedis as $dindustri_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($dindustri_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
-                    <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>">Desain Industri</td>
-                </tr>
-                <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
+                <?php foreach ($dindustri_biomedis as $dindustri_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($dindustri_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
+                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>">Desain Industri</td>
                     </tr>
+                    <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
 
-            <?php foreach ($paten_biomedis as $paten_e): ?>
-                <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($paten_e->nama_usul) ?>
-                    </td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
-                    <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>">Paten</td>
-                </tr>
-                <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
+                <?php foreach ($paten_biomedis as $paten_e): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($paten_e->nama_usul) ?>
+                        </td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
+                        <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>">Paten</td>
                     </tr>
+                    <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_eksternal_biomedis)): ?>
-    <h3>Hibah Penelitian Eksternal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_eksternal = 0; ?>
-            <?php foreach ($penelitian_eksternal_biomedis as $neliti_eksternal): ?>
+        <h3>Hibah Penelitian Eksternal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_eksternal->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->skim) ?></td>
-                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->judul) ?></td>
-                    <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_eksternal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_eksternal += $neliti_eksternal->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_eksternal = 0; ?>
+                <?php foreach ($penelitian_eksternal_biomedis as $neliti_eksternal): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_eksternal->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->skim) ?></td>
+                        <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_eksternal->judul) ?></td>
+                        <td rowspan="<?= count($neliti_eksternal->anggota_penelitian_eksternal_biomedis) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_eksternal->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_eksternal += $neliti_eksternal->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_eksternal->anggota_penelitian_eksternal_biomedis as $a_neliti_eksternal): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_eksternal->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_eksternal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_eksternal->anggota_penelitian_eksternal_biomedis as $a_neliti_eksternal): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_eksternal->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Eksternal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_eksternal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
     <?php if (!empty($penelitian_internal_biomedis)): ?>
-    <h3>Hibah Penelitian Internal</h3>
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th style="width: 60px;">Nama</th>
-                <th style="width: 40px;">Skim</th>
-                <th style="width: 150px;">Judul</th>
-                <th style="width: 50px;">Biaya</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $total_hibah_internal = 0; ?>
-            <?php foreach ($penelitian_internal_biomedis as $neliti_internal): ?>
+        <h3>Hibah Penelitian Internal</h3>
+        <table class="table">
+            <thead class="table-header">
                 <tr>
-                    <td class="align-middle">
-                        <?= htmlspecialchars($neliti_internal->nama_ketua) ?>
-                    </td>
-                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->skim) ?></td>
-                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->judul) ?></td>
-                    <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>" style="text-align: right;">
-                        <?= 'Rp' . number_format($neliti_internal->besar_hibah, 0, ',', '.') ?>
-                        <?php $total_hibah_internal += $neliti_internal->besar_hibah; ?>
+                    <th style="width: 60px;">Nama</th>
+                    <th style="width: 40px;">Skim</th>
+                    <th style="width: 150px;">Judul</th>
+                    <th style="width: 50px;">Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total_hibah_internal = 0; ?>
+                <?php foreach ($penelitian_internal_biomedis as $neliti_internal): ?>
+                    <tr>
+                        <td class="align-middle">
+                            <?= htmlspecialchars($neliti_internal->nama_ketua) ?>
+                        </td>
+                        <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->skim) ?></td>
+                        <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>"><?= htmlspecialchars($neliti_internal->judul) ?></td>
+                        <td rowspan="<?= count($neliti_internal->anggota_penelitian_internal_biomedis) + 1 ?>" style="text-align: right;">
+                            <?= 'Rp' . number_format($neliti_internal->besar_hibah, 0, ',', '.') ?>
+                            <?php $total_hibah_internal += $neliti_internal->besar_hibah; ?>
+                        </td>
+                    </tr>
+                    <?php foreach ($neliti_internal->anggota_penelitian_internal_biomedis as $a_neliti_internal): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_neliti_internal->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
+                    <td style="font-weight: bold; text-align: right;">
+                        <?= 'Rp' . number_format($total_hibah_internal, 0, ',', '.') ?>
                     </td>
                 </tr>
-                <?php foreach ($neliti_internal->anggota_penelitian_internal_biomedis as $a_neliti_internal): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a_neliti_internal->nama) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            <tr>
-                <td colspan="3" style="font-weight: bold; text-align: right;">Total Hibah Penelitian Internal</td>
-                <td style="font-weight: bold; text-align: right;">
-                    <?= 'Rp' . number_format($total_hibah_internal, 0, ',', '.') ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php else: ?>
     <?php endif; ?>
 
