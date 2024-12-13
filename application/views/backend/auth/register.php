@@ -30,45 +30,71 @@
 </head>
 
 <body>
-    <main>
+    <main style="background-image: url('<?= base_url("assets/img/bg-gradient-1.jpg") ?>'); background-size: cover; background-position: center; min-height: 100vh;">
         <div class="container">
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Register RENSTRA</h5>
-                                        <p class="text-center small">Masukkan Username & Password Anda!</p>
+                        <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                            <div class="card py-4 mb-0">
+                                <div class="card-body px-4 m-0">
+                                    <div class="text-center pb-2">
+                                        <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="150px" />
+                                        <h5 class="card-title text-center pb-0 mb-1 fs-4">Register Rencana Strategis FT</h5>
+                                        <p class="text-center small">Silahkan lengkapi form di bawah untuk register!</p>
                                     </div>
-
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    <form class="row g-3 needs-validation" action="<?php echo site_url('auth/register'); ?>" method="post" novalidate>
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
+                                            <label for="username" class="form-label mb-0">Username</label>
+                                            <div>
+                                                <label for="username" class="form-label small text-danger">*Masukkan NPP Contoh: 0686.11.2008.335</label>
+                                            </div>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-person-fill"></i> <!-- Ikon Username -->
+                                                    <i class="bi bi-person-fill text-secondary"></i>
                                                 </span>
-                                                <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Masukkan Username" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                <input type="text" name="username" class="form-control" id="username" placeholder="Masukkan Username" required>
+                                                <div class="invalid-feedback">Masukkan nama terlebih dahulu!</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <label for="nama" class="form-label">Nama Lengkap</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="bi bi-lock-fill"></i> <!-- Ikon Password -->
+                                                    <i class="bi bi-person-fill text-secondary"></i>
                                                 </span>
-                                                <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Masukkan Password" required>
-                                                <div class="invalid-feedback">Please enter your password!</div>
+                                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
+                                                <div class="invalid-feedback">Masukkan nama terlebih dahulu!</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Register</button>
+                                            <label for="password" class="form-label">Password</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend">
+                                                    <i class="bi bi-lock-fill text-secondary"></i>
+                                                </span>
+                                                <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan Password" required>
+                                                <div class="invalid-feedback">Masukkan password terlebih dahulu!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="konfirmasi password" class="form-label">Konfirmasi Password</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend">
+                                                    <i class="bi bi-unlock-fill text-secondary"></i>
+                                                </span>
+                                                <input type="password" name="konfirmasi_password" class="form-control" id="konfirmasi_password" placeholder="Konfirmasi Password" required>
+                                                <div class="invalid-feedback">Konfirmasi password terlebih dahulu!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 pt-3">
+                                            <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12 text-center">
-                                            <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                                            <p class="small mb-0">
+                                                Sudah punya akun?
+                                                <a href="<?php echo base_url('auth'); ?>">Login sekarang!</a>
+                                            </p>
                                         </div>
                                     </form>
                                 </div>
@@ -78,7 +104,7 @@
                 </div>
             </section>
         </div>
-    </main><!-- End #main -->
+    </main>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

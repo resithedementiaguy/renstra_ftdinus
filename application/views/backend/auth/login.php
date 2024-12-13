@@ -35,12 +35,12 @@
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="card py-4 mb-0">
                                 <div class="card-body px-4 m-0">
                                     <div class="text-center pb-2">
                                         <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="150px" />
-                                        <h5 class="card-title text-center pb-0 mb-1 fs-4">Rencana Strategis FT</h5>
+                                        <h5 class="card-title text-center pb-0 mb-1 fs-4">Login Rencana Strategis FT</h5>
                                         <p class="text-center small">Masukkan Username & Password untuk login!</p>
                                     </div>
                                     <form class="row g-3 needs-validation" action="auth/login" method="post" novalidate>
@@ -66,6 +66,12 @@
                                         </div>
                                         <div class="col-12 pt-3">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <p class="small mb-0">
+                                                Belum punya akun?
+                                                <a href="<?php echo base_url('auth/register'); ?>">Buat sekarang!</a>
+                                            </p>
                                         </div>
                                     </form>
                                 </div>
