@@ -19,6 +19,12 @@ class Renstra extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('auth');
         }
+
+        // Cek level user
+        $user_level = $this->session->userdata('level');
+        if ($user_level != 'Admin' && $user_level != 'Koordinator') {
+            redirect('akses_ditolak');
+        }
     }
 
     public function index()
