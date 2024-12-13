@@ -29,7 +29,7 @@ class Renstra extends CI_Controller
         $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
         $data['years'] = array_column($years, 'tahun');
 
-        $data['tahun']=$this->Mod_tahun->get_all_tahun();
+        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
 
         $this->load->view('backend/partials/header');
         $this->load->view('backend/renstra/view', $data);

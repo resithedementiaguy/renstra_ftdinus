@@ -30,17 +30,17 @@
 </head>
 
 <body>
-<main style="background-image: url('<?= base_url("assets/img/bg-gradient-1.jpg") ?>'); background-size: cover; background-position: center; min-height: 100vh;">
+    <main style="background-image: url('<?= base_url("assets/img/bg-gradient-1.jpg") ?>'); background-size: cover; background-position: center; min-height: 100vh;">
         <div class="container">
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="card py-4 mb-0">
                                 <div class="card-body px-4 m-0">
                                     <div class="text-center pb-2">
                                         <img src="<?= base_url('') ?>/assets/img/udinus-unggul-logo.png" alt="" width="150px" />
-                                        <h5 class="card-title text-center pb-0 mb-1 fs-4">Rencana Strategis FT</h5>
+                                        <h5 class="card-title text-center pb-0 mb-1 fs-4">Login Rencana Strategis FT</h5>
                                         <p class="text-center small">Masukkan Username & Password untuk login!</p>
                                     </div>
                                     <form class="row g-3 needs-validation" action="auth/login" method="post" novalidate>
@@ -67,6 +67,12 @@
                                         <div class="col-12 pt-3">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
+                                        <div class="col-12 text-center">
+                                            <p class="small mb-0">
+                                                Belum punya akun?
+                                                <a href="<?php echo base_url('auth/register'); ?>">Buat sekarang!</a>
+                                            </p>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -80,17 +86,17 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/echarts/echarts.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/quill/quill.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="<?= base_url('') ?>assets/js/main.js"></script>
 
 </body>
 

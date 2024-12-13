@@ -311,20 +311,21 @@
         $.ajax({
             url: '<?= base_url("ewmp/update_kesesuaian_penelitian/") ?>' + id,
             method: 'POST',
-            data: { kesesuaian_penelitian: kesesuaian },
-            success: function (response) {
+            data: {
+                kesesuaian_penelitian: kesesuaian
+            },
+            success: function(response) {
                 if (response === 'success') {
                     $('#successModal').modal('show');
                 } else {
                     alert('Terjadi kesalahan saat memperbarui data!');
                 }
             },
-            error: function () {
+            error: function() {
                 alert('Gagal menghubungi server!');
             }
         });
     }
-
 </script>
 
 
