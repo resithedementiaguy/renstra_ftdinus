@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12 pt-3">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                                            <button class="btn btn-primary w-100" type="submit">Register</button>
                                         </div>
                                         <div class="col-12 text-center">
                                             <p class="small mb-0">
@@ -109,17 +109,45 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/echarts/echarts.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/quill/quill.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="<?= base_url('') ?>assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="<?= base_url('') ?>assets/js/main.js"></script>
+
+    <!-- Pastikan flashdata success ada, baru tampilkan modal -->
+    <?php if ($this->session->flashdata('success')): ?>
+        <!-- Modal -->
+        <div class="modal fade" id="registerSuccessModal" tabindex="-1" aria-labelledby="registerSuccessModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerSuccessModalLabel">Registrasi Berhasil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="<?php echo site_url('auth/login'); ?>" class="btn btn-primary">Login Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script untuk menampilkan modal -->
+        <script>
+            // Menampilkan modal setelah halaman dimuat
+            var myModal = new bootstrap.Modal(document.getElementById('registerSuccessModal'));
+            myModal.show();
+        </script>
+    <?php endif; ?>
 
 </body>
 
