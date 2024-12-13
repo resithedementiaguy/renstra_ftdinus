@@ -50,7 +50,7 @@
                                                 <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
                                                     <i class="bi bi-journal-text"></i> Detail
                                                 </a>
-                                                <button type="button" class="btn btn-sm btn-warning edit-suntik-btn"
+                                                <!-- <button type="button" class="btn btn-sm btn-warning edit-suntik-btn"
                                                     data-bs-toggle="modal" data-bs-target="#SuntikModal"
                                                     data-id="<?= htmlspecialchars($p->id) ?>">
                                                     <i class="bi bi-pencil"></i> Edit
@@ -59,7 +59,7 @@
                                                     href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
                                                     <i class="bi bi-trash"></i> Hapus
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
