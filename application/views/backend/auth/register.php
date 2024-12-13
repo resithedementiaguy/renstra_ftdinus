@@ -47,7 +47,7 @@
                                         <div class="col-12">
                                             <label for="username" class="form-label mb-0">Username</label>
                                             <div>
-                                                <label for="username" class="form-label small text-danger">*Masukkan NPP Contoh: 0686.11.2008.335</label>
+                                                <label for="username" class="form-label small text-danger">*Masukkan NPP Contoh: 0123.12.1234.123</label>
                                             </div>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
@@ -105,8 +105,31 @@
             </section>
         </div>
     </main>
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Registrasi Berhasil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Registrasi berhasil! Silakan login untuk melanjutkan.
+                </div>
+                <div class="modal-footer">
+                    <a href="<?php echo base_url('auth'); ?>" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="<?= base_url('') ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="<?= base_url('') ?>assets/js/main.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="<?= base_url('') ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -121,33 +144,13 @@
     <!-- Template Main JS File -->
     <script src="<?= base_url('') ?>assets/js/main.js"></script>
 
-    <!-- Pastikan flashdata success ada, baru tampilkan modal -->
-    <?php if ($this->session->flashdata('success')): ?>
-        <!-- Modal -->
-        <div class="modal fade" id="registerSuccessModal" tabindex="-1" aria-labelledby="registerSuccessModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registerSuccessModalLabel">Registrasi Berhasil</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="<?php echo site_url('auth/login'); ?>" class="btn btn-primary">Login Sekarang</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <script>
+        <?php if ($this->session->flashdata('success')): ?>
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        <?php endif; ?>
+    </script>
 
-        <!-- Script untuk menampilkan modal -->
-        <script>
-            // Menampilkan modal setelah halaman dimuat
-            var myModal = new bootstrap.Modal(document.getElementById('registerSuccessModal'));
-            myModal.show();
-        </script>
-    <?php endif; ?>
 
 </body>
 

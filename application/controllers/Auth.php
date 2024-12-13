@@ -80,7 +80,7 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('success', 'Registration successful. Please log in.');
 
             // Redirect ke halaman login setelah berhasil
-            redirect('auth');
+            redirect('auth/register');
         }
     }
 
