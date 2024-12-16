@@ -56,7 +56,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="<?= base_url('dashboard') ?>" class="logo d-flex align-items-center" style="text-decoration: none;">
                 <img src="<?= base_url('') ?>/assets/img/udinus.png" alt="" />
                 <span class="d-none d-lg-block">Rencana Strategis FT</span>
             </a>
@@ -98,7 +98,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="auth/logout">
+                            <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right text-danger"></i>
                                 <span class="text-danger">Keluar Akun</span>
                             </a>
@@ -108,6 +108,25 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Modal Konfirmasi Logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin keluar dari akun ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="auth/logout" class="btn btn-danger">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">

@@ -81,9 +81,9 @@
 
     <!-- Modal Sukses -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header">
                     <h5 class="modal-title" id="successModalLabel">Sukses</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -95,14 +95,14 @@
                 </div>
             </div>
         </div>
-    </div>`
+    </div>
 
-    <?php if ($this->session->flashdata('success')) : ?>        
+    <?php if ($this->session->flashdata('success')) : ?>
         <script>
-            var modalSuccess = new bootstrap.Modal(document.getElementById('successModal'));
-            modalSuccess.show();
+            document.addEventListener('DOMContentLoaded', function() {
+                var modalSuccess = new bootstrap.Modal(document.getElementById('successModal'));
+                modalSuccess.show();
+            });
         </script>
     <?php endif; ?>
 </main>
-
-

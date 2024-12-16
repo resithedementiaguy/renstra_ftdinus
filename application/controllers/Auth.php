@@ -26,20 +26,29 @@ class Auth extends CI_Controller
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
-            $user = $this->Mod_auth->validate_login($username, $password);
+            // Cek apakah username ada di database
+            $user = $this->Mod_auth->get_user_by_username($username);
 
             if ($user) {
-                $this->session->set_userdata([
-                    'user_id' => $user['id'],
-                    'nama' => $user['nama'],
-                    'username' => $user['username'],
-                    'level' => $user['level'],
-                    'logged_in' => true
-                ]);
-
-                redirect('dashboard');
+                // Jika username ditemukan, cek apakah password cocok
+                if (password_verify($password, $user['password'])) {
+                    // Jika password benar, login sukses
+                    $this->session->set_userdata([
+                        'user_id' => $user['id'],
+                        'nama' => $user['nama'],
+                        'username' => $user['username'],
+                        'level' => $user['level'],
+                        'logged_in' => true
+                    ]);
+                    redirect('dashboard');
+                } else {
+                    // Jika password salah
+                    $this->session->set_flashdata('error', 'Password yang Anda masukkan salah!');
+                    redirect('auth');
+                }
             } else {
-                $this->session->set_flashdata('error', 'Invalid username or password.');
+                // Jika username tidak ditemukan
+                $this->session->set_flashdata('error', 'Username yang Anda masukkan tidak terdaftar!');
                 redirect('auth');
             }
         } else {

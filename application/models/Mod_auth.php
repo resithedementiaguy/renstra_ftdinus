@@ -3,11 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Mod_auth extends CI_Model
 {
+    // Mendapatkan data user berdasarkan username
+    public function get_user_by_username($username)
+    {
+        $this->db->where('username', $username);
+        $query = $this->db->get('user');
+        return $query->row_array();
+    }
+
+    // Validasi login (jika diperlukan)
     public function validate_login($username, $password)
     {
-        $hashed_password = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($password) . 'HdfevgyDDw{}{}{;;*766&*&*');
-        $query = $this->db->get_where('user', ['username' => $username, 'password' => $hashed_password]);
-
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
+        $query = $this->db->get('user');
         return $query->row_array();
     }
 

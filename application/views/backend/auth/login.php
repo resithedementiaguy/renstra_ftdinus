@@ -43,6 +43,14 @@
                                         <h5 class="card-title text-center pb-0 mb-1 fs-4">Login Rencana Strategis FT</h5>
                                         <p class="text-center small">Masukkan Username & Password untuk login!</p>
                                     </div>
+
+                                    <!-- Menampilkan alert error jika ada pesan flash -->
+                                    <?php if ($this->session->flashdata('error')): ?>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <?= $this->session->flashdata('error') ?>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <form class="row g-3 needs-validation" action="auth/login" method="post" novalidate>
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
