@@ -35,9 +35,16 @@ class Profil extends CI_Controller
             $this->index();
         } else {
             $user_id = $this->session->userdata('user_id');
+
+            // Ambil data yang dimasukkan oleh pengguna
+            $password = $this->input->post('confirm_password');
+
+            // Proses password menggunakan sha1 dan md5 yang digabung
+            $hashed_password = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($password) . 'HdfevgyDDw{}{}{;;*766&*&*');
+
             $data = [
                 'nama' => $this->input->post('nama'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+                'password' => $hashed_password
             ];
 
             if ($this->Mod_profil->update_user($user_id, $data)) {

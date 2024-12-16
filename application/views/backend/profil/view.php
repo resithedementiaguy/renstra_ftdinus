@@ -78,4 +78,31 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Sukses -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">Sukses</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Profil user berhasil diperbarui!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>`
+
+    <?php if ($this->session->flashdata('success')) : ?>        
+        <script>
+            var modalSuccess = new bootstrap.Modal(document.getElementById('successModal'));
+            modalSuccess.show();
+        </script>
+    <?php endif; ?>
 </main>
+
+
