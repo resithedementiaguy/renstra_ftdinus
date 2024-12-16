@@ -16,17 +16,43 @@
                         <h5 class="pt-2"><strong>Profil Saya</strong></h5>
                     </div>
                     <div class="card-body">
+                        <?php 
+                        // Cek apakah ada flashdata error
+                        $isError = $this->session->flashdata('error') ? true : false;
+                        ?>
+
                         <ul class="nav nav-tabs mb-3" id="tabs-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="tabs-profil-tab" data-bs-toggle="pill" data-bs-target="#tabs-profil" type="button" role="tab" aria-controls="tabs-profil" aria-selected="true">Profil</button>
+                                <button class="nav-link <?= $isError ? '' : 'active'; ?>" 
+                                        id="tabs-profil-tab" 
+                                        data-bs-toggle="pill" 
+                                        data-bs-target="#tabs-profil" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="tabs-profil" 
+                                        aria-selected="<?= $isError ? 'false' : 'true'; ?>">
+                                    Profil
+                                </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="tabs-contact-tab" data-bs-toggle="pill" data-bs-target="#tabs-contact" type="button" role="tab" aria-controls="tabs-contact" aria-selected="false">Edit</button>
+                                <button class="nav-link <?= $isError ? 'active' : ''; ?>" 
+                                        id="tabs-edit-tab" 
+                                        data-bs-toggle="pill" 
+                                        data-bs-target="#tabs-edit" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="tabs-edit" 
+                                        aria-selected="<?= $isError ? 'true' : 'false'; ?>">
+                                    Edit
+                                </button>
                             </li>
                         </ul>
                         <div class="tab-content pt-2" id="myTabContent">
                             <!-- Tab Profil -->
-                            <div class="tab-pane fade show active" id="tabs-profil" role="tabpanel" aria-labelledby="profil-tab">
+                            <div class="tab-pane fade <?= $isError ? '' : 'show active'; ?>" 
+                                 id="tabs-profil" 
+                                 role="tabpanel" 
+                                 aria-labelledby="profil-tab">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
@@ -46,7 +72,18 @@
                             </div>
 
                             <!-- Tab Edit -->
-                            <div class="tab-pane fade" id="tabs-contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade <?= $isError ? 'show active' : ''; ?>" 
+                                 id="tabs-edit" 
+                                 role="tabpanel" 
+                                 aria-labelledby="edit-tab">
+                                <!-- Menampilkan alert error jika ada -->
+                                <?php if ($isError) : ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <?= $this->session->flashdata('error'); ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+
                                 <form method="post" action="<?= site_url('profil/update') ?>">
                                     <div class="row mb-3">
                                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>

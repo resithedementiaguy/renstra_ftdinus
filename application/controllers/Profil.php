@@ -32,6 +32,11 @@ class Profil extends CI_Controller
         $this->form_validation->set_rules('confirm_password', 'Konfirmasi Password', 'required|matches[password]');
 
         if ($this->form_validation->run() == FALSE) {
+            // Set flash message untuk password yang kurang dari 6 karakter
+            if (form_error('password')) {
+                $this->session->set_flashdata('error', 'Password minimal 6 karakter!');
+            }
+            
             $this->index();
         } else {
             $user_id = $this->session->userdata('user_id');
