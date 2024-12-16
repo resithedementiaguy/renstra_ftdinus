@@ -43,6 +43,14 @@
                                         <h5 class="card-title text-center pb-0 mb-1 fs-4">Register Rencana Strategis FT</h5>
                                         <p class="text-center small">Silahkan lengkapi form di bawah untuk register!</p>
                                     </div>
+                                    <!-- Menampilkan alert error jika ada -->
+                                    <?php if ($this->session->flashdata('error')) : ?>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <?= $this->session->flashdata('error'); ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <form class="row g-3 needs-validation" action="<?php echo site_url('auth/register'); ?>" method="post" novalidate>
                                         <div class="col-12">
                                             <label for="username" class="form-label mb-0">Username</label>
@@ -53,7 +61,8 @@
                                                 <span class="input-group-text" id="inputGroupPrepend">
                                                     <i class="bi bi-person-fill text-secondary"></i>
                                                 </span>
-                                                <input type="text" name="username" class="form-control" id="username" placeholder="Masukkan Username" required>
+                                                <!-- Set value pada username menggunakan set_value -->
+                                                <input type="text" name="username" class="form-control" id="username" placeholder="Masukkan Username" value="<?php echo set_value('username'); ?>" required>
                                                 <div class="invalid-feedback">Masukkan nama terlebih dahulu!</div>
                                             </div>
                                         </div>
@@ -63,17 +72,22 @@
                                                 <span class="input-group-text" id="inputGroupPrepend">
                                                     <i class="bi bi-person-fill text-secondary"></i>
                                                 </span>
-                                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
+                                                <!-- Set value pada nama menggunakan set_value -->
+                                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" value="<?php echo set_value('nama'); ?>" required>
                                                 <div class="invalid-feedback">Masukkan nama terlebih dahulu!</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="password" class="form-label">Password</label>
+                                            <label for="password" class="form-label mb-0">Password</label>
+                                            <div>
+                                                <label for="username" class="form-label small text-danger">*Masukkan Password minimal 6 karakter</label>
+                                            </div>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">
                                                     <i class="bi bi-lock-fill text-secondary"></i>
                                                 </span>
-                                                <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan Password" required>
+                                                <!-- Set value pada password menggunakan set_value -->
+                                                <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan Password" value="<?php echo set_value('password'); ?>" required>
                                                 <div class="invalid-feedback">Masukkan password terlebih dahulu!</div>
                                             </div>
                                         </div>
@@ -83,7 +97,8 @@
                                                 <span class="input-group-text" id="inputGroupPrepend">
                                                     <i class="bi bi-unlock-fill text-secondary"></i>
                                                 </span>
-                                                <input type="password" name="konfirmasi_password" class="form-control" id="konfirmasi_password" placeholder="Konfirmasi Password" required>
+                                                <!-- Set value pada konfirmasi password menggunakan set_value -->
+                                                <input type="password" name="konfirmasi_password" class="form-control" id="konfirmasi_password" placeholder="Konfirmasi Password" value="<?php echo set_value('konfirmasi_password'); ?>" required>
                                                 <div class="invalid-feedback">Konfirmasi password terlebih dahulu!</div>
                                             </div>
                                         </div>

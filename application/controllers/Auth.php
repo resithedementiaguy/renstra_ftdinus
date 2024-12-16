@@ -30,8 +30,11 @@ class Auth extends CI_Controller
             $user = $this->Mod_auth->get_user_by_username($username);
 
             if ($user) {
-                // Jika username ditemukan, cek apakah password cocok
-                if (password_verify($password, $user['password'])) {
+                // Jika username ditemukan, hash password yang dimasukkan
+                $hashed_password = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($password) . 'HdfevgyDDw{}{}{;;*766&*&*');
+
+                // Cek apakah password yang dimasukkan sesuai dengan yang disimpan
+                if ($hashed_password === $user['password']) {
                     // Jika password benar, login sukses
                     $this->session->set_userdata([
                         'user_id' => $user['id'],
@@ -66,6 +69,11 @@ class Auth extends CI_Controller
 
         // Jika validasi gagal, load halaman register kembali
         if ($this->form_validation->run() == false) {
+            // Set flash message untuk password yang kurang dari 6 karakter
+            if (form_error('password')) {
+                $this->session->set_flashdata('error', 'Password minimal 6 karakter!');
+            }
+
             $this->load->view('backend/auth/register');
         } else {
             // Ambil data yang dimasukkan oleh pengguna
