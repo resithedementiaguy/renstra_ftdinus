@@ -251,22 +251,6 @@ class hasil_pelaporan extends CI_Controller
         $this->load->view('backend/partials/footer');
     }
 
-    public function update_kesesuaian_penelitian($id)
-    {
-        $this->load->model('Ewmp_model');
-
-        $data = array(
-            'kesesuaian' => $this->input->post('kesesuaian_penelitian')
-        );
-
-        if ($this->Ewmp_model->update_penelitian($id, $data)) {
-            echo 'success';
-        } else {
-            echo 'error';
-        }
-    }
-
-
     public function kesesuaian_pengabdian()
     {
         // Logging untuk debugging
@@ -326,6 +310,21 @@ class hasil_pelaporan extends CI_Controller
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/hasil_views/kesesuaian_pengabdian', $data);
         $this->load->view('backend/partials/footer');
+    }
+
+    public function update_kesesuaian_penelitian($id)
+    {
+        $this->load->model('Ewmp_model');
+
+        $data = array(
+            'kesesuaian' => $this->input->post('kesesuaian_penelitian')
+        );
+
+        if ($this->Ewmp_model->update_penelitian($id, $data)) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
     }
 
     public function update_kesesuaian_pengabdian($id)

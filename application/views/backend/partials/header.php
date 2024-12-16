@@ -130,7 +130,7 @@
 
             <li class="nav-item">
                 <a
-                    class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp') ? '' : 'collapsed'; ?>"
+                    class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan') ? '' : 'collapsed'; ?>"
                     data-bs-target="#ewmp-nav"
                     data-bs-toggle="collapse"
                     href="#ewmp-nav">
@@ -138,7 +138,7 @@
                 </a>
                 <ul
                     id="ewmp-nav"
-                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp') ? 'show' : ''; ?>"
+                    class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
                         <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'detail_pelaporan')) ? 'active' : ''; ?>" href="<?php echo site_url('ewmp'); ?>">
