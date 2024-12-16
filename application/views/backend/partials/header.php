@@ -145,11 +145,13 @@
                             <i class="bi bi-circle"></i><span>Pelaporan</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="<?php echo ($this->uri->segment(1) == 'hasil_pelaporan') ? 'active' : ''; ?>" href="<?php echo site_url('hasil_pelaporan'); ?>">
-                            <i class="bi bi-circle"></i><span>Hasil</span>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'Koordinator'): ?>
+                        <li>
+                            <a class="<?php echo ($this->uri->segment(1) == 'hasil_pelaporan') ? 'active' : ''; ?>" href="<?php echo site_url('hasil_pelaporan'); ?>">
+                                <i class="bi bi-circle"></i><span>Hasil</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </li>
 
