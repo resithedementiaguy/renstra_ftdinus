@@ -186,5 +186,14 @@
                     </ul>
                 </li>
             <?php endif; ?>
+
+            <?php if ($this->session->userdata('level') == 'Admin'): ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo ($this->uri->segment(1) == 'user') ? '' : 'collapsed'; ?>" href="<?php echo site_url('user'); ?>">
+                        <i class="bi bi-layout-text-window-reverse"></i>
+                        <span>Kelola User</span>
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
     </aside>
