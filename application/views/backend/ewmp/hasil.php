@@ -15,7 +15,7 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
                 <li class="breadcrumb-item active">Hasil Pencapaian</li>
             </ol>
         </nav>
@@ -38,19 +38,19 @@
                                 <label for="tahun" class="col-form-label">Tahun Cetak PDF</label>
                                 <select class="form-select" name="tahun" id="tahun" required>
                                     <option value="" selected hidden>Pilih Tahun</option>
-                                    <?php foreach($tahun as $thn): ?>
-                                        <option value="<?= $thn->tahun?>"><?= $thn->tahun?></option>
-                                    <?php endforeach;?>
+                                    <?php foreach ($tahun as $thn): ?>
+                                        <option value="<?= $thn->tahun ?>"><?= $thn->tahun ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
-                            
+
                             <!-- Tombol Tambah dan Cetak -->
-                            <div class="d-flex justify-content-between w-100">               
+                            <div class="d-flex justify-content-between w-100">
                                 <div>
                                     <a id="cetak-hasil" href="#" target="_blank" class="btn btn-danger mb-4">
                                         <i class="bi bi-file-pdf"></i> Cetak PDF Hasil Pelaporan EWMP
                                     </a>
-                                </div>                 
+                                </div>
                                 <div>
                                     <a id="cetak-rekapitulasi" href="#" target="_blank" class="btn btn-danger mb-4">
                                         <i class="bi bi-file-pdf"></i> Cetak PDF Rekapitulasi Penelitian & Pengabdian
@@ -95,7 +95,7 @@
                                         <td style="text-align: center;">1</td>
                                         <td>Total Publikasi Internasional</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/publikasi_internasional') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -103,7 +103,7 @@
                                         <td style="text-align: center;">2</td>
                                         <td>Total Publikasi Nasional</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/publikasi_nasional') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/publikasi_nasional') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -111,7 +111,7 @@
                                         <td style="text-align: center;">3</td>
                                         <td>Total Hibah Penelitian</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/hibah_penelitian') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/hibah_penelitian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -119,7 +119,7 @@
                                         <td style="text-align: center;">4</td>
                                         <td>Total Hibah Pengabdian</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/hibah_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/hibah_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -127,7 +127,7 @@
                                         <td style="text-align: center;">5</td>
                                         <td>List Kesesuaian Publikasi per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/kesesuaian_publikasi') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/kesesuaian_publikasi') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -135,7 +135,7 @@
                                         <td style="text-align: center;">6</td>
                                         <td>List Kesesuaian Penelitian per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/kesesuaian_penelitian') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/kesesuaian_penelitian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -143,7 +143,7 @@
                                         <td style="text-align: center;">7</td>
                                         <td>List Kesesuaian Pengabdian per Program Studi</td>
                                         <td>
-                                            <a href="<?= base_url('ewmp/kesesuaian_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
+                                            <a href="<?= base_url('hasil_pelaporan/kesesuaian_pengabdian') ?>" type="button" class="btn btn-sm btn-success">
                                                 <i class="bi bi-journal-text"></i> Detail</a>
                                         </td>
                                     </tr>
@@ -212,7 +212,7 @@
     // Event listener untuk tombol cetak PDF Rekapitulasi
     $('#cetak-rekapitulasi').on('click', function(e) {
         var selectedYear = $('#tahun').val();
-        
+
         if (!selectedYear) {
             e.preventDefault(); // Mencegah aksi default tombol
 
@@ -226,7 +226,7 @@
     // Event listener untuk tombol cetak PDF Rekapitulasi
     $('#cetak-hasil').on('click', function(e) {
         var selectedYear = $('#tahun').val();
-        
+
         if (!selectedYear) {
             e.preventDefault(); // Mencegah aksi default tombol
 

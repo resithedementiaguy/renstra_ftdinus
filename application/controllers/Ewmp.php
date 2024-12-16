@@ -36,31 +36,6 @@ class Ewmp extends CI_Controller
         $this->load->view('backend/partials/footer');
     }
 
-    public function hasil()
-    {
-        $data['data_internasional'] = $this->Ewmp_model->count_publikasi_internasional_data();
-        $data['data_nasional'] = $this->Ewmp_model->count_publikasi_nasional_data();
-
-        // Hitung total data
-        $data['total'] = $data['data_nasional'] + $data['data_internasional'];
-
-        // Hitung persentase
-        if ($data['total'] > 0) { // Hindari pembagian dengan nol
-            $data['persentase_nasional'] = ($data['data_nasional'] / $data['total']) * 100;
-            $data['persentase_internasional'] = ($data['data_internasional'] / $data['total']) * 100;
-        } else {
-            $data['persentase_nasional'] = 0;
-            $data['persentase_internasional'] = 0;
-        }
-
-        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
-
-        // Kirim data ke view
-        $this->load->view('backend/partials/header');
-        $this->load->view('backend/ewmp/hasil', $data);
-        $this->load->view('backend/partials/footer');
-    }
-
     public function add()
     {
         $jenis_lapor = $this->input->post('jenis_lapor');

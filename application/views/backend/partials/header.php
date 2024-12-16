@@ -133,7 +133,7 @@
                     class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp') ? '' : 'collapsed'; ?>"
                     data-bs-target="#ewmp-nav"
                     data-bs-toggle="collapse"
-                    href="#">
+                    href="#ewmp-nav">
                     <i class="bi bi-menu-button-wide"></i><span>Pelaporan EWMP</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul
@@ -141,12 +141,12 @@
                     class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && $this->uri->segment(2) == '') ? 'active' : ''; ?>" href="<?php echo site_url('ewmp'); ?>">
+                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'detail_pelaporan')) ? 'active' : ''; ?>" href="<?php echo site_url('ewmp'); ?>">
                             <i class="bi bi-circle"></i><span>Pelaporan</span>
                         </a>
                     </li>
                     <li>
-                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && $this->uri->segment(2) == 'hasil') ? 'active' : ''; ?>" href="<?php echo site_url('ewmp/hasil'); ?>">
+                        <a class="<?php echo ($this->uri->segment(1) == 'hasil_pelaporan') ? 'active' : ''; ?>" href="<?php echo site_url('hasil_pelaporan'); ?>">
                             <i class="bi bi-circle"></i><span>Hasil</span>
                         </a>
                     </li>
