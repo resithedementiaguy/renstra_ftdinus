@@ -69,7 +69,7 @@ class Auth extends CI_Controller
             $data_user = [
                 'nama' => $this->input->post('nama'),
                 'username' => $this->input->post('username'),
-                'password' => $hashed_password, // Simpan password yang telah di-hash
+                'password' => $hashed_password,
                 'ins_time' => date('Y-m-d H:i:s')
             ];
 
