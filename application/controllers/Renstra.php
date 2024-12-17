@@ -14,6 +14,7 @@ class Renstra extends CI_Controller
         $this->load->model('Mod_renstra');
         $this->load->model('Mod_iku');
         $this->load->model('Mod_tahun');
+        $this->load->model('Artikel_model');
 
         // Cek login
         if (!$this->session->userdata('logged_in')) {
@@ -29,14 +30,72 @@ class Renstra extends CI_Controller
 
     public function index()
     {
+        // Ambil data Level 1
         $data['level1'] = $this->Mod_iku->get_level1();
 
-        // Ambil nilai tahun dari database
+        // Ambil daftar tahun target dari database
         $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
         $data['years'] = array_column($years, 'tahun');
 
+        // Ambil semua tahun untuk filter
         $data['tahun'] = $this->Mod_tahun->get_all_tahun();
 
+        // Ambil tahun yang dipilih dari parameter, jika tidak ada, gunakan tahun pertama yang valid
+        $tahun = $this->input->get('tahun');
+        if (!$tahun || !in_array($tahun, $data['years'])) {
+            // Jika tidak ada parameter tahun atau tahun tidak valid, gunakan tahun pertama yang ada
+            $tahun = $data['years'][0];
+        }
+
+        // Ambil data artikel berdasarkan kategori dan tahun (hanya jika tahun valid)
+        $kategoriData = $tahun ? $this->Artikel_model->getTotalByCategoryAndYear($tahun) : [];
+        $dosenData = $tahun ? $this->Artikel_model->getJumlahDosenByYear($tahun) : ['total_dosen' => 0];
+
+        // Inisialisasi variabel
+        $kategori = [];
+        $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
+        $total_jurnal_bereputasi = 0;
+        $total_jurnal_internasional = 0;
+        $total_jurnal_nasional = 0;
+
+        // Cek jika ada data kategori dan dosen sesuai tahun yang dipilih
+        if ($kategoriData) {
+            // Hitung jumlah per kategori
+            foreach ($kategoriData as $row) {
+                // Menghitung jurnal internasional, nasional, dan bereputasi
+                $kategori[$row['kategori']] = $row['total'];
+
+                if (strpos($row['kategori'], 'Internasional') !== false) {
+                    $total_jurnal_internasional += $row['total'];
+                }
+
+                if (strpos($row['kategori'], 'Nasional') !== false) {
+                    $total_jurnal_nasional += $row['total'];
+                }
+            }
+
+            // Hitung jurnal bereputasi (Internasional Q1-Q4)
+            foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
+                $total_jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
+            }
+        }
+
+        // Hitung rata-rata jurnal per dosen (jika jumlah dosen > 0)
+        $rata_rata_jurnal = [
+            'bereputasi' => $jumlah_dosen > 0 ? $total_jurnal_bereputasi / $jumlah_dosen : 0,
+            'internasional' => $jumlah_dosen > 0 ? $total_jurnal_internasional / $jumlah_dosen : 0,
+            'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
+        ];
+
+        // Data untuk view
+        $data['kategori'] = $kategori;
+        $data['jumlah_dosen'] = $jumlah_dosen;
+        $data['total_jurnal_bereputasi'] = $total_jurnal_bereputasi;
+        $data['total_jurnal_internasional'] = $total_jurnal_internasional;
+        $data['total_jurnal_nasional'] = $total_jurnal_nasional;
+        $data['rata_rata_jurnal'] = $rata_rata_jurnal;
+
+        // Load view
         $this->load->view('backend/partials/header');
         $this->load->view('backend/renstra/view', $data);
         $this->load->view('backend/partials/footer');

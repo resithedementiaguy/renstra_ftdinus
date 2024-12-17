@@ -168,17 +168,29 @@
                                                 $level4 = $this->Mod_iku->get_level4($level3_item->id);
                                                 foreach ($level4 as $level4_item):
                                                     $target_level4 = $this->Mod_iku->get_target_level4($level4_item->id);
-                                                    $capaian_level4 = $this->Mod_iku->get_capaian_level4($level4_item->id); // Ambil capaian jika ada
+                                                    $capaian_level4 = $this->Mod_iku->get_capaian_level4($level4_item->id);
                                                 ?>
                                                     <tr style="border: 1px solid;">
                                                         <td style="border: 1px solid;"></td>
                                                         <td style="border: 1px solid;"></td>
                                                         <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->no_iku; ?></td>
-                                                        <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->isi_iku; ?></td>
-                                                        <?php foreach ($years as $year):
-                                                            $value = isset($target_level4[$year]) ? $target_level4[$year] : '';
-                                                            $capaian_value = isset($capaian_level4[$year]) ? $capaian_level4[$year] : ''; // Ambil capaian
-                                                        ?>
+                                                        <td style="border: 1px solid;" class="text-end">
+                                                            <?php
+                                                            // Periksa apakah isi_iku mengandung kategori yang dihitung otomatis
+                                                            $isi_iku = strtolower($level4_item->isi_iku);
+                                                            if (strpos($isi_iku, 'jurnal internasional bereputasi') !== false) {
+                                                                $capaian_otomatis = $total_jurnal_bereputasi / $jumlah_dosen;
+                                                            } elseif (strpos($isi_iku, 'jurnal internasional') !== false) {
+                                                                $capaian_otomatis = $total_jurnal_internasional / $jumlah_dosen;
+                                                            } elseif (strpos($isi_iku, 'jurnal nasional terakreditasi') !== false) {
+                                                                $capaian_otomatis = $total_jurnal_nasional / $jumlah_dosen;
+                                                            } else {
+                                                                $capaian_otomatis = '';
+                                                            }
+                                                            ?>
+                                                            <?php echo $level4_item->isi_iku; ?>
+                                                        </td>
+                                                        <?php foreach ($years as $year): ?>
                                                             <td style="border: 1px solid;">
                                                                 <input type="text"
                                                                     name="target[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
@@ -186,7 +198,7 @@
                                                                     data-id="<?php echo $level4_item->id; ?>"
                                                                     data-year="<?php echo $year; ?>"
                                                                     data-level-type="level4"
-                                                                    value="<?php echo $value; ?>"
+                                                                    value="<?php echo isset($target_level4[$year]) ? $target_level4[$year] : ''; ?>"
                                                                     placeholder="Isi target">
                                                             </td>
                                                             <td style="border: 1px solid;">
@@ -196,16 +208,34 @@
                                                                     data-id="<?php echo $level4_item->id; ?>"
                                                                     data-year="<?php echo $year; ?>"
                                                                     data-level-type="level4"
-                                                                    value="<?php echo $capaian_value; ?>"
+                                                                    value="<?php echo isset($capaian_level4[$year]) ? $capaian_level4[$year] : ''; ?>"
                                                                     placeholder="Isi capaian">
+                                                                <p>
+                                                                    <?php
+                                                                    // Periksa apakah tahun ada dalam daftar 'years'
+                                                                    if (in_array($year, $years)) {
+                                                                        // Tampilkan capaian manual jika ada
+                                                                        if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {
+                                                                            echo number_format(floatval($capaian_level4[$year]), 2);
+                                                                        }
+                                                                        // Jika capaian manual tidak ada, tampilkan capaian otomatis berdasarkan kategori
+                                                                        elseif ($capaian_otomatis !== '') {
+                                                                            echo number_format(floatval($capaian_otomatis), 2);
+                                                                        }
+                                                                        // Jika tidak ada capaian manual dan capaian otomatis, biarkan kosong
+                                                                        else {
+                                                                            echo '';
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </p>
                                                             </td>
                                                         <?php endforeach; ?>
                                                     </tr>
-                                    <?php endforeach;
-                                            endforeach;
-                                        endforeach;
-                                    endforeach;
-                                    ?>
+                                                <?php endforeach; ?>
+                                            <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

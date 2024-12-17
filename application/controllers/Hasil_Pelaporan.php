@@ -6,7 +6,7 @@ require 'dompdf/vendor/autoload.php';
 
 use Dompdf\Dompdf;
 
-class hasil_pelaporan extends CI_Controller
+class Hasil_pelaporan extends CI_Controller
 {
     public function __construct()
     {
