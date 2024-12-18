@@ -176,16 +176,17 @@
                                                         <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->no_iku; ?></td>
                                                         <td style="border: 1px solid;" class="text-end">
                                                             <?php
+                                                            // Reset $capaian_otomatis untuk setiap tahun
+                                                            $capaian_otomatis = '';
                                                             // Periksa apakah isi_iku mengandung kategori yang dihitung otomatis
                                                             $isi_iku = strtolower($level4_item->isi_iku);
+                                                            // Hitung nilai otomatis hanya jika kategori relevan
                                                             if (strpos($isi_iku, 'jurnal internasional bereputasi') !== false) {
                                                                 $capaian_otomatis = $total_jurnal_bereputasi / $jumlah_dosen;
                                                             } elseif (strpos($isi_iku, 'jurnal internasional') !== false) {
                                                                 $capaian_otomatis = $total_jurnal_internasional / $jumlah_dosen;
                                                             } elseif (strpos($isi_iku, 'jurnal nasional terakreditasi') !== false) {
                                                                 $capaian_otomatis = $total_jurnal_nasional / $jumlah_dosen;
-                                                            } else {
-                                                                $capaian_otomatis = '';
                                                             }
                                                             ?>
                                                             <?php echo $level4_item->isi_iku; ?>
@@ -210,25 +211,23 @@
                                                                     data-level-type="level4"
                                                                     value="<?php echo isset($capaian_level4[$year]) ? $capaian_level4[$year] : ''; ?>"
                                                                     placeholder="Isi capaian">
-                                                                <p>
-                                                                    <?php
-                                                                    // Periksa apakah tahun ada dalam daftar 'years'
-                                                                    if (in_array($year, $years)) {
-                                                                        // Tampilkan capaian manual jika ada
+                                                                <?php
+                                                                if (
+                                                                    strpos($isi_iku, 'jurnal internasional bereputasi') !== false ||
+                                                                    strpos($isi_iku, 'jurnal internasional') !== false ||
+                                                                    strpos($isi_iku, 'jurnal nasional terakreditasi') !== false
+                                                                ) {
+                                                                    if ((isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) || !empty($capaian_otomatis)) {
+                                                                        echo "<p>";
                                                                         if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {
                                                                             echo number_format(floatval($capaian_level4[$year]), 2);
-                                                                        }
-                                                                        // Jika capaian manual tidak ada, tampilkan capaian otomatis berdasarkan kategori
-                                                                        elseif ($capaian_otomatis !== '') {
+                                                                        } elseif (!empty($capaian_otomatis)) {
                                                                             echo number_format(floatval($capaian_otomatis), 2);
                                                                         }
-                                                                        // Jika tidak ada capaian manual dan capaian otomatis, biarkan kosong
-                                                                        else {
-                                                                            echo '';
-                                                                        }
+                                                                        echo "</p>";
                                                                     }
-                                                                    ?>
-                                                                </p>
+                                                                }
+                                                                ?>
                                                             </td>
                                                         <?php endforeach; ?>
                                                     </tr>

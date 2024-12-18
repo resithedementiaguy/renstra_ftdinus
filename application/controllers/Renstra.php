@@ -34,17 +34,18 @@ class Renstra extends CI_Controller
         $data['level1'] = $this->Mod_iku->get_level1();
 
         // Ambil daftar tahun target dari database
-        $years = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->result_array();
+        $years = $this->Artikel_model->getTahunList();
         $data['years'] = array_column($years, 'tahun');
 
         // Ambil semua tahun untuk filter
         $data['tahun'] = $this->Mod_tahun->get_all_tahun();
 
-        // Ambil tahun yang dipilih dari parameter, jika tidak ada, gunakan tahun pertama yang valid
-        $tahun = $this->input->get('tahun');
-        if (!$tahun || !in_array($tahun, $data['years'])) {
-            // Jika tidak ada parameter tahun atau tahun tidak valid, gunakan tahun pertama yang ada
-            $tahun = $data['years'][0];
+        // Tahun yang dipilih dari parameter (jika tidak ada, gunakan default 2024)
+        $tahun = $this->input->get('tahun') ?? 2024;
+
+        // Pastikan tahun yang dipilih ada dalam daftar tahun
+        if (!in_array($tahun, $data['years'])) {
+            $tahun = null; // Set default atau bisa di-handle dengan error
         }
 
         // Ambil data artikel berdasarkan kategori dan tahun (hanya jika tahun valid)
@@ -95,7 +96,7 @@ class Renstra extends CI_Controller
         $data['total_jurnal_nasional'] = $total_jurnal_nasional;
         $data['rata_rata_jurnal'] = $rata_rata_jurnal;
 
-        // Load view
+        // Kirim data ke view
         $this->load->view('backend/partials/header');
         $this->load->view('backend/renstra/view', $data);
         $this->load->view('backend/partials/footer');

@@ -10,11 +10,23 @@
 <body>
     <h1>Data Artikel Ilmiah - Tahun <?= $tahun ?></h1>
 
+    <form method="get" action="">
+        <label for="tahun">Pilih Tahun:</label>
+        <select name="tahun" id="tahun" onchange="this.form.submit()">
+            <?php foreach ($tahunList as $row): ?>
+                <option value="<?= $row['tahun'] ?>" <?= ($row['tahun'] == $tahun) ? 'selected' : '' ?>>
+                    <?= $row['tahun'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
+
     <table border="1">
         <thead>
             <tr>
                 <th>Kategori</th>
                 <th>Rasio Artikel/Dosen</th>
+                2021-2026
             </tr>
         </thead>
         <tbody>

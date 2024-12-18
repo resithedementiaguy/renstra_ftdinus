@@ -10,6 +10,7 @@ class Artikel extends CI_Controller
         $tahun = $this->input->get('tahun') ?? date('Y');
         $kategoriData = $this->Artikel_model->getTotalByCategoryAndYear($tahun);
         $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
+        $tahunList = $this->Artikel_model->getTahunList();
 
         $kategori = [];
         $total_jurnal = 0;
@@ -22,23 +23,21 @@ class Artikel extends CI_Controller
             $kategori[$row['kategori']] = $row['total'];
         }
 
-        // Hitung total untuk masing-masing label
         $jurnal_bereputasi = 0;
         $jurnal_internasional = $kategori['Internasional Non Scopus'] ?? 0;
         $jurnal_nasional = 0;
 
-        // Internasional Q1-Q4
         foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
             $jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
         }
 
-        // Nasional Sinta 1-6
         foreach (['Nasional Sinta 1', 'Nasional Sinta 2', 'Nasional Sinta 3', 'Nasional Sinta 4', 'Nasional Sinta 5', 'Nasional Sinta 6'] as $kategori_key) {
             $jurnal_nasional += $kategori[$kategori_key] ?? 0;
         }
 
         $data = [
             'tahun' => $tahun,
+            'tahunList' => $tahunList,
             'kategori' => $kategori,
             'jumlah_dosen' => $jumlah_dosen,
             'total_jurnal_bereputasi' => $jurnal_bereputasi,

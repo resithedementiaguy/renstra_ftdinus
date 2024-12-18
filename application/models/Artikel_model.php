@@ -8,7 +8,7 @@ class Artikel_model extends CI_Model
     {
         $this->db->select('kategori, COUNT(*) as total');
         $this->db->from('artikel_ilmiah');
-        $this->db->where('tahun', $tahun);  // Pastikan tahun dicocokkan
+        $this->db->where('tahun', $tahun);
         $this->db->group_by('kategori');
         $query = $this->db->get();
         return $query->result_array();
@@ -19,8 +19,16 @@ class Artikel_model extends CI_Model
     {
         $this->db->select('SUM(jumlah) as total_dosen');
         $this->db->from('jumlah_dosen');
-        $this->db->where('tahun', $tahun);  // Pastikan tahun dicocokkan
+        $this->db->where('tahun', $tahun);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function getTahunList()
+    {
+        $this->db->select('tahun');
+        $this->db->from('tahun');
+        $this->db->order_by('tahun', 'DESC');
+        return $this->db->get()->result_array();
     }
 }

@@ -14,7 +14,7 @@ class Mod_tahun extends CI_Model
         $this->db->select('*');
         $this->db->from('tahun');
         $query = $this->db->get();
-        return $query->result(); // Mengembalikan data dalam bentuk array objek
+        return $query->result();
     }
 
     // Ambil data tahun berdasarkan ID
