@@ -24,11 +24,14 @@ class Artikel_model extends CI_Model
         return $query->row_array();
     }
 
-    public function getTahunList()
+    // Mengambil total penelitian berdasarkan kategori dan tahun
+    public function getTotalPenelitianByYear($tahun)
     {
-        $this->db->select('tahun');
-        $this->db->from('tahun');
-        $this->db->order_by('tahun', 'ASC');
-        return $this->db->get()->result_array();
+        $this->db->select('kategori, COUNT(*) as total');
+        $this->db->from('penelitian');
+        $this->db->where('tahun', $tahun);
+        $this->db->group_by('kategori');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

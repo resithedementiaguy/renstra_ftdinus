@@ -193,16 +193,21 @@
                                                                 // Reset $capaian_otomatis untuk setiap tahun
                                                                 $capaian_otomatis = '';
 
-                                                                // Periksa apakah isi_iku mengandung kategori yang dihitung otomatis
-                                                                $isi_iku = strtolower($level4_item->isi_iku);
-
-                                                                // Hitung nilai otomatis hanya jika kategori relevan
-                                                                if (strpos($isi_iku, 'jurnal internasional bereputasi') !== false) {
-                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['bereputasi']) ? $rata_rata_jurnal_per_tahun[$year]['bereputasi'] : 0;
-                                                                } elseif (strpos($isi_iku, 'jurnal internasional') !== false) {
-                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['internasional']) ? $rata_rata_jurnal_per_tahun[$year]['internasional'] : 0;
-                                                                } elseif (strpos($isi_iku, 'jurnal nasional terakreditasi') !== false) {
-                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['nasional']) ? $rata_rata_jurnal_per_tahun[$year]['nasional'] : 0;
+                                                                // Hitung nilai otomatis hanya jika no_iku sesuai
+                                                                if (in_array($level4_item->no_iku, ['2.1.3.a.', '2.1.3.b.', '2.1.3.c.', '2.1.5.a.', '2.1.5.b.', '2.1.5.c.'])) {
+                                                                    if ($level4_item->no_iku === '2.1.3.a.') {
+                                                                        $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['bereputasi']) ? $rata_rata_jurnal_per_tahun[$year]['bereputasi'] : 0;
+                                                                    } elseif ($level4_item->no_iku === '2.1.3.b.') {
+                                                                        $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['internasional']) ? $rata_rata_jurnal_per_tahun[$year]['internasional'] : 0;
+                                                                    } elseif ($level4_item->no_iku === '2.1.3.c.') {
+                                                                        $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['nasional']) ? $rata_rata_jurnal_per_tahun[$year]['nasional'] : 0;
+                                                                    } elseif ($level4_item->no_iku === '2.1.5.a.') {
+                                                                        $capaian_otomatis = isset($rata_rata_penelitian_per_tahun[$year]['luar_negeri']) ? $rata_rata_penelitian_per_tahun[$year]['luar_negeri'] : 0;
+                                                                    } elseif ($level4_item->no_iku === '2.1.5.b.') {
+                                                                        $capaian_otomatis = isset($rata_rata_penelitian_per_tahun[$year]['dalam_negeri']) ? $rata_rata_penelitian_per_tahun[$year]['dalam_negeri'] : 0;
+                                                                    } elseif ($level4_item->no_iku === '2.1.5.c.') {
+                                                                        $capaian_otomatis = isset($rata_rata_penelitian_per_tahun[$year]['internal']) ? $rata_rata_penelitian_per_tahun[$year]['internal'] : 0;
+                                                                    }
                                                                 }
                                                                 ?>
                                                                 <input type="text"
@@ -214,11 +219,7 @@
                                                                     value="<?php echo isset($capaian_level4[$year]) ? $capaian_level4[$year] : ''; ?>"
                                                                     placeholder="Isi capaian">
                                                                 <?php
-                                                                if (
-                                                                    strpos($isi_iku, 'jurnal internasional bereputasi') !== false ||
-                                                                    strpos($isi_iku, 'jurnal internasional') !== false ||
-                                                                    strpos($isi_iku, 'jurnal nasional terakreditasi') !== false
-                                                                ) {
+                                                                if (in_array($level4_item->no_iku, ['2.1.3.a.', '2.1.3.b.', '2.1.3.c.', '2.1.5.a.', '2.1.5.b.', '2.1.5.c.'])) {
                                                                     if ((isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) || !empty($capaian_otomatis)) {
                                                                         echo "<p>";
                                                                         if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {

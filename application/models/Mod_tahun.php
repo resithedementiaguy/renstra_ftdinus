@@ -17,6 +17,14 @@ class Mod_tahun extends CI_Model
         return $query->result();
     }
 
+    public function getTahunList()
+    {
+        $this->db->select('tahun');
+        $this->db->from('tahun');
+        $this->db->order_by('tahun', 'ASC');
+        return $this->db->get()->result_array();
+    }
+
     // Ambil data tahun berdasarkan ID
     public function get_tahun_by_id($id)
     {
