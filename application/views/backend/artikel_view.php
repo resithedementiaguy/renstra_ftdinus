@@ -10,23 +10,21 @@
 <body>
     <h1>Data Artikel Ilmiah - Tahun <?= $tahun ?></h1>
 
-    <form method="get" action="">
-        <label for="tahun">Pilih Tahun:</label>
-        <select name="tahun" id="tahun" onchange="this.form.submit()">
-            <?php foreach ($tahunList as $row): ?>
-                <option value="<?= $row['tahun'] ?>" <?= ($row['tahun'] == $tahun) ? 'selected' : '' ?>>
-                    <?= $row['tahun'] ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </form>
+    <div>
+        <h3>Pilih Tahun:</h3>
+        <?php foreach ($tahunList as $row): ?>
+            <a href="<?= site_url('artikel/index?tahun=' . $row['tahun']) ?>"
+                style="margin-right: 10px; <?= ($row['tahun'] == $tahun) ? 'font-weight: bold;' : '' ?>">
+                <?= $row['tahun'] ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
 
     <table border="1">
         <thead>
             <tr>
                 <th>Kategori</th>
-                <th>Rasio Artikel/Dosen</th>
-                2021-2026
+                <th>Kategori</th>
             </tr>
         </thead>
         <tbody>

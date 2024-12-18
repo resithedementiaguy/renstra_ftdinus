@@ -126,7 +126,7 @@
                                             $level3 = $this->Mod_iku->get_level3($level2_item->id);
                                             foreach ($level3 as $level3_item):
                                                 $target_level3 = $this->Mod_iku->get_target_level3($level3_item->id);
-                                                $capaian_level3 = $this->Mod_iku->get_capaian_level3($level3_item->id); // Ambil capaian jika ada
+                                                $capaian_level3 = $this->Mod_iku->get_capaian_level3($level3_item->id);
                                             ?>
                                                 <tr style="border: 1px solid;">
                                                     <td style="border: 1px solid;"></td>
@@ -137,7 +137,7 @@
                                                         <td style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
                                                         <?php foreach ($years as $year):
                                                             $value = isset($target_level3[$year]) ? $target_level3[$year] : '';
-                                                            $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : ''; // Ambil capaian
+                                                            $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '';
                                                         ?>
                                                             <td style="border: 1px solid;">
                                                                 <input type="text"
@@ -175,20 +175,6 @@
                                                         <td style="border: 1px solid;"></td>
                                                         <td style="border: 1px solid;" class="text-end"><?php echo $level4_item->no_iku; ?></td>
                                                         <td style="border: 1px solid;" class="text-end">
-                                                            <?php
-                                                            // Reset $capaian_otomatis untuk setiap tahun
-                                                            $capaian_otomatis = '';
-                                                            // Periksa apakah isi_iku mengandung kategori yang dihitung otomatis
-                                                            $isi_iku = strtolower($level4_item->isi_iku);
-                                                            // Hitung nilai otomatis hanya jika kategori relevan
-                                                            if (strpos($isi_iku, 'jurnal internasional bereputasi') !== false) {
-                                                                $capaian_otomatis = $total_jurnal_bereputasi / $jumlah_dosen;
-                                                            } elseif (strpos($isi_iku, 'jurnal internasional') !== false) {
-                                                                $capaian_otomatis = $total_jurnal_internasional / $jumlah_dosen;
-                                                            } elseif (strpos($isi_iku, 'jurnal nasional terakreditasi') !== false) {
-                                                                $capaian_otomatis = $total_jurnal_nasional / $jumlah_dosen;
-                                                            }
-                                                            ?>
                                                             <?php echo $level4_item->isi_iku; ?>
                                                         </td>
                                                         <?php foreach ($years as $year): ?>
@@ -203,6 +189,22 @@
                                                                     placeholder="Isi target">
                                                             </td>
                                                             <td style="border: 1px solid;">
+                                                                <?php
+                                                                // Reset $capaian_otomatis untuk setiap tahun
+                                                                $capaian_otomatis = '';
+
+                                                                // Periksa apakah isi_iku mengandung kategori yang dihitung otomatis
+                                                                $isi_iku = strtolower($level4_item->isi_iku);
+
+                                                                // Hitung nilai otomatis hanya jika kategori relevan
+                                                                if (strpos($isi_iku, 'jurnal internasional bereputasi') !== false) {
+                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['bereputasi']) ? $rata_rata_jurnal_per_tahun[$year]['bereputasi'] : 0;
+                                                                } elseif (strpos($isi_iku, 'jurnal internasional') !== false) {
+                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['internasional']) ? $rata_rata_jurnal_per_tahun[$year]['internasional'] : 0;
+                                                                } elseif (strpos($isi_iku, 'jurnal nasional terakreditasi') !== false) {
+                                                                    $capaian_otomatis = isset($rata_rata_jurnal_per_tahun[$year]['nasional']) ? $rata_rata_jurnal_per_tahun[$year]['nasional'] : 0;
+                                                                }
+                                                                ?>
                                                                 <input type="text"
                                                                     name="capaian[<?php echo $level4_item->id; ?>][<?php echo $year; ?>]"
                                                                     class="form-control capaian-input"

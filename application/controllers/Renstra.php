@@ -37,64 +37,53 @@ class Renstra extends CI_Controller
         $years = $this->Artikel_model->getTahunList();
         $data['years'] = array_column($years, 'tahun');
 
-        // Ambil semua tahun untuk filter
-        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
+        // Siapkan array untuk menyimpan rata-rata jurnal per tahun
+        $rata_rata_jurnal_per_tahun = [];
 
-        // Tahun yang dipilih dari parameter (jika tidak ada, gunakan default 2024)
-        $tahun = $this->input->get('tahun') ?? 2024;
+        // Proses data untuk setiap tahun yang tersedia
+        foreach ($data['years'] as $tahun) {
+            // Ambil data artikel berdasarkan tahun
+            $kategoriData = $this->Artikel_model->getTotalByCategoryAndYear($tahun);
+            $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
 
-        // Pastikan tahun yang dipilih ada dalam daftar tahun
-        if (!in_array($tahun, $data['years'])) {
-            $tahun = null; // Set default atau bisa di-handle dengan error
-        }
+            // Inisialisasi variabel
+            $kategori = [];
+            $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
+            $total_jurnal_bereputasi = 0;
+            $total_jurnal_internasional = 0;
+            $total_jurnal_nasional = 0;
 
-        // Ambil data artikel berdasarkan kategori dan tahun (hanya jika tahun valid)
-        $kategoriData = $tahun ? $this->Artikel_model->getTotalByCategoryAndYear($tahun) : [];
-        $dosenData = $tahun ? $this->Artikel_model->getJumlahDosenByYear($tahun) : ['total_dosen' => 0];
+            // Cek jika ada data kategori dan dosen sesuai tahun yang dipilih
+            if ($kategoriData) {
+                // Hitung jumlah per kategori
+                foreach ($kategoriData as $row) {
+                    $kategori[$row['kategori']] = $row['total'];
 
-        // Inisialisasi variabel
-        $kategori = [];
-        $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
-        $total_jurnal_bereputasi = 0;
-        $total_jurnal_internasional = 0;
-        $total_jurnal_nasional = 0;
+                    if (strpos($row['kategori'], 'Internasional') !== false) {
+                        $total_jurnal_internasional += $row['total'];
+                    }
 
-        // Cek jika ada data kategori dan dosen sesuai tahun yang dipilih
-        if ($kategoriData) {
-            // Hitung jumlah per kategori
-            foreach ($kategoriData as $row) {
-                // Menghitung jurnal internasional, nasional, dan bereputasi
-                $kategori[$row['kategori']] = $row['total'];
-
-                if (strpos($row['kategori'], 'Internasional') !== false) {
-                    $total_jurnal_internasional += $row['total'];
+                    if (strpos($row['kategori'], 'Nasional') !== false) {
+                        $total_jurnal_nasional += $row['total'];
+                    }
                 }
 
-                if (strpos($row['kategori'], 'Nasional') !== false) {
-                    $total_jurnal_nasional += $row['total'];
+                // Hitung jurnal bereputasi (Internasional Q1-Q4)
+                foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
+                    $total_jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
                 }
             }
 
-            // Hitung jurnal bereputasi (Internasional Q1-Q4)
-            foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
-                $total_jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
-            }
+            // Hitung rata-rata jurnal per dosen untuk tahun ini
+            $rata_rata_jurnal_per_tahun[$tahun] = [
+                'bereputasi' => $jumlah_dosen > 0 ? $total_jurnal_bereputasi / $jumlah_dosen : 0,
+                'internasional' => $jumlah_dosen > 0 ? $total_jurnal_internasional / $jumlah_dosen : 0,
+                'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
+            ];
         }
 
-        // Hitung rata-rata jurnal per dosen (jika jumlah dosen > 0)
-        $rata_rata_jurnal = [
-            'bereputasi' => $jumlah_dosen > 0 ? $total_jurnal_bereputasi / $jumlah_dosen : 0,
-            'internasional' => $jumlah_dosen > 0 ? $total_jurnal_internasional / $jumlah_dosen : 0,
-            'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
-        ];
-
-        // Data untuk view
-        $data['kategori'] = $kategori;
-        $data['jumlah_dosen'] = $jumlah_dosen;
-        $data['total_jurnal_bereputasi'] = $total_jurnal_bereputasi;
-        $data['total_jurnal_internasional'] = $total_jurnal_internasional;
-        $data['total_jurnal_nasional'] = $total_jurnal_nasional;
-        $data['rata_rata_jurnal'] = $rata_rata_jurnal;
+        // Kirim rata-rata jurnal per tahun ke view
+        $data['rata_rata_jurnal_per_tahun'] = $rata_rata_jurnal_per_tahun;
 
         // Kirim data ke view
         $this->load->view('backend/partials/header');

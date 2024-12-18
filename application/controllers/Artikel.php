@@ -6,11 +6,16 @@ class Artikel extends CI_Controller
     public function index()
     {
         $this->load->model('Artikel_model');
-
+        $data['years'] = $this->Artikel_model->getTahunList();
         $tahun = $this->input->get('tahun') ?? date('Y');
         $kategoriData = $this->Artikel_model->getTotalByCategoryAndYear($tahun);
         $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
         $tahunList = $this->Artikel_model->getTahunList();
+
+        // Define the $years array
+        $years = array_map(function ($year) {
+            return $year['tahun'];
+        }, $data['years']);
 
         $kategori = [];
         $total_jurnal = 0;
@@ -38,6 +43,7 @@ class Artikel extends CI_Controller
         $data = [
             'tahun' => $tahun,
             'tahunList' => $tahunList,
+            'years' => $years,  // Pass $years to the view
             'kategori' => $kategori,
             'jumlah_dosen' => $jumlah_dosen,
             'total_jurnal_bereputasi' => $jurnal_bereputasi,

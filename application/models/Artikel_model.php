@@ -28,7 +28,7 @@ class Artikel_model extends CI_Model
     {
         $this->db->select('tahun');
         $this->db->from('tahun');
-        $this->db->order_by('tahun', 'DESC');
+        $this->db->order_by('tahun', 'ASC');
         return $this->db->get()->result_array();
     }
 }
