@@ -43,16 +43,16 @@ class Renstra extends CI_Controller
             // Ambil data dosen berdasarkan tahun
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
 
-            // Inisialisasi variabel jurnal
-            $kategoriData = $this->Artikel_model->getTotalByCategoryAndYear($tahun);
+            // Inisialisasi variabel Artikel / Jurnal Ilmiah
+            $artikelData = $this->Artikel_model->getTotalArtikelByYear($tahun);
             $kategori = [];
             $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
             $total_jurnal_bereputasi = 0;
             $total_jurnal_internasional = 0;
             $total_jurnal_nasional = 0;
 
-            if ($kategoriData) {
-                foreach ($kategoriData as $row) {
+            if ($artikelData) {
+                foreach ($artikelData as $row) {
                     $kategori[$row['kategori']] = $row['total'];
 
                     if (strpos($row['kategori'], 'Internasional') !== false) {
@@ -77,7 +77,7 @@ class Renstra extends CI_Controller
                 'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
             ];
 
-            // Inisialisasi variabel penelitian
+            // Inisialisasi variabel Penelitian
             $penelitianData = $this->Artikel_model->getTotalPenelitianByYear($tahun);
             $penelitian = [];
             $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
