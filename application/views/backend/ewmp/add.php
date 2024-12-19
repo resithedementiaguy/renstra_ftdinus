@@ -108,29 +108,6 @@
                                         <button type="button" class="btn btn-primary" id="addAnggotaPenelitian">Tambah Anggota</button>
                                     </div>
                                 </div>
-                                <!-- <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi Anggota</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian1" value="Teknik Elektro" checked>
-                                            <label class="form-check-label" for="prodi_anggota_penelitian1">Teknik Elektro</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian2" value="Teknik Industri">
-                                            <label class="form-check-label" for="prodi_anggota_penelitian2">Teknik Industri</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi_anggota_penelitian" id="prodi_anggota_penelitian3" value="Teknik Biomedis">
-                                            <label class="form-check-label" for="prodi_anggota_penelitian3">Teknik Biomedis</label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <div class="row mb-3">
-                                    <label for="nama_anggota_penelitian" class="col-sm-2 col-form-label">Nama Anggota</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="nama_anggota_penelitian" id="nama_anggota_penelitian" class="form-control" placeholder="Masukkan nama anggota">
-                                    </div>
-                                </div> -->
                                 <div class="row mb-3">
                                     <label for="judul_penelitian" class="col-sm-2 col-form-label">Judul Penelitian</label>
                                     <div class="col-sm-10">
@@ -169,18 +146,6 @@
                                         <button type="button" class="btn btn-primary" id="addMahasiswaPenelitian">Tambah Mahasiswa</button>
                                     </div>
                                 </div>
-                                <!-- <div class="row mb-3">
-                                    <label for="nim_mahasiswa_penelitian" class="col-sm-2 col-form-label">NIM Mahasiswa yang Terlibat</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="nim_mahasiswa_penelitian" id="nim_mahasiswa_penelitian" class="form-control" placeholder="Masukkan nim mahasiswa">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="nama_mahasiswa_penelitian" class="col-sm-2 col-form-label">Nama Mahasiswa yang Terlibat</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="nama_mahasiswa_penelitian" id="nama_mahasiswa_penelitian" class="form-control" placeholder="Masukkan nama mahasiswa">
-                                    </div>
-                                </div> -->
                                 <div class="row mb-3">
                                     <label for="kontrak_penelitian" class="col-sm-2 col-form-label">Link Google Drive Kontrak Penelitian</label>
                                     <div class="col-sm-10">
@@ -691,9 +656,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="judul_desain" class="col-sm-2 col-form-label">Judul Desain Invensi</label>
+                                    <label for="judul_desain" class="col-sm-2 col-form-label">Judul Desain Industri</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="judul_desain" id="judul_desain" class="form-control" placeholder="Masukkan judul invensi">
+                                        <input type="text" name="judul_desain" id="judul_desain" class="form-control" placeholder="Masukkan judul desain industri">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -924,12 +889,12 @@
     <?php endif; ?>
 
     <!-- Cek apakah flash data untuk memicu modal ada -->
-    <?php if ($this->session->flashdata('show_modal')): ?>
+    <!-- <?php if ($this->session->flashdata('show_modal')): ?>
         <script>
             var myModal = new bootstrap.Modal(document.getElementById('alertModal'), {});
             myModal.show();
         </script>
-    <?php endif; ?>
+    <?php endif; ?> -->
 </main>
 
 <script>
@@ -1408,12 +1373,304 @@
         container.appendChild(newGroup);
     });
 
-    document.getElementById('ewmpForm').addEventListener('submit', function(event) {
-        const jenisLapor = document.getElementById('jenis_lapor').value;
-        if (!jenisLapor) {
-            event.preventDefault(); // Mencegah form submit
-            const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
-            alertModal.show();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get main form elements
+        const form = document.querySelector('form');
+        const jenisLapor = document.getElementById('jenis_lapor');
+        const kategoriIlmiah = document.getElementById('kategori_ilmiah');
+        const kategoriHaki = document.getElementById('kategori_haki');
+
+        // Function to add required attributes and validation messages
+        function addRequiredFields(fields) {
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.setAttribute('required', '');
+                    field.addEventListener('input', function() {
+                        validateField(this);
+                    });
+                    field.addEventListener('blur', function() {
+                        validateField(this);
+                    });
+                }
+            });
+        }
+
+        // Function to validate individual field
+        function validateField(field) {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                if (!field.nextElementSibling?.classList.contains('invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'Field ini wajib diisi';
+                    field.parentNode.appendChild(feedback);
+                }
+                return false;
+            } else {
+                field.classList.remove('is-invalid');
+                const feedback = field.nextElementSibling;
+                if (feedback?.classList.contains('invalid-feedback')) {
+                    feedback.remove();
+                }
+                return true;
+            }
+        }
+
+        // Function to clear validation states
+        function clearValidationStates() {
+            document.querySelectorAll('[required]').forEach(el => {
+                el.removeAttribute('required');
+            });
+            document.querySelectorAll('.is-invalid').forEach(el => {
+                el.classList.remove('is-invalid');
+            });
+            document.querySelectorAll('.invalid-feedback').forEach(el => {
+                el.remove();
+            });
+        }
+
+        // Handle jenis_lapor change
+        jenisLapor.addEventListener('change', function() {
+            clearValidationStates();
+
+            // Add required attributes based on selected type
+            switch(this.value) {
+                case 'Penelitian':
+                    addRequiredFields([
+                        'nama_ketua_penelitian',
+                        'judul_penelitian',
+                        'skim_penelitian',
+                        'pemberi_hibah_penelitian',
+                        'besar_hibah_penelitian',
+                        'kontrak_penelitian',
+                        'laporan_maju_penelitian'
+                    ]);
+                    break;
+                case 'Pengabdian':
+                    addRequiredFields([
+                        'nama_ketua_pengabdian',
+                        'judul_pengabdian',
+                        'skim_pengabdian',
+                        'pemberi_hibah_pengabdian',
+                        'besar_hibah_pengabdian',
+                        'kontrak_pengabdian',
+                        'laporan_pengabdian'
+                    ]);
+                    break;
+                case 'Artikel/Karya Ilmiah':
+                    // First add required to kategori_ilmiah
+                    addRequiredFields(['kategori_ilmiah']);
+                    // The rest will be handled by kategori_ilmiah change event
+                    break;
+                case 'Prosiding':
+                    addRequiredFields([
+                        'nama_pertama_prosiding',
+                        'nama_korespon_prosiding',
+                        'judul_artikel_prosiding',
+                        'judul_seminar_prosiding',
+                        'bukti_loa_prosiding',
+                        'doi_prosiding'
+                    ]);
+                    break;
+                case 'HAKI':
+                    // First add required to kategori_haki
+                    addRequiredFields(['kategori_haki']);
+                    // The rest will be handled by kategori_haki change event
+                    break;
+                case 'Editor Jurnal':
+                    addRequiredFields([
+                        'nama_pengusul_editor',
+                        'judul_jurnal_editor',
+                        'sk_editor'
+                    ]);
+                    break;
+                case 'Reviewer Jurnal':
+                    addRequiredFields([
+                        'nama_pengusul_reviewer',
+                        'judul_artikel_reviewer',
+                        'judul_jurnal_reviewer',
+                        'sertifikat_reviewer'
+                    ]);
+                    break;
+                case 'Invited Speaker':
+                    addRequiredFields([
+                        'nama_pengusul_speaker',
+                        'judul_kegiatan',
+                        'penyelenggara',
+                        'laporan_maju_speaker'
+                    ]);
+                    break;
+                case 'Pengurus Organisasi Profesi':
+                    addRequiredFields([
+                        'nama_organisasi',
+                        'jabatan_organisasi',
+                        'masa_jabatan_organisasi',
+                        'dokumen_organisasi'
+                    ]);
+                    break;
+            }
+        });
+
+        // Handle kategori_ilmiah change
+        kategoriIlmiah.addEventListener('change', function() {
+            clearValidationStates();
+            
+            // Base fields required for all article types
+            const baseFields = [
+                'nama_pertama_ilmiah',
+                'nama_korespon_ilmiah',
+                'judul_artikel_ilmiah',
+                'judul_jurnal_ilmiah',
+                'link_jurnal_ilmiah',
+                'volume_jurnal_ilmiah',
+                'nomor_jurnal_ilmiah',
+                'doi_ilmiah'
+            ];
+
+            // Array of international categories
+            const internasionalValues = [
+                "Internasional Q1", "Internasional Q2", "Internasional Q3",
+                "Internasional Q4", "Internasional Non Scopus"
+            ];
+
+            // Add required to base fields
+            addRequiredFields(baseFields);
+
+            // Show/hide and set required for pengindeks field
+            const pengindeksDiv = document.getElementById('pengindeks');
+            if (internasionalValues.includes(this.value)) {
+                pengindeksDiv.classList.remove('d-none');
+                addRequiredFields(['pengindeks_ilmiah']);
+            } else {
+                pengindeksDiv.classList.add('d-none');
+                const pengindeksInput = document.getElementById('pengindeks_ilmiah');
+                if (pengindeksInput) {
+                    pengindeksInput.value = '';
+                    pengindeksInput.removeAttribute('required');
+                }
+            }
+        });
+
+        // Handle kategori_haki change
+        kategoriHaki.addEventListener('change', function() {
+            clearValidationStates();
+
+            switch(this.value) {
+                case 'Hak Cipta':
+                    addRequiredFields([
+                        'nama_pengusul_hcipta',
+                        'judul_hcipta',
+                        'sertifikat_hcipta'
+                    ]);
+                    break;
+                case 'Merk':
+                    addRequiredFields([
+                        'nama_pengusul_merk',
+                        'judul_merk',
+                        'sertifikat_merk'
+                    ]);
+                    break;
+                case 'Lisensi':
+                    addRequiredFields([
+                        'nama_pengusul_lisensi',
+                        'judul_lisensi',
+                        'sertifikat_lisensi'
+                    ]);
+                    break;
+                case 'Buku':
+                    addRequiredFields([
+                        'nama_pengusul_buku',
+                        'isbn_buku',
+                        'judul_buku',
+                        'file_buku'
+                    ]);
+                    break;
+                case 'Paten':
+                    addRequiredFields([
+                        'judul_invensi_paten',
+                        'sertifikat_paten'
+                    ]);
+                    break;
+                case 'Desain Industri':
+                    addRequiredFields([
+                        'judul_desain',
+                        'sertifikat_desain'
+                    ]);
+                    break;
+            }
+        });
+
+        // Add form submit handler
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Basic fields validation
+            const basicFields = ['email', 'tahun', 'jenis_lapor'];
+            basicFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field && !validateField(field)) {
+                    isValid = false;
+                }
+            });
+
+            // Validate visible section fields
+            const jenisLaporValue = jenisLapor.value;
+            let visibleSection;
+
+            switch(jenisLaporValue) {
+                case 'Penelitian':
+                    visibleSection = document.getElementById('penelitian');
+                    break;
+                case 'Pengabdian':
+                    visibleSection = document.getElementById('pengabdian');
+                    break;
+                case 'Artikel/Karya Ilmiah':
+                    visibleSection = document.getElementById('ilmiah');
+                    break;
+                case 'Prosiding':
+                    visibleSection = document.getElementById('prosiding');
+                    break;
+                case 'HAKI':
+                    const hakiType = kategoriHaki.value;
+                    visibleSection = document.getElementById(hakiType.toLowerCase().replace(/ /g, '_'));
+                    break;
+                case 'Editor Jurnal':
+                    visibleSection = document.getElementById('editor_jurnal');
+                    break;
+                case 'Reviewer Jurnal':
+                    visibleSection = document.getElementById('reviewer_jurnal');
+                    break;
+                case 'Invited Speaker':
+                    visibleSection = document.getElementById('invited_speaker');
+                    break;
+                case 'Pengurus Organisasi Profesi':
+                    visibleSection = document.getElementById('pengurus_organisasi');
+                    break;
+            }
+
+            if (visibleSection) {
+                const requiredFields = visibleSection.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    if (!validateField(field)) {
+                        isValid = false;
+                    }
+                });
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                // Focus on the first invalid field
+                const firstInvalid = document.querySelector('.is-invalid');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                }
+            }
+        });
+
+        // Initialize validation for initial form state if needed
+        if (jenisLapor.value) {
+            jenisLapor.dispatchEvent(new Event('change'));
         }
     });
 </script>

@@ -36,35 +36,21 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Publikasi Internasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-6" style="height: 300px;">
-                                <div id="chartQ"></div>
-                            </div>
-                            <div class="col-6">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <td>Q1</td>
-                                            <td><?= $q1_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Q2</td>
-                                            <td><?= $q2_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Q3</td>
-                                            <td><?= $q3_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Q4</td>
-                                            <td><?= $q4_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                            <td><?= $total = $q1_data + $q2_data + $q3_data + $q4_data ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 282px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Data Publikasi Internasional</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
+                                            <?= $thn->tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -103,7 +89,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('ewmp/hasil') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                            <a href="<?= base_url('hasil_pelaporan') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -112,53 +98,92 @@
     </section>
 </main>
 
+<!-- Make sure these script inclusions are in the correct order -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<script>
-    new DataTable('#datatable');
-</script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Data dari PHP
-        var q1Data = <?= json_encode($q1_data) ?>;
-        var q2Data = <?= json_encode($q2_data) ?>;
-        var q3Data = <?= json_encode($q3_data) ?>;
-        var q4Data = <?= json_encode($q4_data) ?>;
-        var totalData = <?= json_encode($total_data) ?>;
+        // Function to fetch international publication data for a specific year
+        function fetchPublicationData(year) {
+            return $.ajax({
+                url: '<?= base_url("hasil_pelaporan/get_publikasi_internasional_data") ?>', 
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
 
-        // Hitung persentase
-        var percentages = [
-            (q1Data / totalData) * 100,
-            (q2Data / totalData) * 100,
-            (q3Data / totalData) * 100,
-            (q4Data / totalData) * 100,
-        ];
+        // Function to format date time (matching the PHP function)
+        function formatDateTime(datetime) {
+            if (!datetime) return "-";
 
-        // Data untuk ApexCharts
-        new ApexCharts(document.querySelector("#chartQ"), {
-            series: percentages,
-            chart: {
-                height: 350,
-                type: 'pie',
-                toolbar: {
-                    show: true,
-                },
-            },
-            labels: ["Q1", "Q2", "Q3", "Q4"],
-            colors: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-            tooltip: {
-                y: {
-                    formatter: function(value) {
-                        return value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
-                    },
-                },
-            },
-            legend: {
-                position: 'top', // Menampilkan legend di atas
-            },
-        }).render();
+            const date = new Date(datetime);
+            const months = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            const time = date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            return `${day} ${month} ${year}, ${time} WIB`;
+        }
+
+        // Function to update the chart and table
+        function updatePublicationData(year) {
+            fetchPublicationData(year)
+                .done(function(response) {
+
+                    // Update the table
+                    const tableBody = $('#datatable tbody');
+                    tableBody.empty(); // Clear existing rows
+
+                    response.pub_internasional.forEach(function(pi) {
+                        // Prepare authors string
+                        let authorsString = pi.nama_pertama + ';';
+                        if (pi.anggota_ilmiah && pi.anggota_ilmiah.length > 0) {
+                            authorsString += pi.anggota_ilmiah.map(ai => ai.nama).join(';');
+                        }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${pi.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${pi.judul_artikel}</td>
+                                <td class="align-middle">${pi.judul_jurnal}</td>
+                                <td class="align-middle">${formatDateTime(pi.ins_time)}</td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+
+                    new DataTable('#datatable');
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching publication data:", error);
+
+                    // Optionally show an error message
+                    alert("Gagal memuat data publikasi internasional.");
+                });
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePublicationData(selectedYear);
+            }
+        });
+
+        /// Optional: Trigger initial load with first available year
+        const firstYear = <?= $current_year?>;
+        if (firstYear) {
+            $('#tahun').val(firstYear).trigger('change');
+        }
     });
 </script>
 

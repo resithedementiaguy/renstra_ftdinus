@@ -33,6 +33,23 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Kesesuaian Publikasi Program Studi Fakultas Teknik UDINUS Semarang
                         </div>
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 282px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Data Publikasi per Program Studi</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
+                                            <?= $thn->tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="elektro-tab" data-bs-toggle="tab" data-bs-target="#elektro" type="button" role="tab" aria-controls="elektro" aria-selected="true">Teknik Elektro</button>
@@ -153,7 +170,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('ewmp/hasil') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                            <a href="<?= base_url('hasil_pelaporan') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -171,6 +188,139 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Function to fetch international publication data for a specific year
+        function fetchPublikasinData(year) {
+            return $.ajax({
+                url: '<?= base_url("hasil_pelaporan/get_kesesuaian_publikasi_data") ?>', 
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
+
+        // Function to format date time (matching the PHP function)
+        function formatDateTime(datetime) {
+            if (!datetime) return "-";
+
+            const date = new Date(datetime);
+            const months = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            const time = date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            return `${day} ${month} ${year}, ${time} WIB`;
+        }
+
+        // Function to update the chart and table
+        function updatePublikasiData(year) {
+            fetchPublikasinData(year)
+                .done(function(response) {
+
+                    // Update the table
+                    const elektroBody = $('#datatable-elektro tbody');
+                    elektroBody.empty(); // Clear existing rows
+
+                    response.data_elektro.forEach(function(elektro) {
+                        // Prepare authors string
+                        let authorsString = elektro.nama_pertama + ';';
+                        if (elektro.anggota_ilmiah && elektro.anggota_ilmiah.length > 0) {
+                            authorsString += elektro.anggota_ilmiah.map(ai => ai.nama).join(';');
+                        }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${elektro.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${elektro.judul_artikel}</td>
+                                <td class="align-middle">${elektro.judul_jurnal}</td>
+                                <td class="align-middle">${formatDateTime(elektro.ins_time)}</td>
+                            </tr>
+                        `;
+                        elektroBody.append(row);
+                    });
+
+                    new DataTable('#datatable-elektro');
+
+                    // Update the table
+                    const industriBody = $('#datatable-industri tbody');
+                    industriBody.empty(); // Clear existing rows
+
+                    response.data_industri.forEach(function(industri) {
+                        // Prepare authors string
+                        let authorsString = industri.nama_pertama + ';';
+                        if (industri.anggota_ilmiah && industri.anggota_ilmiah.length > 0) {
+                            authorsString += industri.anggota_ilmiah.map(ai => ai.nama).join(';');
+                        }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${industri.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${industri.judul_artikel}</td>
+                                <td class="align-middle">${industri.judul_jurnal}</td>
+                                <td class="align-middle">${formatDateTime(industri.ins_time)}</td>
+                            </tr>
+                        `;
+                        industriBody.append(row);
+                    });
+
+                    new DataTable('#datatable-industri');
+
+                    // Update the table
+                    const biomedisBody = $('#datatable-biomedis tbody');
+                    biomedisBody.empty(); // Clear existing rows
+
+                    response.data_biomedis.forEach(function(biomedis) {
+                        // Prepare authors string
+                        let authorsString = biomedis.nama_pertama + ';';
+                        if (biomedis.anggota_ilmiah && biomedis.anggota_ilmiah.length > 0) { 
+                            authorsString += biomedis.anggota_ilmiah.map(ai => ai.nama).join(';');
+                        }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${biomedis.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${biomedis.judul_artikel}</td>
+                                <td class="align-middle">${biomedis.judul_jurnal}</td>
+                                <td class="align-middle">${formatDateTime(biomedis.ins_time)}</td>
+                            </tr>
+                        `;
+                        biomedisBody.append(row);
+                    });
+
+                    new DataTable('#datatable-biomedis');
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching publication data:", error);
+
+                    // Optionally show an error message
+                    alert("Gagal memuat data publikasi internasional.");
+                });
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePublikasiData(selectedYear);
+            }
+        });
+
+        /// Optional: Trigger initial load with first available year
+        const firstYear = <?= $current_year?>;
+        if (firstYear) {
+            $('#tahun').val(firstYear).trigger('change');
+        }
+    });
+</script>
 
 
 <?php

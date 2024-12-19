@@ -36,47 +36,21 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Publikasi Nasional Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="row">
-                            <div class="col-6" style="height: 300px;">
-                                <div id="chartQ"></div>
-                            </div>
-                            <div class="col-6">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <td>S1</td>
-                                            <td><?= $s1_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>S2</td>
-                                            <td><?= $s2_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>S3</td>
-                                            <td><?= $s3_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>S4</td>
-                                            <td><?= $s4_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>S5</td>
-                                            <td><?= $s5_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>S6</td>
-                                            <td><?= $s6_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nasional Tidak Terakreditasi</td>
-                                            <td><?= $tdk_terakreditasi_data ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total</td>
-                                            <td><?= $total = $s1_data + $s2_data + $s3_data + $s4_data + $s5_data + $tdk_terakreditasi_data ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 282px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Data Publikasi Nasional</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
+                                            <?= $thn->tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -91,22 +65,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pub_nasional as $pi): ?>
+                                    <?php foreach ($pub_nasional as $pn): ?>
                                         <tr>
-                                            <td class="align-middle"><?= htmlspecialchars($pi->kategori) ?></td>
+                                            <td class="align-middle"><?= htmlspecialchars($pn->kategori) ?></td>
                                             <td class="align-middle">
                                                 <!-- Tampilkan nama pertama -->
-                                                <?= htmlspecialchars($pi->nama_pertama) ?>;
+                                                <?= htmlspecialchars($pn->nama_pertama) ?>;
                                                 <!-- Iterasi anggota ilmiah -->
-                                                <?php if (!empty($pi->anggota_ilmiah)): ?>
-                                                    <?php foreach ($pi->anggota_ilmiah as $ai): ?>
+                                                <?php if (!empty($pn->anggota_ilmiah)): ?>
+                                                    <?php foreach ($pn->anggota_ilmiah as $ai): ?>
                                                         <?= htmlspecialchars($ai->nama) ?>;
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </td>
-                                            <td class="align-middle"><?= $pi->judul_artikel ?></td>
-                                            <td class="align-middle"><?= $pi->judul_jurnal ?></td>
-                                            <td class="align-middle"><?= formatDateTime($pi->ins_time) ?></td>
+                                            <td class="align-middle"><?= $pn->judul_artikel ?></td>
+                                            <td class="align-middle"><?= $pn->judul_jurnal ?></td>
+                                            <td class="align-middle"><?= formatDateTime($pn->ins_time) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -115,7 +89,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div>
-                            <a href="<?= base_url('ewmp/hasil') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
+                            <a href="<?= base_url('hasil_pelaporan') ?>" type="button" class="btn btn-secondary my-2">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -133,58 +107,85 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Data dari PHP
-        var s1Data = <?= json_encode($s1_data) ?>;
-        var s2Data = <?= json_encode($s2_data) ?>;
-        var s3Data = <?= json_encode($s3_data) ?>;
-        var s4Data = <?= json_encode($s4_data) ?>;
-        var s5Data = <?= json_encode($s5_data) ?>;
-        var s6Data = <?= json_encode($s6_data) ?>;
-        var tdkTerakreditasiData = <?= json_encode($tdk_terakreditasi_data) ?>;
-        var totalData = <?= json_encode($total_data) ?>;
+        // Function to fetch international publication data for a specific year
+        function fetchPublicationData(year) {
+            return $.ajax({
+                url: '<?= base_url("hasil_pelaporan/get_publikasi_nasional_data") ?>', 
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
 
-        // Hitung persentase
-        var percentages = [
-            (s1Data / totalData) * 100,
-            (s2Data / totalData) * 100,
-            (s3Data / totalData) * 100,
-            (s4Data / totalData) * 100,
-            (s5Data / totalData) * 100,
-            (s6Data / totalData) * 100,
-            (tdkTerakreditasiData / totalData) * 100,
-        ];
+        // Function to format date time (matching the PHP function)
+        function formatDateTime(datetime) {
+            if (!datetime) return "-";
 
-        // Data untuk ApexCharts
-        new ApexCharts(document.querySelector("#chartQ"), {
-            series: percentages,
-            chart: {
-                height: 350,
-                type: 'pie',
-                toolbar: {
-                    show: true,
-                },
-            },
-            labels: ["S1", "S2", "S3", "S4", "S5", "S6", "Tidak Terakreditasi"],
-            colors: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#4BC0C0",
-                "#9966FF",
-                "#FF9F40",
-                "#E0E0E0",
-            ],
-            tooltip: {
-                y: {
-                    formatter: function(value) {
-                        return value.toFixed(2) + "%"; // Menampilkan 2 angka desimal
-                    },
-                },
-            },
-            legend: {
-                position: "top", // Menampilkan legend di atas
-            },
-        }).render();
+            const date = new Date(datetime);
+            const months = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            const time = date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            return `${day} ${month} ${year}, ${time} WIB`;
+        }
+
+        // Function to update the chart and table
+        function updatePublicationData(year) {
+            fetchPublicationData(year)
+                .done(function(response) {
+
+                    // Update the table
+                    const tableBody = $('#datatable tbody');
+                    tableBody.empty(); // Clear existing rows
+
+                    response.pub_nasional.forEach(function(pn) {
+                        // Prepare authors string
+                        let authorsString = pn.nama_pertama + ';';
+                        if (pn.anggota_ilmiah && pn.anggota_ilmiah.length > 0) {
+                            authorsString += pn.anggota_ilmiah.map(ai => ai.nama).join(';');
+                        }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${pn.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${pn.judul_artikel}</td>
+                                <td class="align-middle">${pn.judul_jurnal}</td>
+                                <td class="align-middle">${formatDateTime(pn.ins_time)}</td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+
+                    new DataTable('#datatable');
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching publication data:", error);
+
+                    // Optionally show an error message
+                    alert("Gagal memuat data publikasi internasional.");
+                });
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePublicationData(selectedYear);
+            }
+        });
+
+        /// Optional: Trigger initial load with first available year
+        const firstYear = <?= $current_year?>;
+        if (firstYear) {
+            $('#tahun').val(firstYear).trigger('change');
+        }
     });
 </script>
 

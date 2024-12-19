@@ -44,25 +44,25 @@ class Ewmp extends CI_Controller
         $ins_time = date('Y-m-d H:i:s', time());
 
         if ($jenis_lapor == 'Penelitian') {
-            $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
-            $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
-            $this->form_validation->set_rules('kategori_penelitian', 'Kategori', 'required');
-            $this->form_validation->set_rules('judul_penelitian', 'judul', 'required');
-            $this->form_validation->set_rules('skim_penelitian', 'skim', 'required');
-            $this->form_validation->set_rules('pemberi_hibah_penelitian', 'pemberi hibah', 'required');
-            $this->form_validation->set_rules('besar_hibah_penelitian', 'besar hibah', 'required');
-            $this->form_validation->set_rules('kontrak_penelitian', 'link kontrak penelitian', 'required');
-            $this->form_validation->set_rules('laporan_maju_penelitian', 'link laporan maju penelitian', 'required');
+            // $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
+            // $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
+            // $this->form_validation->set_rules('kategori_penelitian', 'Kategori', 'required');
+            // $this->form_validation->set_rules('judul_penelitian', 'judul', 'required');
+            // $this->form_validation->set_rules('skim_penelitian', 'skim', 'required');
+            // $this->form_validation->set_rules('pemberi_hibah_penelitian', 'pemberi hibah', 'required');
+            // $this->form_validation->set_rules('besar_hibah_penelitian', 'besar hibah', 'required');
+            // $this->form_validation->set_rules('kontrak_penelitian', 'link kontrak penelitian', 'required');
+            // $this->form_validation->set_rules('laporan_maju_penelitian', 'link laporan maju penelitian', 'required');
         } elseif ($jenis_lapor == 'Pengabdian') {
-            $this->form_validation->set_rules('nama_ketua_pengabdian', 'Nama Ketua', 'required');
-            $this->form_validation->set_rules('prodi_pengabdian', 'Program Studi', 'required');
-            $this->form_validation->set_rules('kategori_pengabdian', 'Kategori', 'required');
-            $this->form_validation->set_rules('judul_pengabdian', 'judul', 'required');
-            $this->form_validation->set_rules('skim_pengabdian', 'skim', 'required');
-            $this->form_validation->set_rules('pemberi_hibah_pengabdian', 'pemberi hibah', 'required');
-            $this->form_validation->set_rules('besar_hibah_pengabdian', 'besar hibah', 'required');
-            $this->form_validation->set_rules('kontrak_pengabdian', 'link kontrak pengabdian', 'required');
-            $this->form_validation->set_rules('laporan_pengabdian', 'link laporan pengabdian', 'required');
+            // $this->form_validation->set_rules('nama_ketua_pengabdian', 'Nama Ketua', 'required');
+            // $this->form_validation->set_rules('prodi_pengabdian', 'Program Studi', 'required');
+            // $this->form_validation->set_rules('kategori_pengabdian', 'Kategori', 'required');
+            // $this->form_validation->set_rules('judul_pengabdian', 'judul', 'required');
+            // $this->form_validation->set_rules('skim_pengabdian', 'skim', 'required');
+            // $this->form_validation->set_rules('pemberi_hibah_pengabdian', 'pemberi hibah', 'required');
+            // $this->form_validation->set_rules('besar_hibah_pengabdian', 'besar hibah', 'required');
+            // $this->form_validation->set_rules('kontrak_pengabdian', 'link kontrak pengabdian', 'required');
+            // $this->form_validation->set_rules('laporan_pengabdian', 'link laporan pengabdian', 'required');
         } elseif ($jenis_lapor == 'Artikel/Karya Ilmiah') {
             $this->form_validation->set_rules('nama_pertama_ilmiah', 'Nama pertama', 'required');
             $this->form_validation->set_rules('nama_korespon_ilmiah', 'Nama korespon', 'required');
