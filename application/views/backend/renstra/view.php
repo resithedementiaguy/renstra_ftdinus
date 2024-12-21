@@ -234,9 +234,9 @@
                                                                     } elseif ($level4_item->no_iku === '2.1.7.b.') {
                                                                         $capaian_otomatis = $rata_rata_seminar_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.2.1.a.') {
-                                                                        $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['luar_negeri'] ?? 0;
+                                                                        $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.2.1.b.') {
-                                                                        $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['dalam_negeri'] ?? 0;
+                                                                        $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.2.1.c.') {
                                                                         $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internal'] ?? 0;
                                                                     }

@@ -183,9 +183,9 @@ class Renstra extends CI_Controller
         }
 
         return [
-            'internal' => $total_dana_internal,
-            'nasional' => $total_dana_nasional,
-            'internasional' => $total_dana_internasional,
+            'internal' => formatToMillions($total_dana_internal),
+            'nasional' => formatToMillions($total_dana_nasional),
+            'internasional' => formatToMillions($total_dana_internasional),
         ];
     }
 
