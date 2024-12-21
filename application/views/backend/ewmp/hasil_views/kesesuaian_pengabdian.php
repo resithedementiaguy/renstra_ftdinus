@@ -33,6 +33,23 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Kesesuaian Pengabdian Program Studi Fakultas Teknik UDINUS Semarang
                         </div>
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 400px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Data Kesesuaian Pengabdian per Program Studi</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
+                                            <?= $thn->tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="elektro-tab" data-bs-toggle="tab" data-bs-target="#elektro" type="button" role="tab" aria-controls="elektro" aria-selected="true">Teknik Elektro</button>
@@ -48,24 +65,24 @@
                             <div class="tab-pane fade show active" id="elektro" role="tabpanel" aria-labelledby="elektro-tab">
                                 <div class="row mt-4">
                                     <div class="col-6">
-                                        <h5><strong>Total Hibah Teknik Elektro</strong></h5>
+                                        <h5><strong>Total Hibah Pengabdian Teknik Elektro</strong></h5>
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
                                                     <td>Total Hibah Mandiri</td>
-                                                    <td><?= 'Rp' . number_format($elektro_data['mandiri'], 0, ',', '.') ?></td>
+                                                    <td id="data-mandiri-elektro"><?= 'Rp' . number_format($elektro_data['mandiri'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internal</td>
-                                                    <td><?= 'Rp' . number_format($elektro_data['internal'], 0, ',', '.') ?></td>
+                                                    <td id="data-internal-elektro"><?= 'Rp' . number_format($elektro_data['internal'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Nasional</td>
-                                                    <td><?= 'Rp' . number_format($elektro_data['nasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-nasional-elektro"><?= 'Rp' . number_format($elektro_data['nasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internasional</td>
-                                                    <td><?= 'Rp' . number_format($elektro_data['internasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-internasional-elektro"><?= 'Rp' . number_format($elektro_data['internasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -120,24 +137,24 @@
                             <div class="tab-pane fade" id="industri" role="tabpanel" aria-labelledby="industri-tab">
                                 <div class="row mt-4">
                                     <div class="col-6">
-                                        <h5><strong>Total Hibah Teknik Industri</strong></h5>
+                                        <h5><strong>Total Hibah Pengabdian Teknik Industri</strong></h5>
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
                                                     <td>Total Hibah Mandiri</td>
-                                                    <td><?= 'Rp' . number_format($industri_data['mandiri'], 0, ',', '.') ?></td>
+                                                    <td id="data-mandiri-industri"><?= 'Rp' . number_format($industri_data['mandiri'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internal</td>
-                                                    <td><?= 'Rp' . number_format($industri_data['internal'], 0, ',', '.') ?></td>
+                                                    <td id="data-internal-industri"><?= 'Rp' . number_format($industri_data['internal'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Nasional</td>
-                                                    <td><?= 'Rp' . number_format($industri_data['nasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-nasional-industri"><?= 'Rp' . number_format($industri_data['nasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internasional</td>
-                                                    <td><?= 'Rp' . number_format($industri_data['internasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-internasional-industri"><?= 'Rp' . number_format($industri_data['internasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -192,24 +209,24 @@
                             <div class="tab-pane fade" id="biomedis" role="tabpanel" aria-labelledby="biomedis-tab">
                                 <div class="row mt-4">
                                     <div class="col-6">
-                                        <h5><strong>Total Hibah Teknik Biomedis</strong></h5>
+                                        <h5><strong>Total Hibah Pengabdian Teknik Biomedis</strong></h5>
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
                                                     <td>Total Hibah Mandiri</td>
-                                                    <td><?= 'Rp' . number_format($biomedis_data['mandiri'], 0, ',', '.') ?></td>
+                                                    <td id="data-mandiri-biomedis"><?= 'Rp' . number_format($biomedis_data['mandiri'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internal</td>
-                                                    <td><?= 'Rp' . number_format($biomedis_data['internal'], 0, ',', '.') ?></td>
+                                                    <td id="data-internal-biomedis"><?= 'Rp' . number_format($biomedis_data['internal'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Nasional</td>
-                                                    <td><?= 'Rp' . number_format($biomedis_data['nasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-nasional-biomedis"><?= 'Rp' . number_format($biomedis_data['nasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Hibah Internasional</td>
-                                                    <td><?= 'Rp' . number_format($biomedis_data['internasional'], 0, ',', '.') ?></td>
+                                                    <td id="data-internasional-biomedis"><?= 'Rp' . number_format($biomedis_data['internasional'], 0, ',', '.') ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -308,7 +325,7 @@
         const kesesuaian = document.getElementById(`kesesuaian_pengabdian_${id}`).value;
 
         $.ajax({
-            url: '<?= base_url("ewmp/update_kesesuaian_pengabdian/") ?>' + id,
+            url: '<?= base_url("hasil_pelaporan/update_kesesuaian_pengabdian/") ?>' + id,
             method: 'POST',
             data: {
                 kesesuaian_pengabdian: kesesuaian
@@ -325,6 +342,122 @@
             }
         });
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Function to fetch international publication data for a specific year
+        function fetchPengabdianData(year) {
+            return $.ajax({
+                url: '<?= base_url("hasil_pelaporan/get_kesesuaian_pengabdian_data") ?>', 
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
+
+        // Function to update all program study tables and statistics
+        function updatePengabdianData(year) {
+            fetchPengabdianData(year)
+                .done(function(response) {
+                    // Update statistics for all programs
+                    updateProgramStatistics('elektro', response.elektro_data);
+                    updateProgramStatistics('industri', response.industri_data);
+                    updateProgramStatistics('biomedis', response.biomedis_data);
+
+                    // Update tables for all programs
+                    updateProgramTable('elektro', response.data_elektro);
+                    updateProgramTable('industri', response.data_industri);
+                    updateProgramTable('biomedis', response.data_biomedis);
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching research data:", error);
+                    alert("Gagal memuat data pengabdian.");
+                });
+        }
+
+        // Function to update statistics for a specific program
+        function updateProgramStatistics(program, data) {
+            $(`#data-mandiri-${program}`).text(formatRupiah(data.mandiri));
+            $(`#data-internal-${program}`).text(formatRupiah(data.internal));
+            $(`#data-nasional-${program}`).text(formatRupiah(data.nasional));
+            $(`#data-internasional-${program}`).text(formatRupiah(data.internasional));
+        }
+
+        // Function to update table for a specific program
+        function updateProgramTable(program, data) {
+            const tableBody = $(`#datatable-${program} tbody`);
+            tableBody.empty();
+
+            data.forEach(function(item) {
+                // Process anggota penelitian
+                let anggotaNames = '';
+                if (item.anggota_pengabdian && item.anggota_pengabdian.length > 0) {
+                    anggotaNames = item.anggota_pengabdian
+                        .map(anggota => anggota.nama)
+                        .join('; ');
+                }
+
+                // Create select element with current value
+                const selectHtml = `
+                    <select class="form-select" name="kesesuaian_pengabdian" 
+                            id="kesesuaian_pengabdian_${item.id}" 
+                            onchange="updateKesesuaian(${item.id})" required>
+                        <option value="" ${!item.kesesuaian ? 'selected' : ''} hidden>
+                            ${item.kesesuaian || 'Pilih Kesesuaian'}
+                        </option>
+                        <option value="Kurang Sesuai" ${item.kesesuaian === 'Kurang Sesuai' ? 'selected' : ''}>
+                            Kurang Sesuai
+                        </option>
+                        <option value="Sesuai" ${item.kesesuaian === 'Sesuai' ? 'selected' : ''}>
+                            Sesuai
+                        </option>
+                    </select>
+                `;
+
+                const row = `
+                    <tr>
+                        <td class="align-middle">${item.kategori || '-'}</td>
+                        <td class="align-middle">${item.nama_ketua || '-'}</td>
+                        <td class="align-middle">${anggotaNames || '-'}</td>
+                        <td class="align-middle">${item.judul || '-'}</td>
+                        <td class="align-middle">${item.skim || '-'}</td>
+                        <td class="align-middle">${formatRupiah(item.besar_hibah)}</td>
+                        <td class="align-middle">${selectHtml}</td>
+                    </tr>
+                `;
+                tableBody.append(row);
+            });
+
+            // Reinitialize DataTable
+            $(`#datatable-${program}`).DataTable({
+                responsive: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
+                }
+            });
+        }
+
+        // Helper function to format currency
+        function formatRupiah(amount) {
+            if (!amount || isNaN(amount)) return 'Rp0';
+            return 'Rp' + new Intl.NumberFormat('id-ID').format(amount);
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePengabdianData(selectedYear);
+            }
+        });
+
+        // Initialize with current year on page load
+        $(document).ready(function() {
+            const currentYear = $('#tahun').val();
+            if (currentYear) {
+                updatePengabdianData(currentYear);
+            }
+        });
+    });
 </script>
 
 

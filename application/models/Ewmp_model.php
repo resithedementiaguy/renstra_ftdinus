@@ -524,7 +524,7 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
-    public function get_publikasi_internasional()
+    public function get_publikasi_internasional($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -535,12 +535,13 @@ class Ewmp_model extends CI_Model
             'Internasional Q4',
             'Internasional Non Scopus'
         ]);
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_nasional()
+    public function get_publikasi_nasional($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
@@ -553,133 +554,145 @@ class Ewmp_model extends CI_Model
             'Nasional Sinta 6',
             'Nasional Tidak Terakreditasi'
         ]);
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function count_q1_data()
+    public function count_q1_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Internasional Q1'); // Hanya menghitung Internasional Q1
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-    public function count_q2_data()
+    public function count_q2_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Internasional Q2'); // Hanya menghitung Internasional Q1
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-    public function count_q3_data()
+    public function count_q3_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Internasional Q3'); // Hanya menghitung Internasional Q1
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-    public function count_q4_data()
+    public function count_q4_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Internasional Q4'); // Hanya menghitung Internasional Q1
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-    public function count_s1_data()
+    public function count_s1_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 1'); // Hanya menghitung Nasional Sinta 1
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row(); // Ambil satu baris hasil
         return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
     }
 
-    public function count_s2_data()
+    public function count_s2_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 2'); // Hanya menghitung Nasional Sinta 2
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_s3_data()
+    public function count_s3_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 3'); // Hanya menghitung Nasional Sinta 3
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_s4_data()
+    public function count_s4_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 4'); // Hanya menghitung Nasional Sinta 4
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_s5_data()
+    public function count_s5_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 5'); // Hanya menghitung Nasional Sinta 5
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_s6_data()
+    public function count_s6_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Sinta 6'); // Hanya menghitung Nasional Sinta 6
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_tidak_terakreditasi_data()
+    public function count_tidak_terakreditasi_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
         $this->db->where('kategori', 'Nasional Tidak Terakreditasi'); // Hanya menghitung Nasional Tidak Terakreditasi
+        $this->db->where('tahun', $tahun); //Filter berdasarkan tahun   
         $query = $this->db->get();
 
         $result = $query->row();
         return $result ? $result->jumlah : 0;
     }
 
-    public function count_publikasi_internasional_data()
+    public function count_publikasi_internasional_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
@@ -690,13 +703,14 @@ class Ewmp_model extends CI_Model
             'Internasional Q4',
             'Internasional Non Scopus'
         ]);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
     }
 
-    public function count_publikasi_nasional_data()
+    public function count_publikasi_nasional_data($tahun = null)
     {
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from('artikel_ilmiah');
@@ -709,10 +723,11 @@ class Ewmp_model extends CI_Model
             'Nasional Sinta 6',
             'Nasional Tidak Terakreditasi'
         ]);
+        $this->db->where('tahun', $tahun); // Filter berdasarkan tahun
         $query = $this->db->get();
 
-        $result = $query->row(); // Ambil satu baris hasil
-        return $result ? $result->jumlah : 0; // Jika hasil ada, kembalikan jumlah, jika tidak kembalikan 0
+        $result = $query->row();
+        return $result ? $result->jumlah : 0;
     }
 
     public function get_total_hibah_pengabdian()
@@ -724,19 +739,21 @@ class Ewmp_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_hibah_penelitian()
+    public function get_hibah_penelitian($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('penelitian');
+        $this->db->where('tahun',$tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function count_mandiri_penelitian($prodi = null)
+    public function count_mandiri_penelitian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Mandiri');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -744,10 +761,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->besar_hibah ?? 0;
     }
 
-    public function count_internal_penelitian($prodi = null)
+    public function count_internal_penelitian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Internal');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -755,10 +773,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->besar_hibah ?? 0;
     }
 
-    public function count_nasional_penelitian($prodi = null)
+    public function count_nasional_penelitian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Nasional');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -766,10 +785,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->besar_hibah ?? 0;
     }
 
-    public function count_internasional_penelitian($prodi = null)
+    public function count_internasional_penelitian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Internasional');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -777,19 +797,21 @@ class Ewmp_model extends CI_Model
         return $query->row()->besar_hibah ?? 0;
     }
 
-    public function get_hibah_pengabdian()
+    public function get_hibah_pengabdian($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
+        $this->db->where('tahun',$tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function count_mandiri_pengabdian($prodi = null)
+    public function count_mandiri_pengabdian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Mandiri');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -797,10 +819,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->total_hibah ?? 0;
     }
 
-    public function count_internal_pengabdian($prodi = null)
+    public function count_internal_pengabdian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Internal');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -808,10 +831,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->total_hibah ?? 0;
     }
 
-    public function count_nasional_pengabdian($prodi = null)
+    public function count_nasional_pengabdian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Nasional');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -819,10 +843,11 @@ class Ewmp_model extends CI_Model
         return $query->row()->total_hibah ?? 0;
     }
 
-    public function count_internasional_pengabdian($prodi = null)
+    public function count_internasional_pengabdian($tahun = null, $prodi = null)
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Internasional');
+        $this->db->where('tahun',$tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -830,31 +855,34 @@ class Ewmp_model extends CI_Model
         return $query->row()->total_hibah ?? 0;
     }
 
-    public function get_publikasi_elektro()
+    public function get_publikasi_elektro($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Elektro');
+        $this->db->where('tahun',$tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_industri()
+    public function get_publikasi_industri($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Industri');
+        $this->db->where('tahun',$tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function get_publikasi_biomedis()
+    public function get_publikasi_biomedis($tahun = null)
     {
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Biomedis');
+        $this->db->where('tahun',$tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();

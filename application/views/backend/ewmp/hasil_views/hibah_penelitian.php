@@ -36,25 +36,42 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek Hibah Penelitian Pelaporan EWMP Fakultas Teknik UDINUS Semarang
                         </div>
-                        <div class="row">
+                        <div class="d-flex flex-column">
+                            <!-- Select Option -->
+                            <div style="width: 282px;" class="mb-3">
+                                <label for="tahun" class="col-form-label">Tahun Data Hibah Penelitian</label>
+                                <select class="form-select" name="tahun" id="tahun" required>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
+                                            <?= $thn->tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row align-end">
                             <div class="col-6">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <td>Total Hibah Mandiri</td>
-                                            <td><?= 'Rp' . number_format($mandiri_data, 0, ',', '.') ?></td>
+                                            <td id="data-mandiri"><?= 'Rp' . number_format($mandiri_data, 0, ',', '.') ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total Hibah Internal</td>
-                                            <td><?= 'Rp' . number_format($internal_data, 0, ',', '.') ?></td>
+                                            <td id="data-internal"><?= 'Rp' . number_format($internal_data, 0, ',', '.') ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total Hibah Nasional</td>
-                                            <td><?= 'Rp' . number_format($nasional_data, 0, ',', '.') ?></td>
+                                            <td id="data-nasional"><?= 'Rp' . number_format($nasional_data, 0, ',', '.') ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total Hibah Internasional</td>
-                                            <td><?= 'Rp' . number_format($internasional_data, 0, ',', '.') ?></td>
+                                            <td id="data-internasional"><?= 'Rp' . number_format($internasional_data, 0, ',', '.') ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -110,48 +127,109 @@
     new DataTable('#datatable');
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Data dari PHP
-        var q1Data = <?= json_encode($q1_data) ?>;
-        var q2Data = <?= json_encode($q2_data) ?>;
-        var q3Data = <?= json_encode($q3_data) ?>;
-        var q4Data = <?= json_encode($q4_data) ?>;
+    document.addEventListener("DOMContentLoaded", () => {
+        // Function to fetch international publication data for a specific year
+        function fetchPenelitianData(year) {
+            return $.ajax({
+                url: '<?= base_url("hasil_pelaporan/get_hibah_penelitian_data") ?>', 
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
 
-        // Ambil elemen canvas
-        var ctx = document.getElementById("chartQ").getContext("2d");
+        // Function to format currency in Indonesian Rupiah
+        function formatRupiah(amount) {
+            // Ensure amount is a number
+            const numAmount = parseFloat(amount);
+            
+            // Check if it's a valid number
+            if (isNaN(numAmount)) return "-";
 
-        // Data untuk Chart.js
-        var data = {
-            labels: ["Q1", "Q2", "Q3", "Q4"],
-            datasets: [{
-                data: [q1Data, q2Data, q3Data, q4Data],
-                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
-            }]
-        };
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(numAmount);
+        }
 
-        // Membuat grafik pie
-        var myPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = data.labels[tooltipItem.dataIndex];
-                                var value = data.datasets[0].data[tooltipItem.dataIndex];
-                                return label + ': ' + value;
-                            }
+        // Function to format date time (matching the PHP function)
+        function formatDateTime(datetime) {
+            if (!datetime) return "-";
+
+            const date = new Date(datetime);
+            const months = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            const time = date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            return `${day} ${month} ${year}, ${time} WIB`;
+        }
+
+        // Function to update the chart and table
+        function updatePenelitianData(year) {
+            fetchPenelitianData(year)
+                .done(function(response) {
+
+                    // Update the statistics
+                    $('#data-mandiri').text(formatRupiah(response.mandiri_data));
+                    $('#data-internal').text(formatRupiah(response.internal_data));
+                    $('#data-nasional').text(formatRupiah(response.nasional_data));
+                    $('#data-internasional').text(formatRupiah(response.internasional_data));
+
+                    // Update the table
+                    const tableBody = $('#datatable tbody');
+                    tableBody.empty(); // Clear existing rows
+
+                    response.penelitian.forEach(function(p) {
+                        // Prepare authors string
+                        let authorsString = p.nama_ketua + ';';
+                        if (p.anggota_penelitian && p.anggota_penelitian.length > 0) {
+                            authorsString += p.anggota_penelitian.map(ap => ap.nama).join(';');
                         }
-                    }
-                }
+
+                        const row = `
+                            <tr>
+                                <td class="align-middle">${p.kategori}</td>
+                                <td class="align-middle">${authorsString}</td>
+                                <td class="align-middle">${p.skim}</td>
+                                <td class="align-middle">${p.judul}</td>
+                                <td class="align-middle">${formatRupiah(p.besar_hibah)}</td>
+                                <td class="align-middle">${formatDateTime(p.ins_time)}</td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+
+                    new DataTable('#datatable');
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching publication data:", error);
+
+                    // Optionally show an error message
+                    alert("Gagal memuat data publikasi internasional.");
+                });
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePenelitianData(selectedYear);
             }
         });
+
+        /// Optional: Trigger initial load with first available year
+        const firstYear = <?= $current_year?>;
+        if (firstYear) {
+            $('#tahun').val(firstYear).trigger('change');
+        }
     });
 </script>
 

@@ -34,122 +34,122 @@ class Renstra extends CI_Controller
         $years = $this->Mod_tahun->getTahunList();
         $data['years'] = array_column($years, 'tahun');
 
-        // Siapkan array untuk menyimpan rata-rata per tahun
+        // Inisialisasi array untuk menyimpan rata-rata per tahun
         $rata_rata_jurnal_per_tahun = [];
         $rata_rata_penelitian_per_tahun = [];
         $rata_rata_penelitian_mahasiswa_per_tahun = [];
         $rata_rata_seminar_per_tahun = [];
 
-        // Proses data untuk setiap tahun yang tersedia
         foreach ($data['years'] as $tahun) {
-            // Ambil data dosen berdasarkan tahun
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
-
-            // Inisialisasi variabel Artikel / Jurnal Ilmiah
-            $artikelData = $this->Artikel_model->getTotalArtikelByYear($tahun);
-            $kategori = [];
             $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
-            $total_jurnal_bereputasi = 0;
-            $total_jurnal_internasional = 0;
-            $total_jurnal_nasional = 0;
 
-            if ($artikelData) {
-                foreach ($artikelData as $row) {
-                    $kategori[$row['kategori']] = $row['total'];
-                    if (strpos($row['kategori'], 'Internasional') !== false) {
-                        $total_jurnal_internasional += $row['total'];
-                    }
-                    if (strpos($row['kategori'], 'Nasional') !== false) {
-                        $total_jurnal_nasional += $row['total'];
-                    }
-                }
-
-                // Hitung jurnal bereputasi (Internasional Q1-Q4)
-                foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
-                    $total_jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
-                }
-            }
-
-            // Hitung rata-rata jurnal per dosen untuk tahun ini
-            $rata_rata_jurnal_per_tahun[$tahun] = [
-                'bereputasi' => $jumlah_dosen > 0 ? $total_jurnal_bereputasi / $jumlah_dosen : 0,
-                'internasional' => $jumlah_dosen > 0 ? $total_jurnal_internasional / $jumlah_dosen : 0,
-                'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
-            ];
-
-            // Inisialisasi variabel Penelitian
-            $penelitianData = $this->Artikel_model->getTotalPenelitianByYear($tahun);
-            $penelitian = [];
-            $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
-            $total_penelitian_internal = 0;
-            $total_penelitian_dalam_negeri = 0;
-            $total_penelitian_luar_negeri = 0;
-
-            if ($penelitianData) {
-                foreach ($penelitianData as $row) {
-                    $kategori = $row['kategori'];
-                    $total = $row['total'];
-                    $penelitian[$kategori] = $total;
-                    if (in_array($kategori, ['Mandiri', 'Internal'])) {
-                        $total_penelitian_internal += $total;
-                    }
-                    if ($kategori === 'Nasional') {
-                        $total_penelitian_dalam_negeri += $total;
-                    }
-                    if ($kategori === 'Internasional') {
-                        $total_penelitian_luar_negeri += $total;
-                    }
-                }
-            }
-
-            // Hitung rata-rata penelitian per dosen untuk tahun ini
-            $rata_rata_penelitian_per_tahun[$tahun] = [
-                'internal' => $jumlah_dosen > 0 ? $total_penelitian_internal / $jumlah_dosen : 0,
-                'dalam_negeri' => $jumlah_dosen > 0 ? $total_penelitian_dalam_negeri / $jumlah_dosen : 0,
-                'luar_negeri' => $jumlah_dosen > 0 ? $total_penelitian_luar_negeri / $jumlah_dosen : 0,
-            ];
-
-            // Inisialisasi variabel penelitian yang melibatkan mahasiswa berdasarkan tahun
-            $penelitianMhsData = $this->Artikel_model->getTotalPenelitianMhsByYear($tahun);
-            $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
-            $total_penelitian_mahasiswa = $penelitianMhsData[0]['total_penelitian'] ?? 0;
-            // Hitung rata-rata penelitian yang melibatkan mahasiswa berdasarkan tahun ini
-            $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $jumlah_dosen > 0 ? $total_penelitian_mahasiswa / $jumlah_dosen : 0;
-
-            // Inisialisasi variabel seminar berdasarkan kategori dan tahun
-            $seminarData = $this->Artikel_model->getTotalSeminarByYear($tahun);
-            $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
-            $total_seminar_internasional = 0;
-            $total_seminar_nasional = 0;
-            $total_seminar_lokal = 0;
-
-            if ($seminarData) {
-                foreach ($seminarData as $row) {
-                    if ($row['kategori'] === 'Internasional') {
-                        $total_seminar_internasional = $row['total'];
-                    } elseif ($row['kategori'] === 'Nasional') {
-                        $total_seminar_nasional = $row['total'];
-                    }
-                }
-            }
-
-            // Hitung rata-rata seminar per dosen untuk tahun ini
-            $rata_rata_seminar_per_tahun[$tahun] = [
-                'internasional' => $jumlah_dosen > 0 ? $total_seminar_internasional / $jumlah_dosen : 0,
-                'nasional' => $jumlah_dosen > 0 ? $total_seminar_nasional / $jumlah_dosen : 0
-            ];
+            $rata_rata_jurnal_per_tahun[$tahun] = $this->hitungRataRataJurnal($tahun, $jumlah_dosen);
+            $rata_rata_penelitian_per_tahun[$tahun] = $this->hitungRataPenelitian($tahun, $jumlah_dosen);
+            $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
+            $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
         }
 
-        // Kirim rata-rata per tahun ke view
+        // Menyiapkan data untuk view
         $data['rata_rata_jurnal_per_tahun'] = $rata_rata_jurnal_per_tahun;
         $data['rata_rata_penelitian_per_tahun'] = $rata_rata_penelitian_per_tahun;
         $data['rata_rata_penelitian_mahasiswa_per_tahun'] = $rata_rata_penelitian_mahasiswa_per_tahun;
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
 
-        // Kirim data ke view
+        // Load view
         $this->load->view('backend/partials/header');
         $this->load->view('backend/renstra/view', $data);
         $this->load->view('backend/partials/footer');
+    }
+
+    private function hitungRataRataJurnal($tahun, $jumlah_dosen)
+    {
+        $artikelData = $this->Artikel_model->getTotalArtikelByYear($tahun);
+        $kategori = [];
+        $total_jurnal_bereputasi = 0;
+        $total_jurnal_internasional = 0;
+        $total_jurnal_nasional = 0;
+
+        if ($artikelData) {
+            foreach ($artikelData as $row) {
+                $kategori[$row['kategori']] = $row['total'];
+                if (strpos($row['kategori'], 'Internasional') !== false) {
+                    $total_jurnal_internasional += $row['total'];
+                }
+                if (strpos($row['kategori'], 'Nasional') !== false) {
+                    $total_jurnal_nasional += $row['total'];
+                }
+            }
+
+            foreach (['Internasional Q1', 'Internasional Q2', 'Internasional Q3', 'Internasional Q4'] as $kategori_key) {
+                $total_jurnal_bereputasi += $kategori[$kategori_key] ?? 0;
+            }
+        }
+
+        return [
+            'bereputasi' => $jumlah_dosen > 0 ? $total_jurnal_bereputasi / $jumlah_dosen : 0,
+            'internasional' => $jumlah_dosen > 0 ? $total_jurnal_internasional / $jumlah_dosen : 0,
+            'nasional' => $jumlah_dosen > 0 ? $total_jurnal_nasional / $jumlah_dosen : 0,
+        ];
+    }
+
+    private function hitungRataPenelitian($tahun, $jumlah_dosen)
+    {
+        $penelitianData = $this->Artikel_model->getTotalPenelitianByYear($tahun);
+        $total_penelitian_internal = 0;
+        $total_penelitian_dalam_negeri = 0;
+        $total_penelitian_luar_negeri = 0;
+
+        if ($penelitianData) {
+            foreach ($penelitianData as $row) {
+                $kategori = $row['kategori'];
+                $total = $row['total'];
+                if (in_array($kategori, ['Mandiri', 'Internal'])) {
+                    $total_penelitian_internal += $total;
+                }
+                if ($kategori === 'Nasional') {
+                    $total_penelitian_dalam_negeri += $total;
+                }
+                if ($kategori === 'Internasional') {
+                    $total_penelitian_luar_negeri += $total;
+                }
+            }
+        }
+
+        return [
+            'internal' => $jumlah_dosen > 0 ? $total_penelitian_internal / $jumlah_dosen : 0,
+            'dalam_negeri' => $jumlah_dosen > 0 ? $total_penelitian_dalam_negeri / $jumlah_dosen : 0,
+            'luar_negeri' => $jumlah_dosen > 0 ? $total_penelitian_luar_negeri / $jumlah_dosen : 0,
+        ];
+    }
+
+    private function hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen)
+    {
+        $penelitianMhsData = $this->Artikel_model->getTotalPenelitianMhsByYear($tahun);
+        $total_penelitian_mahasiswa = $penelitianMhsData[0]['total_penelitian'] ?? 0;
+        return $jumlah_dosen > 0 ? $total_penelitian_mahasiswa / $jumlah_dosen : 0;
+    }
+
+    private function hitungRataSeminar($tahun, $jumlah_dosen)
+    {
+        $seminarData = $this->Artikel_model->getTotalSeminarByYear($tahun);
+        $total_seminar_internasional = 0;
+        $total_seminar_nasional = 0;
+
+        if ($seminarData) {
+            foreach ($seminarData as $row) {
+                if ($row['kategori'] === 'Internasional') {
+                    $total_seminar_internasional = $row['total'];
+                } elseif ($row['kategori'] === 'Nasional') {
+                    $total_seminar_nasional = $row['total'];
+                }
+            }
+        }
+
+        return [
+            'internasional' => $jumlah_dosen > 0 ? $total_seminar_internasional / $jumlah_dosen : 0,
+            'nasional' => $jumlah_dosen > 0 ? $total_seminar_nasional / $jumlah_dosen : 0
+        ];
     }
 
     public function level2($id_level1)

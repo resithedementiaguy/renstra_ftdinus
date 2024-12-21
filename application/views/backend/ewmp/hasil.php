@@ -35,11 +35,16 @@
                         <div class="d-flex flex-column">
                             <!-- Select Option -->
                             <div style="width: 282px;" class="mb-3">
-                                <label for="tahun" class="col-form-label">Tahun Cetak PDF</label>
+                                <label for="tahun" class="col-form-label">Tahun Cetak PDF dan Tahun Grafik</label>
                                 <select class="form-select" name="tahun" id="tahun" required>
-                                    <option value="" selected hidden>Pilih Tahun</option>
-                                    <?php foreach ($tahun as $thn): ?>
-                                        <option value="<?= $thn->tahun ?>"><?= $thn->tahun ?></option>
+                                    <option value="" hidden>Pilih Tahun</option>
+                                    <?php 
+                                    $current_year = date('Y');
+                                    foreach ($tahun as $thn): 
+                                    ?>
+                                        <option value="<?= $thn->tahun ?>">
+                                            <?= $thn->tahun ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -58,24 +63,108 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-5">
+                        <br>
+                        <h4 style="text-align: center;">Grafik Publikasi Internasional & Nasional</h4>
+                        <div class="row mb-3">
                             <div class="col-6" style="height: 300px;">
-                                <div id="pieChart"></div>
+                                <div id="chart-publikasi"></div>
                             </div>
                             <div class="col-6">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
                                             <td>Internasional</td>
-                                            <td><?= $data_internasional ?></td>
+                                            <td id="data-internasional"><?= $data_internasional ?></td>
                                         </tr>
                                         <tr>
                                             <td>Nasional</td>
-                                            <td><?= $data_nasional ?></td>
+                                            <td id="data-nasional"><?= $data_nasional ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td><?= $total = $data_internasional + $data_nasional ?></td>
+                                            <td id="data-total-publikasi"><?= $total = $data_internasional + $data_nasional ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-6" style="text-align: center;">
+                                <h4>Grafik Publikasi Internasional</h4>
+                            </div>
+                            <div class="col-6" style="text-align: center;">
+                                <h4>Grafik Publikasi Nasional</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3" style="height: 300px;">
+                                <div id="chart-internasional"></div>
+                            </div>
+                            <div class="col-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 120px;">Q1</td>
+                                            <td id="data-q1" style="width: 50px;"><?= $q1_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Q2</td>
+                                            <td id="data-q2"><?= $q2_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Q3</td>
+                                            <td id="data-q3"><?= $q3_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Q4</td>
+                                            <td id="data-q4"><?= $q4_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td id="data-total-internasional"><?= $total = $q1_data + $q2_data + $q3_data + $q4_data ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-3" style="height: 300px;">
+                                <div id="chart-nasional"></div>
+                            </div>
+                            <div class="col-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 180px;">S1</td>
+                                            <td id="data-s1"><?= $s1_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S2</td>
+                                            <td id="data-s2"><?= $s2_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S3</td>
+                                            <td id="data-s3"><?= $s3_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S4</td>
+                                            <td id="data-s4"><?= $s4_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S5</td>
+                                            <td id="data-s5"><?= $s5_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>S6</td>
+                                            <td id="data-s6"><?= $s6_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nasional Tidak Terakreditasi</td>
+                                            <td id="data-tdk-terakreditasi"><?= $tdk_terakreditasi_data ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td id="data-total-nasional"><?= $total = $s1_data + $s2_data + $s3_data + $s4_data + $s5_data + $tdk_terakreditasi_data ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -177,36 +266,173 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div id="pieChart"></div>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        // Data dari PHP
-        var persentaseNasional = <?= json_encode($persentase_nasional) ?>;
-        var persentaseInternasional = <?= json_encode($persentase_internasional) ?>;
+    // Global variable to store the chart instance
+    let publicationChart = null;
+    let publicationInternasionalChart = null;
+    let publicationNasionalChart = null;
 
-        // Data untuk ApexCharts
-        new ApexCharts(document.querySelector("#pieChart"), {
-            series: [persentaseNasional, persentaseInternasional],
-            chart: {
-                height: 350,
-                type: 'pie',
-                toolbar: {
-                    show: true
-                }
-            },
-            labels: ['Nasional', 'Internasional'],
-            colors: ["#FF6384", "#36A2EB"],
-            tooltip: {
-                y: {
-                    formatter: function(value) {
-                        return value.toFixed(2) + '%'; // Menampilkan 2 angka desimal
+    document.addEventListener("DOMContentLoaded", () => {
+        // Function to fetch publication data for a specific year
+        function fetchPublicationData(year) {
+            return $.ajax({
+                url: '<?= base_url('hasil_pelaporan/get_publikasi_data') ?>', // You'll need to create this route
+                method: 'POST',
+                data: { tahun: year },
+                dataType: 'json'
+            });
+        }
+
+        // Function to update the chart and statistics
+        function updatePublicationChart(year) {
+            fetchPublicationData(year)
+                .done(function(response) {
+                    // Update the table statistics
+                    $('#data-internasional').text(response.data_internasional);
+                    $('#data-nasional').text(response.data_nasional);
+                    $('#data-total-publikasi').text(response.total_publikasi);
+
+                    // Update or render the pie chart
+                    const chartOptions = {
+                        series: [response.persentase_nasional, response.persentase_internasional],
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true
+                            }
+                        },
+                        labels: ['Nasional', 'Internasional'],
+                        colors: ["#FF6384", "#36A2EB"],
+                        tooltip: {
+                            y: {
+                                formatter: function(value) {
+                                    return value.toFixed(2) + '%';
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
+                    };
+
+                    // Destroy existing chart if it exists
+                    if (publicationChart) {
+                        publicationChart.destroy();
                     }
-                }
-            },
-            legend: {
-                position: 'top' // Menampilkan legend di atas
+
+                    // Create new chart
+                    publicationChart = new ApexCharts(document.querySelector("#chart-publikasi"), chartOptions);
+                    publicationChart.render();
+
+                    // Update the statistics
+                    $('#data-q1').text(response.q1_data);
+                    $('#data-q2').text(response.q2_data);
+                    $('#data-q3').text(response.q3_data);
+                    $('#data-q4').text(response.q4_data);
+                    $('#data-total-internasional').text(response.total_internasional);
+
+                    // Render new chart
+                    const internasionalChart = {
+                        series: [response.persentase_q1, response.persentase_q2,response.persentase_q3,response.persentase_q4],
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true,
+                            },
+                        },
+                        labels: ["Q1", "Q2", "Q3", "Q4"],
+                        colors: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+                        tooltip: {
+                            y: {
+                                formatter: function(value) {
+                                    return value.toFixed(2) + '%';
+                                },
+                            },
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    };
+
+                    // Destroy existing chart if it exists
+                    if (publicationInternasionalChart) {
+                        publicationInternasionalChart.destroy();
+                    }
+
+                    // Create and render the chart
+                    publicationInternasionalChart = new ApexCharts(document.querySelector("#chart-internasional"), internasionalChart);
+                    publicationInternasionalChart.render();
+
+                    // Update the statistics
+                    $('#data-s1').text(response.s1_data);
+                    $('#data-s2').text(response.s2_data);
+                    $('#data-s3').text(response.s3_data);
+                    $('#data-s4').text(response.s4_data);
+                    $('#data-s5').text(response.s5_data);
+                    $('#data-s6').text(response.s6_data);
+                    $('#data-tdk-terakreditasi').text(response.tdk_terakreditasi_data);
+                    $('#data-total-nasional').text(response.total_nasional);
+
+                    // Render new chart
+                    const nasionalChart = {
+                        series: [response.persentase_s1, response.persentase_s2,response.persentase_s3,response.persentase_s4,response.persentase_s5,response.persentase_s6,response.persentase_tdk_terakreditasi],
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true,
+                            },
+                        },
+                        labels: ["S1", "S2", "S3", "S4", "S5", "S6", "Tidak Terakreditasi"],
+                        colors: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56",
+                            "#4BC0C0",
+                            "#9966FF",
+                            "#FF9F40",
+                            "#E0E0E0",
+                        ],
+                        tooltip: {
+                            y: {
+                                formatter: function(value) {
+                                    return value.toFixed(2) + '%';
+                                },
+                            },
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    };
+
+                    // Destroy existing chart if it exists
+                    if (publicationNasionalChart) {
+                        publicationNasionalChart.destroy();
+                    }
+
+                    // Create and render the chart
+                    publicationNasionalChart = new ApexCharts(document.querySelector("#chart-nasional"), nasionalChart);
+                    publicationNasionalChart.render();
+                })
+                .fail(function(xhr, status, error) {
+                    console.error("Error fetching publication data:", error);
+                    
+                    // Show error modal
+                    $('#responseModalLabel').text('Error');
+                    $('#responseMessage').html('Gagal mengambil data publikasi. Silakan coba lagi.');
+                    $('#responseModal').modal('show');
+                });
+        }
+
+        // Event listener for year selection
+        $('#tahun').on('change', function() {
+            const selectedYear = $(this).val();
+            if (selectedYear) {
+                updatePublicationChart(selectedYear);
             }
-        }).render();
+        });
     });
 
     // Event listener untuk tombol cetak PDF Rekapitulasi
