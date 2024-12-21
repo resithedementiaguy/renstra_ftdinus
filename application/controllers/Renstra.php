@@ -39,6 +39,7 @@ class Renstra extends CI_Controller
         $rata_rata_penelitian_per_tahun = [];
         $rata_rata_penelitian_mahasiswa_per_tahun = [];
         $rata_rata_seminar_per_tahun = [];
+        $total_dana_penelitian_per_tahun = [];
 
         foreach ($data['years'] as $tahun) {
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
@@ -48,6 +49,9 @@ class Renstra extends CI_Controller
             $rata_rata_penelitian_per_tahun[$tahun] = $this->hitungRataPenelitian($tahun, $jumlah_dosen);
             $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
             $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
+
+            // Tambahkan data total dana penelitian per tahun
+            $total_dana_penelitian_per_tahun[$tahun] = $this->hitungTotalDanaPenelitian($tahun);
         }
 
         // Menyiapkan data untuk view
@@ -55,6 +59,7 @@ class Renstra extends CI_Controller
         $data['rata_rata_penelitian_per_tahun'] = $rata_rata_penelitian_per_tahun;
         $data['rata_rata_penelitian_mahasiswa_per_tahun'] = $rata_rata_penelitian_mahasiswa_per_tahun;
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
+        $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun; // Tambahan
 
         // Load view
         $this->load->view('backend/partials/header');
@@ -149,6 +154,38 @@ class Renstra extends CI_Controller
         return [
             'internasional' => $jumlah_dosen > 0 ? $total_seminar_internasional / $jumlah_dosen : 0,
             'nasional' => $jumlah_dosen > 0 ? $total_seminar_nasional / $jumlah_dosen : 0
+        ];
+    }
+
+    public function hitungTotalDanaPenelitian($tahun)
+    {
+        $danaPenelitianData = $this->Artikel_model->getTotalDanaPenelitianByYear($tahun);
+
+        $total_dana_internal = 0;
+        $total_dana_nasional = 0;
+        $total_dana_internasional = 0;
+
+        if ($danaPenelitianData) {
+            foreach ($danaPenelitianData as $row) {
+                $kategori = $row['kategori'];
+                $total_hibah = $row['total_hibah'];
+
+                if (in_array($kategori, ['Mandiri', 'Internal'])) {
+                    $total_dana_internal += $total_hibah;
+                }
+                if ($kategori === 'Nasional') {
+                    $total_dana_nasional += $total_hibah;
+                }
+                if ($kategori === 'Internasional') {
+                    $total_dana_internasional += $total_hibah;
+                }
+            }
+        }
+
+        return [
+            'internal' => $total_dana_internal,
+            'nasional' => $total_dana_nasional,
+            'internasional' => $total_dana_internasional,
         ];
     }
 
