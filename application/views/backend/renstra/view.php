@@ -138,6 +138,12 @@
                                                         <?php foreach ($years as $year):
                                                             $value = isset($target_level3[$year]) ? $target_level3[$year] : '';
                                                             $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '';
+
+                                                            // Cek apakah no_iku adalah "2.1.6."
+                                                            $capaian_otomatis = '';
+                                                            if ($level3_item->no_iku === '2.1.6.') {
+                                                                $capaian_otomatis = isset($rata_rata_penelitian_mahasiswa_per_tahun[$year]) ? $rata_rata_penelitian_mahasiswa_per_tahun[$year] : 0;
+                                                            }
                                                         ?>
                                                             <td style="border: 1px solid;">
                                                                 <input type="text"
@@ -158,6 +164,9 @@
                                                                     data-level-type="level3"
                                                                     value="<?php echo $capaian_value; ?>"
                                                                     placeholder="Isi capaian">
+                                                                <?php if (!empty($capaian_otomatis)): ?>
+                                                                    <p><?php echo number_format(floatval($capaian_otomatis), 2); ?></p>
+                                                                <?php endif; ?>
                                                             </td>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>
