@@ -214,7 +214,10 @@
                                                                     '2.1.7.b.',
                                                                     '2.2.1.a.',
                                                                     '2.2.1.b.',
-                                                                    '2.2.1.c.'
+                                                                    '2.2.1.c.',
+                                                                    '3.2.1.a.',
+                                                                    '3.2.1.b.',
+                                                                    '3.2.1.c.'
                                                                 ])) {
                                                                     // Penyesuaian capaian otomatis berdasarkan nomor IKU
                                                                     if ($level4_item->no_iku === '2.1.3.a.') {
@@ -239,6 +242,12 @@
                                                                         $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.2.1.c.') {
                                                                         $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.2.1.a.') {
+                                                                        $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.2.1.b.') {
+                                                                        $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['nasional'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.2.1.c.') {
+                                                                        $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internal'] ?? 0;
                                                                     }
                                                                 }
                                                                 ?>
@@ -264,7 +273,10 @@
                                                                     '2.1.7.b.',
                                                                     '2.2.1.a.',
                                                                     '2.2.1.b.',
-                                                                    '2.2.1.c.'
+                                                                    '2.2.1.c.',
+                                                                    '3.2.1.a.',
+                                                                    '3.2.1.b.',
+                                                                    '3.2.1.c.'
                                                                 ])) {
                                                                     if ((isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) || !empty($capaian_otomatis)) {
                                                                         echo "<p>";

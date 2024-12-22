@@ -40,18 +40,21 @@ class Renstra extends CI_Controller
         $rata_rata_penelitian_mahasiswa_per_tahun = [];
         $rata_rata_seminar_per_tahun = [];
         $total_dana_penelitian_per_tahun = [];
+        $total_dana_pengabdian_per_tahun = [];
 
         foreach ($data['years'] as $tahun) {
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
             $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
 
+            // Rata rata per tahun
             $rata_rata_jurnal_per_tahun[$tahun] = $this->hitungRataRataJurnal($tahun, $jumlah_dosen);
             $rata_rata_penelitian_per_tahun[$tahun] = $this->hitungRataPenelitian($tahun, $jumlah_dosen);
             $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
             $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
 
-            // Tambahkan data total dana penelitian per tahun
+            // Total dana per tahun
             $total_dana_penelitian_per_tahun[$tahun] = $this->hitungTotalDanaPenelitian($tahun);
+            $total_dana_pengabdian_per_tahun[$tahun] = $this->hitungTotalDanaPengabdian($tahun);
         }
 
         // Menyiapkan data untuk view
@@ -59,7 +62,8 @@ class Renstra extends CI_Controller
         $data['rata_rata_penelitian_per_tahun'] = $rata_rata_penelitian_per_tahun;
         $data['rata_rata_penelitian_mahasiswa_per_tahun'] = $rata_rata_penelitian_mahasiswa_per_tahun;
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
-        $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun; // Tambahan
+        $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun;
+        $data['total_dana_pengabdian_per_tahun'] = $total_dana_pengabdian_per_tahun;
 
         // Load view
         $this->load->view('backend/partials/header');
@@ -167,6 +171,38 @@ class Renstra extends CI_Controller
 
         if ($danaPenelitianData) {
             foreach ($danaPenelitianData as $row) {
+                $kategori = $row['kategori'];
+                $total_hibah = $row['total_hibah'];
+
+                if (in_array($kategori, ['Mandiri', 'Internal'])) {
+                    $total_dana_internal += $total_hibah;
+                }
+                if ($kategori === 'Nasional') {
+                    $total_dana_nasional += $total_hibah;
+                }
+                if ($kategori === 'Internasional') {
+                    $total_dana_internasional += $total_hibah;
+                }
+            }
+        }
+
+        return [
+            'internal' => formatToMillions($total_dana_internal),
+            'nasional' => formatToMillions($total_dana_nasional),
+            'internasional' => formatToMillions($total_dana_internasional),
+        ];
+    }
+
+    public function hitungTotalDanaPengabdian($tahun)
+    {
+        $danaPengabdianData = $this->Artikel_model->getTotalDanaPengabdianByYear($tahun);
+
+        $total_dana_internal = 0;
+        $total_dana_nasional = 0;
+        $total_dana_internasional = 0;
+
+        if ($danaPengabdianData) {
+            foreach ($danaPengabdianData as $row) {
                 $kategori = $row['kategori'];
                 $total_hibah = $row['total_hibah'];
 

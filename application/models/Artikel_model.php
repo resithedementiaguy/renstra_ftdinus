@@ -69,4 +69,26 @@ class Artikel_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // Mengambil total Pengabdian berdasarkan kategori dan tahun
+    public function getTotalPengabdianByYear($tahun)
+    {
+        $this->db->select('pengabdian.kategori, COUNT(*) as total');
+        $this->db->from('pengabdian');
+        $this->db->where('pengabdian.tahun', $tahun);
+        $this->db->group_by('pengabdian.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total Dana Pengabdian berdasarkan kategori dan tahun
+    public function getTotalDanaPengabdianByYear($tahun)
+    {
+        $this->db->select('pengabdian.kategori, SUM(pengabdian.besar_hibah) as total_hibah');
+        $this->db->from('pengabdian');
+        $this->db->where('pengabdian.tahun', $tahun);
+        $this->db->group_by('pengabdian.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
