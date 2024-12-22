@@ -91,4 +91,16 @@ class Artikel_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // Mengambil total HAKI berdasarkan kategori dan tahun
+    public function getTotalHakiByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_paten.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_paten', 'haki.id = haki_paten.id_haki', 'inner');
+        $this->db->where('haki_paten.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

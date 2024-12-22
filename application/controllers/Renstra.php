@@ -41,6 +41,7 @@ class Renstra extends CI_Controller
         $rata_rata_seminar_per_tahun = [];
         $total_dana_penelitian_per_tahun = [];
         $total_dana_pengabdian_per_tahun = [];
+        $total_haki_per_tahun = []; // Array untuk menyimpan total HAKI per tahun
 
         foreach ($data['years'] as $tahun) {
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
@@ -55,6 +56,9 @@ class Renstra extends CI_Controller
             // Total dana per tahun
             $total_dana_penelitian_per_tahun[$tahun] = $this->hitungTotalDanaPenelitian($tahun);
             $total_dana_pengabdian_per_tahun[$tahun] = $this->hitungTotalDanaPengabdian($tahun);
+
+            // Total HAKI per tahun
+            $total_haki_per_tahun[$tahun] = $this->hitungTotalHaki($tahun);
         }
 
         // Menyiapkan data untuk view
@@ -64,6 +68,7 @@ class Renstra extends CI_Controller
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
         $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun;
         $data['total_dana_pengabdian_per_tahun'] = $total_dana_pengabdian_per_tahun;
+        $data['total_haki_per_tahun'] = $total_haki_per_tahun; // Tambahkan data total HAKI ke view
 
         // Load view
         $this->load->view('backend/partials/header');
@@ -222,6 +227,48 @@ class Renstra extends CI_Controller
             'internal' => formatToMillions($total_dana_internal),
             'nasional' => formatToMillions($total_dana_nasional),
             'internasional' => formatToMillions($total_dana_internasional),
+        ];
+    }
+
+    public function hitungTotalHaki($tahun)
+    {
+        $hakiData = $this->Artikel_model->getTotalHakiByYear($tahun);
+
+        $total_haki_paten = 0;
+        $total_haki_hakcipta = 0;
+        $total_haki_merk = 0;
+        $total_haki_buku = 0;
+        $total_haki_lisensi = 0;
+        $total_haki_desainindustri = 0;
+
+        if ($hakiData) {
+            foreach ($hakiData as $row) {
+                $kategori = $row['kategori'];
+                $total = $row['total'];
+
+                if ($kategori === 'Paten') {
+                    $total_haki_paten += $total;
+                } elseif ($kategori === 'Hak Cipta') {
+                    $total_haki_hakcipta += $total;
+                } elseif ($kategori === 'Merk') {
+                    $total_haki_merk += $total;
+                } elseif ($kategori === 'Buku') {
+                    $total_haki_buku += $total;
+                } elseif ($kategori === 'Lisensi') {
+                    $total_haki_lisensi += $total;
+                } elseif ($kategori === 'Desain Industri') {
+                    $total_haki_desainindustri += $total;
+                }
+            }
+        }
+
+        return [
+            'paten' => $total_haki_paten,
+            'hak_cipta' => $total_haki_hakcipta,
+            'merk' => $total_haki_merk,
+            'buku' => $total_haki_buku,
+            'lisensi' => $total_haki_lisensi,
+            'desain_industri' => $total_haki_desainindustri,
         ];
     }
 
