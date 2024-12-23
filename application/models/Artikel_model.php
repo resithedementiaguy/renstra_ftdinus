@@ -13,6 +13,16 @@ class Artikel_model extends CI_Model
         return $query->row_array();
     }
 
+    // Mengambil jumlah total mahasiswa berdasarkan tahun
+    public function getJumlahMahasiswaByYear($tahun)
+    {
+        $this->db->select('SUM(jumlah) as total_mahasiswa');
+        $this->db->from('jumlah_mhs');
+        $this->db->where('tahun', $tahun);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     // Mengambil total Artikel berdasarkan kategori dan tahun
     public function getTotalArtikelByYear($tahun)
     {

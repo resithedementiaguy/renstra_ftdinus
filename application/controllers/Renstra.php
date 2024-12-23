@@ -41,17 +41,21 @@ class Renstra extends CI_Controller
         $rata_rata_seminar_per_tahun = [];
         $total_dana_penelitian_per_tahun = [];
         $total_dana_pengabdian_per_tahun = [];
+        $rata_rata_pengabdian_mahasiswa_per_tahun = [];
         $total_haki_per_tahun = [];
 
         foreach ($data['years'] as $tahun) {
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
+            $mahasiswaData = $this->Artikel_model->getJumlahMahasiswaByYear($tahun);
             $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
+            $jumlah_mahasiswa = $mahasiswaData['total_mahasiswa'] ?? 0;
 
             // Rata rata per tahun
             $rata_rata_jurnal_per_tahun[$tahun] = $this->hitungRataRataJurnal($tahun, $jumlah_dosen);
             $rata_rata_penelitian_per_tahun[$tahun] = $this->hitungRataPenelitian($tahun, $jumlah_dosen);
             $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
             $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
+            $rata_rata_pengabdian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa);
 
             // Total Dana Penelitian dan Pengabdian per tahun
             $total_dana_penelitian_per_tahun[$tahun] = $this->hitungTotalDanaPenelitian($tahun);
@@ -68,6 +72,7 @@ class Renstra extends CI_Controller
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
         $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun;
         $data['total_dana_pengabdian_per_tahun'] = $total_dana_pengabdian_per_tahun;
+        $data['rata_rata_pengabdian_mahasiswa_per_tahun'] = $rata_rata_pengabdian_mahasiswa_per_tahun;
         $data['total_haki_per_tahun'] = $total_haki_per_tahun;
 
         // Load view
@@ -228,6 +233,13 @@ class Renstra extends CI_Controller
             'nasional' => formatToMillions($total_dana_nasional),
             'internasional' => formatToMillions($total_dana_internasional),
         ];
+    }
+
+    private function hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa)
+    {
+        $pengabdianMhsData = $this->Artikel_model->getTotalPengabdianMhsByYear($tahun);
+        $total_pengabdian_mahasiswa = $pengabdianMhsData[0]['total_pengabdian'] ?? 0;
+        return $jumlah_mahasiswa > 0 ? $total_pengabdian_mahasiswa / $jumlah_mahasiswa : 0;
     }
 
     public function hitungTotalHaki($tahun)
