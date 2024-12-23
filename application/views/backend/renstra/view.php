@@ -135,16 +135,40 @@
 
                                                     <?php if ($level3_item->ket_target === 'Iya'): ?>
                                                         <td style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
-                                                        <?php foreach ($years as $year):
-                                                            $value = isset($target_level3[$year]) ? $target_level3[$year] : '';
-                                                            $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '';
+                                                        <?php foreach ($years as $year): ?>
+                                                            <?php
+                                                            // Inisialisasi capaian_otomatis
+                                                            $capaian_otomatis = null;
 
-                                                            // Cek apakah no_iku adalah "2.1.6."
-                                                            $capaian_otomatis = '';
+                                                            // Tampilkan nilai capaian hanya untuk IKU yang sesuai kriteria
+                                                            $should_display = false;
+
+                                                            // Cek untuk IKU penelitian mahasiswa
                                                             if ($level3_item->no_iku === '2.1.6.') {
-                                                                $capaian_otomatis = isset($rata_rata_penelitian_mahasiswa_per_tahun[$year]) ? $rata_rata_penelitian_mahasiswa_per_tahun[$year] : 0;
+                                                                $capaian_otomatis = $rata_rata_penelitian_mahasiswa_per_tahun[$year] ?? 0;
+                                                                $should_display = true;
                                                             }
-                                                        ?>
+
+                                                            // Cek untuk IKU HAKI
+                                                            $haki_mapping = [
+                                                                '4.2.1.' => 'paten',
+                                                                '4.2.2.' => 'hak_cipta',
+                                                                '4.2.3.' => 'merk',
+                                                                '4.2.4.' => 'buku',
+                                                                '4.2.5.' => 'lisensi',
+                                                                '4.2.6.' => 'desain_industri'
+                                                            ];
+
+                                                            if (isset($haki_mapping[$level3_item->no_iku])) {
+                                                                $kategori = $haki_mapping[$level3_item->no_iku];
+                                                                $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year][$kategori] ?? 0;
+                                                                $should_display = true;
+                                                            }
+
+                                                            // Ambil nilai target dan capaian
+                                                            $value = $target_level3[$year] ?? '';
+                                                            $capaian_value = $capaian_level3[$year] ?? '';
+                                                            ?>
                                                             <td style="border: 1px solid;">
                                                                 <input type="text"
                                                                     name="target[<?php echo $level3_item->id; ?>][<?php echo $year; ?>]"
@@ -164,9 +188,18 @@
                                                                     data-level-type="level3"
                                                                     value="<?php echo $capaian_value; ?>"
                                                                     placeholder="Isi capaian">
-                                                                <?php if (!empty($capaian_otomatis)): ?>
-                                                                    <p><?php echo number_format(floatval($capaian_otomatis), 2); ?></p>
-                                                                <?php endif; ?>
+                                                                <?php
+                                                                // Tampilkan nilai capaian (dari input atau otomatis)
+                                                                if ($should_display && (!empty($capaian_value) || $capaian_otomatis > 0)) {
+                                                                    echo "<p>";
+                                                                    if (!empty($capaian_value)) {
+                                                                        echo number_format(floatval($capaian_value), 2);
+                                                                    } elseif ($capaian_otomatis > 0) {
+                                                                        echo number_format(floatval($capaian_otomatis), 2);
+                                                                    }
+                                                                    echo "</p>";
+                                                                }
+                                                                ?>
                                                             </td>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>

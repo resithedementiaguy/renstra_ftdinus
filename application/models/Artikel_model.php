@@ -92,13 +92,73 @@ class Artikel_model extends CI_Model
         return $query->result_array();
     }
 
-    // Mengambil total HAKI berdasarkan kategori dan tahun
-    public function getTotalHakiByYear($tahun)
+    // Mengambil total HAKI Paten berdasarkan kategori dan tahun
+    public function getTotalHakiPatenByYear($tahun)
     {
         $this->db->select('haki.kategori, COUNT(haki_paten.id) as total');
         $this->db->from('haki');
         $this->db->join('haki_paten', 'haki.id = haki_paten.id_haki', 'inner');
         $this->db->where('haki_paten.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total HAKI Cipta berdasarkan kategori dan tahun
+    public function getTotalHakiCiptaByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_hcipta.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_hcipta', 'haki.id = haki_hcipta.id_haki', 'inner');
+        $this->db->where('haki_hcipta.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total HAKI Cipta berdasarkan kategori dan tahun
+    public function getTotalHakiMerkByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_merk.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_merk', 'haki.id = haki_merk.id_haki', 'inner');
+        $this->db->where('haki_merk.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total HAKI Cipta berdasarkan kategori dan tahun
+    public function getTotalHakiBukuByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_buku.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_buku', 'haki.id = haki_buku.id_haki', 'inner');
+        $this->db->where('haki_buku.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total HAKI Cipta berdasarkan kategori dan tahun
+    public function getTotalHakiLisensiByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_lisensi.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_lisensi', 'haki.id = haki_lisensi.id_haki', 'inner');
+        $this->db->where('haki_lisensi.tahun', $tahun);
+        $this->db->group_by('haki.kategori');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total HAKI Cipta berdasarkan kategori dan tahun
+    public function getTotalHakiDesainIndustriByYear($tahun)
+    {
+        $this->db->select('haki.kategori, COUNT(haki_dindustri.id) as total');
+        $this->db->from('haki');
+        $this->db->join('haki_dindustri', 'haki.id = haki_dindustri.id_haki', 'inner');
+        $this->db->where('haki_dindustri.tahun', $tahun);
         $this->db->group_by('haki.kategori');
         $query = $this->db->get();
         return $query->result_array();
