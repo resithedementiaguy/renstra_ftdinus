@@ -22,7 +22,16 @@ class Ewmp extends CI_Controller
 
     public function index()
     {
-        $data['pelaporan'] = $this->Ewmp_model->get_pelaporan_ewmp();
+        $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp();
+        foreach ($pelaporan as &$p) {
+            if ($p->jenis_lapor === 'HAKI') {
+                $p->kategori_haki = $this->Ewmp_model->get_haki_kategori_by_id($p->id);
+            } else {
+                $p->kategori_haki = []; // Kosong jika bukan HAKI
+            }
+        }
+        $data['pelaporan'] = $pelaporan;
+
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/view', $data);
         $this->load->view('backend/partials/footer');
@@ -44,25 +53,25 @@ class Ewmp extends CI_Controller
         $ins_time = date('Y-m-d H:i:s', time());
 
         if ($jenis_lapor == 'Penelitian') {
-            // $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
-            // $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
-            // $this->form_validation->set_rules('kategori_penelitian', 'Kategori', 'required');
-            // $this->form_validation->set_rules('judul_penelitian', 'judul', 'required');
-            // $this->form_validation->set_rules('skim_penelitian', 'skim', 'required');
-            // $this->form_validation->set_rules('pemberi_hibah_penelitian', 'pemberi hibah', 'required');
-            // $this->form_validation->set_rules('besar_hibah_penelitian', 'besar hibah', 'required');
-            // $this->form_validation->set_rules('kontrak_penelitian', 'link kontrak penelitian', 'required');
-            // $this->form_validation->set_rules('laporan_maju_penelitian', 'link laporan maju penelitian', 'required');
+            $this->form_validation->set_rules('nama_ketua_penelitian', 'Nama Ketua', 'required');
+            $this->form_validation->set_rules('prodi_penelitian', 'Program Studi', 'required');
+            $this->form_validation->set_rules('kategori_penelitian', 'Kategori', 'required');
+            $this->form_validation->set_rules('judul_penelitian', 'judul', 'required');
+            $this->form_validation->set_rules('skim_penelitian', 'skim', 'required');
+            $this->form_validation->set_rules('pemberi_hibah_penelitian', 'pemberi hibah', 'required');
+            $this->form_validation->set_rules('besar_hibah_penelitian', 'besar hibah', 'required');
+            $this->form_validation->set_rules('kontrak_penelitian', 'link kontrak penelitian', 'required');
+            $this->form_validation->set_rules('laporan_maju_penelitian', 'link laporan maju penelitian', 'required');
         } elseif ($jenis_lapor == 'Pengabdian') {
-            // $this->form_validation->set_rules('nama_ketua_pengabdian', 'Nama Ketua', 'required');
-            // $this->form_validation->set_rules('prodi_pengabdian', 'Program Studi', 'required');
-            // $this->form_validation->set_rules('kategori_pengabdian', 'Kategori', 'required');
-            // $this->form_validation->set_rules('judul_pengabdian', 'judul', 'required');
-            // $this->form_validation->set_rules('skim_pengabdian', 'skim', 'required');
-            // $this->form_validation->set_rules('pemberi_hibah_pengabdian', 'pemberi hibah', 'required');
-            // $this->form_validation->set_rules('besar_hibah_pengabdian', 'besar hibah', 'required');
-            // $this->form_validation->set_rules('kontrak_pengabdian', 'link kontrak pengabdian', 'required');
-            // $this->form_validation->set_rules('laporan_pengabdian', 'link laporan pengabdian', 'required');
+            $this->form_validation->set_rules('nama_ketua_pengabdian', 'Nama Ketua', 'required');
+            $this->form_validation->set_rules('prodi_pengabdian', 'Program Studi', 'required');
+            $this->form_validation->set_rules('kategori_pengabdian', 'Kategori', 'required');
+            $this->form_validation->set_rules('judul_pengabdian', 'judul', 'required');
+            $this->form_validation->set_rules('skim_pengabdian', 'skim', 'required');
+            $this->form_validation->set_rules('pemberi_hibah_pengabdian', 'pemberi hibah', 'required');
+            $this->form_validation->set_rules('besar_hibah_pengabdian', 'besar hibah', 'required');
+            $this->form_validation->set_rules('kontrak_pengabdian', 'link kontrak pengabdian', 'required');
+            $this->form_validation->set_rules('laporan_pengabdian', 'link laporan pengabdian', 'required');
         } elseif ($jenis_lapor == 'Artikel/Karya Ilmiah') {
             $this->form_validation->set_rules('nama_pertama_ilmiah', 'Nama pertama', 'required');
             $this->form_validation->set_rules('nama_korespon_ilmiah', 'Nama korespon', 'required');
@@ -105,11 +114,13 @@ class Ewmp extends CI_Controller
                 $this->form_validation->set_rules('judul_buku', 'judul', 'required');
                 $this->form_validation->set_rules('file_buku', 'file buku', 'required');
             } elseif ($haki == 'Paten') {
+                $this->form_validation->set_rules('nama_pengusul_paten', 'Nama pengusul', 'required');
                 $this->form_validation->set_rules('judul_invensi_paten', 'judul', 'required');
                 $this->form_validation->set_rules('sertifikat_paten', 'sertifikat paten', 'required');
             } elseif ($haki == 'Desain Industri') {
                 // Tambahkan validasi untuk Desain Industri
-                $this->form_validation->set_rules('nama_pengusul_desain[]', 'Nama Pengusul', 'required');
+                $this->form_validation->set_rules('nama_pengusul_desain', 'Nama Pengusul', 'required');
+                $this->form_validation->set_rules('judul_desain', 'judul', 'required');
                 $this->form_validation->set_rules('sertifikat_desain', 'sertifikat desain', 'required');
                 // Tambahkan validasi lain yang diperlukan
             }
@@ -140,7 +151,6 @@ class Ewmp extends CI_Controller
             $this->session->set_flashdata('show_modal', true); // Indikator untuk memicu modal
             redirect('ewmp/create_view'); // Ganti dengan URL form Anda
         } else {
-
             $data = array(
                 'email' => $this->input->post('email'),
                 'jenis_lapor' => $jenis_lapor,
@@ -222,11 +232,23 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_penelitian_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
+                        $prodi_global=$prodi;
+
+                        $asal_anggota=$this->input->post();
+
+                        if ($prodi == 'Lainnya'){
+                            // Cari asal anggota sesuai indeks
+                            $asal_key = 'prodi_anggota_lainnya_penelitian_' . $index;
+                            $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                            $prodi_global=$prodi.' ('.$asal.')';
+                        }
+
                         $data_anggota = array(
                             'id_jenis_lapor' => $id_penelitian,
                             'kategori' => 'Penelitian',
                             'nama' => $nama,
-                            'prodi' => $prodi
+                            'prodi' => $prodi_global
                         );
 
                         // Panggil fungsi model untuk menyimpan anggota
@@ -326,11 +348,23 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_pengabdian_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
+                        $prodi_global=$prodi;
+
+                        $asal_anggota=$this->input->post();
+
+                        if ($prodi == 'Lainnya'){
+                            // Cari asal anggota sesuai indeks
+                            $asal_key = 'prodi_anggota_lainnya_pengabdian_' . $index;
+                            $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                            $prodi_global=$prodi.' ('.$asal.')';
+                        }
+
                         $data_anggota = array(
                             'id_jenis_lapor' => $id_pengabdian,
                             'kategori' => 'Pengabdian',
                             'nama' => $nama,
-                            'prodi' => $prodi
+                            'prodi' => $prodi_global
                         );
 
                         // Panggil fungsi model untuk menyimpan anggota
@@ -399,17 +433,48 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_ilmiah_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
+                        $prodi_global=$prodi;
+
+                        $asal_anggota=$this->input->post();
+
+                        if ($prodi == 'Lainnya'){
+                            // Cari asal anggota sesuai indeks
+                            $asal_key = 'prodi_anggota_lainnya_ilmiah_' . $index;
+                            $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                            $prodi_global=$prodi.' ('.$asal.')';
+                        }
+
                         $data_anggota = array(
                             'id_jenis_lapor' => $id_ilmiah,
                             'kategori' => 'Artikel/Karya Ilmiah',
                             'nama' => $nama,
-                            'prodi' => $prodi
+                            'prodi' => $prodi_global
                         );
 
                         // Panggil fungsi model untuk menyimpan anggota
                         $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                         $index++; // Increment untuk iterasi berikutnya
+                    }
+                }
+
+                // Menyimpan data mahasiswa ilmiah
+                $nim = $this->input->post('nim_mahasiswa_ilmiah');
+                $nama_mahasiswa = $this->input->post('nama_mahasiswa_ilmiah');
+
+                if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                    foreach ($nama_mahasiswa as $index => $nama) {
+
+                        $data_mahasiswa = array(
+                            'id_jenis_lapor' => $id_ilmiah,
+                            'kategori' => 'Artikel/Karya Ilmiah',
+                            'nama' => $nama,
+                            'nim' => $nim[$index]
+                        );
+
+                        // Panggil fungsi model untuk menyimpan mahasiswa
+                        $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                     }
                 }
             } elseif ($jenis_lapor == 'Prosiding') {
@@ -469,11 +534,23 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_prosiding_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
+                        $prodi_global=$prodi;
+
+                        $asal_anggota=$this->input->post();
+
+                        if ($prodi == 'Lainnya'){
+                            // Cari asal anggota sesuai indeks
+                            $asal_key = 'prodi_anggota_lainnya_prosiding_' . $index;
+                            $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                            $prodi_global=$prodi.' ('.$asal.')';
+                        }
+
                         $data_anggota = array(
                             'id_jenis_lapor' => $id_prosiding,
                             'kategori' => 'Prosiding',
                             'nama' => $nama,
-                            'prodi' => $prodi
+                            'prodi' => $prodi_global
                         );
 
                         // Panggil fungsi model untuk menyimpan anggota
@@ -549,22 +626,78 @@ class Ewmp extends CI_Controller
                     // Dapatkan ID hcipta terbaru
                     $id_hcipta = $this->Ewmp_model->get_last_hcipta_id();
 
+                    // Menyimpan data inventor hcipta
+                    $nama_inventor = $this->input->post('nama_hcipta'); // Nama pemegang hcipta yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_hcipta,
+                                'kategori' => 'Hak Cipta',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
                     // Menyimpan data anggota hcipta
-                    $nama_anggota = $this->input->post('nama_hcipta');
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_hcipta');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
-                        $index = 1;
+                        $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_hcipta_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_hcipta_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
                             $data_anggota = array(
                                 'id_jenis_lapor' => $id_hcipta,
                                 'kategori' => 'Hak Cipta',
-                                'nama' => $nama
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
                             );
 
                             // Panggil fungsi model untuk menyimpan anggota
                             $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                             $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa hcipta
+                    $nim = $this->input->post('nim_mahasiswa_hcipta');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_hcipta');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_hcipta,
+                                'kategori' => 'Hak Cipta',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                         }
                     }
                 } elseif ($kategori_haki == 'Merk') {
@@ -606,22 +739,78 @@ class Ewmp extends CI_Controller
                     // Dapatkan ID merk terbaru
                     $id_merk = $this->Ewmp_model->get_last_merk_id();
 
+                    // Menyimpan data inventor merk
+                    $nama_inventor = $this->input->post('nama_merk'); // Nama pemegang merk yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_merk,
+                                'kategori' => 'Merk',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
                     // Menyimpan data anggota merk
-                    $nama_anggota = $this->input->post('nama_merk'); // Nama pemegang merk yang dikirim dari form
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_merk');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
-                        $index = 1;
+                        $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_merk_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_merk_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
                             $data_anggota = array(
                                 'id_jenis_lapor' => $id_merk,
                                 'kategori' => 'Merk',
-                                'nama' => $nama
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
                             );
 
                             // Panggil fungsi model untuk menyimpan anggota
                             $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                             $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa merk
+                    $nim = $this->input->post('nim_mahasiswa_merk');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_merk');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_merk,
+                                'kategori' => 'Merk',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                         }
                     }
                 } elseif ($kategori_haki == 'Lisensi') {
@@ -664,22 +853,78 @@ class Ewmp extends CI_Controller
                     // Dapatkan ID lisensi terbaru
                     $id_lisensi = $this->Ewmp_model->get_last_lisensi_id();
 
-                    // Menyimpan data anggota Lisensi
-                    $nama_anggota = $this->input->post('nama_lisensi'); // Nama pemegang lisensi yang dikirim dari form
+                    // Menyimpan data inventor lisensi
+                    $nama_inventor = $this->input->post('nama_lisensi'); // Nama pemegang lisensi yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_lisensi,
+                                'kategori' => 'Lisensi',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data anggota lisensi
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_lisensi');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
                         $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_lisensi_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_lisensi_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
                             $data_anggota = array(
-                                'id_jenis_lapor' => $id_lisensi, // ID haki lisensi yang baru saja disimpan
-                                'kategori' => 'Lisensi', // Menandakan kategori adalah lisensi
-                                'nama' => $nama
+                                'id_jenis_lapor' => $id_lisensi,
+                                'kategori' => 'Lisensi',
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
                             );
 
                             // Panggil fungsi model untuk menyimpan anggota
                             $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                             $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa lisensi
+                    $nim = $this->input->post('nim_mahasiswa_lisensi');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_lisensi');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_lisensi,
+                                'kategori' => 'Lisensi',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                         }
                     }
                 } elseif ($kategori_haki == 'Buku') {
@@ -718,6 +963,84 @@ class Ewmp extends CI_Controller
 
                     log_message('debug', 'Data Buku yang akan disimpan: ' . json_encode($data_buku));
                     $this->Ewmp_model->add_haki_buku($data_buku);
+
+                    // Dapatkan ID buku terbaru
+                    $id_buku = $this->Ewmp_model->get_last_buku_id();
+
+                    // Menyimpan data inventor buku
+                    $nama_inventor = $this->input->post('nama_buku'); // Nama pemegang buku yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_buku,
+                                'kategori' => 'Buku',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data anggota buku
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_buku');
+
+                    if (!empty($nama_anggota) && is_array($nama_anggota)) {
+                        $index = 1; // Mulai dari 1
+                        foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_buku_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_buku_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
+                            $data_anggota = array(
+                                'id_jenis_lapor' => $id_buku,
+                                'kategori' => 'Buku',
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
+                            );
+
+                            // Panggil fungsi model untuk menyimpan anggota
+                            $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa buku
+                    $nim = $this->input->post('nim_mahasiswa_buku');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_buku');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_buku,
+                                'kategori' => 'Buku',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
+                        }
+                    }
                 } elseif ($kategori_haki == 'Paten') {
 
                     // Menyiapkan konfigurasi untuk file upload
@@ -750,6 +1073,7 @@ class Ewmp extends CI_Controller
                         'id_haki' => $id_haki,
                         'tahun' => $this->input->post('tahun'),
                         'prodi' => $this->input->post('prodi_paten'),
+                        'nama_usul' => $this->input->post('nama_pengusul_paten'),
                         'judul' => $this->input->post('judul_invensi_paten'),
                         'sertifikat' => $this->input->post('sertifikat_paten'),
                         'ins_time' => $ins_time
@@ -764,22 +1088,78 @@ class Ewmp extends CI_Controller
                     // Dapatkan ID paten terbaru
                     $id_paten = $this->Ewmp_model->get_last_paten_id();
 
+                    // Menyimpan data inventor paten
+                    $nama_inventor = $this->input->post('nama_paten'); // Nama pemegang paten yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_paten,
+                                'kategori' => 'Paten',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
                     // Menyimpan data anggota paten
-                    $nama_anggota = $this->input->post('nama_inventor');
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_paten');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
                         $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_paten_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_paten_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
                             $data_anggota = array(
                                 'id_jenis_lapor' => $id_paten,
                                 'kategori' => 'Paten',
-                                'nama' => $nama
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
                             );
 
                             // Panggil fungsi model untuk menyimpan anggota
                             $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                             $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa paten
+                    $nim = $this->input->post('nim_mahasiswa_paten');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_paten');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_paten,
+                                'kategori' => 'Paten',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                         }
                     }
                 } elseif ($kategori_haki == 'Desain Industri') {
@@ -814,6 +1194,7 @@ class Ewmp extends CI_Controller
                         'id_haki' => $id_haki,
                         'tahun' => $this->input->post('tahun'),
                         'prodi' => $this->input->post('prodi_desain'),
+                        'nama_usul' => $this->input->post('nama_pengusul_desain'),
                         'judul' => $this->input->post('judul_desain'),
                         'sertifikat' => $this->input->post('sertifikat_desain'),
                         'ins_time' => $ins_time
@@ -826,24 +1207,80 @@ class Ewmp extends CI_Controller
                     $this->Ewmp_model->add_haki_dindustri($data_desain);
 
                     // Dapatkan ID dindustri terbaru
-                    $id_dindustri = $this->Ewmp_model->get_last_dindustri_id();
+                    $id_desain = $this->Ewmp_model->get_last_dindustri_id();
 
-                    // Menyimpan data anggota dindustri
-                    $nama_anggota = $this->input->post('nama_pengusul_desain');
+                    // Menyimpan data inventor desain
+                    $nama_inventor = $this->input->post('nama_desain'); // Nama pemegang desain yang dikirim dari form
+
+                    if (!empty($nama_inventor) && is_array($nama_inventor)) {
+                        $index = 1;
+                        foreach (array_values($nama_inventor) as $nama) {
+                            $data_inventor = array(
+                                'id_jenis_haki' => $id_desain,
+                                'kategori' => 'Desain Industri',
+                                'nama' => $nama
+                            );
+
+                            // Panggil fungsi model untuk menyimpan inventor
+                            $this->Ewmp_model->add_inventor_haki($data_inventor);
+
+                            $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data anggota desain
+                    $program_studi_anggota = $this->input->post();
+                    $nama_anggota = $this->input->post('nama_anggota_desain');
 
                     if (!empty($nama_anggota) && is_array($nama_anggota)) {
                         $index = 1; // Mulai dari 1
                         foreach (array_values($nama_anggota) as $nama) {
+                            // Cari program studi anggota sesuai indeks
+                            $prodi_key = 'prodi_anggota_desain_' . $index;
+                            $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
+
+                            $prodi_global=$prodi;
+
+                            $asal_anggota=$this->input->post();
+
+                            if ($prodi == 'Lainnya'){
+                                // Cari asal anggota sesuai indeks
+                                $asal_key = 'prodi_anggota_lainnya_desain_' . $index;
+                                $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
+
+                                $prodi_global=$prodi.' ('.$asal.')';
+                            }
+
                             $data_anggota = array(
-                                'id_jenis_lapor' => $id_dindustri,
+                                'id_jenis_lapor' => $id_desain,
                                 'kategori' => 'Desain Industri',
-                                'nama' => $nama
+                                'nama' => $nama,
+                                'prodi' => $prodi_global
                             );
 
                             // Panggil fungsi model untuk menyimpan anggota
                             $this->Ewmp_model->add_anggota_pelaporan($data_anggota);
 
                             $index++; // Increment untuk iterasi berikutnya
+                        }
+                    }
+
+                    // Menyimpan data mahasiswa desain
+                    $nim = $this->input->post('nim_mahasiswa_desain');
+                    $nama_mahasiswa = $this->input->post('nama_mahasiswa_desain');
+
+                    if (!empty($nama_mahasiswa) && is_array($nama_mahasiswa)) {
+                        foreach ($nama_mahasiswa as $index => $nama) {
+
+                            $data_mahasiswa = array(
+                                'id_jenis_lapor' => $id_desain,
+                                'kategori' => 'Desain Industri',
+                                'nama' => $nama,
+                                'nim' => $nim[$index]
+                            );
+
+                            // Panggil fungsi model untuk menyimpan mahasiswa
+                            $this->Ewmp_model->add_mhs_pelaporan($data_mahasiswa);
                         }
                     }
                 }

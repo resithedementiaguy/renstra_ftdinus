@@ -141,28 +141,20 @@
                                                             $capaian_otomatis = null;
 
                                                             // Tampilkan nilai capaian hanya untuk IKU yang sesuai kriteria
-                                                            $should_display = false;
-
-                                                            // Cek untuk IKU penelitian mahasiswa
                                                             if ($level3_item->no_iku === '2.1.6.') {
                                                                 $capaian_otomatis = $rata_rata_penelitian_mahasiswa_per_tahun[$year] ?? 0;
-                                                                $should_display = true;
-                                                            }
-
-                                                            // Cek untuk IKU HAKI
-                                                            $haki_mapping = [
-                                                                '4.2.1.' => 'paten',
-                                                                '4.2.2.' => 'hak_cipta',
-                                                                '4.2.3.' => 'merk',
-                                                                '4.2.4.' => 'buku',
-                                                                '4.2.5.' => 'lisensi',
-                                                                '4.2.6.' => 'desain_industri'
-                                                            ];
-
-                                                            if (isset($haki_mapping[$level3_item->no_iku])) {
-                                                                $kategori = $haki_mapping[$level3_item->no_iku];
-                                                                $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year][$kategori] ?? 0;
-                                                                $should_display = true;
+                                                            } elseif ($level3_item->no_iku === '4.2.1.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['paten'] ?? 0;
+                                                            } elseif ($level3_item->no_iku === '4.2.2.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['hak_cipta'] ?? 0;
+                                                            } elseif ($level3_item->no_iku === '4.2.3.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['merk'] ?? 0;
+                                                            } elseif ($level3_item->no_iku === '4.2.4.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['buku'] ?? 0;
+                                                            } elseif ($level3_item->no_iku === '4.2.5.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['lisensi'] ?? 0;
+                                                            } elseif ($level3_item->no_iku === '4.2.6.') {
+                                                                $capaian_otomatis = $total_haki_per_tahun[$year]['desain_industri'] ?? 0;
                                                             }
 
                                                             // Ambil nilai target dan capaian
@@ -189,15 +181,8 @@
                                                                     value="<?php echo $capaian_value; ?>"
                                                                     placeholder="Isi capaian">
                                                                 <?php
-                                                                // Tampilkan nilai capaian (dari input atau otomatis)
-                                                                if ($should_display && (!empty($capaian_value) || $capaian_otomatis > 0)) {
-                                                                    echo "<p>";
-                                                                    if (!empty($capaian_value)) {
-                                                                        echo number_format(floatval($capaian_value), 2);
-                                                                    } elseif ($capaian_otomatis > 0) {
-                                                                        echo number_format(floatval($capaian_otomatis), 2);
-                                                                    }
-                                                                    echo "</p>";
+                                                                if ($capaian_otomatis !== null && $capaian_otomatis > 0) {
+                                                                    echo "<p>" . number_format(floatval($capaian_otomatis), 2) . "</p>";
                                                                 }
                                                                 ?>
                                                             </td>
