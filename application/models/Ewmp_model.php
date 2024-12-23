@@ -230,6 +230,15 @@ class Ewmp_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_haki_kategori_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('haki');
+        $this->db->where('id_pelaporan', $id);
+        $query = $this->db->get();
+        return $query->result_array(); // Mengembalikan array dari semua baris
+    }
+
     public function add_haki_hcipta($data)
     {
         $this->db->insert('haki_hcipta', $data);
@@ -504,6 +513,21 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('anggota_pelaporan');
         $this->db->where('id_jenis_lapor', $id);
+        $this->db->where('kategori', $kategori);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function add_inventor_haki($data)
+    {
+        $this->db->insert('inventor_haki', $data);
+    }
+
+    public function get_inventor_haki_by_id($id, $kategori)
+    {
+        $this->db->select('*');
+        $this->db->from('inventor_haki');
+        $this->db->where('id_jenis_haki', $id);
         $this->db->where('kategori', $kategori);
         $query = $this->db->get();
         return $query->result();

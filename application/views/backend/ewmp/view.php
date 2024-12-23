@@ -41,7 +41,14 @@
                                 <tbody>
                                     <?php foreach ($pelaporan as $p): ?>
                                         <tr>
-                                            <td class="align-middle"><?= $p->jenis_lapor ?></td>
+                                            <td class="align-middle">
+                                                <?= $p->jenis_lapor ?>
+                                                <?php if (!empty($p->kategori_haki)): ?>
+                                                    <?php foreach ($p->kategori_haki as $haki): ?>
+                                                        - <?= htmlspecialchars($haki['kategori']) ?>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="align-middle"><?= htmlspecialchars($p->email) ?></td>
                                             <td class="align-middle"><?= formatDateTime($p->ins_time) ?></td>
                                             <td class="align-middle">
