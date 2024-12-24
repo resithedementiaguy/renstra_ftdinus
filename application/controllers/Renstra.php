@@ -196,11 +196,15 @@ class Renstra extends CI_Controller
             }
         }
 
-        return [
+        $result = [
             'internal' => formatToMillions($total_dana_internal),
             'nasional' => formatToMillions($total_dana_nasional),
             'internasional' => formatToMillions($total_dana_internasional),
         ];
+
+        log_message('info', 'Total dana penelitian untuk tahun ' . $tahun . ': ' . json_encode($result));
+
+        return $result;
     }
 
     public function hitungTotalDanaPengabdian($tahun)
@@ -228,11 +232,15 @@ class Renstra extends CI_Controller
             }
         }
 
-        return [
+        $result = [
             'internal' => formatToMillions($total_dana_internal),
             'nasional' => formatToMillions($total_dana_nasional),
             'internasional' => formatToMillions($total_dana_internasional),
         ];
+
+        log_message('info', 'Total dana pengabdian untuk tahun ' . $tahun . ': ' . json_encode($result));
+
+        return $result;
     }
 
     private function hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa)
