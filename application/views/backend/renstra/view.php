@@ -233,6 +233,9 @@
                                                                     '2.2.1.a.',
                                                                     '2.2.1.b.',
                                                                     '2.2.1.c.',
+                                                                    '3.1.2.a.',
+                                                                    '3.1.2.b.',
+                                                                    '3.1.2.c.',
                                                                     '3.2.1.a.',
                                                                     '3.2.1.b.',
                                                                     '3.2.1.c.'
@@ -260,6 +263,12 @@
                                                                         $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.2.1.c.') {
                                                                         $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.2.a.') {
+                                                                        $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['luar_negeri'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.2.b.') {
+                                                                        $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['dalam_negeri'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.2.c.') {
+                                                                        $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['internal'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '3.2.1.a.') {
                                                                         $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '3.2.1.b.') {
@@ -294,6 +303,9 @@
                                                                     '2.2.1.a.',
                                                                     '2.2.1.b.',
                                                                     '2.2.1.c.',
+                                                                    '3.1.2.a.',
+                                                                    '3.1.2.b.',
+                                                                    '3.1.2.c.',
                                                                     '3.2.1.a.',
                                                                     '3.2.1.b.',
                                                                     '3.2.1.c.'

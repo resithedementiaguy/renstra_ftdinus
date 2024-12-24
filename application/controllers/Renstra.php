@@ -40,8 +40,10 @@ class Renstra extends CI_Controller
         $rata_rata_penelitian_mahasiswa_per_tahun = [];
         $rata_rata_seminar_per_tahun = [];
         $total_dana_penelitian_per_tahun = [];
-        $total_dana_pengabdian_per_tahun = [];
+
+        $rata_rata_pengabdian_per_tahun = [];
         $rata_rata_pengabdian_mahasiswa_per_tahun = [];
+        $total_dana_pengabdian_per_tahun = [];
         $total_haki_per_tahun = [];
 
         foreach ($data['years'] as $tahun) {
@@ -55,6 +57,7 @@ class Renstra extends CI_Controller
             $rata_rata_penelitian_per_tahun[$tahun] = $this->hitungRataPenelitian($tahun, $jumlah_dosen);
             $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
             $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
+            $rata_rata_pengabdian_per_tahun[$tahun] = $this->hitungRataPengabdian($tahun, $jumlah_dosen);
             $rata_rata_pengabdian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa);
 
             // Total Dana Penelitian dan Pengabdian per tahun
@@ -72,6 +75,7 @@ class Renstra extends CI_Controller
         $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
         $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun;
         $data['total_dana_pengabdian_per_tahun'] = $total_dana_pengabdian_per_tahun;
+        $data['rata_rata_pengabdian_per_tahun'] = $rata_rata_pengabdian_per_tahun;
         $data['rata_rata_pengabdian_mahasiswa_per_tahun'] = $rata_rata_pengabdian_mahasiswa_per_tahun;
         $data['total_haki_per_tahun'] = $total_haki_per_tahun;
 
@@ -205,6 +209,36 @@ class Renstra extends CI_Controller
         log_message('info', 'Total dana penelitian untuk tahun ' . $tahun . ': ' . json_encode($result));
 
         return $result;
+    }
+
+    private function hitungRataPengabdian($tahun, $jumlah_dosen)
+    {
+        $pengabdianData = $this->Artikel_model->getTotalPenelitianByYear($tahun);
+        $total_pengabdian_internal = 0;
+        $total_pengabdian_dalam_negeri = 0;
+        $total_pengabdian_luar_negeri = 0;
+
+        if ($pengabdianData) {
+            foreach ($pengabdianData as $row) {
+                $kategori = $row['kategori'];
+                $total = $row['total'];
+                if (in_array($kategori, ['Mandiri', 'Internal'])) {
+                    $total_pengabdian_internal += $total;
+                }
+                if ($kategori === 'Nasional') {
+                    $total_pengabdian_dalam_negeri += $total;
+                }
+                if ($kategori === 'Internasional') {
+                    $total_pengabdian_luar_negeri += $total;
+                }
+            }
+        }
+
+        return [
+            'internal' => $jumlah_dosen > 0 ? $total_pengabdian_internal / $jumlah_dosen : 0,
+            'dalam_negeri' => $jumlah_dosen > 0 ? $total_pengabdian_dalam_negeri / $jumlah_dosen : 0,
+            'luar_negeri' => $jumlah_dosen > 0 ? $total_pengabdian_luar_negeri / $jumlah_dosen : 0,
+        ];
     }
 
     public function hitungTotalDanaPengabdian($tahun)
