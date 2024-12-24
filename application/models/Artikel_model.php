@@ -91,6 +91,19 @@ class Artikel_model extends CI_Model
         return $query->result_array();
     }
 
+    // Mengambil total penelitian yang melibatkan mahasiswa berdasarkan tahun
+    public function getTotalPengabdianMhsByYear($tahun)
+    {
+        $this->db->select('p.tahun, COUNT(DISTINCT p.id) AS total_pengabdian');
+        $this->db->from('pelaporan_ewmp pe');
+        $this->db->join('pengabdian p', 'pe.id = p.id_pelaporan', 'inner');
+        $this->db->join('mhs_pelaporan mp', 'p.id = mp.id_jenis_lapor', 'inner');
+        $this->db->where('p.tahun', $tahun);
+        $this->db->group_by('p.tahun');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     // Mengambil total Dana Pengabdian berdasarkan kategori dan tahun
     public function getTotalDanaPengabdianByYear($tahun)
     {

@@ -266,6 +266,8 @@
                                                                         $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '3.2.1.c.') {
                                                                         $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internal'] ?? 0;
+                                                                    } else {
+                                                                        $capaian_otomatis = 0;
                                                                     }
                                                                 }
                                                                 ?>
@@ -299,9 +301,21 @@
                                                                     if ((isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) || !empty($capaian_otomatis)) {
                                                                         echo "<p>";
                                                                         if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {
-                                                                            echo number_format(floatval($capaian_level4[$year]), 2);
+                                                                            $value = floatval($capaian_level4[$year]);
+                                                                            // Cek apakah nilai adalah desimal
+                                                                            if (fmod($value, 1) != 0) {
+                                                                                echo number_format($value, 2);
+                                                                            } else {
+                                                                                echo intval($value); // Tampilkan sebagai bilangan bulat
+                                                                            }
                                                                         } elseif (!empty($capaian_otomatis)) {
-                                                                            echo number_format(floatval($capaian_otomatis), 2);
+                                                                            $value = floatval($capaian_otomatis);
+                                                                            // Cek apakah nilai adalah desimal
+                                                                            if (fmod($value, 1) != 0) {
+                                                                                echo number_format($value, 2);
+                                                                            } else {
+                                                                                echo intval($value); // Tampilkan sebagai bilangan bulat
+                                                                            }
                                                                         }
                                                                         echo "</p>";
                                                                     }
