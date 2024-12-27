@@ -128,7 +128,7 @@
 
 <body>
     <h1 style="text-align: center;">Rekapitulasi Fakultas Teknik Tahun <?= $tahun ?></h1>
-    <h3>1. Rekapitulasi Penelitian 2021-2022</h3>
+    <h3>1. Rekapitulasi Penelitian <?= $tahun?></h3>
     <table class="table">
         <thead class="table-header">
             <tr>
@@ -171,7 +171,7 @@
         </tbody>
     </table>
 
-    <h3>2. Rekapitulasi Pengabdian 2021-2022</h3>
+    <h3>2. Rekapitulasi Pengabdian <?= $tahun?></h3>
     <table class="table">
         <thead class="table-header">
             <tr>

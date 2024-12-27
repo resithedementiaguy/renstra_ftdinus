@@ -46,6 +46,10 @@
                                     <td><?= htmlspecialchars($artikel_ilmiah['nama_pertama']) ?></td>
                                 </tr>
                                 <tr>
+                                    <th>Program Studi Penulis Pertama</th>
+                                    <td><?= htmlspecialchars($artikel_ilmiah['prodi']) ?></td>
+                                </tr>
+                                <tr>
                                     <th>Nama Penulis Korespondensi</th>
                                     <td><?= htmlspecialchars($artikel_ilmiah['nama_korespon']) ?></td>
                                 </tr>
@@ -69,6 +73,14 @@
                                     <th>Link Jurnal</th>
                                     <td>
                                         <a href="<?= $artikel_ilmiah['link_jurnal'] ?>" target="_blank" class="btn btn-primary"><i class="bi bi-link"></i> Link</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Nama Mahasiswa yang Terlibat</th>
+                                    <td>
+                                        <?php foreach ($mahasiswa_ilmiah as $mi): ?>
+                                            <?= $mi->nama ?> (<?= $mi->nim ?>);
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 <tr>

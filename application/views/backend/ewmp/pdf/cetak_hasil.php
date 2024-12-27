@@ -483,25 +483,31 @@
                 <?php foreach ($dindustri_elektro as $dindustri_e): ?>
                     <tr>
                         <td class="align-middle">
-                            <?php foreach ($dindustri_e->anggota_dindustri_elektro as $a_dindustri_e): ?>
-                                <?= htmlspecialchars($a_dindustri_e->nama) ?>;
-                            <?php endforeach; ?>
+                            <?= htmlspecialchars($dindustri_e->nama_usul) ?>
                         </td>
                         <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>"><?= $dindustri_e->judul ?></td>
                         <td rowspan="<?= count($dindustri_e->anggota_dindustri_elektro) + 1 ?>">Desain Industri</td>
                     </tr>
+                    <?php foreach ($dindustri_e->anggota_dindustri_elektro as $a_dindustri_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
 
                 <?php foreach ($paten_elektro as $paten_e): ?>
                     <tr>
                         <td class="align-middle">
-                            <?php foreach ($paten_e->anggota_paten_elektro as $a_paten_e): ?>
-                                <?= htmlspecialchars($a_paten_e->nama) ?>;
-                            <?php endforeach; ?>
+                            <?= htmlspecialchars($paten_e->nama_usul) ?>
                         </td>
                         <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>"><?= $paten_e->judul ?></td>
                         <td rowspan="<?= count($paten_e->anggota_paten_elektro) + 1 ?>">Paten</td>
                     </tr>
+                    <?php foreach ($paten_e->anggota_paten_elektro as $a_paten_e): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -829,47 +835,47 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($hcipta_industri as $hcipta_e): ?>
+                <?php foreach ($hcipta_industri as $hcipta_i): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($hcipta_e->nama_usul) ?>
+                            <?= htmlspecialchars($hcipta_i->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
-                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_industri) + 1 ?>">Hak Cipta</td>
+                        <td rowspan="<?= count($hcipta_i->anggota_hcipta_industri) + 1 ?>"><?= htmlspecialchars($hcipta_i->judul) ?></td>
+                        <td rowspan="<?= count($hcipta_i->anggota_hcipta_industri) + 1 ?>">Hak Cipta</td>
                     </tr>
-                    <?php foreach ($hcipta_e->anggota_hcipta_industri as $a_hcipta_e): ?>
+                    <?php foreach ($hcipta_i->anggota_hcipta_industri as $a_hcipta_i): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_hcipta_i->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
 
-                <?php foreach ($dindustri_industri as $dindustri_e): ?>
+                <?php foreach ($dindustri_industri as $dindustri_i): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($dindustri_e->nama_usul) ?>
+                            <?= htmlspecialchars($dindustri_i->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
-                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_industri) + 1 ?>">Desain Industri</td>
+                        <td rowspan="<?= count($dindustri_i->anggota_dindustri_industri) + 1 ?>"><?= htmlspecialchars($dindustri_i->judul) ?></td>
+                        <td rowspan="<?= count($dindustri_i->anggota_dindustri_industri) + 1 ?>">Desain Industri</td>
                     </tr>
-                    <?php foreach ($dindustri_e->anggota_dindustri_industri as $a_dindustri_e): ?>
+                    <?php foreach ($dindustri_i->anggota_dindustri_industri as $a_dindustri_i): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_dindustri_i->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
 
-                <?php foreach ($paten_industri as $paten_e): ?>
+                <?php foreach ($paten_industri as $paten_i): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($paten_e->nama_usul) ?>
+                            <?= htmlspecialchars($paten_i->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
-                        <td rowspan="<?= count($paten_e->anggota_paten_industri) + 1 ?>">Paten</td>
+                        <td rowspan="<?= count($paten_i->anggota_paten_industri) + 1 ?>"><?= htmlspecialchars($paten_i->judul) ?></td>
+                        <td rowspan="<?= count($paten_i->anggota_paten_industri) + 1 ?>">Paten</td>
                     </tr>
-                    <?php foreach ($paten_e->anggota_paten_industri as $a_paten_e): ?>
+                    <?php foreach ($paten_i->anggota_paten_industri as $a_paten_i): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_paten_i->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
@@ -1195,47 +1201,47 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($hcipta_biomedis as $hcipta_e): ?>
+                <?php foreach ($hcipta_biomedis as $hcipta_b): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($hcipta_e->nama_usul) ?>
+                            <?= htmlspecialchars($hcipta_b->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>"><?= htmlspecialchars($hcipta_e->judul) ?></td>
-                        <td rowspan="<?= count($hcipta_e->anggota_hcipta_biomedis) + 1 ?>">Hak Cipta</td>
+                        <td rowspan="<?= count($hcipta_b->anggota_hcipta_biomedis) + 1 ?>"><?= htmlspecialchars($hcipta_b->judul) ?></td>
+                        <td rowspan="<?= count($hcipta_b->anggota_hcipta_biomedis) + 1 ?>">Hak Cipta</td>
                     </tr>
-                    <?php foreach ($hcipta_e->anggota_hcipta_biomedis as $a_hcipta_e): ?>
+                    <?php foreach ($hcipta_b->anggota_hcipta_biomedis as $a_hcipta_b): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_hcipta_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_hcipta_b->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
 
-                <?php foreach ($dindustri_biomedis as $dindustri_e): ?>
+                <?php foreach ($dindustri_biomedis as $dindustri_b): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($dindustri_e->nama_usul) ?>
+                            <?= htmlspecialchars($dindustri_b->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>"><?= htmlspecialchars($dindustri_e->judul) ?></td>
-                        <td rowspan="<?= count($dindustri_e->anggota_dindustri_biomedis) + 1 ?>">Desain Industri</td>
+                        <td rowspan="<?= count($dindustri_b->anggota_dindustri_biomedis) + 1 ?>"><?= htmlspecialchars($dindustri_b->judul) ?></td>
+                        <td rowspan="<?= count($dindustri_b->anggota_dindustri_biomedis) + 1 ?>">Desain Industri</td>
                     </tr>
-                    <?php foreach ($dindustri_e->anggota_dindustri_biomedis as $a_dindustri_e): ?>
+                    <?php foreach ($dindustri_b->anggota_dindustri_biomedis as $a_dindustri_b): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_dindustri_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_dindustri_b->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
 
-                <?php foreach ($paten_biomedis as $paten_e): ?>
+                <?php foreach ($paten_biomedis as $paten_b): ?>
                     <tr>
                         <td class="align-middle">
-                            <?= htmlspecialchars($paten_e->nama_usul) ?>
+                            <?= htmlspecialchars($paten_b->nama_usul) ?>
                         </td>
-                        <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>"><?= htmlspecialchars($paten_e->judul) ?></td>
-                        <td rowspan="<?= count($paten_e->anggota_paten_biomedis) + 1 ?>">Paten</td>
+                        <td rowspan="<?= count($paten_b->anggota_paten_biomedis) + 1 ?>"><?= htmlspecialchars($paten_b->judul) ?></td>
+                        <td rowspan="<?= count($paten_b->anggota_paten_biomedis) + 1 ?>">Paten</td>
                     </tr>
-                    <?php foreach ($paten_e->anggota_paten_biomedis as $a_paten_e): ?>
+                    <?php foreach ($paten_b->anggota_paten_biomedis as $a_paten_b): ?>
                         <tr>
-                            <td><?= htmlspecialchars($a_paten_e->nama) ?></td>
+                            <td><?= htmlspecialchars($a_paten_b->nama) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>

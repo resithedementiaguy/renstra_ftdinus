@@ -42,11 +42,11 @@
                                     <td><?= htmlspecialchars($penelitian['nama_ketua']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Program Studi</th>
+                                    <th>Program Studi Ketua</th>
                                     <td><?= htmlspecialchars($penelitian['prodi']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Kategori</th>
+                                    <th>Kategori Penelitian</th>
                                     <td><?= htmlspecialchars($penelitian['kategori']) ?></td>
                                 </tr>
                                 <tr>
@@ -84,16 +84,16 @@
                                 <tr>
                                     <th>File Kontrak Penelitian</th>
                                     <td>
-                                        <a href="<?= $penelitian['kontrak'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $penelitian['kontrak'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>File Laporan Maju</th>
                                     <td>
-                                        <a href="<?= $penelitian['laporan_maju'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $penelitian['laporan_maju'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>
