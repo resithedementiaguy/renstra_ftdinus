@@ -313,13 +313,21 @@
                                                                     if ((isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) || !empty($capaian_otomatis)) {
                                                                         echo "<p>";
                                                                         if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {
-                                                                            $value = str_replace(',', '.', $capaian_level4[$year]); // Konversi koma ke titik
+                                                                            $value = str_replace(',', '.', $capaian_level4[$year]);
                                                                             $value = floatval($value);
-                                                                            echo number_format($value, 2, ',', '.'); // Selalu tampilkan 2 desimal
+                                                                            if ($level4_item->no_iku === '3.2.1.a.') {
+                                                                                echo number_format($value, 0, ',', '.');
+                                                                            } else {
+                                                                                echo number_format($value, 2, ',', '.');
+                                                                            }
                                                                         } elseif (!empty($capaian_otomatis)) {
                                                                             $value = str_replace(',', '.', $capaian_otomatis);
                                                                             $value = floatval($value);
-                                                                            echo number_format($value, 2, ',', '.');
+                                                                            if ($level4_item->no_iku === '3.2.1.a.') {
+                                                                                echo number_format($value, 0, ',', '.');
+                                                                            } else {
+                                                                                echo number_format($value, 2, ',', '.');
+                                                                            }
                                                                         }
                                                                         echo "</p>";
                                                                     }

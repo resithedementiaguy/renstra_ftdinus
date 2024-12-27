@@ -1,13 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-//Include autoloader dari Composer
-require 'dompdf/vendor/autoload.php';
-
-use Dompdf\Dompdf;
-
 class Renstra extends CI_Controller
 {
+    private $formatter;
+
     public function __construct()
     {
         parent::__construct();
@@ -15,6 +12,8 @@ class Renstra extends CI_Controller
         $this->load->model('Mod_iku');
         $this->load->model('Mod_tahun');
         $this->load->model('Artikel_model');
+        $this->load->helper('custom_helper');
+        $this->formatter = new Formatter();
 
         // Cek login
         if (!$this->session->userdata('logged_in')) {
@@ -24,7 +23,7 @@ class Renstra extends CI_Controller
         // Cek level user
         $user_level = $this->session->userdata('level');
         if ($user_level != 'Admin' && $user_level != 'Koordinator') {
-            redirect('akses_ditolak');
+            redirect('dashboard');
         }
     }
 
@@ -175,7 +174,7 @@ class Renstra extends CI_Controller
         ];
     }
 
-    public function hitungTotalDanaPenelitian($tahun)
+    private function hitungTotalDanaPenelitian($tahun)
     {
         $danaPenelitianData = $this->Artikel_model->getTotalDanaPenelitianByYear($tahun);
 
@@ -201,9 +200,9 @@ class Renstra extends CI_Controller
         }
 
         $result = [
-            'internal' => formatToMillions($total_dana_internal),
-            'nasional' => formatToMillions($total_dana_nasional),
-            'internasional' => formatToMillions($total_dana_internasional),
+            'internal' => $this->formatter->formatToBillions($total_dana_internal),
+            'nasional' => $this->formatter->formatToBillions($total_dana_nasional),
+            'internasional' => $this->formatter->formatToBillions($total_dana_internasional),
         ];
 
         log_message('info', 'Total dana penelitian untuk tahun ' . $tahun . ': ' . json_encode($result));
@@ -241,7 +240,7 @@ class Renstra extends CI_Controller
         ];
     }
 
-    public function hitungTotalDanaPengabdian($tahun)
+    private function hitungTotalDanaPengabdian($tahun)
     {
         $danaPengabdianData = $this->Artikel_model->getTotalDanaPengabdianByYear($tahun);
 
@@ -267,9 +266,9 @@ class Renstra extends CI_Controller
         }
 
         $result = [
-            'internal' => formatToMillions($total_dana_internal),
-            'nasional' => formatToMillions($total_dana_nasional),
-            'internasional' => formatToMillions($total_dana_internasional),
+            'internal' => $this->formatter->formatToBillions($total_dana_internal),
+            'nasional' => $this->formatter->formatToBillions($total_dana_nasional),
+            'internasional' => $this->formatter->formatToMillions($total_dana_internasional),
         ];
 
         log_message('info', 'Total dana pengabdian untuk tahun ' . $tahun . ': ' . json_encode($result));
@@ -284,7 +283,7 @@ class Renstra extends CI_Controller
         return $jumlah_mahasiswa > 0 ? $total_pengabdian_mahasiswa / $jumlah_mahasiswa : 0;
     }
 
-    public function hitungTotalHaki($tahun)
+    private function hitungTotalHaki($tahun)
     {
         // Ambil data dari masing-masing kategori HAKI berdasarkan tahun
         $haki_paten = $this->Artikel_model->getTotalHakiPatenByYear($tahun);
