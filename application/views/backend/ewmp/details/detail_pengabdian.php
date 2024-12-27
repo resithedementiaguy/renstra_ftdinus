@@ -42,11 +42,11 @@
                                     <td><?= htmlspecialchars($pengabdian['nama_ketua']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Program Studi</th>
+                                    <th>Program Studi Ketua</th>
                                     <td><?= htmlspecialchars($pengabdian['prodi']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Kategori</th>
+                                    <th>Kategori Pengabdian</th>
                                     <td><?= htmlspecialchars($pengabdian['kategori']) ?></td>
                                 </tr>
                                 <tr>
@@ -84,16 +84,16 @@
                                 <tr>
                                     <th>File Kontrak Pengabdian</th>
                                     <td>
-                                        <a href="<?= $pengabdian['kontrak'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $pengabdian['kontrak'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>File Laporan Maju</th>
                                     <td>
-                                        <a href="<?= $pengabdian['laporan'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $pengabdian['laporan'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>

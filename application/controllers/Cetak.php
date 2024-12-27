@@ -202,7 +202,7 @@ class Cetak extends CI_Controller
         foreach ($data['hcipta_elektro'] as $key => $hcipta) {
             $id_hcipta_elektro = $hcipta->id;
             $kategori = 'Hak Cipta';
-            $data['hcipta_elektro'][$key]->anggota_hcipta_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_elektro, $kategori);
+            $data['hcipta_elektro'][$key]->anggota_hcipta_elektro = $this->Ewmp_model->get_inventor_haki_by_id($id_hcipta_elektro, $kategori);
         }
 
         $data['dindustri_elektro'] = $this->Ewmp_model->get_dindustri_elektro($tahun);
@@ -210,8 +210,8 @@ class Cetak extends CI_Controller
         // Iterasi untuk mendapatkan anggota setiap dindustri
         foreach ($data['dindustri_elektro'] as $key => $dindustri) {
             $id_dindustri_elektro = $dindustri->id;
-            $kategori = 'Hak Cipta';
-            $data['dindustri_elektro'][$key]->anggota_dindustri_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_elektro, $kategori);
+            $kategori = 'Desain Industri';
+            $data['dindustri_elektro'][$key]->anggota_dindustri_elektro = $this->Ewmp_model->get_inventor_haki_by_id($id_dindustri_elektro, $kategori);
         }
 
         $data['paten_elektro'] = $this->Ewmp_model->get_paten_elektro($tahun);
@@ -220,7 +220,7 @@ class Cetak extends CI_Controller
         foreach ($data['paten_elektro'] as $key => $paten) {
             $id_paten_elektro = $paten->id;
             $kategori = 'Paten';
-            $data['paten_elektro'][$key]->anggota_paten_elektro = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_elektro, $kategori);
+            $data['paten_elektro'][$key]->anggota_paten_elektro = $this->Ewmp_model->get_inventor_haki_by_id($id_paten_elektro, $kategori);
         }
 
         $data['penelitian_eksternal_elektro'] = $this->Ewmp_model->get_penelitian_eksternal_elektro($tahun);
@@ -304,7 +304,7 @@ class Cetak extends CI_Controller
         foreach ($data['hcipta_industri'] as $key => $hcipta) {
             $id_hcipta_industri = $hcipta->id;
             $kategori = 'Hak Cipta';
-            $data['hcipta_industri'][$key]->anggota_hcipta_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_industri, $kategori);
+            $data['hcipta_industri'][$key]->anggota_hcipta_industri = $this->Ewmp_model->get_inventor_haki_by_id($id_hcipta_industri, $kategori);
         }
 
         $data['dindustri_industri'] = $this->Ewmp_model->get_dindustri_industri($tahun);
@@ -312,8 +312,8 @@ class Cetak extends CI_Controller
         // Iterasi untuk mendapatkan anggota setiap dindustri
         foreach ($data['dindustri_industri'] as $key => $dindustri) {
             $id_dindustri_industri = $dindustri->id;
-            $kategori = 'Hak Cipta';
-            $data['dindustri_industri'][$key]->anggota_dindustri_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_industri, $kategori);
+            $kategori = 'Desain Industri';
+            $data['dindustri_industri'][$key]->anggota_dindustri_industri = $this->Ewmp_model->get_inventor_haki_by_id($id_dindustri_industri, $kategori);
         }
 
         $data['paten_industri'] = $this->Ewmp_model->get_paten_industri($tahun);
@@ -322,7 +322,7 @@ class Cetak extends CI_Controller
         foreach ($data['paten_industri'] as $key => $paten) {
             $id_paten_industri = $paten->id;
             $kategori = 'Paten';
-            $data['paten_industri'][$key]->anggota_paten_industri = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_industri, $kategori);
+            $data['paten_industri'][$key]->anggota_paten_industri = $this->Ewmp_model->get_inventor_haki_by_id($id_paten_industri, $kategori);
         }
 
         $data['penelitian_eksternal_industri'] = $this->Ewmp_model->get_penelitian_eksternal_industri($tahun);
@@ -406,7 +406,7 @@ class Cetak extends CI_Controller
         foreach ($data['hcipta_biomedis'] as $key => $hcipta) {
             $id_hcipta_biomedis = $hcipta->id;
             $kategori = 'Hak Cipta';
-            $data['hcipta_biomedis'][$key]->anggota_hcipta_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_hcipta_biomedis, $kategori);
+            $data['hcipta_biomedis'][$key]->anggota_hcipta_biomedis = $this->Ewmp_model->get_inventor_haki_by_id($id_hcipta_biomedis, $kategori);
         }
 
         $data['dindustri_biomedis'] = $this->Ewmp_model->get_dindustri_biomedis($tahun);
@@ -414,8 +414,8 @@ class Cetak extends CI_Controller
         // Iterasi untuk mendapatkan anggota setiap dindustri
         foreach ($data['dindustri_biomedis'] as $key => $dindustri) {
             $id_dindustri_biomedis = $dindustri->id;
-            $kategori = 'Hak Cipta';
-            $data['dindustri_biomedis'][$key]->anggota_dindustri_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_dindustri_biomedis, $kategori);
+            $kategori = 'Desain Industri';
+            $data['dindustri_biomedis'][$key]->anggota_dindustri_biomedis = $this->Ewmp_model->get_inventor_haki_by_id($id_dindustri_biomedis, $kategori);
         }
 
         $data['paten_biomedis'] = $this->Ewmp_model->get_paten_biomedis($tahun);
@@ -424,7 +424,7 @@ class Cetak extends CI_Controller
         foreach ($data['paten_biomedis'] as $key => $paten) {
             $id_paten_biomedis = $paten->id;
             $kategori = 'Paten';
-            $data['paten_biomedis'][$key]->anggota_paten_biomedis = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_paten_biomedis, $kategori);
+            $data['paten_biomedis'][$key]->anggota_paten_biomedis = $this->Ewmp_model->get_inventor_haki_by_id($id_paten_biomedis, $kategori);
         }
 
         $data['penelitian_eksternal_biomedis'] = $this->Ewmp_model->get_penelitian_eksternal_biomedis($tahun);

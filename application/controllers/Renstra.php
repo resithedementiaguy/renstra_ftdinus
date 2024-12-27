@@ -45,6 +45,9 @@ class Renstra extends CI_Controller
         $total_dana_pengabdian_per_tahun = [];
         $total_haki_per_tahun = [];
 
+        $rata_rata_jurnal_pengabdian_per_tahun = [];
+        $rata_rata_prosiding_pengabdian_per_tahun = [];
+
         foreach ($data['years'] as $tahun) {
             $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
             $mahasiswaData = $this->Artikel_model->getJumlahMahasiswaByYear($tahun);
@@ -58,6 +61,9 @@ class Renstra extends CI_Controller
             $rata_rata_seminar_per_tahun[$tahun] = $this->hitungRataSeminar($tahun, $jumlah_dosen);
             $rata_rata_pengabdian_per_tahun[$tahun] = $this->hitungRataPengabdian($tahun, $jumlah_dosen);
             $rata_rata_pengabdian_mahasiswa_per_tahun[$tahun] = $this->hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa);
+
+            $rata_rata_jurnal_pengabdian_per_tahun[$tahun] = $this->hitungRataJurnalPengabdian($tahun, $jumlah_dosen);
+            $rata_rata_prosiding_pengabdian_per_tahun[$tahun] = $this->hitungRataProsidingPengabdian($tahun, $jumlah_dosen);
 
             // Total Dana Penelitian dan Pengabdian per tahun
             $total_dana_penelitian_per_tahun[$tahun] = $this->hitungTotalDanaPenelitian($tahun);
@@ -77,6 +83,8 @@ class Renstra extends CI_Controller
         $data['rata_rata_pengabdian_per_tahun'] = $rata_rata_pengabdian_per_tahun;
         $data['rata_rata_pengabdian_mahasiswa_per_tahun'] = $rata_rata_pengabdian_mahasiswa_per_tahun;
         $data['total_haki_per_tahun'] = $total_haki_per_tahun;
+        $data['rata_rata_jurnal_pengabdian_per_tahun'] = $rata_rata_jurnal_pengabdian_per_tahun;
+        $data['rata_rata_prosiding_pengabdian_per_tahun'] = $rata_rata_prosiding_pengabdian_per_tahun;
 
         // Load view
         $this->load->view('backend/partials/header');
@@ -344,6 +352,87 @@ class Renstra extends CI_Controller
             'buku' => $total_haki_buku,
             'lisensi' => $total_haki_lisensi,
             'desain_industri' => $total_haki_desainindustri,
+        ];
+    }
+
+    private function hitungRataJurnalPengabdian($tahun)
+    {
+        $jurnalPengabdianData = $this->Artikel_model->getTotalArtikelPengabdianByYear($tahun);
+
+        $total_jurnal_internasional = 0;
+        $total_jurnal_nasional = 0;
+        $total_penelitian_internasional = 0;
+        $total_penelitian_nasional = 0;
+        $total_pengabdian_internasional = 0;
+        $total_pengabdian_nasional = 0;
+
+        // Process the fetched data
+        if ($jurnalPengabdianData) {
+            foreach ($jurnalPengabdianData as $row) {
+                $kategori = trim($row['kategori']);
+                $kategori_jurnal = trim($row['kategori_jurnal']);
+
+                // Handle "Penelitian" kategori_jurnal
+                if ($kategori_jurnal === 'Penelitian') {
+                    if (strpos($kategori, 'Q1') !== false || strpos($kategori, 'Q2') !== false || strpos($kategori, 'Q3') !== false || strpos($kategori, 'Q4') !== false) {
+                        // Internasional
+                        $total_penelitian_internasional = $row['total'];
+                    } elseif (strpos($kategori, 'Sinta') !== false) {
+                        // Nasional Sinta 1-6
+                        preg_match('/Sinta (\d+)/', $kategori, $matches);
+                        if (isset($matches[1]) && (int)$matches[1] >= 1 && (int)$matches[1] <= 6) {
+                            $total_penelitian_nasional = $row['total'];
+                        }
+                    }
+                }
+                // Handle "Pengabdian" kategori_jurnal
+                elseif ($kategori_jurnal === 'Pengabdian') {
+                    if (strpos($kategori, 'Q1') !== false || strpos($kategori, 'Q2') !== false || strpos($kategori, 'Q3') !== false || strpos($kategori, 'Q4') !== false) {
+                        // Internasional
+                        $total_pengabdian_internasional = $row['total'];
+                    } elseif (strpos($kategori, 'Sinta') !== false) {
+                        // Nasional Sinta 1-6
+                        preg_match('/Sinta (\d+)/', $kategori, $matches);
+                        if (isset($matches[1]) && (int)$matches[1] >= 1 && (int)$matches[1] <= 6) {
+                            $total_pengabdian_nasional = $row['total'];
+                        }
+                    }
+                }
+            }
+        }
+
+        // Summing up the totals for each category
+        $total_jurnal_internasional = $total_penelitian_internasional + $total_pengabdian_internasional;
+        $total_jurnal_nasional = $total_penelitian_nasional + $total_pengabdian_nasional;
+
+        return [
+            'internasional' =>  $total_jurnal_internasional ?: 0,
+            'nasional' =>  $total_jurnal_nasional ?: 0,
+        ];
+    }
+
+    private function hitungRataProsidingPengabdian($tahun)
+    {
+        $prosidingPengabdianData = $this->Artikel_model->getTotalProsidingPegabdiannByYear($tahun);
+        $total_prosiding_internasional = 0;
+        $total_prosiding_nasional = 0;
+
+        if ($prosidingPengabdianData) {
+            foreach ($prosidingPengabdianData as $row) {
+                if ($row['kategori_jurnal'] === 'Internasional') {
+                    $total_prosiding_internasional = $row['total'];
+                } elseif ($row['kategori_jurnal'] === 'Nasional') {
+                    $total_prosiding_nasional = $row['total'];
+                }
+            }
+        }
+
+        log_message('info', 'Result hitungRataJurnalPengabdian - Internasional: ' . $total_prosiding_internasional);
+        log_message('info', 'Result hitungRataJurnalPengabdian - Nasional: ' . $total_prosiding_nasional);
+
+        return [
+            'internasional' => $total_prosiding_internasional ?: 0,
+            'nasional' => $total_prosiding_nasional ?: 0,
         ];
     }
 

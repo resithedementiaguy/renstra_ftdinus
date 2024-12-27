@@ -186,4 +186,26 @@ class Artikel_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // Mengambil total Jurnal Pengabdian berdasarkan kategori dan tahun
+    public function getTotalArtikelPengabdianByYear($tahun)
+    {
+        $this->db->select('artikel_ilmiah.kategori, artikel_ilmiah.kategori_jurnal, COUNT(*) as total');
+        $this->db->from('artikel_ilmiah');
+        $this->db->where('artikel_ilmiah.tahun', $tahun);
+        $this->db->group_by('artikel_ilmiah.kategori, artikel_ilmiah.kategori_jurnal');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // Mengambil total Jurnal Prosiding Pengabdian berdasarkan kategori dan tahun
+    public function getTotalProsidingPegabdiannByYear($tahun)
+    {
+        $this->db->select('prosiding.kategori, prosiding.kategori_jurnal, COUNT(*) as total');
+        $this->db->from('prosiding');
+        $this->db->where('prosiding.tahun', $tahun);
+        $this->db->group_by('prosiding.kategori, prosiding.kategori_jurnal');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

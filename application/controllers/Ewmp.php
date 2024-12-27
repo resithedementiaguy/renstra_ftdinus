@@ -22,16 +22,28 @@ class Ewmp extends CI_Controller
 
     public function index()
     {
-        $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp();
+        $user_level = $this->session->userdata('level');
+        $user_id = $this->session->userdata('user_id');
+        
+        if ($user_level == 'Koordinator' || $user_level == 'Admin') {
+            // Get all pelaporan for admin and koordinator
+            $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp();
+        } else {
+            // Get only user's pelaporan for dosen
+            $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp_by_id($user_id);
+        }
+        
+        // Process HAKI categories
         foreach ($pelaporan as &$p) {
             if ($p->jenis_lapor === 'HAKI') {
                 $p->kategori_haki = $this->Ewmp_model->get_haki_kategori_by_id($p->id);
             } else {
-                $p->kategori_haki = []; // Kosong jika bukan HAKI
+                $p->kategori_haki = [];
             }
         }
+        
         $data['pelaporan'] = $pelaporan;
-
+        
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/view', $data);
         $this->load->view('backend/partials/footer');
@@ -152,6 +164,7 @@ class Ewmp extends CI_Controller
             redirect('ewmp/create_view'); // Ganti dengan URL form Anda
         } else {
             $data = array(
+                'id_user' => $this->session->userdata('user_id'),
                 'email' => $this->input->post('email'),
                 'jenis_lapor' => $jenis_lapor,
                 'ins_time' => $ins_time
@@ -398,6 +411,7 @@ class Ewmp extends CI_Controller
                     'id_pelaporan' => $id_pelaporan,
                     'tahun' => $this->input->post('tahun'),
                     'kategori' => $kategori,
+                    'kategori_jurnal' => $this->input->post('kategori_jurnal_ilmiah'),
                     'nama_pertama' => $this->input->post('nama_pertama_ilmiah'),
                     'prodi' => $this->input->post('prodi_ilmiah'),
                     'nama_korespon' => $this->input->post('nama_korespon_ilmiah'),
@@ -507,6 +521,7 @@ class Ewmp extends CI_Controller
                     'id_pelaporan' => $id_pelaporan,
                     'tahun' => $this->input->post('tahun'),
                     'kategori' => $this->input->post('kategori_prosiding'),
+                    'kategori_jurnal' => $this->input->post('kategori_jurnal_prosiding'),
                     'nama_pertama' => $this->input->post('nama_pertama_prosiding'),
                     'prodi' => $this->input->post('prodi_prosiding'),
                     'nama_korespon' => $this->input->post('nama_korespon_prosiding'),
@@ -728,6 +743,7 @@ class Ewmp extends CI_Controller
                         'id_haki' => $id_haki,
                         'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_merk'),
+                        'prodi' => $this->input->post('prodi_merk'),
                         'judul' => $this->input->post('judul_merk'),
                         'sertifikat' => $this->input->post('sertifikat_merk'),
                         'ins_time' => $ins_time
@@ -842,6 +858,7 @@ class Ewmp extends CI_Controller
                         'id_haki' => $id_haki,
                         'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_lisensi'),
+                        'prodi' => $this->input->post('prodi_lisensi'),
                         'judul' => $this->input->post('judul_lisensi'),
                         'sertifikat' => $this->input->post('sertifikat_lisensi'),
                         'ins_time' => $ins_time
@@ -955,6 +972,7 @@ class Ewmp extends CI_Controller
                         'id_haki' => $id_haki,
                         'tahun' => $this->input->post('tahun'),
                         'nama_usul' => $this->input->post('nama_pengusul_buku'),
+                        'prodi' => $this->input->post('prodi_buku'),
                         'isbn' => $this->input->post('isbn_buku'),
                         'judul_buku' => $this->input->post('judul_buku'),
                         'file_buku' => $this->input->post('file_buku'),
@@ -1504,6 +1522,7 @@ class Ewmp extends CI_Controller
             $kategori = 'Artikel/Karya Ilmiah';
 
             $data['anggota_ilmiah'] = $this->Ewmp_model->get_anggota_pelaporan_by_id($id_ilmiah, $kategori);
+            $data['mahasiswa_ilmiah'] = $this->Ewmp_model->get_mhs_pelaporan_by_id($id_ilmiah, $kategori);
 
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
@@ -1537,13 +1556,29 @@ class Ewmp extends CI_Controller
             $data['haki_paten'] = $this->Ewmp_model->get_haki_paten_by_id($id_haki) ?? [];
             $data['haki_dindustri'] = $this->Ewmp_model->get_haki_dindustri_by_id($id_haki) ?? [];
 
-            // Pemegang HAKI
-            $data['pemegang_hcipta'] = $this->get_pemegang_haki($data['haki_hcipta'], 'Hak Cipta');
-            $data['pemegang_merk'] = $this->get_pemegang_haki($data['haki_merk'], 'Merk');
-            $data['pemegang_lisensi'] = $this->get_pemegang_haki($data['haki_lisensi'], 'Lisensi');
-            $data['pemegang_buku'] = $this->get_pemegang_haki($data['haki_buku'], 'Buku');
-            $data['pemegang_paten'] = $this->get_pemegang_haki($data['haki_paten'], 'Paten');
-            $data['pemegang_dindustri'] = $this->get_pemegang_haki($data['haki_dindustri'], 'Desain Industri');
+            // inventor HAKI
+            $data['inventor_hcipta'] = $this->get_inventor_haki($data['haki_hcipta'], 'Hak Cipta');
+            $data['inventor_merk'] = $this->get_inventor_haki($data['haki_merk'], 'Merk');
+            $data['inventor_lisensi'] = $this->get_inventor_haki($data['haki_lisensi'], 'Lisensi');
+            $data['inventor_buku'] = $this->get_inventor_haki($data['haki_buku'], 'Buku');
+            $data['inventor_paten'] = $this->get_inventor_haki($data['haki_paten'], 'Paten');
+            $data['inventor_dindustri'] = $this->get_inventor_haki($data['haki_dindustri'], 'Desain Industri');
+
+            // anggota HAKI
+            $data['anggota_hcipta'] = $this->get_anggota_haki($data['haki_hcipta'], 'Hak Cipta');
+            $data['anggota_merk'] = $this->get_anggota_haki($data['haki_merk'], 'Merk');
+            $data['anggota_lisensi'] = $this->get_anggota_haki($data['haki_lisensi'], 'Lisensi');
+            $data['anggota_buku'] = $this->get_anggota_haki($data['haki_buku'], 'Buku');
+            $data['anggota_paten'] = $this->get_anggota_haki($data['haki_paten'], 'Paten');
+            $data['anggota_dindustri'] = $this->get_anggota_haki($data['haki_dindustri'], 'Desain Industri');
+
+            // mahasiswa HAKI
+            $data['mahasiswa_hcipta'] = $this->get_mahasiswa_haki($data['haki_hcipta'], 'Hak Cipta');
+            $data['mahasiswa_merk'] = $this->get_mahasiswa_haki($data['haki_merk'], 'Merk');
+            $data['mahasiswa_lisensi'] = $this->get_mahasiswa_haki($data['haki_lisensi'], 'Lisensi');
+            $data['mahasiswa_buku'] = $this->get_mahasiswa_haki($data['haki_buku'], 'Buku');
+            $data['mahasiswa_paten'] = $this->get_mahasiswa_haki($data['haki_paten'], 'Paten');
+            $data['mahasiswa_dindustri'] = $this->get_mahasiswa_haki($data['haki_dindustri'], 'Desain Industri');
 
             // Tampilkan view detail
             $this->load->view('backend/partials/header');
@@ -1576,7 +1611,7 @@ class Ewmp extends CI_Controller
         }
     }
 
-    private function get_pemegang_haki($haki_data, $kategori)
+    private function get_anggota_haki($haki_data, $kategori)
     {
         if (empty($haki_data)) {
             return [];
@@ -1588,5 +1623,33 @@ class Ewmp extends CI_Controller
         }
 
         return $this->Ewmp_model->get_anggota_pelaporan_by_id($id_haki, $kategori) ?? [];
+    }
+
+    private function get_inventor_haki($haki_data, $kategori)
+    {
+        if (empty($haki_data)) {
+            return [];
+        }
+
+        $id_haki = $haki_data['id'] ?? null;
+        if (!$id_haki) {
+            return [];
+        }
+
+        return $this->Ewmp_model->get_inventor_haki_by_id($id_haki, $kategori) ?? [];
+    }
+
+    private function get_mahasiswa_haki($haki_data, $kategori)
+    {
+        if (empty($haki_data)) {
+            return [];
+        }
+
+        $id_haki = $haki_data['id'] ?? null;
+        if (!$id_haki) {
+            return [];
+        }
+
+        return $this->Ewmp_model->get_mhs_pelaporan_by_id($id_haki, $kategori) ?? [];
     }
 }

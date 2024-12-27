@@ -266,10 +266,10 @@
                             <!-- Komponen Kategori Artikel Ilmiah -->
                             <div class="artikel_ilmiah d-none" id="artikel_ilmiah">
                                 <div class="row mb-3">
-                                    <label for="kategori_ilmiah" class="col-sm-2 col-form-label">Kategori Artikel Ilmiah</label>
+                                    <label for="kategori_ilmiah" class="col-sm-2 col-form-label">Kategori Publikasi</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" name="kategori_ilmiah" id="kategori_ilmiah">
-                                            <option value="" selected hidden>Pilih Kategori Artikel Ilmiah</option>
+                                            <option value="" selected hidden>Pilih Kategori Publikasi</option>
                                             <option value="Nasional Sinta 1">Nasional Sinta 1</option>
                                             <option value="Nasional Sinta 2">Nasional Sinta 2</option>
                                             <option value="Nasional Sinta 3">Nasional Sinta 3</option>
@@ -288,6 +288,19 @@
                             </div>
                             <!-- Komponen Artikel Ilmiah -->
                             <div class="ilmiah d-none" id="ilmiah">
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Kategori Jurnal</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_jurnal_ilmiah" id="kategori_jurnal_ilmiah1" value="Penelitian" checked>
+                                            <label class="form-check-label" for="kategori_jurnal_ilmiah1">Penelitian</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_jurnal_ilmiah" id="kategori_jurnal_ilmiah2" value="Pengabdian">
+                                            <label class="form-check-label" for="kategori_jurnal_ilmiah2">Pengabdian</label>
+                                        </div>                                        
+                                    </div>
+                                </fieldset>
                                 <div class="row mb-3">
                                     <label for="nama_pertama_ilmiah" class="col-sm-2 col-form-label">Nama Penulis Pertama</label>
                                     <div class="col-sm-10">
@@ -389,6 +402,19 @@
                                             <input class="form-check-input" type="radio" name="kategori_prosiding" id="kategori_prosiding2" value="Internasional">
                                             <label class="form-check-label" for="kategori_prosiding2">Internasional</label>
                                         </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Kategori Jurnal</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_jurnal_prosiding" id="kategori_jurnal_prosiding1" value="Penelitian" checked>
+                                            <label class="form-check-label" for="kategori_jurnal_prosiding1">Penelitian</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="kategori_jurnal_prosiding" id="kategori_jurnal_prosiding2" value="Pengabdian">
+                                            <label class="form-check-label" for="kategori_jurnal_prosiding2">Pengabdian</label>
+                                        </div>                                        
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
@@ -2224,6 +2250,7 @@
                     break;
                 case 'Prosiding':
                     addRequiredFields([
+                        'kategori_jurnal_prosiding',
                         'nama_pertama_prosiding',
                         'nama_korespon_prosiding',
                         'judul_artikel_prosiding',
@@ -2277,6 +2304,7 @@
             
             // Base fields required for all article types
             const baseFields = [
+                'kategori_jurnal_ilmiah',
                 'nama_pertama_ilmiah',
                 'nama_korespon_ilmiah',
                 'judul_artikel_ilmiah',

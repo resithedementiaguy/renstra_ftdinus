@@ -39,35 +39,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pelaporan as $p): ?>
+                                    <?php if (empty($pelaporan)): ?>
                                         <tr>
-                                            <td class="align-middle">
-                                                <?= $p->jenis_lapor ?>
-                                                <?php if (!empty($p->kategori_haki)): ?>
-                                                    <?php foreach ($p->kategori_haki as $haki): ?>
-                                                        - <?= htmlspecialchars($haki['kategori']) ?>
-                                                    <?php endforeach; ?>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="align-middle"><?= htmlspecialchars($p->email) ?></td>
-                                            <td class="align-middle"><?= formatDateTime($p->ins_time) ?></td>
-                                            <td class="align-middle">
-                                                <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-journal-text"></i> Detail
-                                                </a>
-                                                <!-- <button type="button" class="btn btn-sm btn-warning edit-suntik-btn"
-                                                    data-bs-toggle="modal" data-bs-target="#SuntikModal"
-                                                    data-id="<?= htmlspecialchars($p->id) ?>">
-                                                    <i class="bi bi-pencil"></i> Edit
-                                                </button>
-                                                <a class="btn btn-sm btn-danger delete-suntik-btn"
-                                                    href="<?= site_url('ewmp/delete_pelaporan/' . $p->id) ?>"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
-                                                    <i class="bi bi-trash"></i> Hapus
-                                                </a> -->
-                                            </td>
+                                            <td colspan="4" class="text-center">Belum ada data pelaporan</td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <?php foreach ($pelaporan as $p): ?>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <?= $p->jenis_lapor ?>
+                                                    <?php if (!empty($p->kategori_haki)): ?>
+                                                        <?php foreach ($p->kategori_haki as $haki): ?>
+                                                            - <?= htmlspecialchars($haki['kategori']) ?>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="align-middle"><?= htmlspecialchars($p->email) ?></td>
+                                                <td class="align-middle"><?= formatDateTime($p->ins_time) ?></td>
+                                                <td class="align-middle">
+                                                    <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
+                                                        <i class="bi bi-journal-text"></i> Detail
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

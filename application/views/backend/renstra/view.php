@@ -182,7 +182,14 @@
                                                                     placeholder="Isi capaian">
                                                                 <?php
                                                                 if ($capaian_otomatis !== null && $capaian_otomatis > 0) {
-                                                                    echo "<p>" . number_format(floatval($capaian_otomatis), 2) . "</p>";
+                                                                    echo "<p>";
+                                                                    if ($level3_item->no_iku === '2.1.6.') {
+                                                                        $value = floatval($capaian_otomatis);
+                                                                        echo number_format($value, 2, ',', '');
+                                                                    } else {
+                                                                        echo number_format(floatval($capaian_otomatis), 2, ',', '.');
+                                                                    }
+                                                                    echo "</p>";
                                                                 }
                                                                 ?>
                                                             </td>
@@ -236,6 +243,10 @@
                                                                     '3.1.2.a.',
                                                                     '3.1.2.b.',
                                                                     '3.1.2.c.',
+                                                                    '3.1.3.a.',
+                                                                    '3.1.3.b.',
+                                                                    '3.1.4.a.',
+                                                                    '3.1.4.b.',
                                                                     '3.2.1.a.',
                                                                     '3.2.1.b.',
                                                                     '3.2.1.c.'
@@ -247,12 +258,20 @@
                                                                         $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year]['internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.3.c.') {
                                                                         $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year]['nasional'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.3.a.') {
+                                                                        $capaian_otomatis = $rata_rata_jurnal_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.3.b.') {
+                                                                        $capaian_otomatis = $rata_rata_jurnal_pengabdian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.5.a.') {
                                                                         $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['luar_negeri'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.5.b.') {
                                                                         $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['dalam_negeri'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.5.c.') {
                                                                         $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.4.a.') {
+                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                                                    } elseif ($level4_item->no_iku === '3.1.4.b.') {
+                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.7.a.') {
                                                                         $capaian_otomatis = $rata_rata_seminar_per_tahun[$year]['internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.7.b.') {
@@ -306,6 +325,10 @@
                                                                     '3.1.2.a.',
                                                                     '3.1.2.b.',
                                                                     '3.1.2.c.',
+                                                                    '3.1.3.a.',
+                                                                    '3.1.3.b.',
+                                                                    '3.1.4.a.',
+                                                                    '3.1.4.b.',
                                                                     '3.2.1.a.',
                                                                     '3.2.1.b.',
                                                                     '3.2.1.c.'

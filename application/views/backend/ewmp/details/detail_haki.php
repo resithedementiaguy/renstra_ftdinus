@@ -49,10 +49,22 @@
                                         <td><?= htmlspecialchars($haki_hcipta['nama_usul']) ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Nama Pemegang Hak Cipta</th>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_hcipta['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Inventor Hak Cipta</th>
                                         <td>
-                                            <?php foreach ($pemegang_hcipta as $ph): ?>
-                                                <?= $ph->nama ?>;
+                                            <?php foreach ($inventor_hcipta as $ih): ?>
+                                                <?= $ih->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Hak Cipta</th>
+                                        <td>
+                                            <?php foreach ($anggota_hcipta as $ah): ?>
+                                                <?= $ah->nama ?>;
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
@@ -61,10 +73,18 @@
                                         <td><?= htmlspecialchars($haki_hcipta['judul']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_hcipta as $mh): ?>
+                                                <?= $mh->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>Sertifikat Hak Cipta</th>
                                         <td>
-                                            <a href="<?= $haki_hcipta['sertifikat'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_hcipta['sertifikat'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>
@@ -76,10 +96,22 @@
                                         <td><?= htmlspecialchars($haki_merk['nama_usul']) ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Nama Pemegang Merk</th>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_merk['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Inventor Merk</th>
                                         <td>
-                                            <?php foreach ($pemegang_merk as $pm): ?>
-                                                <?= $pm->nama ?>;
+                                            <?php foreach ($inventor_merk as $im): ?>
+                                                <?= $im->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Merk</th>
+                                        <td>
+                                            <?php foreach ($anggota_merk as $am): ?>
+                                                <?= $am->nama ?>;
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
@@ -88,10 +120,18 @@
                                         <td><?= htmlspecialchars($haki_merk['judul']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_merk as $mm): ?>
+                                                <?= $mm->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>Sertifikat Merk</th>
                                         <td>
-                                            <a href="<?= $haki_merk['sertifikat'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_merk['sertifikat'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>
@@ -103,10 +143,22 @@
                                         <td><?= htmlspecialchars($haki_lisensi['nama_usul']) ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Nama Pemegang Lisensi</th>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_lisensi['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Inventor Lisensi</th>
                                         <td>
-                                            <?php foreach ($pemegang_lisensi as $pl): ?>
-                                                <?= $pl->nama ?>;
+                                            <?php foreach ($inventor_lisensi as $il): ?>
+                                                <?= $il->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Lisensi</th>
+                                        <td>
+                                            <?php foreach ($anggota_lisensi as $al): ?>
+                                                <?= $al->nama ?>;
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
@@ -115,10 +167,18 @@
                                         <td><?= htmlspecialchars($haki_lisensi['judul']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_lisensi as $ml): ?>
+                                                <?= $ml->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>Sertifikat Lisensi</th>
                                         <td>
-                                            <a href="<?= $haki_lisensi['sertifikat'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_lisensi['sertifikat'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>
@@ -130,6 +190,26 @@
                                         <td><?= htmlspecialchars($haki_buku['nama_usul']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_buku['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Penulis Buku</th>
+                                        <td>
+                                            <?php foreach ($inventor_buku as $ib): ?>
+                                                <?= $ib->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Buku</th>
+                                        <td>
+                                            <?php foreach ($anggota_buku as $ab): ?>
+                                                <?= $ab->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>ISBN Buku</th>
                                         <td><?= htmlspecialchars($haki_buku['isbn']) ?></td>
                                     </tr>
@@ -138,10 +218,18 @@
                                         <td><?= htmlspecialchars($haki_buku['judul_buku']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_buku as $mb): ?>
+                                                <?= $mb->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>File Buku</th>
                                         <td>
-                                            <a href="<?= $haki_buku['file_buku'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_buku['file_buku'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>
@@ -149,10 +237,26 @@
                                 } elseif ($haki['kategori'] == "Paten") {
                                 ?>
                                     <tr>
-                                        <th>Nama Inventor</th>
+                                        <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_paten['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_paten['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Inventor Paten</th>
                                         <td>
-                                            <?php foreach ($pemegang_paten as $pp): ?>
-                                                <?= $pp->nama ?>;
+                                            <?php foreach ($inventor_paten as $ip): ?>
+                                                <?= $ip->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Paten</th>
+                                        <td>
+                                            <?php foreach ($anggota_paten as $ap): ?>
+                                                <?= $ap->nama ?>;
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
@@ -161,10 +265,18 @@
                                         <td><?= htmlspecialchars($haki_paten['judul']) ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_paten as $mp): ?>
+                                                <?= $mp->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>Sertifikat Paten</th>
                                         <td>
-                                            <a href="<?= $haki_paten['sertifikat'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_paten['sertifikat'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>
@@ -173,17 +285,45 @@
                                 ?>
                                     <tr>
                                         <th>Nama Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_dindustri['nama_usul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Program Studi Pengusul</th>
+                                        <td><?= htmlspecialchars($haki_dindustri['prodi']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Inventor Desain Industri</th>
                                         <td>
-                                            <?php foreach ($pemegang_dindustri as $pd): ?>
-                                                <?= $pd->nama ?>;
+                                            <?php foreach ($inventor_dindustri as $id): ?>
+                                                <?= $id->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Anggota Desain Industri</th>
+                                        <td>
+                                            <?php foreach ($anggota_dindustri as $ad): ?>
+                                                <?= $ad->nama ?>;
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Desain Industri</th>
+                                        <td><?= htmlspecialchars($haki_dindustri['judul']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Mahasiswa yang Terlibat</th>
+                                        <td>
+                                            <?php foreach ($mahasiswa_dindustri as $md): ?>
+                                                <?= $md->nama ?>;
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Sertifikat Desain Industri</th>
                                         <td>
-                                            <a href="<?= $haki_dindustri['sertifikat'] ?>" target="_blank" class="btn btn-danger">
-                                                <i class="bi bi-file-pdf"></i> File PDF
+                                            <a href="<?= $haki_dindustri['sertifikat'] ?>" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-link"></i> Link GDrive
                                             </a>
                                         </td>
                                     </tr>

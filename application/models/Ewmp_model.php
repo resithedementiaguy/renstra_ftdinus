@@ -18,6 +18,16 @@ class Ewmp_model extends CI_Model
         return $query->result();
     }
 
+    public function get_pelaporan_ewmp_by_id($user_id)
+    {
+        $this->db->select('*');
+        $this->db->from('pelaporan_ewmp');
+        $this->db->where('id_user', $user_id);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_pelaporan_by_id($id)
     {
         return $this->db->get_where('pelaporan_ewmp', ['id' => $id])->row_array();

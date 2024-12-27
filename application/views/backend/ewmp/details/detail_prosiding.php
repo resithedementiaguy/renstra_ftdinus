@@ -46,6 +46,10 @@
                                     <td><?= htmlspecialchars($prosiding['nama_pertama']) ?></td>
                                 </tr>
                                 <tr>
+                                    <th>Program Studi Penulis Pertama</th>
+                                    <td><?= htmlspecialchars($prosiding['prodi']) ?></td>
+                                </tr>
+                                <tr>
                                     <th>Nama Penulis Korespondensi</th>
                                     <td><?= htmlspecialchars($prosiding['nama_korespon']) ?></td>
                                 </tr>
@@ -68,8 +72,8 @@
                                 <tr>
                                     <th>Bukti LOA</th>
                                     <td>
-                                        <a href="<?= $prosiding['bukti_loa'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $prosiding['bukti_loa'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>
