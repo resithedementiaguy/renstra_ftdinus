@@ -187,7 +187,13 @@
                                                                         $value = floatval($capaian_otomatis);
                                                                         echo number_format($value, 2, ',', '');
                                                                     } else {
-                                                                        echo number_format(floatval($capaian_otomatis), 2, ',', '.');
+                                                                        $value = floatval($capaian_otomatis);
+                                                                        // Check if the number is a whole number
+                                                                        if (floor($value) == $value) {
+                                                                            echo number_format($value, 0, ',', '.');
+                                                                        } else {
+                                                                            echo number_format($value, 2, ',', '.');
+                                                                        }
                                                                     }
                                                                     echo "</p>";
                                                                 }
@@ -269,9 +275,9 @@
                                                                     } elseif ($level4_item->no_iku === '2.1.5.c.') {
                                                                         $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['internal'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '3.1.4.a.') {
-                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['prosiding_pengabdian_internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '3.1.4.b.') {
-                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['nasional'] ?? 0;
+                                                                        $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['prosiding_pengabdian_nasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.7.a.') {
                                                                         $capaian_otomatis = $rata_rata_seminar_per_tahun[$year]['internasional'] ?? 0;
                                                                     } elseif ($level4_item->no_iku === '2.1.7.b.') {
@@ -338,7 +344,8 @@
                                                                         if (isset($capaian_level4[$year]) && !empty($capaian_level4[$year])) {
                                                                             $value = str_replace(',', '.', $capaian_level4[$year]);
                                                                             $value = floatval($value);
-                                                                            if ($level4_item->no_iku === '3.2.1.a.') {
+                                                                            // Check if the no_iku matches any of the specified values
+                                                                            if ($level4_item->no_iku === '3.2.1.a.' || $level4_item->no_iku === '3.1.3.a.' || $level4_item->no_iku === '3.1.3.b.' || $level4_item->no_iku === '3.1.4.a.' || $level4_item->no_iku === '3.1.4.b.') {
                                                                                 echo number_format($value, 0, ',', '.');
                                                                             } else {
                                                                                 echo number_format($value, 2, ',', '.');
@@ -346,7 +353,8 @@
                                                                         } elseif (!empty($capaian_otomatis)) {
                                                                             $value = str_replace(',', '.', $capaian_otomatis);
                                                                             $value = floatval($value);
-                                                                            if ($level4_item->no_iku === '3.2.1.a.') {
+                                                                            // Check if the no_iku matches any of the specified values
+                                                                            if ($level4_item->no_iku === '3.2.1.a.' || $level4_item->no_iku === '3.1.3.a.' || $level4_item->no_iku === '3.1.3.b.' || $level4_item->no_iku === '3.1.4.a.' || $level4_item->no_iku === '3.1.4.b.') {
                                                                                 echo number_format($value, 0, ',', '.');
                                                                             } else {
                                                                                 echo number_format($value, 2, ',', '.');

@@ -214,10 +214,50 @@
                             <td style="border: 1px solid;"><?php echo $level3_item->isi_iku; ?></td>
                             <?php foreach ($years as $year):
                                 $target_value = isset($target_level3[$year]) ? $target_level3[$year] : '-';
-                                $capaian_value = isset($capaian_level3[$year]) ? $capaian_level3[$year] : '-';
+                                $capaian_value = isset($capaian_level3[$year]) && $capaian_level3[$year] !== '-' ? $capaian_level3[$year] : null;
+
+                                // Initialize capaian_otomatis variable
+                                $capaian_otomatis = null;
+
+                                // Determine the value of capaian_otomatis based on no_iku
+                                if ($level3_item->no_iku === '2.1.6.') {
+                                    $capaian_otomatis = $rata_rata_penelitian_mahasiswa_per_tahun[$year] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.1.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['paten'] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.2.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['hak_cipta'] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.3.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['merk'] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.4.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['buku'] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.5.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['lisensi'] ?? 0;
+                                } elseif ($level3_item->no_iku === '4.2.6.') {
+                                    $capaian_otomatis = $total_haki_per_tahun[$year]['desain_industri'] ?? 0;
+                                }
                             ?>
                                 <td style="border: 1px solid; text-align: center;"><?php echo $target_value; ?></td>
-                                <td style="border: 1px solid; text-align: center;"><?php echo $capaian_value; ?></td>
+                                <td style="border: 1px solid; text-align: center;">
+                                    <?php
+                                    if ($capaian_value !== null) {
+                                        echo $capaian_value;
+                                    } elseif ($capaian_otomatis !== null && $capaian_otomatis > 0) {
+                                        if ($level3_item->no_iku === '2.1.6.') {
+                                            $value = floatval($capaian_otomatis);
+                                            echo number_format($value, 2, ',', '');
+                                        } else {
+                                            $value = floatval($capaian_otomatis);
+                                            if (floor($value) == $value) {
+                                                echo number_format($value, 0, ',', '.');
+                                            } else {
+                                                echo number_format($value, 2, ',', '.');
+                                            }
+                                        }
+                                    } else {
+                                        echo '-';
+                                    }
+                                    ?>
+                                </td>
                             <?php endforeach; ?>
                         </tr>
                         <?php
@@ -234,9 +274,106 @@
                                 <?php foreach ($years as $year):
                                     $target_value = isset($target_level4[$year]) ? $target_level4[$year] : '-';
                                     $capaian_value = isset($capaian_level4[$year]) ? $capaian_level4[$year] : '-';
+
+                                    // Add the logic for automatic capaian calculation based on no_iku
+                                    $capaian_otomatis = '';
+                                    if (in_array($level4_item->no_iku, [
+                                        '2.1.3.a.',
+                                        '2.1.3.b.',
+                                        '2.1.3.c.',
+                                        '2.1.5.a.',
+                                        '2.1.5.b.',
+                                        '2.1.5.c.',
+                                        '2.1.7.a.',
+                                        '2.1.7.b.',
+                                        '2.2.1.a.',
+                                        '2.2.1.b.',
+                                        '2.2.1.c.',
+                                        '3.1.2.a.',
+                                        '3.1.2.b.',
+                                        '3.1.2.c.',
+                                        '3.1.3.a.',
+                                        '3.1.3.b.',
+                                        '3.1.4.a.',
+                                        '3.1.4.b.',
+                                        '3.2.1.a.',
+                                        '3.2.1.b.',
+                                        '3.2.1.c.'
+                                    ])) {
+                                        // Calculate the capaian automatically based on the no_iku value
+                                        if ($level4_item->no_iku === '2.1.3.a.') {
+                                            $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year]['bereputasi'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.3.b.') {
+                                            $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year]['internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.3.c.') {
+                                            $capaian_otomatis = $rata_rata_jurnal_per_tahun[$year]['nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.3.a.') {
+                                            $capaian_otomatis = $rata_rata_jurnal_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.3.b.') {
+                                            $capaian_otomatis = $rata_rata_jurnal_pengabdian_per_tahun[$year]['nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.5.a.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['luar_negeri'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.5.b.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['dalam_negeri'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.5.c.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.4.a.') {
+                                            $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['prosiding_pengabdian_internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.4.b.') {
+                                            $capaian_otomatis = $rata_rata_prosiding_pengabdian_per_tahun[$year]['prosiding_pengabdian_nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.7.a.') {
+                                            $capaian_otomatis = $rata_rata_seminar_per_tahun[$year]['internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.1.7.b.') {
+                                            $capaian_otomatis = $rata_rata_seminar_per_tahun[$year]['nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.2.1.a.') {
+                                            $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.2.1.b.') {
+                                            $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '2.2.1.c.') {
+                                            $capaian_otomatis = $total_dana_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.2.a.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['luar_negeri'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.2.b.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['dalam_negeri'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.1.2.c.') {
+                                            $capaian_otomatis = $rata_rata_penelitian_per_tahun[$year]['internal'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.2.1.a.') {
+                                            $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.2.1.b.') {
+                                            $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['nasional'] ?? 0;
+                                        } elseif ($level4_item->no_iku === '3.2.1.c.') {
+                                            $capaian_otomatis = $total_dana_pengabdian_per_tahun[$year]['internal'] ?? 0;
+                                        } else {
+                                            $capaian_otomatis = 0;
+                                        }
+                                    }
                                 ?>
                                     <td style="border: 1px solid; text-align: center;"><?php echo $target_value; ?></td>
-                                    <td style="border: 1px solid; text-align: center;"><?php echo $capaian_value; ?></td>
+                                    <td style="border: 1px solid; text-align: center;">
+                                        <?php
+                                        $capaian_value = isset($capaian_level4[$year]) && $capaian_level4[$year] !== '-' ? $capaian_level4[$year] : null;
+
+                                        if ($capaian_value !== null) {
+                                            echo $capaian_value;
+                                        } elseif ($capaian_otomatis !== null && $capaian_otomatis > 0) {
+                                            $value = floatval($capaian_otomatis);
+
+                                            // Cek apakah perlu format angka bulat
+                                            if (in_array($level4_item->no_iku, ['3.2.1.a.', '3.1.3.a.', '3.1.3.b.', '3.1.4.a.', '3.1.4.b.'])) {
+                                                echo number_format($value, 0, ',', '.');
+                                            } else {
+                                                // Cek apakah angka bulat untuk format yang lain
+                                                if (floor($value) == $value) {
+                                                    echo number_format($value, 0, ',', '.');
+                                                } else {
+                                                    echo number_format($value, 2, ',', '.');
+                                                }
+                                            }
+                                        } else {
+                                            echo '-';
+                                        }
+                                        ?>
+                                    </td>
                                 <?php endforeach; ?>
                             </tr>
             <?php endforeach;

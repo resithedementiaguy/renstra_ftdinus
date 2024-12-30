@@ -15,6 +15,8 @@ class Cetak extends CI_Controller
         $this->load->model('Mod_iku');
         $this->load->model('Mod_renstra');
         $this->load->model('Ewmp_model');
+        $this->load->model('Artikel_model');
+        $this->load->helper('renstra_helper');
 
         // Cek login
         if (!$this->session->userdata('logged_in')) {
@@ -26,17 +28,72 @@ class Cetak extends CI_Controller
     {
         // Buat instance Dompdf
         $dompdf = new Dompdf();
+
+        // Ambil data level1
         $data['level1'] = $this->Mod_iku->get_level1();
 
         // Ambil nilai tahun dari database
         $years = $this->db->query("
-            SELECT tahun 
-            FROM (SELECT * FROM tahun ORDER BY tahun DESC LIMIT 6) subquery 
-            ORDER BY tahun ASC
-        ")->result_array();
+        SELECT tahun 
+        FROM (SELECT * FROM tahun ORDER BY tahun DESC LIMIT 6) subquery 
+        ORDER BY tahun ASC")
+            ->result_array();
         $data['years'] = array_column($years, 'tahun');
 
-        // Load view sebagai HTML
+        // Inisialisasi array untuk menyimpan rata-rata per tahun
+        $rata_rata_jurnal_per_tahun = [];
+        $rata_rata_penelitian_per_tahun = [];
+        $rata_rata_penelitian_mahasiswa_per_tahun = [];
+        $rata_rata_seminar_per_tahun = [];
+        $total_dana_penelitian_per_tahun = [];
+
+        $rata_rata_pengabdian_per_tahun = [];
+        $rata_rata_pengabdian_mahasiswa_per_tahun = [];
+        $total_dana_pengabdian_per_tahun = [];
+        $total_haki_per_tahun = [];
+
+        $rata_rata_jurnal_pengabdian_per_tahun = [];
+        $rata_rata_prosiding_pengabdian_per_tahun = [];
+
+        foreach ($data['years'] as $tahun) {
+            $dosenData = $this->Artikel_model->getJumlahDosenByYear($tahun);
+            $mahasiswaData = $this->Artikel_model->getJumlahMahasiswaByYear($tahun);
+            $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
+            $jumlah_mahasiswa = $mahasiswaData['total_mahasiswa'] ?? 0;
+
+            // Rata-rata per tahun
+            $rata_rata_jurnal_per_tahun[$tahun] = hitungRataRataJurnal($tahun, $jumlah_dosen);
+            $rata_rata_penelitian_per_tahun[$tahun] = hitungRataPenelitian($tahun, $jumlah_dosen);
+            $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
+            $rata_rata_seminar_per_tahun[$tahun] = hitungRataSeminar($tahun, $jumlah_dosen);
+            $rata_rata_pengabdian_per_tahun[$tahun] = hitungRataPengabdian($tahun, $jumlah_dosen);
+            $rata_rata_pengabdian_mahasiswa_per_tahun[$tahun] = hitungRataPengabdianMahasiswa($tahun, $jumlah_mahasiswa);
+
+            $rata_rata_jurnal_pengabdian_per_tahun[$tahun] = hitungRataJurnalPengabdian($tahun, $jumlah_dosen);
+            $rata_rata_prosiding_pengabdian_per_tahun[$tahun] = hitungRataProsidingPengabdian($tahun, $jumlah_dosen);
+
+            // Total Dana Penelitian dan Pengabdian per tahun
+            $total_dana_penelitian_per_tahun[$tahun] = hitungTotalDanaPenelitian($tahun);
+            $total_dana_pengabdian_per_tahun[$tahun] = hitungTotalDanaPengabdian($tahun);
+
+            // Total HAKI per tahun
+            $total_haki_per_tahun[$tahun] = hitungTotalHaki($tahun);
+        }
+
+        // Menyiapkan data untuk view
+        $data['rata_rata_jurnal_per_tahun'] = $rata_rata_jurnal_per_tahun;
+        $data['rata_rata_penelitian_per_tahun'] = $rata_rata_penelitian_per_tahun;
+        $data['rata_rata_penelitian_mahasiswa_per_tahun'] = $rata_rata_penelitian_mahasiswa_per_tahun;
+        $data['rata_rata_seminar_per_tahun'] = $rata_rata_seminar_per_tahun;
+        $data['total_dana_penelitian_per_tahun'] = $total_dana_penelitian_per_tahun;
+        $data['total_dana_pengabdian_per_tahun'] = $total_dana_pengabdian_per_tahun;
+        $data['rata_rata_pengabdian_per_tahun'] = $rata_rata_pengabdian_per_tahun;
+        $data['rata_rata_pengabdian_mahasiswa_per_tahun'] = $rata_rata_pengabdian_mahasiswa_per_tahun;
+        $data['total_haki_per_tahun'] = $total_haki_per_tahun;
+        $data['rata_rata_jurnal_pengabdian_per_tahun'] = $rata_rata_jurnal_pengabdian_per_tahun;
+        $data['rata_rata_prosiding_pengabdian_per_tahun'] = $rata_rata_prosiding_pengabdian_per_tahun;
+
+        // Load view sebagai HTML untuk PDF
         $html = $this->load->view('backend/renstra/pdf/cetak_renstra', $data, true);
 
         // Load HTML content ke Dompdf
