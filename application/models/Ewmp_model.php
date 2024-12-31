@@ -55,7 +55,7 @@ class Ewmp_model extends CI_Model
     public function delete_pelaporan_ewmp($id)
     {
         $this->db->where('id', $id);
-        return $this->db->delete('status_stok');
+        return $this->db->delete('pelaporan_ewmp');
     }
 
     public function add_penelitian($data)
