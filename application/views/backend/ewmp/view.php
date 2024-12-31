@@ -60,6 +60,9 @@
                                                     <a href="<?= site_url('ewmp/detail_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-success">
                                                         <i class="bi bi-journal-text"></i> Detail
                                                     </a>
+                                                    <a href="<?= site_url('ewmp/delete_pelaporan/' . htmlspecialchars($p->id)) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                        <i class="bi bi-trash"></i> Hapus
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -76,7 +79,28 @@
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script>
-    new DataTable('#datatable');
+    $(document).ready(function() {
+        if ($('#datatable tbody tr').length === 1 && $('#datatable tbody tr td[colspan]').length > 0) {
+            // If there's only one row and it's our "no data" message, initialize DataTable with minimal options
+            $('#datatable').DataTable({
+                paging: false,
+                searching: false,
+                info: false
+            });
+        } else {
+            // Initialize DataTable normally if we have data
+            $('#datatable').DataTable({
+                pageLength: 10,
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                order: [
+                    [2, 'desc']
+                ] // Sort by Waktu Pengisian column by default
+            });
+        }
+    });
 </script>
 
 <?php
@@ -84,7 +108,7 @@
 function formatDateTime($datetime)
 {
     if (empty($datetime)) {
-        return "-"; // Atau teks lain sesuai kebutuhan
+        return "-";
     }
 
     $date = new DateTime($datetime);

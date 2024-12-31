@@ -50,9 +50,9 @@
                                             <td class="align-middle"><?= htmlspecialchars($mhs->prodi) ?></td>
                                             <td class="align-middle text-start"><?= htmlspecialchars($mhs->jumlah) ?></td>
                                             <td class="align-middle">
-                                                <a href="<?= site_url('mahasiswa/detail/' . htmlspecialchars($mhs->id)) ?>" class="btn btn-sm btn-warning">
+                                                <!-- <a href="<?= site_url('mahasiswa/detail/' . htmlspecialchars($mhs->id)) ?>" class="btn btn-sm btn-warning">
                                                     <i class="bi bi-journal-text"></i> Edit
-                                                </a>
+                                                </a> -->
                                                 <a class="btn btn-sm btn-danger" href="<?= site_url('mahasiswa/delete/' . $mhs->id) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                     <i class="bi bi-trash"></i> Hapus
                                                 </a>

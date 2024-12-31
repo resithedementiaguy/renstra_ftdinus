@@ -1652,4 +1652,13 @@ class Ewmp extends CI_Controller
 
         return $this->Ewmp_model->get_mhs_pelaporan_by_id($id_haki, $kategori) ?? [];
     }
+
+    public function delete_pelaporan($id)
+    {
+        // Menghapus data dosen
+        $this->Ewmp_model->delete_pelaporan_ewmp($id);
+
+        // Mengarahkan kembali ke halaman daftar dosen
+        redirect('ewmp');
+    }
 }
