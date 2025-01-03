@@ -42,9 +42,9 @@
                                 <label for="tahun" class="col-form-label">Tahun Data Hibah Pengabdian</label>
                                 <select class="form-select" name="tahun" id="tahun" required>
                                     <option value="" hidden>Pilih Tahun</option>
-                                    <?php 
+                                    <?php
                                     $current_year = date('Y');
-                                    foreach ($tahun as $thn): 
+                                    foreach ($tahun as $thn):
                                     ?>
                                         <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
                                             <?= $thn->tahun ?>
@@ -131,9 +131,11 @@
         // Function to fetch international publication data for a specific year
         function fetchPenelitianData(year) {
             return $.ajax({
-                url: '<?= base_url("hasil_pelaporan/get_hibah_pengabdian_data") ?>', 
+                url: '<?= base_url("hasil_pelaporan/get_hibah_pengabdian_data") ?>',
                 method: 'POST',
-                data: { tahun: year },
+                data: {
+                    tahun: year
+                },
                 dataType: 'json'
             });
         }
@@ -142,7 +144,7 @@
         function formatRupiah(amount) {
             // Ensure amount is a number
             const numAmount = parseFloat(amount);
-            
+
             // Check if it's a valid number
             if (isNaN(numAmount)) return "-";
 
@@ -160,14 +162,18 @@
 
             const date = new Date(datetime);
             const months = [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
                 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
             ];
 
             const day = date.getDate();
             const month = months[date.getMonth()];
             const year = date.getFullYear();
-            const time = date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const time = date.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
 
             return `${day} ${month} ${year}, ${time} WIB`;
         }
@@ -226,7 +232,7 @@
         });
 
         /// Optional: Trigger initial load with first available year
-        const firstYear = <?= $current_year?>;
+        const firstYear = <?= $current_year ?>;
         if (firstYear) {
             $('#tahun').val(firstYear).trigger('change');
         }

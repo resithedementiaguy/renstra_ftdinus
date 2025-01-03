@@ -114,22 +114,85 @@ class Cetak extends CI_Controller
         // Buat instance Dompdf
         $dompdf = new Dompdf();
 
-        // Gunakan tahun yang dipilih atau tahun pertama dari database
+        // Jika tahun tidak dispesifikasi, ambil tahun terbaru
         if ($year === null) {
-            $year = $this->db->select('tahun')->from('tahun')->order_by('tahun', 'ASC')->get()->row()->tahun;
+            $year = $this->db->select('tahun')
+                ->from('tahun')
+                ->order_by('tahun', 'DESC')
+                ->limit(1)
+                ->get()
+                ->row()
+                ->tahun;
         }
 
-        $data['selected_year'] = $year;
-        $data['level1'] = $this->Mod_iku->get_level1_for_year($year);
+        // Ambil data level1
+        $data['level1'] = $this->Mod_iku->get_level1();
+        $data['years'] = [$year]; // Hanya tahun yang dipilih
 
-        // Load view sebagai HTML
+        // Ambil jumlah dosen dan mahasiswa untuk tahun terpilih
+        $dosenData = $this->Artikel_model->getJumlahDosenByYear($year);
+        $mahasiswaData = $this->Artikel_model->getJumlahMahasiswaByYear($year);
+        $jumlah_dosen = $dosenData['total_dosen'] ?? 0;
+        $jumlah_mahasiswa = $mahasiswaData['total_mahasiswa'] ?? 0;
+
+        // Hitung semua rata-rata dan total untuk tahun terpilih
+        $data['rata_rata_jurnal_per_tahun'] = [
+            $year => hitungRataRataJurnal($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_penelitian_per_tahun'] = [
+            $year => hitungRataPenelitian($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_penelitian_mahasiswa_per_tahun'] = [
+            $year => hitungRataPenelitianMahasiswa($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_seminar_per_tahun'] = [
+            $year => hitungRataSeminar($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_pengabdian_per_tahun'] = [
+            $year => hitungRataPengabdian($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_pengabdian_mahasiswa_per_tahun'] = [
+            $year => hitungRataPengabdianMahasiswa($year, $jumlah_mahasiswa)
+        ];
+
+        $data['rata_rata_jurnal_pengabdian_per_tahun'] = [
+            $year => hitungRataJurnalPengabdian($year, $jumlah_dosen)
+        ];
+
+        $data['rata_rata_prosiding_pengabdian_per_tahun'] = [
+            $year => hitungRataProsidingPengabdian($year, $jumlah_dosen)
+        ];
+
+        $data['total_dana_penelitian_per_tahun'] = [
+            $year => hitungTotalDanaPenelitian($year)
+        ];
+
+        $data['total_dana_pengabdian_per_tahun'] = [
+            $year => hitungTotalDanaPengabdian($year)
+        ];
+
+        $data['total_haki_per_tahun'] = [
+            $year => hitungTotalHaki($year)
+        ];
+
+        // Tambahan data yang mungkin diperlukan
+        $data['selected_year'] = $year;
+        $data['jumlah_dosen'] = $jumlah_dosen;
+        $data['jumlah_mahasiswa'] = $jumlah_mahasiswa;
+
+        // Load view sebagai HTML untuk PDF
         $html = $this->load->view('backend/renstra/pdf/cetak_renstra_tahunan', $data, true);
 
         // Load HTML content ke Dompdf
         $dompdf->loadHtml($html);
 
-        // Set ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'potrait');
+        // Set ukuran kertas dan orientasi (portrait karena hanya 1 tahun)
+        $dompdf->setPaper('A4', 'portrait');
 
         // Render PDF
         $dompdf->render();

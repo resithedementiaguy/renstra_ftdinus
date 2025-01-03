@@ -26,6 +26,7 @@ class Renstra extends CI_Controller
 
     public function index()
     {
+        $data['tahun'] = $this->Mod_tahun->get_all_tahun();
         $data['level1'] = $this->Mod_iku->get_level1();
         $years = $this->Mod_tahun->getTahunList();
         $data['years'] = array_column($years, 'tahun');
@@ -52,7 +53,7 @@ class Renstra extends CI_Controller
             $jumlah_mahasiswa = $mahasiswaData['total_mahasiswa'] ?? 0;
 
             // Rata rata per tahun
-            $rata_rata_jurnal_per_tahun[$tahun] = hitungRataRataJurnal($tahun, $jumlah_dosen); 
+            $rata_rata_jurnal_per_tahun[$tahun] = hitungRataRataJurnal($tahun, $jumlah_dosen);
             $rata_rata_penelitian_per_tahun[$tahun] = hitungRataPenelitian($tahun, $jumlah_dosen);
             $rata_rata_penelitian_mahasiswa_per_tahun[$tahun] = hitungRataPenelitianMahasiswa($tahun, $jumlah_dosen);
             $rata_rata_seminar_per_tahun[$tahun] = hitungRataSeminar($tahun, $jumlah_dosen);
