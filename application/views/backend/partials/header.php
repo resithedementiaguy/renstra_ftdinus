@@ -53,7 +53,6 @@
 </style>
 
 <body>
-    <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="<?= base_url('dashboard') ?>" class="logo d-flex align-items-center" style="text-decoration: none;">
@@ -87,7 +86,7 @@
                         <li>
                             <a
                                 class="dropdown-item d-flex align-items-center"
-                                href="<?= base_url('') ?>profil">
+                                href="<?= base_url('profil') ?>">
                                 <i class="bi bi-person"></i>
                                 <span>Profil Saya</span>
                             </a>
@@ -122,7 +121,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <a href="auth/logout" class="btn btn-danger">Keluar</a>
+                    <a href="<?= base_url('auth/logout') ?>" class="btn btn-danger">Keluar</a>
                 </div>
             </div>
         </div>
@@ -149,25 +148,31 @@
 
             <li class="nav-item">
                 <a
-                    class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan') ? '' : 'collapsed'; ?>"
+                    class="nav-link <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan' || $this->uri->segment(1) == 'create_view') ? '' : 'collapsed'; ?>"
                     data-bs-target="#ewmp-nav"
                     data-bs-toggle="collapse"
                     href="#ewmp-nav">
-                    <i class="bi bi-menu-button-wide"></i><span>Pelaporan EWMP</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-button-wide"></i>
+                    <span>Pelaporan EWMP</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul
                     id="ewmp-nav"
                     class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'detail_pelaporan')) ? 'active' : ''; ?>" href="<?php echo site_url('ewmp'); ?>">
-                            <i class="bi bi-circle"></i><span>Pelaporan</span>
+                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && in_array($this->uri->segment(2), ['', 'detail_pelaporan', 'create_view'])) ? 'active' : ''; ?>"
+                            href="<?php echo site_url('ewmp'); ?>">
+                            <i class="bi bi-circle"></i>
+                            <span>Pelaporan</span>
                         </a>
                     </li>
-                    <?php if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'Koordinator'): ?>
+                    <?php if (in_array($this->session->userdata('level'), ['Admin', 'Koordinator'])): ?>
                         <li>
-                            <a class="<?php echo ($this->uri->segment(1) == 'hasil_pelaporan') ? 'active' : ''; ?>" href="<?php echo site_url('hasil_pelaporan'); ?>">
-                                <i class="bi bi-circle"></i><span>Hasil</span>
+                            <a class="<?php echo ($this->uri->segment(1) == 'hasil_pelaporan') ? 'active' : ''; ?>"
+                                href="<?php echo site_url('hasil_pelaporan'); ?>">
+                                <i class="bi bi-circle"></i>
+                                <span>Hasil</span>
                             </a>
                         </li>
                     <?php endif; ?>
@@ -216,3 +221,4 @@
             <?php endif; ?>
         </ul>
     </aside>
+    

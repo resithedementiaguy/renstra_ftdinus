@@ -298,7 +298,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="kategori_jurnal_ilmiah" id="kategori_jurnal_ilmiah2" value="Pengabdian">
                                             <label class="form-check-label" for="kategori_jurnal_ilmiah2">Pengabdian</label>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
@@ -414,7 +414,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="kategori_jurnal_prosiding" id="kategori_jurnal_prosiding2" value="Pengabdian">
                                             <label class="form-check-label" for="kategori_jurnal_prosiding2">Pengabdian</label>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
@@ -1040,9 +1040,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -1270,7 +1267,7 @@
         }
     });
 
-    document.getElementById('addAnggotaPenelitian').addEventListener('click', function () {
+    document.getElementById('addAnggotaPenelitian').addEventListener('click', function() {
         const container = document.getElementById('dynamicAnggotaPenelitianContainer');
 
         // Hitung jumlah anggota yang ada
@@ -1312,7 +1309,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1393,7 +1390,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1472,7 +1469,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1551,7 +1548,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1626,7 +1623,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1725,7 +1722,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1824,7 +1821,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -1923,7 +1920,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -2022,7 +2019,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -2121,7 +2118,7 @@
         // Tambahkan event listener ke radio button baru
         const radioButtons = newGroup.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 const textInput = newGroup.querySelector('.prodi-lainnya');
                 if (this.value === 'Lainnya') {
                     textInput.classList.remove('d-none');
@@ -2220,7 +2217,7 @@
             clearValidationStates();
 
             // Add required attributes based on selected type
-            switch(this.value) {
+            switch (this.value) {
                 case 'Penelitian':
                     addRequiredFields([
                         'nama_ketua_penelitian',
@@ -2301,7 +2298,7 @@
         // Handle kategori_ilmiah change
         kategoriIlmiah.addEventListener('change', function() {
             clearValidationStates();
-            
+
             // Base fields required for all article types
             const baseFields = [
                 'kategori_jurnal_ilmiah',
@@ -2343,7 +2340,7 @@
         kategoriHaki.addEventListener('change', function() {
             clearValidationStates();
 
-            switch(this.value) {
+            switch (this.value) {
                 case 'Hak Cipta':
                     addRequiredFields([
                         'nama_pengusul_hcipta',
@@ -2407,7 +2404,7 @@
             const jenisLaporValue = jenisLapor.value;
             let visibleSection;
 
-            switch(jenisLaporValue) {
+            switch (jenisLaporValue) {
                 case 'Penelitian':
                     visibleSection = document.getElementById('penelitian');
                     break;
@@ -2463,13 +2460,13 @@
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const radioLainnya = document.getElementById("prodi_penelitian4");
         const inputLainnya = document.getElementById("prodi_lainnya_penelitian");
         const allRadios = document.getElementsByName("prodi_penelitian");
 
         allRadios.forEach(radio => {
-            radio.addEventListener("change", function () {
+            radio.addEventListener("change", function() {
                 if (radioLainnya.checked) {
                     inputLainnya.classList.remove("d-none");
                     inputLainnya.setAttribute("required", "required");
@@ -2484,7 +2481,7 @@
 
     // Event listener untuk anggota awal yang sudah ada
     document.querySelectorAll('.prodi-lain').forEach(radio => {
-        radio.addEventListener('change', function () {
+        radio.addEventListener('change', function() {
             const textInput = this.closest('.row').querySelector('.prodi-lainnya');
             if (this.value === 'Lainnya') {
                 textInput.classList.remove('d-none');
@@ -2495,5 +2492,4 @@
             }
         });
     });
-
 </script>
