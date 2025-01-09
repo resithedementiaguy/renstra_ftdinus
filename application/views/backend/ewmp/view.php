@@ -79,6 +79,12 @@
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script>
+    new DataTable('#datatable');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
     $(document).ready(function() {
         if ($('#datatable tbody tr').length === 1 && $('#datatable tbody tr td[colspan]').length > 0) {
             // If there's only one row and it's our "no data" message, initialize DataTable with minimal options
