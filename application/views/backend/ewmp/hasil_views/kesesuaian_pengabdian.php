@@ -357,30 +357,6 @@
                 datatables[program] = new DataTable(`#datatable-${program}`, {
                     responsive: true,
                     // Remove the external language file dependency
-                    language: {
-                        "decimal":        "",
-                        "emptyTable":     "Tidak ada data yang tersedia",
-                        "info":           "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-                        "infoEmpty":      "Menampilkan 0 sampai 0 dari 0 entri",
-                        "infoFiltered":   "(difilter dari _MAX_ total entri)",
-                        "infoPostFix":    "",
-                        "thousands":      ".",
-                        "lengthMenu":     "Tampilkan _MENU_ entri",
-                        "loadingRecords": "Memuat...",
-                        "processing":     "Memproses...",
-                        "search":         "Cari:",
-                        "zeroRecords":    "Tidak ditemukan data yang sesuai",
-                        "paginate": {
-                            "first":      "Pertama",
-                            "last":       "Terakhir",
-                            "next":       "Selanjutnya",
-                            "previous":   "Sebelumnya"
-                        },
-                        "aria": {
-                            "sortAscending":  ": aktifkan untuk mengurutkan kolom secara ascending",
-                            "sortDescending": ": aktifkan untuk mengurutkan kolom secara descending"
-                        }
-                    },
                     order: [[0, 'asc']]
                 });
             });
@@ -469,30 +445,6 @@
             // Reinitialize DataTable with the same configuration
             datatables[program] = new DataTable(`#datatable-${program}`, {
                 responsive: true,
-                language: {
-                    "decimal":        "",
-                    "emptyTable":     "Tidak ada data yang tersedia",
-                    "info":           "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-                    "infoEmpty":      "Menampilkan 0 sampai 0 dari 0 entri",
-                    "infoFiltered":   "(difilter dari _MAX_ total entri)",
-                    "infoPostFix":    "",
-                    "thousands":      ".",
-                    "lengthMenu":     "Tampilkan _MENU_ entri",
-                    "loadingRecords": "Memuat...",
-                    "processing":     "Memproses...",
-                    "search":         "Cari:",
-                    "zeroRecords":    "Tidak ditemukan data yang sesuai",
-                    "paginate": {
-                        "first":      "Pertama",
-                        "last":       "Terakhir",
-                        "next":       "Selanjutnya",
-                        "previous":   "Sebelumnya"
-                    },
-                    "aria": {
-                        "sortAscending":  ": aktifkan untuk mengurutkan kolom secara ascending",
-                        "sortDescending": ": aktifkan untuk mengurutkan kolom secara descending"
-                    }
-                },
                 order: [[0, 'asc']]
             });
         }
