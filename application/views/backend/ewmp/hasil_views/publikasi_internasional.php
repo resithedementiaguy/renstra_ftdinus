@@ -44,7 +44,7 @@
                                     <option value="" hidden>Pilih Tahun</option>
                                     <?php 
                                     $current_year = date('Y');
-                                    foreach ($data_tahun as $thn): 
+                                    foreach ($tahun as $thn): 
                                     ?>
                                         <option value="<?= $thn->tahun ?>" <?= $thn->tahun == $current_year ? 'selected' : '' ?>>
                                             <?= $thn->tahun ?>
