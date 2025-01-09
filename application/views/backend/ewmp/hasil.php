@@ -74,15 +74,15 @@
                                     <tbody>
                                         <tr>
                                             <td>Internasional</td>
-                                            <td id="data-internasional"><?= $data_internasional ?></td>
+                                            <td id="data-internasional"><?= $data_internasional ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Nasional</td>
-                                            <td id="data-nasional"><?= $data_nasional ?></td>
+                                            <td id="data-nasional"><?= $data_nasional ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td id="data-total-publikasi"><?= $total = $data_internasional + $data_nasional ?></td>
+                                            <td id="data-total-publikasi"><?= ($data_internasional ?? 0) + ($data_nasional ?? 0) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -107,23 +107,23 @@
                                     <tbody>
                                         <tr>
                                             <td style="width: 120px;">Q1</td>
-                                            <td id="data-q1" style="width: 50px;"><?= $q1_data ?></td>
+                                            <td id="data-q1" style="width: 50px;"><?= $q1_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Q2</td>
-                                            <td id="data-q2"><?= $q2_data ?></td>
+                                            <td id="data-q2"><?= $q2_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Q3</td>
-                                            <td id="data-q3"><?= $q3_data ?></td>
+                                            <td id="data-q3"><?= $q3_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Q4</td>
-                                            <td id="data-q4"><?= $q4_data ?></td>
+                                            <td id="data-q4"><?= $q4_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td id="data-total-internasional"><?= $total = $q1_data + $q2_data + $q3_data + $q4_data ?></td>
+                                            <td id="data-total-internasional"><?= ($q1_data ?? 0) + ($q2_data ?? 0) + ($q3_data ?? 0) + ($q4_data ?? 0) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -136,35 +136,35 @@
                                     <tbody>
                                         <tr>
                                             <td style="width: 180px;">S1</td>
-                                            <td id="data-s1"><?= $s1_data ?></td>
+                                            <td id="data-s1"><?= $s1_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>S2</td>
-                                            <td id="data-s2"><?= $s2_data ?></td>
+                                            <td id="data-s2"><?= $s2_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>S3</td>
-                                            <td id="data-s3"><?= $s3_data ?></td>
+                                            <td id="data-s3"><?= $s3_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>S4</td>
-                                            <td id="data-s4"><?= $s4_data ?></td>
+                                            <td id="data-s4"><?= $s4_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>S5</td>
-                                            <td id="data-s5"><?= $s5_data ?></td>
+                                            <td id="data-s5"><?= $s5_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>S6</td>
-                                            <td id="data-s6"><?= $s6_data ?></td>
+                                            <td id="data-s6"><?= $s6_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Nasional Tidak Terakreditasi</td>
-                                            <td id="data-tdk-terakreditasi"><?= $tdk_terakreditasi_data ?></td>
+                                            <td id="data-tdk-terakreditasi"><?= $tdk_terakreditasi_data ?? 0 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td id="data-total-nasional"><?= $total = $s1_data + $s2_data + $s3_data + $s4_data + $s5_data + $tdk_terakreditasi_data ?></td>
+                                            <td id="data-total-nasional"><?= ($s1_data ?? 0) + ($s2_data ?? 0) + ($s3_data ?? 0) + ($s4_data ?? 0) + ($s5_data ?? 0) + ($s6_data ?? 0) + ($tdk_terakreditasi_data ?? 0) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -24,7 +24,7 @@ class Ewmp extends CI_Controller
     {
         $user_level = $this->session->userdata('level');
         $user_id = $this->session->userdata('user_id');
-        
+
         if ($user_level == 'Koordinator' || $user_level == 'Admin') {
             // Get all pelaporan for admin and koordinator
             $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp();
@@ -32,7 +32,7 @@ class Ewmp extends CI_Controller
             // Get only user's pelaporan for dosen
             $pelaporan = $this->Ewmp_model->get_pelaporan_ewmp_by_id($user_id);
         }
-        
+
         // Process HAKI categories
         foreach ($pelaporan as &$p) {
             if ($p->jenis_lapor === 'HAKI') {
@@ -41,9 +41,9 @@ class Ewmp extends CI_Controller
                 $p->kategori_haki = [];
             }
         }
-        
+
         $data['pelaporan'] = $pelaporan;
-        
+
         $this->load->view('backend/partials/header');
         $this->load->view('backend/ewmp/view', $data);
         $this->load->view('backend/partials/footer');
@@ -245,16 +245,16 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_penelitian_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                        $prodi_global=$prodi;
+                        $prodi_global = $prodi;
 
-                        $asal_anggota=$this->input->post();
+                        $asal_anggota = $this->input->post();
 
-                        if ($prodi == 'Lainnya'){
+                        if ($prodi == 'Lainnya') {
                             // Cari asal anggota sesuai indeks
                             $asal_key = 'prodi_anggota_lainnya_penelitian_' . $index;
                             $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                            $prodi_global=$prodi.' ('.$asal.')';
+                            $prodi_global = $prodi . ' (' . $asal . ')';
                         }
 
                         $data_anggota = array(
@@ -361,16 +361,16 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_pengabdian_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                        $prodi_global=$prodi;
+                        $prodi_global = $prodi;
 
-                        $asal_anggota=$this->input->post();
+                        $asal_anggota = $this->input->post();
 
-                        if ($prodi == 'Lainnya'){
+                        if ($prodi == 'Lainnya') {
                             // Cari asal anggota sesuai indeks
                             $asal_key = 'prodi_anggota_lainnya_pengabdian_' . $index;
                             $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                            $prodi_global=$prodi.' ('.$asal.')';
+                            $prodi_global = $prodi . ' (' . $asal . ')';
                         }
 
                         $data_anggota = array(
@@ -447,16 +447,16 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_ilmiah_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                        $prodi_global=$prodi;
+                        $prodi_global = $prodi;
 
-                        $asal_anggota=$this->input->post();
+                        $asal_anggota = $this->input->post();
 
-                        if ($prodi == 'Lainnya'){
+                        if ($prodi == 'Lainnya') {
                             // Cari asal anggota sesuai indeks
                             $asal_key = 'prodi_anggota_lainnya_ilmiah_' . $index;
                             $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                            $prodi_global=$prodi.' ('.$asal.')';
+                            $prodi_global = $prodi . ' (' . $asal . ')';
                         }
 
                         $data_anggota = array(
@@ -549,16 +549,16 @@ class Ewmp extends CI_Controller
                         $prodi_key = 'prodi_anggota_prosiding_' . $index;
                         $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                        $prodi_global=$prodi;
+                        $prodi_global = $prodi;
 
-                        $asal_anggota=$this->input->post();
+                        $asal_anggota = $this->input->post();
 
-                        if ($prodi == 'Lainnya'){
+                        if ($prodi == 'Lainnya') {
                             // Cari asal anggota sesuai indeks
                             $asal_key = 'prodi_anggota_lainnya_prosiding_' . $index;
                             $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                            $prodi_global=$prodi.' ('.$asal.')';
+                            $prodi_global = $prodi . ' (' . $asal . ')';
                         }
 
                         $data_anggota = array(
@@ -671,16 +671,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_hcipta_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_hcipta_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -785,16 +785,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_merk_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_merk_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -900,16 +900,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_lisensi_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_lisensi_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -1015,16 +1015,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_buku_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_buku_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -1136,16 +1136,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_paten_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_paten_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -1257,16 +1257,16 @@ class Ewmp extends CI_Controller
                             $prodi_key = 'prodi_anggota_desain_' . $index;
                             $prodi = isset($program_studi_anggota[$prodi_key]) ? $program_studi_anggota[$prodi_key] : null;
 
-                            $prodi_global=$prodi;
+                            $prodi_global = $prodi;
 
-                            $asal_anggota=$this->input->post();
+                            $asal_anggota = $this->input->post();
 
-                            if ($prodi == 'Lainnya'){
+                            if ($prodi == 'Lainnya') {
                                 // Cari asal anggota sesuai indeks
                                 $asal_key = 'prodi_anggota_lainnya_desain_' . $index;
                                 $asal = isset($asal_anggota[$asal_key]) ? $asal_anggota[$asal_key] : null;
 
-                                $prodi_global=$prodi.' ('.$asal.')';
+                                $prodi_global = $prodi . ' (' . $asal . ')';
                             }
 
                             $data_anggota = array(
@@ -1610,6 +1610,150 @@ class Ewmp extends CI_Controller
             $this->load->view('backend/partials/footer');
         }
     }
+
+    public function edit_pelaporan($id)
+    {
+        $this->load->model('Ewmp_model');
+
+        // Ambil data pelaporan berdasarkan ID
+        $pelaporan = $this->Ewmp_model->get_pelaporan_by_id($id);
+        $data['pelaporan'] = $pelaporan;
+
+        if (!$data['pelaporan']) {
+            show_404();
+        }
+
+        if ($this->input->post()) {
+            // Proses update berdasarkan input dari form
+            $update_data = $this->input->post();
+
+            switch ($pelaporan['jenis_lapor']) {
+                case 'Penelitian':
+                    $this->Ewmp_model->update_penelitian_by_id($id, $update_data);
+                    break;
+
+                case 'Pengabdian':
+                    $this->Ewmp_model->update_pengabdian($id, $update_data);
+                    break;
+
+                case 'Artikel/Karya Ilmiah':
+                    $this->Ewmp_model->update_artikel_ilmiah_by_id($id, $update_data);
+                    break;
+
+                case 'Prosiding':
+                    $this->Ewmp_model->update_prosiding_by_id($id, $update_data);
+                    break;
+
+                case 'HAKI':
+                    $this->Ewmp_model->update_haki_by_id($id, $update_data);
+                    break;
+
+                case 'Editor Jurnal':
+                    $this->Ewmp_model->update_editor_jurnal_by_id($id, $update_data);
+                    break;
+
+                case 'Reviewer Jurnal':
+                    $this->Ewmp_model->update_reviewer_jurnal_by_id($id, $update_data);
+                    break;
+
+                case 'Invited Speaker':
+                    $this->Ewmp_model->update_invited_speaker_by_id($id, $update_data);
+                    break;
+
+                case 'Pengurus Organisasi Profesi':
+                    $this->Ewmp_model->update_pengurus_organisasi_by_id($id, $update_data);
+                    break;
+
+                default:
+                    show_error('Jenis pelaporan tidak valid', 400, 'Error');
+                    return;
+            }
+
+            // Redirect setelah berhasil di-update
+            $this->session->set_flashdata('success', 'Data pelaporan berhasil diperbarui.');
+            redirect('Ewmp/detail_pelaporan/' . $id);
+        }
+
+        // Ambil data spesifik untuk ditampilkan pada form edit
+        switch ($pelaporan['jenis_lapor']) {
+            case 'Penelitian':
+                $data['penelitian'] = $this->Ewmp_model->get_penelitian_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_penelitian', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Pengabdian':
+                $data['pengabdian'] = $this->Ewmp_model->get_pengabdian_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_pengabdian', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Artikel/Karya Ilmiah':
+                $data['artikel_ilmiah'] = $this->Ewmp_model->get_artikel_ilmiah_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_ilmiah', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Prosiding':
+                $data['prosiding'] = $this->Ewmp_model->get_prosiding_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_prosiding', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'HAKI':
+                $data['haki'] = $this->Ewmp_model->get_haki_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_haki', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Editor Jurnal':
+                $data['editor_jurnal'] = $this->Ewmp_model->get_editor_jurnal_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_editor_jurnal', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Reviewer Jurnal':
+                $data['reviewer_jurnal'] = $this->Ewmp_model->get_reviewer_jurnal_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_reviewer_jurnal', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Invited Speaker':
+                $data['invited_speaker'] = $this->Ewmp_model->get_invited_speaker_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_invited_speaker', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            case 'Pengurus Organisasi Profesi':
+                $data['pengurus_organisasi'] = $this->Ewmp_model->get_pengurus_organisasi_by_id($id);
+                $this->load->view('backend/partials/header');
+                $this->load->view('backend/ewmp/edit/edit_pengurus_organisasi', $data);
+                $this->load->view('backend/partials/footer');
+                break;
+
+            default:
+                show_error('Jenis pelaporan tidak valid', 400, 'Error');
+                break;
+        }
+    }
+
+    public function update_pengabdian($id)
+    {
+        $update_data = $this->input->post();
+        
+        $this->Ewmp_model->update_pengabdian($id, $update_data);
+
+        redirect('ewmp/detail_pelaporan/' . $id);
+    }
+
 
     private function get_anggota_haki($haki_data, $kategori)
     {

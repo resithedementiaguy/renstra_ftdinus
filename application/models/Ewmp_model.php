@@ -124,7 +124,7 @@ class Ewmp_model extends CI_Model
 
     public function update_pengabdian($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('pengabdian', $data);
     }
 
@@ -777,7 +777,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('penelitian');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -787,7 +787,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Mandiri');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -799,7 +799,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Internal');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -811,7 +811,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Nasional');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -823,7 +823,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah');
         $this->db->where('kategori', 'Internasional');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -835,7 +835,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pengabdian');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -845,7 +845,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Mandiri');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -857,7 +857,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Internal');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -869,7 +869,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Nasional');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -881,7 +881,7 @@ class Ewmp_model extends CI_Model
     {
         $this->db->select_sum('besar_hibah', 'total_hibah');
         $this->db->where('kategori', 'Internasional');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         if ($prodi) {
             $this->db->where('prodi', $prodi);
         }
@@ -894,7 +894,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Elektro');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -905,7 +905,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Industri');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -916,7 +916,7 @@ class Ewmp_model extends CI_Model
         $this->db->select('*');
         $this->db->from('artikel_ilmiah');
         $this->db->where('prodi', 'Teknik Biomedis');
-        $this->db->where('tahun',$tahun);
+        $this->db->where('tahun', $tahun);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();

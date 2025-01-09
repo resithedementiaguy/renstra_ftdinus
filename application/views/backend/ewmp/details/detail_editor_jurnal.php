@@ -20,9 +20,9 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek detail pelaporan editor jurnal Fakultas Teknik UDINUS Semarang
                         </div>
-                        <!-- <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
-                        </div> -->
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>

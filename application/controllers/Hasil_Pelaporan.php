@@ -439,13 +439,10 @@ class Hasil_pelaporan extends CI_Controller
 
         // Fetch publikasi data for each department with error checking
         $data['data_elektro'] = $this->Ewmp_model->get_publikasi_elektro($tahun);
-        log_message('debug', 'Elektro publikasi count: ' . count($data['data_elektro']));
 
         $data['data_industri'] = $this->Ewmp_model->get_publikasi_industri($tahun);
-        log_message('debug', 'Industri publikasi count: ' . count($data['data_industri']));
 
         $data['data_biomedis'] = $this->Ewmp_model->get_publikasi_biomedis($tahun);
-        log_message('debug', 'Biomedis publikasi count: ' . count($data['data_biomedis']));
 
         // Add anggota information for each publikasi
         $data_collections = [
@@ -480,13 +477,10 @@ class Hasil_pelaporan extends CI_Controller
 
         // Fetch data penelitian untuk masing-masing prodi
         $data['data_elektro'] = $this->Ewmp_model->get_penelitian_elektro($current_year);
-        log_message('debug', 'Elektro penelitian count: ' . count($data['data_elektro']));
 
         $data['data_industri'] = $this->Ewmp_model->get_penelitian_industri($current_year);
-        log_message('debug', 'Industri penelitian count: ' . count($data['data_industri']));
 
         $data['data_biomedis'] = $this->Ewmp_model->get_penelitian_biomedis($current_year);
-        log_message('debug', 'Biomedis penelitian count: ' . count($data['data_biomedis']));
 
         // Data koleksi untuk mempermudah pengolahan anggota
         $data_collections = [

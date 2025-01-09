@@ -312,9 +312,9 @@
 
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script>
-    new DataTable('#datatable-elektro');
-    new DataTable('#datatable-industri');
-    new DataTable('#datatable-biomedis');
+    // new DataTable('#datatable-elektro');
+    // new DataTable('#datatable-industri');
+    // new DataTable('#datatable-biomedis');
 </script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -344,7 +344,25 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        // Function to fetch international publication data for a specific year
+        // Store DataTable instances
+        let datatables = {
+            elektro: null,
+            industri: null,
+            biomedis: null
+        };
+
+        // Initialize datatables with basic configuration
+        function initializeDatatables() {
+            ['elektro', 'industri', 'biomedis'].forEach(program => {
+                datatables[program] = new DataTable(`#datatable-${program}`, {
+                    responsive: true,
+                    // Remove the external language file dependency
+                    order: [[0, 'asc']]
+                });
+            });
+        }
+
+        // Rest of your existing code remains the same
         function fetchPengabdianData(year) {
             return $.ajax({
                 url: '<?= base_url("hasil_pelaporan/get_kesesuaian_pengabdian_data") ?>', 
@@ -354,16 +372,13 @@
             });
         }
 
-        // Function to update all program study tables and statistics
         function updatePengabdianData(year) {
             fetchPengabdianData(year)
                 .done(function(response) {
-                    // Update statistics for all programs
                     updateProgramStatistics('elektro', response.elektro_data);
                     updateProgramStatistics('industri', response.industri_data);
                     updateProgramStatistics('biomedis', response.biomedis_data);
 
-                    // Update tables for all programs
                     updateProgramTable('elektro', response.data_elektro);
                     updateProgramTable('industri', response.data_industri);
                     updateProgramTable('biomedis', response.data_biomedis);
@@ -374,7 +389,6 @@
                 });
         }
 
-        // Function to update statistics for a specific program
         function updateProgramStatistics(program, data) {
             $(`#data-mandiri-${program}`).text(formatRupiah(data.mandiri));
             $(`#data-internal-${program}`).text(formatRupiah(data.internal));
@@ -382,13 +396,15 @@
             $(`#data-internasional-${program}`).text(formatRupiah(data.internasional));
         }
 
-        // Function to update table for a specific program
         function updateProgramTable(program, data) {
+            if (datatables[program]) {
+                datatables[program].destroy();
+            }
+
             const tableBody = $(`#datatable-${program} tbody`);
             tableBody.empty();
 
             data.forEach(function(item) {
-                // Process anggota penelitian
                 let anggotaNames = '';
                 if (item.anggota_pengabdian && item.anggota_pengabdian.length > 0) {
                     anggotaNames = item.anggota_pengabdian
@@ -396,7 +412,6 @@
                         .join('; ');
                 }
 
-                // Create select element with current value
                 const selectHtml = `
                     <select class="form-select" name="kesesuaian_pengabdian" 
                             id="kesesuaian_pengabdian_${item.id}" 
@@ -415,34 +430,40 @@
 
                 const row = `
                     <tr>
-                        <td class="align-middle">${item.kategori || '-'}</td>
-                        <td class="align-middle">${item.nama_ketua || '-'}</td>
-                        <td class="align-middle">${anggotaNames || '-'}</td>
-                        <td class="align-middle">${item.judul || '-'}</td>
-                        <td class="align-middle">${item.skim || '-'}</td>
-                        <td class="align-middle">${formatRupiah(item.besar_hibah)}</td>
-                        <td class="align-middle">${selectHtml}</td>
+                        <td style="width: 300px;" class="align-middle">${escapeHtml(item.kategori || '-')}</td>
+                        <td style="width: 350px;" class="align-middle">${escapeHtml(item.nama_ketua || '-')}</td>
+                        <td style="width: 350px;" class="align-middle">${escapeHtml(anggotaNames || '-')}</td>
+                        <td style="width: 350px;" class="align-middle">${escapeHtml(item.judul || '-')}</td>
+                        <td style="width: 350px;" class="align-middle">${escapeHtml(item.skim || '-')}</td>
+                        <td style="width: 200px;" class="align-middle">${formatRupiah(item.besar_hibah)}</td>
+                        <td style="width: 500px;" class="align-middle">${selectHtml}</td>
                     </tr>
                 `;
                 tableBody.append(row);
             });
 
-            // Reinitialize DataTable
-            $(`#datatable-${program}`).DataTable({
+            // Reinitialize DataTable with the same configuration
+            datatables[program] = new DataTable(`#datatable-${program}`, {
                 responsive: true,
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json'
-                }
+                order: [[0, 'asc']]
             });
         }
 
-        // Helper function to format currency
         function formatRupiah(amount) {
             if (!amount || isNaN(amount)) return 'Rp0';
             return 'Rp' + new Intl.NumberFormat('id-ID').format(amount);
         }
 
-        // Event listener for year selection
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
         $('#tahun').on('change', function() {
             const selectedYear = $(this).val();
             if (selectedYear) {
@@ -450,13 +471,13 @@
             }
         });
 
-        // Initialize with current year on page load
-        $(document).ready(function() {
-            const currentYear = $('#tahun').val();
-            if (currentYear) {
-                updatePengabdianData(currentYear);
-            }
-        });
+        const currentYear = $('#tahun').val();
+        if (currentYear) {
+            updatePengabdianData(currentYear);
+        }
+
+        // Initialize datatables when the page loads
+        initializeDatatables();
     });
 </script>
 
