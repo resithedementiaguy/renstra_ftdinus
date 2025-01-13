@@ -185,7 +185,7 @@
                                     </div>
                                 </fieldset>
                                 <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-2 pt-0">Kategori pengabdian</legend>
+                                    <legend class="col-form-label col-sm-2 pt-0">Kategori Pengabdian</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="kategori_pengabdian" id="kategori_pengabdian1" value="Mandiri" checked>

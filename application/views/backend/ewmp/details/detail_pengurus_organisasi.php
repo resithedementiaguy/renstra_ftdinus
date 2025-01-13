@@ -20,9 +20,11 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek detail pelaporan Pengurus Organisasi Profesi Fakultas Teknik UDINUS Semarang
                         </div>
-                        <!-- <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
-                        </div> -->
+                        <div class="d-flex justify-content-between">
+                            <a href="<?= base_url('ewmp/edit_pelaporan/' . $pelaporan['id']) ?>" type="button" class="btn btn-warning mb-4">
+                                <i class="bi bi-pencil"></i> <strong>Edit Pengurus Organisasi Profesi</strong>
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
@@ -52,8 +54,8 @@
                                 <tr>
                                     <th>SK, Surat Tugas, dan Bukti Lain Telah Menyelesaikan Tugas</th>
                                     <td>
-                                        <a href="<?= $pengurus_organisasi['file_sk'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $pengurus_organisasi['file_sk'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>

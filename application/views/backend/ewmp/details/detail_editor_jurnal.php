@@ -21,7 +21,9 @@
                             Silahkan untuk mengecek detail pelaporan editor jurnal Fakultas Teknik UDINUS Semarang
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
+                            <a href="<?= base_url('ewmp/edit_pelaporan/' . $pelaporan['id']) ?>" type="button" class="btn btn-warning mb-4">
+                                <i class="bi bi-pencil"></i> <strong>Edit Editor Jurnal</strong>
+                            </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -52,8 +54,8 @@
                                 <tr>
                                     <th>File SK</th>
                                     <td>
-                                        <a href="<?= $editor_jurnal['file_sk'] ?>" target="_blank" class="btn btn-danger">
-                                            <i class="bi bi-file-pdf"></i> File PDF
+                                        <a href="<?= $editor_jurnal['file_sk'] ?>" target="_blank" class="btn btn-primary">
+                                            <i class="bi bi-link"></i> Link GDrive
                                         </a>
                                     </td>
                                 </tr>

@@ -76,6 +76,8 @@ class Auth extends CI_Controller
 
             $this->load->view('backend/auth/register');
         } else {
+            date_default_timezone_set('Asia/Jakarta');
+            $ins_time = date('Y-m-d H:i:s', time());
             // Ambil data yang dimasukkan oleh pengguna
             $password = $this->input->post('password');
 
@@ -87,7 +89,7 @@ class Auth extends CI_Controller
                 'nama' => $this->input->post('nama'),
                 'username' => $this->input->post('username'),
                 'password' => $hashed_password,
-                'ins_time' => date('Y-m-d H:i:s')
+                'ins_time' => $ins_time
             ];
 
             // Panggil model untuk menambahkan data user ke database

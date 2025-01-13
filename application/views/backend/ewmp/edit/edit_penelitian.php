@@ -4,7 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="<?= base_url('ewmp') ?>">Pelaporan EWMP</a></li>
-                <li class="breadcrumb-item active">Edit Pengabdian</li>
+                <li class="breadcrumb-item active">Edit Penelitian</li>
             </ol>
         </nav>
     </div>
@@ -14,70 +14,70 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Edit Pelaporan EWMP - Pengabdian</strong></h5>
+                        <h5 class="pt-2"><strong>Edit Pelaporan EWMP - Penelitian</strong></h5>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('ewmp/update_pengabdian/' . $pengabdian['id_pelaporan']) ?>" method="post">
+                        <form action="<?= base_url('ewmp/update_penelitian/' . $penelitian['id_pelaporan']) ?>" method="post">
                             <div class="row mb-3">
                                 <label for="nama_ketua" class="col-sm-2 col-form-label">Nama Ketua</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nama_ketua" name="nama_ketua" value="<?= htmlspecialchars($pengabdian['nama_ketua']) ?>" required>
+                                    <input type="text" class="form-control" id="nama_ketua" name="nama_ketua" value="<?= htmlspecialchars($penelitian['nama_ketua']) ?>" required>
                                 </div>
                             </div>
                             <fieldset class="row mb-3">
                                 <legend class="col-form-label col-sm-2 pt-0">Program Studi Ketua</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?php echo (isset($pengabdian['prodi']) && $pengabdian['prodi'] === 'Teknik Elektro') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?php echo (isset($penelitian['prodi']) && $penelitian['prodi'] === 'Teknik Elektro') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="prodi1">Teknik Elektro</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?php echo (isset($pengabdian['prodi']) && $pengabdian['prodi'] === 'Teknik Industri') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?php echo (isset($penelitian['prodi']) && $penelitian['prodi'] === 'Teknik Industri') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="prodi2">Teknik Industri</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?php echo (isset($pengabdian['prodi']) && $pengabdian['prodi'] === 'Teknik Biomedis') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?php echo (isset($penelitian['prodi']) && $penelitian['prodi'] === 'Teknik Biomedis') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="prodi3">Teknik Biomedis</label>
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset class="row mb-3">
-                                <legend class="col-form-label col-sm-2 pt-0">Kategori Pengabdian</legend>
+                                <legend class="col-form-label col-sm-2 pt-0">Kategori Penelitian</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kategori1" value="Mandiri" <?php echo (isset($pengabdian['kategori']) && $pengabdian['kategori'] === 'Mandiri') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="kategori" id="kategori1" value="Mandiri" <?php echo (isset($penelitian['kategori']) && $penelitian['kategori'] === 'Mandiri') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="kategori1">Mandiri</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kategori2" value="Internal" <?php echo (isset($pengabdian['kategori']) && $pengabdian['kategori'] === 'Internal') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="kategori" id="kategori2" value="Internal" <?php echo (isset($penelitian['kategori']) && $penelitian['kategori'] === 'Internal') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="kategori2">Internal</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kategori3" value="Nasional" <?php echo (isset($pengabdian['kategori']) && $pengabdian['kategori'] === 'Nasional') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="kategori" id="kategori3" value="Nasional" <?php echo (isset($penelitian['kategori']) && $penelitian['kategori'] === 'Nasional') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="kategori3">Nasional</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kategori4" value="Internasional" <?php echo (isset($pengabdian['kategori']) && $pengabdian['kategori'] === 'Internasional') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="kategori" id="kategori4" value="Internasional" <?php echo (isset($penelitian['kategori']) && $penelitian['kategori'] === 'Internasional') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="kategori4">Internasional</label>
                                     </div>
                                 </div>
                             </fieldset>
                             <div class="row mb-3">
-                                <label for="judul" class="col-sm-2 col-form-label">Judul Pengabdian</label>
+                                <label for="judul" class="col-sm-2 col-form-label">Judul Penelitian</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="judul" name="judul" rows="3" required><?= htmlspecialchars($pengabdian['judul']) ?></textarea>
+                                    <textarea class="form-control" id="judul" name="judul" rows="3" required><?= htmlspecialchars($penelitian['judul']) ?></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="skim" class="col-sm-2 col-form-label">Skim Pengabdian</label>
+                                <label for="skim" class="col-sm-2 col-form-label">Skim Penelitian</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="skim" name="skim" value="<?= htmlspecialchars($pengabdian['skim']) ?>" required>
+                                    <input type="text" class="form-control" id="skim" name="skim" value="<?= htmlspecialchars($penelitian['skim']) ?>" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="pemberi_hibah" class="col-sm-2 col-form-label">Pemberi Hibah</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="pemberi_hibah" name="pemberi_hibah" value="<?= htmlspecialchars($pengabdian['pemberi_hibah']) ?>" required>
+                                    <input type="text" class="form-control" id="pemberi_hibah" name="pemberi_hibah" value="<?= htmlspecialchars($penelitian['pemberi_hibah']) ?>" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -90,25 +90,25 @@
                                         class="form-control"
                                         placeholder="Masukkan besar hibah"
                                         oninput="formatRupiah(this)"
-                                        value="<?= 'Rp ' . number_format($pengabdian['besar_hibah'], 0, ',', '.') ?>">
+                                        value="<?= 'Rp ' . number_format($penelitian['besar_hibah'], 0, ',', '.') ?>">
                                     <!-- Add hidden input to store the raw value -->
                                     <input 
                                         type="hidden" 
                                         name="besar_hibah_raw" 
                                         id="besar_hibah_raw"
-                                        value="<?= $pengabdian['besar_hibah'] ?>">
+                                        value="<?= $penelitian['besar_hibah'] ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="kontrak" class="col-sm-2 col-form-label">Link Google Drive Kontrak Pengabdian</label>
+                                <label for="kontrak" class="col-sm-2 col-form-label">Link Google Drive Kontrak Penelitian</label>
                                 <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="kontrak" name="kontrak" value="<?= $pengabdian['kontrak'] ?>">
+                                    <input type="url" class="form-control" id="kontrak" name="kontrak" value="<?= $penelitian['kontrak'] ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="laporan" class="col-sm-2 col-form-label">Link Google Drive Laporan Pengabdian</label>
+                                <label for="laporan" class="col-sm-2 col-form-label">Link Google Drive Laporan Kemajuan / Akhir Penelitian</label>
                                 <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="laporan" name="laporan" value="<?= $pengabdian['laporan'] ?>">
+                                    <input type="url" class="form-control" id="laporan" name="laporan" value="<?= $penelitian['laporan_maju'] ?>">
                                 </div>
                             </div>
                             <div class="text-end">
@@ -133,7 +133,7 @@
             <div class="modal-body text-center py-4">
                 <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
                 <h4 class="mt-3">Berhasil!</h4>
-                <p class="mb-0">Data pengabdian berhasil diperbarui.</p>
+                <p class="mb-0">Data penelitian berhasil diperbarui.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

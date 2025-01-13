@@ -20,9 +20,11 @@
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Silahkan untuk mengecek detail pelaporan karya Artikel/Karya Ilmiah Fakultas Teknik UDINUS Semarang
                         </div>
-                        <!-- <div class="d-flex justify-content-between">
-                            <a href="<?= base_url('ewmp/create_view') ?>" type="button" class="btn btn-warning mb-4"><i class="bi bi-pencil"></i> <strong>Edit Pelaporan</strong></a>
-                        </div> -->
+                        <div class="d-flex justify-content-between">
+                            <a href="<?= base_url('ewmp/edit_pelaporan/' . $pelaporan['id']) ?>" type="button" class="btn btn-warning mb-4">
+                                <i class="bi bi-pencil"></i> <strong>Edit Artikel Ilmiah</strong>
+                            </a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
@@ -40,6 +42,10 @@
                                 <tr>
                                     <th>Kategori Artikel/Karya Ilmiah</th>
                                     <td><?= htmlspecialchars($artikel_ilmiah['kategori']) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Kategori Jurnal</th>
+                                    <td><?= htmlspecialchars($artikel_ilmiah['kategori_jurnal']) ?></td>
                                 </tr>
                                 <tr>
                                     <th>Nama Penulis Pertama</th>

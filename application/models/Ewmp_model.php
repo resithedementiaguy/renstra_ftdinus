@@ -86,7 +86,7 @@ class Ewmp_model extends CI_Model
 
     public function update_penelitian($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('penelitian', $data);
     }
 
@@ -162,7 +162,7 @@ class Ewmp_model extends CI_Model
 
     public function update_artikel_ilmiah($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('artikel_ilmiah', $data);
     }
 
@@ -200,7 +200,7 @@ class Ewmp_model extends CI_Model
 
     public function update_prosiding($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('prosiding', $data);
     }
 
@@ -275,6 +275,12 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
+    public function update_haki_hcipta($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_hcipta', $data);
+    }
+
     public function add_haki_merk($data)
     {
         if ($this->db->insert('haki_merk', $data)) {
@@ -305,6 +311,12 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
+    public function update_haki_merk($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_merk', $data);
+    }
+
     public function add_haki_lisensi($data)
     {
         $this->db->insert('haki_lisensi', $data);
@@ -329,6 +341,12 @@ class Ewmp_model extends CI_Model
         $result = $query->row();
 
         return $result ? $result->id : null;
+    }
+
+    public function update_haki_lisensi($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_lisensi', $data);
     }
 
     public function add_haki_buku($data)
@@ -357,6 +375,12 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
+    public function update_haki_buku($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_buku', $data);
+    }
+
     public function add_haki_paten($data)
     {
         return $this->db->insert('haki_paten', $data);
@@ -381,6 +405,12 @@ class Ewmp_model extends CI_Model
         $result = $query->row();
 
         return $result ? $result->id : null;
+    }
+
+    public function update_haki_paten($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_paten', $data);
     }
 
     public function add_haki_dindustri($data)
@@ -409,6 +439,12 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
+    public function update_haki_dindustri($id, $data)
+    {
+        $this->db->where('id_haki', $id);
+        return $this->db->update('haki_dindustri', $data);
+    }
+
     public function add_editor_jurnal($data)
     {
         return $this->db->insert('editor_jurnal', $data);
@@ -425,7 +461,7 @@ class Ewmp_model extends CI_Model
 
     public function update_editor_jurnal($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('editor_jurnal', $data);
     }
 
@@ -451,7 +487,7 @@ class Ewmp_model extends CI_Model
 
     public function update_reviewer_jurnal($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('reviewer_jurnal', $data);
     }
 
@@ -477,7 +513,7 @@ class Ewmp_model extends CI_Model
 
     public function update_invited_speaker($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('iv_speaker', $data);
     }
 
@@ -503,7 +539,7 @@ class Ewmp_model extends CI_Model
 
     public function update_pengurus_organisasi($id, $data)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_pelaporan', $id);
         return $this->db->update('org_profesi', $data);
     }
 

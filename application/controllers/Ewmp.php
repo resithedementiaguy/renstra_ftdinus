@@ -1621,58 +1621,7 @@ class Ewmp extends CI_Controller
 
         if (!$data['pelaporan']) {
             show_404();
-        }
-
-        if ($this->input->post()) {
-            // Proses update berdasarkan input dari form
-            $update_data = $this->input->post();
-
-            switch ($pelaporan['jenis_lapor']) {
-                case 'Penelitian':
-                    $this->Ewmp_model->update_penelitian_by_id($id, $update_data);
-                    break;
-
-                case 'Pengabdian':
-                    $this->Ewmp_model->update_pengabdian($id, $update_data);
-                    break;
-
-                case 'Artikel/Karya Ilmiah':
-                    $this->Ewmp_model->update_artikel_ilmiah_by_id($id, $update_data);
-                    break;
-
-                case 'Prosiding':
-                    $this->Ewmp_model->update_prosiding_by_id($id, $update_data);
-                    break;
-
-                case 'HAKI':
-                    $this->Ewmp_model->update_haki_by_id($id, $update_data);
-                    break;
-
-                case 'Editor Jurnal':
-                    $this->Ewmp_model->update_editor_jurnal_by_id($id, $update_data);
-                    break;
-
-                case 'Reviewer Jurnal':
-                    $this->Ewmp_model->update_reviewer_jurnal_by_id($id, $update_data);
-                    break;
-
-                case 'Invited Speaker':
-                    $this->Ewmp_model->update_invited_speaker_by_id($id, $update_data);
-                    break;
-
-                case 'Pengurus Organisasi Profesi':
-                    $this->Ewmp_model->update_pengurus_organisasi_by_id($id, $update_data);
-                    break;
-
-                default:
-                    show_error('Jenis pelaporan tidak valid', 400, 'Error');
-                    return;
-            }
-
-            // Redirect setelah berhasil di-update
-            $this->session->set_flashdata('success', 'Data pelaporan berhasil diperbarui.');
-            redirect('Ewmp/detail_pelaporan/' . $id);
-        }
+        }        
 
         // Ambil data spesifik untuk ditampilkan pada form edit
         switch ($pelaporan['jenis_lapor']) {
@@ -1747,11 +1696,308 @@ class Ewmp extends CI_Controller
 
     public function update_pengabdian($id)
     {
-        $update_data = $this->input->post();
-        
-        $this->Ewmp_model->update_pengabdian($id, $update_data);
+        // Get post data
+        $update_data = array(
+            'nama_ketua' => $this->input->post('nama_ketua'),
+            'prodi' => $this->input->post('prodi'),
+            'kategori' => $this->input->post('kategori'),
+            'judul' => $this->input->post('judul'),
+            'skim' => $this->input->post('skim'),
+            'pemberi_hibah' => $this->input->post('pemberi_hibah'),
+            'besar_hibah' => str_replace(['Rp', '.', ','], '', $this->input->post('besar_hibah_raw')), // Use the raw value and clean it
+            'kontrak' => $this->input->post('kontrak'),
+            'laporan' => $this->input->post('laporan')
+        );
 
-        redirect('ewmp/detail_pelaporan/' . $id);
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_pengabdian($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data pengabdian berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data pengabdian: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_pengabdian/' . $id);
+        }
+    }
+
+    public function update_penelitian($id)
+    {
+        // Get post data
+        $update_data = array(
+            'nama_ketua' => $this->input->post('nama_ketua'),
+            'prodi' => $this->input->post('prodi'),
+            'kategori' => $this->input->post('kategori'),
+            'judul' => $this->input->post('judul'),
+            'skim' => $this->input->post('skim'),
+            'pemberi_hibah' => $this->input->post('pemberi_hibah'),
+            'besar_hibah' => str_replace(['Rp', '.', ','], '', $this->input->post('besar_hibah_raw')), // Use the raw value and clean it
+            'kontrak' => $this->input->post('kontrak'),
+            'laporan_maju' => $this->input->post('laporan')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_penelitian($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data penelitian berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data penelitian: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_penelitian/' . $id);
+        }
+    }
+
+    public function update_ilmiah($id)
+    {
+        $kategori=$this->input->post('kategori_ilmiah');
+        // Get post data
+        $update_data = array(
+            'kategori' => $kategori,
+            'kategori_jurnal' => $this->input->post('kategori_jurnal'),
+            'nama_pertama' => $this->input->post('nama_pertama'),
+            'prodi' => $this->input->post('prodi'),
+            'nama_korespon' => $this->input->post('nama_korespon'),
+            'judul_artikel' => $this->input->post('judul_artikel'),
+            'judul_jurnal' => $this->input->post('judul_jurnal'),
+            'link_jurnal' => $this->input->post('link_jurnal'),
+            'volume_jurnal' => $this->input->post('volume_jurnal'),
+            'nomor_jurnal' => $this->input->post('nomor_jurnal'),
+            'doi' => $this->input->post('doi')
+        );
+
+        // Tambahkan field `pengindeks` jika kategori internasional
+        $internasional = ["Internasional Q1", "Internasional Q2", "Internasional Q3", "Internasional Q4", "Internasional Non Scopus"];
+        if (in_array($kategori, $internasional)) {
+            $update_data['pengindeks'] = $this->input->post('pengindeks');
+        }
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_artikel_ilmiah($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data ilmiah berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data ilmiah: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_ilmiah/' . $id);
+        }
+    }
+
+    public function update_prosiding($id)
+    {
+        // Get post data
+        $update_data = array(
+            'kategori' => $this->input->post('kategori'),
+            'kategori_jurnal' => $this->input->post('kategori_jurnal'),
+            'nama_pertama' => $this->input->post('nama_pertama'),
+            'prodi' => $this->input->post('prodi'),
+            'nama_korespon' => $this->input->post('nama_korespon'),
+            'judul_artikel' => $this->input->post('judul_artikel'),
+            'judul_seminar' => $this->input->post('judul_seminar'),
+            'bukti_loa' => $this->input->post('bukti_loa'),
+            'doi' => $this->input->post('doi')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_prosiding($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data prosiding berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data prosiding: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_prosiding/' . $id);
+        }
+    }
+
+    public function update_haki($id)
+    {
+        // Get post data
+        $update_data = array(
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_prosiding($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data prosiding berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data prosiding: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_prosiding/' . $id);
+        }
+    }
+
+    public function update_editor_jurnal($id)
+    {
+        // Get post data
+        $update_data = array(
+            'nama_usul' => $this->input->post('nama_usul'),
+            'prodi' => $this->input->post('prodi'),
+            'judul' => $this->input->post('judul'),
+            'file_sk' => $this->input->post('file_sk')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_editor_jurnal($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data editor jurnal berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data editor jurnal: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_editor_jurnal/' . $id);
+        }
+    }
+
+    public function update_reviewer_jurnal($id)
+    {
+        // Get post data
+        $update_data = array(
+            'nama_usul' => $this->input->post('nama_usul'),
+            'prodi' => $this->input->post('prodi'),
+            'judul_artikel' => $this->input->post('judul_artikel'),
+            'judul_jurnal' => $this->input->post('judul_jurnal'),
+            'sertifikat' => $this->input->post('sertifikat')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_reviewer_jurnal($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data reviewer jurnal berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data reviewer jurnal: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_reviewer_jurnal/' . $id);
+        }
+    }
+
+    public function update_invited_speaker($id)
+    {
+        // Get post data
+        $update_data = array(
+            'nama_usul' => $this->input->post('nama_usul'),
+            'prodi' => $this->input->post('prodi'),
+            'judul' => $this->input->post('judul'),
+            'penyelenggara' => $this->input->post('penyelenggara'),
+            'dokumen' => $this->input->post('dokumen')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_invited_speaker($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data invited speaker berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data invited speaker: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_invited_speaker/' . $id);
+        }
+    }
+
+    public function update_pengurus_organisasi($id)
+    {
+        // Get post data
+        $update_data = array(
+            'nama_org' => $this->input->post('nama_org'),
+            'jabatan' => $this->input->post('jabatan'),
+            'masa_jabatan' => $this->input->post('masa_jabatan'),
+            'file_sk' => $this->input->post('file_sk')
+        );
+
+        // Remove any null/empty values to prevent overwriting with empty data
+        $update_data = array_filter($update_data, function($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record
+            $this->Ewmp_model->update_pengurus_organisasi($id, $update_data);
+            
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data pengurus organisasi berhasil diperbarui');
+            
+            redirect('ewmp/detail_pelaporan/' . $id);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data pengurus organisasi: ' . $e->getMessage());
+            
+            redirect('ewmp/edit_pengurus_organisasi/' . $id);
+        }
     }
 
 

@@ -102,7 +102,7 @@
                                     </tr>
                                     <tr style="border: 1px solid black !important;">
                                         <?php foreach ($years as $year): ?>
-                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #1153a1 !important; color: #fff !important;" class="text-center align-middle"><?php echo $year; ?></th>
+                                            <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #1153a1 !important; color: #fff !important;" class="text-center align-middle">Target <?php echo $year; ?></th>
                                             <th style="border: 1px solid black; min-width: 100px; width: auto; background-color: #1153a1 !important; color: #fff !important;" class="text-center align-middle">Capaian <?php echo $year; ?></th>
                                         <?php endforeach; ?>
                                     </tr>
