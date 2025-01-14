@@ -260,31 +260,62 @@ class Ewmp_model extends CI_Model
         // Join haki_hcipta table with aliases for all columns
         $this->db->join('haki_hcipta', 'haki_hcipta.id_haki = haki.id', 'left');
         $this->db->select('
-        haki_hcipta.id AS hcipta_id,
-        haki_hcipta.nama_usul AS hcipta_nama_usul,
-        haki_hcipta.prodi AS hcipta_prodi,
-        haki_hcipta.judul AS hcipta_judul,
-        haki_hcipta.sertifikat AS hcipta_sertifikat
-    ');
-
-        // Join haki_lisensi table with aliases for all columns
-        $this->db->join('haki_lisensi', 'haki_lisensi.id_haki = haki.id', 'left');
-        $this->db->select('
-        haki_lisensi.id AS lisensi_id,
-        haki_lisensi.nama_usul AS lisensi_nama_usul,
-        haki_lisensi.prodi AS lisensi_prodi,
-        haki_lisensi.judul AS lisensi_judul,
-        haki_lisensi.sertifikat AS lisensi_sertifikat
-    ');
+            haki_hcipta.id AS hcipta_id,
+            haki_hcipta.nama_usul AS hcipta_nama_usul,
+            haki_hcipta.prodi AS hcipta_prodi,
+            haki_hcipta.judul AS hcipta_judul,
+            haki_hcipta.sertifikat AS hcipta_sertifikat
+        ');
 
         // Join haki_merk table with aliases for all columns
         $this->db->join('haki_merk', 'haki_merk.id_haki = haki.id', 'left');
         $this->db->select('
-        haki_merk.id AS merk_id,
-        haki_merk.nama_usul AS merk_nama_usul,
-        haki_merk.prodi AS merk_prodi,
-        haki_merk.judul AS merk_judul
-    ');
+            haki_merk.id AS merk_id,
+            haki_merk.nama_usul AS merk_nama_usul,
+            haki_merk.prodi AS merk_prodi,
+            haki_merk.judul AS merk_judul,
+            haki_merk.sertifikat AS merk_sertifikat
+        ');
+
+        // Join haki_lisensi table with aliases for all columns
+        $this->db->join('haki_lisensi', 'haki_lisensi.id_haki = haki.id', 'left');
+        $this->db->select('
+            haki_lisensi.id AS lisensi_id,
+            haki_lisensi.nama_usul AS lisensi_nama_usul,
+            haki_lisensi.prodi AS lisensi_prodi,
+            haki_lisensi.judul AS lisensi_judul,
+            haki_lisensi.sertifikat AS lisensi_sertifikat
+        ');
+
+        // Join haki_paten table with aliases for all columns
+        $this->db->join('haki_paten', 'haki_paten.id_haki = haki.id', 'left');
+        $this->db->select('
+            haki_paten.id AS paten_id,
+            haki_paten.nama_usul AS paten_nama_usul,
+            haki_paten.prodi AS paten_prodi,
+            haki_paten.judul AS paten_judul,
+            haki_paten.sertifikat AS paten_sertifikat
+        ');
+
+        // Join haki_dindustri table with aliases for all columns
+        $this->db->join('haki_dindustri', 'haki_dindustri.id_haki = haki.id', 'left');
+        $this->db->select('
+            haki_dindustri.id AS dindustri_id,
+            haki_dindustri.nama_usul AS dindustri_nama_usul,
+            haki_dindustri.prodi AS dindustri_prodi,
+            haki_dindustri.judul AS dindustri_judul,
+            haki_dindustri.sertifikat AS dindustri_sertifikat
+        ');
+
+        // Join haki_buku table with aliases for all columns
+        $this->db->join('haki_buku', 'haki_buku.id_haki = haki.id', 'left');
+        $this->db->select('
+            haki_buku.id AS buku_id,
+            haki_buku.nama_usul AS buku_nama_usul,
+            haki_buku.prodi AS buku_prodi,
+            haki_buku.judul_buku,
+            haki_buku.file_buku
+        ');
 
         // Filter by pelaporan id
         $this->db->where('haki.id_pelaporan', $id_pelaporan);

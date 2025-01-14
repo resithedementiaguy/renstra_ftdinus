@@ -336,9 +336,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="text-end">
                             <a href="<?= site_url('ewmp') ?>" class="btn btn-secondary">Kembali</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -351,7 +349,7 @@
 function formatDateTime($datetime)
 {
     if (empty($datetime)) {
-        return "-"; // Atau teks lain sesuai kebutuhan
+        return "-";
     }
 
     $date = new DateTime($datetime);

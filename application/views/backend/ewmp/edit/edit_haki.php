@@ -120,6 +120,57 @@
                             </div>
                         </form>
                     <?php
+                    } elseif ($haki['kategori'] == "Merk") {
+                    ?>
+                        <form action="<?= base_url('ewmp/update_haki_merk/' . $haki['id']) ?>" method="post">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label for="nama_usul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="nama_usul" name="nama_usul" value="<?= htmlspecialchars($haki['merk_nama_usul']) ?>" required>
+                                    </div>
+                                </div>
+
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi Ketua</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?= isset($haki['merk_prodi']) && $haki['merk_prodi'] === 'Teknik Elektro' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?= isset($haki['merk_prodi']) && $haki['merk_prodi'] === 'Teknik Industri' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?= isset($haki['merk_prodi']) && $haki['merk_prodi'] === 'Teknik Biomedis' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="row mb-3">
+                                    <label for="judul" class="col-sm-2 col-form-label">Judul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="judul" name="judul" value="<?= htmlspecialchars($haki['merk_judul']) ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="sertifikat" class="col-sm-2 col-form-label">Sertifikat</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="sertifikat" name="sertifikat" value="<?= htmlspecialchars($haki['merk_sertifikat']) ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <a href="<?= base_url('ewmp/detail_pelaporan/' . $haki['id_pelaporan']) ?>" class="btn btn-secondary">Kembali</a>
+                                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                </div>
+                            </div>
+                        </form>
+                    <?php
                     }
                     ?>
                 </div>
