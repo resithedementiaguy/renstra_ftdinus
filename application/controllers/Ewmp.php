@@ -1892,7 +1892,6 @@ class Ewmp extends CI_Controller
             'nama_pemegang' => $this->input->post('nama_pemegang'),
             'judul' => $this->input->post('judul'),
             'sertifikat' => $this->input->post('sertifikat'),
-            'tahun' => $this->input->post('tahun'),
         );
 
         // Remove null or empty fields
@@ -1928,7 +1927,6 @@ class Ewmp extends CI_Controller
             'nama_pemegang' => $this->input->post('nama_pemegang'),
             'judul' => $this->input->post('judul'),
             'sertifikat' => $this->input->post('sertifikat'),
-            'tahun' => $this->input->post('tahun'),
         );
 
         // Remove null or empty fields
@@ -1947,6 +1945,110 @@ class Ewmp extends CI_Controller
         } catch (Exception $e) {
             // Set error flash message
             $this->session->set_flashdata('error', 'Gagal memperbarui data HAKI Merk: ' . $e->getMessage());
+
+            redirect('ewmp/edit_haki/' . $id_pelaporan);
+        }
+    }
+
+    public function update_haki_paten($id_haki)
+    {
+        // Get related id_pelaporan for redirection
+        $id_pelaporan = $this->Ewmp_model->get_id_pelaporan_by_haki_id($id_haki);
+
+        // Get post data
+        $update_data = array(
+            'prodi' => $this->input->post('prodi'),
+            'nama_usul' => $this->input->post('nama_usul'),
+            'nama_inventor' => $this->input->post('nama_inventor'),
+            'judul' => $this->input->post('judul'),
+            'sertifikat' => $this->input->post('sertifikat'),
+        );
+
+        // Remove null or empty fields
+        $update_data = array_filter($update_data, function ($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record in haki_paten table
+            $this->Ewmp_model->update_haki_paten($id_haki, $update_data);
+
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data HAKI Paten berhasil diperbarui.');
+
+            redirect('ewmp/detail_pelaporan/' . $id_pelaporan);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data HAKI Paten: ' . $e->getMessage());
+
+            redirect('ewmp/edit_haki/' . $id_pelaporan);
+        }
+    }
+
+    public function update_haki_dindustri($id_haki)
+    {
+        // Get related id_pelaporan for redirection
+        $id_pelaporan = $this->Ewmp_model->get_id_pelaporan_by_haki_id($id_haki);
+
+        // Get post data
+        $update_data = array(
+            'prodi' => $this->input->post('prodi'),
+            'nama_usul' => $this->input->post('nama_usul'),
+            'judul' => $this->input->post('judul'),
+            'sertifikat' => $this->input->post('sertifikat'),
+        );
+
+        // Remove null or empty fields
+        $update_data = array_filter($update_data, function ($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record in haki_dindustri table
+            $this->Ewmp_model->update_haki_dindustri($id_haki, $update_data);
+
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data HAKI Desain Industri berhasil diperbarui.');
+
+            redirect('ewmp/detail_pelaporan/' . $id_pelaporan);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data HAKI Desain Industri: ' . $e->getMessage());
+
+            redirect('ewmp/edit_haki/' . $id_pelaporan);
+        }
+    }
+
+    public function update_haki_buku($id_haki)
+    {
+        // Get related id_pelaporan for redirection
+        $id_pelaporan = $this->Ewmp_model->get_id_pelaporan_by_haki_id($id_haki);
+
+        // Get post data
+        $update_data = array(
+            'prodi' => $this->input->post('prodi'),
+            'nama_usul' => $this->input->post('nama_usul'),
+            'isbn' => $this->input->post('isbn'),
+            'judul_buku' => $this->input->post('judul_buku'),
+            'file_buku' => $this->input->post('file_buku'),
+        );
+
+        // Remove null or empty fields
+        $update_data = array_filter($update_data, function ($value) {
+            return ($value !== null && $value !== '');
+        });
+
+        try {
+            // Update the record in haki_dindustri table
+            $this->Ewmp_model->update_haki_buku($id_haki, $update_data);
+
+            // Set success flash message
+            $this->session->set_flashdata('success', 'Data HAKI Desain Industri berhasil diperbarui.');
+
+            redirect('ewmp/detail_pelaporan/' . $id_pelaporan);
+        } catch (Exception $e) {
+            // Set error flash message
+            $this->session->set_flashdata('error', 'Gagal memperbarui data HAKI Desain Industri: ' . $e->getMessage());
 
             redirect('ewmp/edit_haki/' . $id_pelaporan);
         }
