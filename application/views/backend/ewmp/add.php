@@ -2,8 +2,8 @@
     <div class="pagetitle">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                <li class="breadcrumb-item">Pelaporan EWMP</li>
+                <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?= base_url('ewmp') ?>">Pelaporan EWMP</a></li>
                 <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>

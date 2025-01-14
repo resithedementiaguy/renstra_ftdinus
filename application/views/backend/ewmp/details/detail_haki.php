@@ -4,7 +4,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="<?= base_url('ewmp') ?>">Pelaporan EWMP</a></li>
-                <li class="breadcrumb-item active">Detail HAKI</li>
+                <li class="breadcrumb-item active">Detail <?php echo $haki['kategori'] ?></li>
             </ol>
         </nav>
     </div>
@@ -14,7 +14,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP - HAKI</strong></h5>
+                        <h5 class="pt-2"><strong>Detail Pelaporan EWMP - <?php echo $haki['kategori'] ?></strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -161,7 +161,7 @@
                     class="nav-content collapse <?php echo ($this->uri->segment(1) == 'ewmp' || $this->uri->segment(1) == 'hasil_pelaporan') ? 'show' : ''; ?>"
                     data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && in_array($this->uri->segment(2), ['', 'detail_pelaporan', 'create_view'])) ? 'active' : ''; ?>"
+                        <a class="<?php echo ($this->uri->segment(1) == 'ewmp' && in_array($this->uri->segment(2), ['', 'edit_pelaporan', 'detail_pelaporan', 'create_view'])) ? 'active' : ''; ?>"
                             href="<?php echo site_url('ewmp'); ?>">
                             <i class="bi bi-circle"></i>
                             <span>Pelaporan</span>
@@ -221,4 +221,3 @@
             <?php endif; ?>
         </ul>
     </aside>
-    

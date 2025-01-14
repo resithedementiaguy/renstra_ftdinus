@@ -4,7 +4,8 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="<?= base_url('ewmp') ?>">Pelaporan EWMP</a></li>
-                <li class="breadcrumb-item active">Edit Editor Jurnal</li>
+                <li class="breadcrumb-item"><a href="<?= base_url('ewmp/detail_pelaporan/' . $haki['id_pelaporan']) ?>">Detail <?php echo $haki['kategori'] ?></a></li>
+                <li class="breadcrumb-item active">Edit <?php echo $haki['kategori'] ?></li>
             </ol>
         </nav>
     </div>
@@ -14,17 +15,17 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-white bg-success">
-                        <h5 class="pt-2"><strong>Edit Pelaporan EWMP - Editor Jurnal</strong></h5>
+                        <h5 class="pt-2"><strong>Edit Pelaporan EWMP - <?php echo $haki['kategori'] ?></strong></h5>
                     </div>
-                    <div class="card-body">
-                        <?php
-                        if ($haki['kategori'] == "Hak Cipta") {
-                        ?>
-                            <form action="<?= base_url('ewmp/update_haki/' . $haki['id']) ?>" method="post">
+                    <?php
+                    if ($haki['kategori'] == "Hak Cipta") {
+                    ?>
+                        <form action="<?= base_url('ewmp/update_haki_hcipta/' . $haki['id']) ?>" method="post">
+                            <div class="card-body">
                                 <div class="row mb-3">
                                     <label for="nama_usul" class="col-sm-2 col-form-label">Nama Pengusul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nama_usul" name="nama_usul" value="<?= htmlspecialchars($haki['nama_usul']) ?>" required>
+                                        <input type="text" class="form-control" id="nama_usul" name="nama_usul" value="<?= htmlspecialchars($haki['hcipta_nama_usul']) ?>" required>
                                     </div>
                                 </div>
 
@@ -32,15 +33,15 @@
                                     <legend class="col-form-label col-sm-2 pt-0">Program Studi Ketua</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?= isset($haki['prodi']) && $haki['prodi'] === 'Teknik Elektro' ? 'checked' : ''; ?>>
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?= isset($haki['hcipta_prodi']) && $haki['hcipta_prodi'] === 'Teknik Elektro' ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="prodi1">Teknik Elektro</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?= isset($haki['prodi']) && $haki['prodi'] === 'Teknik Industri' ? 'checked' : ''; ?>>
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?= isset($haki['hcipta_prodi']) && $haki['hcipta_prodi'] === 'Teknik Industri' ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="prodi2">Teknik Industri</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?= isset($haki['prodi']) && $haki['prodi'] === 'Teknik Biomedis' ? 'checked' : ''; ?>>
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?= isset($haki['hcipta_prodi']) && $haki['hcipta_prodi'] === 'Teknik Biomedis' ? 'checked' : ''; ?>>
                                             <label class="form-check-label" for="prodi3">Teknik Biomedis</label>
                                         </div>
                                     </div>
@@ -49,26 +50,78 @@
                                 <div class="row mb-3">
                                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="judul" name="judul" value="<?= htmlspecialchars($haki['judul']) ?>" required>
+                                        <input type="text" class="form-control" id="judul" name="judul" value="<?= htmlspecialchars($haki['hcipta_judul']) ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="sertifikat" class="col-sm-2 col-form-label">Sertifikat</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="sertifikat" name="sertifikat" value="<?= htmlspecialchars($haki['sertifikat']) ?>" required>
+                                        <input type="text" class="form-control" id="sertifikat" name="sertifikat" value="<?= htmlspecialchars($haki['hcipta_sertifikat']) ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <a href="<?= base_url('ewmp/detail_pelaporan/' . $haki['id_pelaporan']) ?>" class="btn btn-secondary">Kembali</a>
+                                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                </div>
+                            </div>
+                        </form>
+                    <?php
+                    } elseif ($haki['kategori'] == "Lisensi") {
+                    ?>
+                        <form action="<?= base_url('ewmp/update_haki_lisensi/' . $haki['id']) ?>" method="post">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label for="nama_usul" class="col-sm-2 col-form-label">Nama Pengusul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="nama_usul" name="nama_usul" value="<?= htmlspecialchars($haki['lisensi_nama_usul']) ?>" required>
                                     </div>
                                 </div>
 
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
-                                    <a href="<?= base_url('ewmp') ?>" class="btn btn-secondary">Batal</a>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Program Studi Ketua</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi1" value="Teknik Elektro" <?= isset($haki['lisensi_prodi']) && $haki['lisensi_prodi'] === 'Teknik Elektro' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi1">Teknik Elektro</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi2" value="Teknik Industri" <?= isset($haki['lisensi_prodi']) && $haki['lisensi_prodi'] === 'Teknik Industri' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi2">Teknik Industri</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="prodi" id="prodi3" value="Teknik Biomedis" <?= isset($haki['lisensi_prodi']) && $haki['lisensi_prodi'] === 'Teknik Biomedis' ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="prodi3">Teknik Biomedis</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="row mb-3">
+                                    <label for="judul" class="col-sm-2 col-form-label">Judul</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="judul" name="judul" value="<?= htmlspecialchars($haki['lisensi_judul']) ?>" required>
+                                    </div>
                                 </div>
-                            </form>
-                        <?php
-                        }
-                        ?>
-                    </div>
+
+                                <div class="row mb-3">
+                                    <label for="sertifikat" class="col-sm-2 col-form-label">Sertifikat</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="sertifikat" name="sertifikat" value="<?= htmlspecialchars($haki['lisensi_sertifikat']) ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <a href="<?= base_url('ewmp/detail_pelaporan/' . $haki['id_pelaporan']) ?>" class="btn btn-secondary">Kembali</a>
+                                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                </div>
+                            </div>
+                        </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

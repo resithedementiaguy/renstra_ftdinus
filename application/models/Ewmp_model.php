@@ -253,23 +253,38 @@ class Ewmp_model extends CI_Model
 
     public function get_haki_details_by_pelaporan_id($id_pelaporan)
     {
-        // Select the main table columns
-        $this->db->select('haki.id AS haki_id, haki.kategori, haki.ins_time, haki.id_pelaporan');
-
-        // From the main table (haki)
+        // Select the main table columns with aliases
+        $this->db->select('haki.id, haki.kategori, haki.ins_time, haki.id_pelaporan');
         $this->db->from('haki');
 
-        // Join haki_hcipta table if data exists
+        // Join haki_hcipta table with aliases for all columns
         $this->db->join('haki_hcipta', 'haki_hcipta.id_haki = haki.id', 'left');
-        $this->db->select('haki_hcipta.id, haki_hcipta.nama_usul, haki_hcipta.prodi, haki_hcipta.judul, haki_hcipta.sertifikat');
+        $this->db->select('
+        haki_hcipta.id AS hcipta_id,
+        haki_hcipta.nama_usul AS hcipta_nama_usul,
+        haki_hcipta.prodi AS hcipta_prodi,
+        haki_hcipta.judul AS hcipta_judul,
+        haki_hcipta.sertifikat AS hcipta_sertifikat
+    ');
 
-        // Join haki_merk table if data exists
-        $this->db->join('haki_merk', 'haki_merk.id_haki = haki.id', 'left');
-        $this->db->select('haki_merk.id, haki_merk.nama_usul AS merk_nama_usul, haki_merk.prodi AS merk_prodi, haki_merk.judul AS merk_judul');
-
-        // Join haki_lisensi table if data exists
+        // Join haki_lisensi table with aliases for all columns
         $this->db->join('haki_lisensi', 'haki_lisensi.id_haki = haki.id', 'left');
-        $this->db->select('haki_lisensi.id, haki_lisensi.nama_usul AS lisensi_nama_usul, haki_lisensi.prodi AS lisensi_prodi, haki_lisensi.judul AS lisensi_judul');
+        $this->db->select('
+        haki_lisensi.id AS lisensi_id,
+        haki_lisensi.nama_usul AS lisensi_nama_usul,
+        haki_lisensi.prodi AS lisensi_prodi,
+        haki_lisensi.judul AS lisensi_judul,
+        haki_lisensi.sertifikat AS lisensi_sertifikat
+    ');
+
+        // Join haki_merk table with aliases for all columns
+        $this->db->join('haki_merk', 'haki_merk.id_haki = haki.id', 'left');
+        $this->db->select('
+        haki_merk.id AS merk_id,
+        haki_merk.nama_usul AS merk_nama_usul,
+        haki_merk.prodi AS merk_prodi,
+        haki_merk.judul AS merk_judul
+    ');
 
         // Filter by pelaporan id
         $this->db->where('haki.id_pelaporan', $id_pelaporan);
@@ -278,6 +293,8 @@ class Ewmp_model extends CI_Model
         $query = $this->db->get();
 
         $result = $query->row_array();
+
+        // Log the result for debugging
         log_message('debug', 'Haki details result: ' . print_r($result, true));
 
         return $result;
@@ -290,47 +307,6 @@ class Ewmp_model extends CI_Model
         $this->db->where('id_pelaporan', $id);
         $query = $this->db->get();
         return $query->result_array();
-    }
-
-    public function update_haki_paten_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki.id_pelaporan', $id_pelaporan);
-        $this->db->join('haki', 'haki.id = haki_paten.id_haki');
-        return $this->db->update('haki_paten', $data);
-    }
-
-    public function update_haki_merk_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki.id_pelaporan', $id_pelaporan);
-        $this->db->join('haki', 'haki.id = haki_merk.id_haki');
-        return $this->db->update('haki_merk', $data);
-    }
-
-    public function update_haki_lisensi_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki.id_pelaporan', $id_pelaporan);
-        $this->db->join('haki', 'haki.id = haki_lisensi.id_haki');
-        return $this->db->update('haki_lisensi', $data);
-    }
-
-    public function update_haki_hcipta_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki_hcipta.id', $id_pelaporan);
-        $this->db->update('haki_hcipta', $data);
-    }
-
-    public function update_haki_dindustri_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki.id_pelaporan', $id_pelaporan);
-        $this->db->join('haki', 'haki.id = haki_dindustri.id_haki');
-        return $this->db->update('haki_dindustri', $data);
-    }
-
-    public function update_haki_buku_by_pelaporan_id($id_pelaporan, $data)
-    {
-        $this->db->where('haki.id_pelaporan', $id_pelaporan);
-        $this->db->join('haki', 'haki.id = haki_buku.id_haki');
-        return $this->db->update('haki_buku', $data);
     }
 
     public function add_haki_hcipta($data)
@@ -359,9 +335,9 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_hcipta($id, $data)
+    public function update_haki_hcipta($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
+        $this->db->where('id_haki', $id_haki);
         return $this->db->update('haki_hcipta', $data);
     }
 
@@ -395,10 +371,10 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_merk($id, $data)
+    public function update_haki_merk($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
-        return $this->db->update('haki_merk', $data);
+        $this->db->where('id_haki', $id_haki);
+        $this->db->update('haki_merk', $data);
     }
 
     public function add_haki_lisensi($data)
@@ -427,10 +403,10 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_lisensi($id, $data)
+    public function update_haki_lisensi($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
-        return $this->db->update('haki_lisensi', $data);
+        $this->db->where('id_haki', $id_haki);
+        $this->db->update('haki_lisensi', $data);
     }
 
     public function add_haki_buku($data)
@@ -459,9 +435,9 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_buku($id, $data)
+    public function update_haki_buku($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
+        $this->db->where('id_haki', $id_haki);
         return $this->db->update('haki_buku', $data);
     }
 
@@ -491,9 +467,9 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_paten($id, $data)
+    public function update_haki_paten($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
+        $this->db->where('id_haki', $id_haki);
         return $this->db->update('haki_paten', $data);
     }
 
@@ -523,9 +499,9 @@ class Ewmp_model extends CI_Model
         return $result ? $result->id : null;
     }
 
-    public function update_haki_dindustri($id, $data)
+    public function update_haki_dindustri($id_haki, $data)
     {
-        $this->db->where('id_haki', $id);
+        $this->db->where('id_haki', $id_haki);
         return $this->db->update('haki_dindustri', $data);
     }
 
