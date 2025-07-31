@@ -314,7 +314,8 @@ class Ewmp_model extends CI_Model
             haki_buku.nama_usul AS buku_nama_usul,
             haki_buku.prodi AS buku_prodi,
             haki_buku.judul_buku,
-            haki_buku.file_buku
+            haki_buku.file_buku,
+            haki_buku.isbn
         ');
 
         // Filter by pelaporan id

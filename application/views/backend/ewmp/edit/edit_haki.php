@@ -213,13 +213,6 @@
                                         <input type="text" class="form-control" id="sertifikat" name="sertifikat" value="<?= htmlspecialchars($haki['paten_sertifikat']) ?>" required>
                                     </div>
                                 </div>
-
-                                <div class="row mb-3">
-                                    <label for="nama_inventor" class="col-sm-2 col-form-label">Nama Inventor</label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" id="nama_inventor" name="nama_inventor" rows="3" required><?= htmlspecialchars($haki['paten_nama_inventor']) ?></textarea>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">
@@ -312,21 +305,21 @@
                                 <div class="row mb-3">
                                     <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="isbn" name="isbn" value="<?= htmlspecialchars($haki['buku_isbn']) ?>" required>
+                                        <input type="text" class="form-control" id="isbn" name="isbn" value="<?= htmlspecialchars($haki['isbn']) ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="judul_buku" name="judul_buku" value="<?= htmlspecialchars($haki['buku_judul_buku']) ?>" required>
+                                        <input type="text" class="form-control" id="judul_buku" name="judul_buku" value="<?= htmlspecialchars($haki['judul_buku']) ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="file_buku" class="col-sm-2 col-form-label">File Buku</label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="form-control" id="file_buku" name="file_buku">
+                                        <input type="text" class="form-control" id="file_buku" name="file_buku" value="<?= htmlspecialchars($haki['file_buku']) ?>">
                                     </div>
                                 </div>
                             </div>
